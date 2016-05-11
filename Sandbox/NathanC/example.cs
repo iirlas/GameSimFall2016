@@ -41,4 +41,23 @@ public class example : MonoBehaviour
            Destroy(this.gameObject);
        }
    }
+
+   //===============================================================
+   //
+   void onTriggerEnter(Collider other)
+   {
+      Debug.Log("Bullet collided with enemy");
+
+      if (other.gameObject.tag == "PlayerBullet")
+      {
+         int score = int.Parse(uiCanvas.GetComponent<Text>().text);
+         score++;
+         uiCanvas.GetComponent<Text>().text = score.ToString();
+
+         //other.gameObject.GetComponent<HorizMovement>().enabled = false;
+
+         Destroy(other.gameObject);
+         Destroy(this.gameObject);
+      }
+   }
 }
