@@ -1,0 +1,356 @@
+                         REQUIREMENTS DOCUMENT 1.1
+                          
+
+                            TABLE OF CONTENTS:
+=====================================================================
+
+*                          General Requirements                     *
+*                     Construction Requirements                     *
+*                         Cultural Requirements                     *
+*                            Gameplay Requirements                  *
+*                            Story Requirements                     *
+*                           Mechanics Requirements                  *
+*                   Player/Controller Requirements                  *
+*                              Camera Requirements                  *
+*                       Environmental Requirements                  *
+*                       External Menu Requirements                  *
+*                       Internal Menu Requirements                  *
+*                         Internal UI Requirements                  *
+*                              Temple Requirements                  *
+*                           Puzzle Requirements                     *
+*                        Companion Requirements                     *
+*                      Protagonist Requirements                     *
+*                            Enemy Requirements                     *
+*                           Cutscenes Requirements                  *
+*                            Sound Requirements                     *
+*                               QA Requirements                     *
+*                       Production Requirements                     *
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*                          General Requirements                     *
+*********************************************************************
+-Game is to be created in Unity 5.3.x (decide)
+-Game will be coded in C# (No, Issac, not in Boo, you heaten.)
+-Code will be edited using Visual Studio NOT monodevelop
+-Game is 3D
+-Game is set in a ficticious Mayan temple
+-Game is, at its core, a puzzle game
+-Game will support English language
+-Will host version control through git
+-Will use Discord for communication
+
+
+
+*********************************************************************
+*                     Construction Requirements                     *
+*********************************************************************
+-Where possible, textures will be created as seamless tiles
+-Rooms will be built modularly using prefabs (think building blocks/legos/minecraft)
+
+
+
+
+*********************************************************************
+*                         Cultural Requirements                     *
+*********************************************************************
+-If puzzle uses Mayan alphabet, must be used correctly
+-If puzzle uses Mayan numbers--or math of any kind, really-- must be in base 20
+-Meticulous research for buildings, fauna, flora, clothing, etc
+
+
+
+*********************************************************************
+*                            Gameplay Requirements                  *
+*********************************************************************
+-A tutorial must be provided in some sort of introductory temple setting
+-Must support controller usage
+-Must also support mouse/keyboard input
+-Must be able to differentiate input type for World UI implementation (?) (input.GetJoystickNames, if empty keyboard, if not, controller? at its simplest, I guess)
+-Must have a film grain overlay, BUT must also have an option for turning it off
+
+
+
+*********************************************************************
+*                            Story Requirements                     *
+*********************************************************************
+-Little girl is searching for her parents
+-Little girl is stuck in temples solving puzzles, finding things that belonged to her parents
+-Dual ending
+--If all objectives met, one last puzzle nets her being reunited with her parents and it being revealed an illusion
+--If all objectives NOT met, she sees her parents dead, darkness closes in, the end.
+
+
+
+*********************************************************************
+*                           Mechanics Requirements                  *
+*********************************************************************
+-Protagonist is afraid of the dark
+-Parents are missing/being search for
+-Player can control protagonist as well as companions to solve specific types of puzzles
+-To survive darkness in open world, girl has torches
+-Combat system
+-Puzzle games
+-Must be able to weild torch in open world
+
+
+
+*********************************************************************
+*                   Player/Controller Requirements                  *
+*********************************************************************
+-Must be able to control girl
+--she can jump
+--she can run
+--she can light/hold a torch when in the open world
+--she can do other mysterious things?
+
+-Must be able to switch to companion animals to achieve specific puzzle events
+
+
+
+*********************************************************************
+*                              Camera Requirements                  *
+*********************************************************************
+-Camera must switch between player and companions when plyer chooses to change character being played
+-Camera should be a mostly stable isometric  from top corner of room in the temple
+-Camera will close in on puzzles that require focus
+-Camera will follow girl more closely when running through open world
+
+
+
+
+*********************************************************************
+*                       Environmental Requirements                  *
+*********************************************************************
+-Set in 1920s
+-Terrain is an island
+-Water around island is non traversible
+-Water is also full of sharks
+-Mostly unwooded
+-Some hills
+-Resevoirs for water
+-Appropriate ambient flora and fauna
+-Appropriate construction techniques
+-6 temple set up with at least one external building (NOTE: we will start by setting up a smaller number)
+-Place for stone guardian to rest
+-Must implement a Day and Night cycle
+
+
+
+*********************************************************************
+*                       External Menu Requirements                  *
+*********************************************************************
+-Must have production splash (NoviFactory Presents)
+-Must have studio splash (A ___________________ game)
+-Must have title splash page
+--Title splash must have an options button
+--Title splash must have a instructions button
+--Title splash must have a credits button
+--Splash page must be exitable with press of esc key
+
+-Must have an options page
+--Turn off film grain
+--Turn off bg sound
+--Turn off ambient sound
+--Return to title screem
+--Start game button
+
+-Must have an instructions page
+--Instructions should be for both controller and mouse/keyboard (possibly have buttons to click which input player wants to use)
+-Return to title button
+-Start game button
+
+-Must have a credits page
+--Scrolling credits for the game
+--at end of credits, return to the title page
+
+
+
+
+
+*********************************************************************
+*                       Internal Menu Requirements                  *
+*********************************************************************
+-Must have ability to pause
+-Must have ability to access options dialogue
+--Turn off film grain
+--Turn off bg sound
+--Turn off ambient sound
+--Return to game button
+
+-Must have ability to access journal
+--Journal must pause game on access
+--Journal must have hints for game and general knowledge
+--Journal must also show what items are currently in possession
+--Return to game button
+
+
+
+
+
+*********************************************************************
+*                         Internal UI Requirements                  *
+*********************************************************************
+-Must include some overlay UI
+--Must indicate health of player
+--Must indicate sanity of player
+--Must indicate health of companions *3
+
+-Must include some worldspace UI (button controls/directions)
+-Must be self explanatory
+-Must compliment the Mayan temple theme
+
+
+
+*********************************************************************
+*                              Temple Requirements                  *
+*********************************************************************
+-Temples will have an average of 5 puzzles, 2 combat situations, a checkpoint room, and a boss.
+-Temple puzzles will be randomised .
+-Temples will be themed.
+-There will be 6 temples
+-Temples end with a unique boss at end
+-Temples may be entered in any order, except last temple.
+-Temples first rooms are set to either require a companion or introduce new companion.
+
+
+*********************************************************************
+*                           Puzzle Requirements                     *
+*********************************************************************
+-Puzzles will be categorised easy, medium, tricky
+-Puzzles will fit into like categories
+-Max of 100 different puzzles (for everyone's sanity, it'll probably be closer to 50--5 types of puzzles, 10 of each)
+-Puzzles should be meticulously tested
+
+
+*********************************************************************
+*                        Companion Requirements                     *
+*********************************************************************
+-Must have stats for health and attack
+-Must have a special ability
+
+
+
+
+
+*********************************************************************
+*                      Protagonist Requirements                     *
+*********************************************************************
+-Little Girl, 1920s
+-Must be era appropriate on clothing
+-Extreme fear of the dark
+
+
+
+*********************************************************************
+*                            Enemy Requirements                     *
+*********************************************************************
+
+
+
+
+
+*********************************************************************
+*                           Cutscenes Requirements                  *
+*********************************************************************
+-Must have an introductory cinematic
+--must be able to skip cinematic with a keypress
+-Must have a cinematic for meeting each companion
+--must be able to skip cinematic with a keypress
+-Must have a cinematic for false ending
+-Must have a cinematic for true ending
+
+-Optional cinematic for putting the statue together
+-Optional cinematics for introduction to bosses of temples
+
+
+
+
+
+
+
+
+
+*********************************************************************
+*                            Sound Requirements                     *
+*********************************************************************
+Background:
+--Must have title music
+--Must have bg music specific to each temple
+--Must have ambient noises (animals tbd after research)
+
+Protagonist:
+--Must have dialogue
+--Must have happy sound
+--Must have humming sound
+--Must have scared sound
+--Must have hurt sound
+--Must have faint sound
+--Must have excited sound
+--Must have miscellaneous sounds
+
+
+Companions:
+--Each companion (Cat, Bird, Rabbit) needs its own set of sounds.
+--Must have scared sound
+--Must have alert sound (when it finds something)
+--Must have happy sound
+--Must have hurt sound
+--Must have attack sound
+--Miscellaneous sounds
+
+
+Enemies:
+--Enemy types are still undefined.
+--Must have attack sound
+--Must have hurt sound
+--Must have death sound
+--Must have discovered sound (when they discover characters, or are discovered)
+
+
+Puzzles:
+--Sounds for stones moving
+--Sounds for gears turning
+--Sliding sounds
+--Water rushing sounds
+--Sounds for things clicking into place
+--Other sounds tbd
+
+
+
+
+
+*********************************************************************
+*                               QA Requirements                     *
+*********************************************************************
+-QA and Unit testing will begin at first build.
+-First build should just be the player controller in a room to test movement.
+-Second build should introduce camera.
+-Internal QA will test, and become proficient, in both controller and keyboard/mouse controls
+-QA should seek external players early on for every stage of creation
+-QA should create dedicated team to try and break game
+-QA should continously add new people to testing rotations and give others breaks (bring back later in process)
+-Every test should have a minimum of 5 players that have never seen the game before
+-Test plans should be developed early and continuously evolve
+-QA will look for flow errors as well as mechanic, spelling, unsavory visual design, and clunky story and mechanics.
+
+
+*********************************************************************
+*                       Production Requirements                     *
+*********************************************************************
+-Production will ensure everyone is on track
+-Scrum meetings, sprints (every two weeks) and retrospectives will be required
+-Team evaluations every two months to be read by leads and addressed
+-Production will lead design of physical promotional material
+-Production will advertise for QA testers
+-Production will set up social media presence to spread talk of game/development
+-Production will fill open areas of other departments if needed
+-Production will develop a conflict resolution plan
+
