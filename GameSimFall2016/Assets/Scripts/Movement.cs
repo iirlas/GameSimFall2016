@@ -3,52 +3,97 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
+    public enum Type
+    {
+        SINGLE,
+        LOOP,
+        ROCK,
+    }
+
     public float movementSpeed = 5.0f;
     public float rotationSmoothSpeed = 10.0f;
 
-    new public Camera camera;
+    public Type type;
+
+    public bool ignoreY = false;
+
+    public bool isMoving;
+
+    public Transform[] targetNodes;
 
     [HideInInspector]
     public new Transform transform;
-    [HideInInspector]
-    public new Rigidbody rigidbody;
 
-    private float mySmoothAngle;
+
+    private int myIndex = 0;
+    private int myIndexDirection = 1;
 
 	// Use this for initialization
 	void Start () {
         transform = GetComponent<Transform>();
-        rigidbody = GetComponent<Rigidbody>();
+        isMoving = true;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	public void Update () 
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        if (!isMoving)
+            return;
 
-        if ( h != 0 || v != 0 )
+        Quaternion rotation = transform.rotation;
+        Vector3 nextTarget = targetNodes[myIndex].position;
+
+        if (ignoreY)
         {
-            Vector3 cameraFoward = camera.transform.forward;
-            //            angle of joystick    angle of camera     
-            float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
+            nextTarget.y = transform.position.y;
+        }
 
-            // smooths the rotation transition
-            mySmoothAngle = Mathf.LerpAngle(mySmoothAngle, angle, Time.deltaTime * rotationSmoothSpeed);
-            transform.localEulerAngles = new Vector3(0, mySmoothAngle, 0);
-            
-            if ( !Physics.Raycast(transform.position, transform.forward, 1.0f) )
+        if (transform.position == nextTarget)
+        {
+
+            int nextIndex = myIndex + myIndexDirection;
+            switch (type)
             {
-                transform.position += transform.forward * movementSpeed * Time.deltaTime;
+            case Type.SINGLE:
+                if ( nextIndex >= targetNodes.Length )
+                {
+                    isMoving = false;
+                    nextIndex = targetNodes.Length - 1;
+                }
+                break;
+
+            case Type.LOOP:
+                nextIndex = nextIndex % targetNodes.Length;
+                break;
+
+            case Type.ROCK:
+                if (nextIndex >= targetNodes.Length || 
+                    nextIndex < 0)
+                {
+                    myIndexDirection = -myIndexDirection;
+                    nextIndex = Mathf.Clamp(nextIndex, 0, targetNodes.Length - 1);
+                }
+                break;
             }
+            myIndex = nextIndex;
         }
         else
         {
-            rigidbody.velocity = Vector3.zero;
+            rotation = Quaternion.LookRotation(nextTarget - transform.position);
         }
-	}    
 
-    public void OnCollisionEnter(Collision collision)
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSmoothSpeed * Time.deltaTime);
+
+        transform.position = Vector3.MoveTowards(transform.position, nextTarget, movementSpeed * Time.deltaTime);
+	}
+
+    public void OnDrawGizmos()
     {
+        foreach ( Transform node in targetNodes )
+        {
+            Gizmos.DrawIcon(node.position, "Marker.png");
+        }
     }
+
+
 }
