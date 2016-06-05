@@ -14,6 +14,7 @@ public class Game : MonoBehaviour {
     static private Game instance;
 
     public State state;
+    [HideInInspector]
     public Player currentPlayer = null;
     public Player[] players = new Player[4];
 
