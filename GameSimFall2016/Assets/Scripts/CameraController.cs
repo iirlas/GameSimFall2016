@@ -3,19 +3,19 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-    [HideInInspector]
-    public Transform target;
-    public Transform parent;
-
     public float speed = 2.5f;
 
     public Vector3 pivotPoint;
     public Vector3 freeRoamLocalPosition;
-    public Vector3 FixedLocalPosition;
+    public Vector3 fixedLocalPosition;
 
 
     [HideInInspector]
     public new Transform transform;
+
+    private Transform myTarget;
+    private Vector3   myViewPosition;
+    private float     myAngle = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -25,39 +25,39 @@ public class CameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Game.getInstance().currentPlayer)
-            target = Game.getInstance().currentPlayer.transform;
+            myTarget = Game.getInstance().currentPlayer.transform;
 	}
 
     public void LateUpdate()
     {
-        if (!Game.getInstance().currentPlayer)
+        if (!myTarget)
             return;
 
         if ( Game.getInstance().state == Game.State.FREEROAM )
         {
             float h = Input.GetAxis("Alt_Horizontal");
-            float v = Input.GetAxis("Alt_Vertical");
+            //float v = Input.GetAxis("Alt_Vertical");
 
-            transform.localPosition = freeRoamLocalPosition;
+            myViewPosition = freeRoamLocalPosition;
 
-            if ( h != 0 || v != 0 )
+            if ( h != 0 )
             {
                 // unify speed between mouse and joystick
                 h = (h > 0 ? 1 : -1) * speed;
-                v = (v > 0 ? 1 : -1) * speed;
-
-                parent.eulerAngles += new Vector3(0, h, 0);
             }
+            myAngle += h;
         }
         else if ( Game.getInstance().state == Game.State.PUZZLE )
         {
-            transform.localPosition = FixedLocalPosition;
-            parent.eulerAngles = Vector3.zero;
+            myViewPosition = fixedLocalPosition;
+            myAngle = 0;
         }
 
+        myViewPosition = Quaternion.Euler(0, myAngle, 0) * myViewPosition + myTarget.position;
 
-        parent.position = target.position + pivotPoint;
-        transform.LookAt(target.position + pivotPoint, Vector3.up);
+        transform.position = myViewPosition;//
+
+        transform.LookAt(myTarget.position + pivotPoint, Vector3.up);
     }
 
 }
