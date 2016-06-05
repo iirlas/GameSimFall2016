@@ -355,34 +355,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 280110363}
   m_RootOrder: 4
---- !u!1 &450143521
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 450143522}
-  m_Layer: 0
-  m_Name: CamParent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &450143522
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 450143521}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 971032546}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
 --- !u!1 &458294288
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,11 +794,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 971032541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
+  m_LocalPosition: {x: 0, y: 2, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 450143522}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
 --- !u!114 &971032547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,12 +810,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b870fa8823b17234b85dabe9ecabba62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1391987955}
-  parent: {fileID: 450143522}
   speed: 2.5
   pivotPoint: {x: 0, y: 1, z: 0}
-  freeRoamLocalPosition: {x: 0, y: 1, z: -5}
-  FixedLocalPosition: {x: 0, y: 5, z: -10}
+  freeRoamLocalPosition: {x: 0, y: 2, z: -5}
+  fixedLocalPosition: {x: 0, y: 10, z: -5}
   transform: {fileID: 0}
 --- !u!1 &1361702862
 GameObject:
