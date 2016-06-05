@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
+    [HideInInspector]
     public Transform target;
     public Transform parent;
 
@@ -23,11 +24,15 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (Game.getInstance().currentPlayer)
+            target = Game.getInstance().currentPlayer.transform;
 	}
 
     public void LateUpdate()
     {
+        if (!Game.getInstance().currentPlayer)
+            return;
+
         if ( Game.getInstance().state == Game.State.FREEROAM )
         {
             float h = Input.GetAxis("Alt_Horizontal");
