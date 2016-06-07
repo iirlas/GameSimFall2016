@@ -50,32 +50,34 @@ public class Movement : MonoBehaviour {
 
         if (transform.position == nextTarget)
         {
-
-            int nextIndex = myIndex + myIndexDirection;
-            switch (type)
+            do
             {
-            case Type.SINGLE:
-                if ( nextIndex >= targetNodes.Length )
+                int nextIndex = myIndex + myIndexDirection;
+                switch (type)
                 {
-                    isMoving = false;
-                    nextIndex = targetNodes.Length - 1;
-                }
-                break;
+                case Type.SINGLE:
+                    if (nextIndex >= targetNodes.Length)
+                    {
+                        isMoving = false;
+                        nextIndex = targetNodes.Length - 1;
+                    }
+                    break;
 
-            case Type.LOOP:
-                nextIndex = nextIndex % targetNodes.Length;
-                break;
+                case Type.LOOP:
+                    nextIndex = nextIndex % targetNodes.Length;
+                    break;
 
-            case Type.ROCK:
-                if (nextIndex >= targetNodes.Length || 
-                    nextIndex < 0)
-                {
-                    myIndexDirection = -myIndexDirection;
-                    nextIndex = Mathf.Clamp(nextIndex, 0, targetNodes.Length - 1);
+                case Type.ROCK:
+                    if (nextIndex >= targetNodes.Length ||
+                        nextIndex < 0)
+                    {
+                        myIndexDirection = -myIndexDirection;
+                        nextIndex = Mathf.Clamp(nextIndex, 0, targetNodes.Length - 1);
+                    }
+                    break;
                 }
-                break;
-            }
-            myIndex = nextIndex;
+                myIndex = nextIndex;
+            } while (!targetNodes[myIndex]);
         }
         else
         {
@@ -91,7 +93,10 @@ public class Movement : MonoBehaviour {
     {
         foreach ( Transform node in targetNodes )
         {
-            Gizmos.DrawIcon(node.position, "Marker.png");
+            if (node)
+            { 
+                Gizmos.DrawIcon(node.position, "Marker.png");
+            }
         }
     }
 
