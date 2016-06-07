@@ -6,6 +6,7 @@ public class Game : MonoBehaviour {
     public enum State
     {
         FREEROAM,
+        STRAFE,
         PUZZLE,
         CUTSCENE,
         PAUSE,
