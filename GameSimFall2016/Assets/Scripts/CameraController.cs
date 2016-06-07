@@ -47,10 +47,15 @@ public class CameraController : MonoBehaviour {
             }
             myAngle += h;
         }
-        else if ( Game.getInstance().state == Game.State.PUZZLE )
+        else if (Game.getInstance().state == Game.State.PUZZLE)
         {
             myViewPosition = fixedLocalPosition;
             myAngle = 0;
+        }
+        else if (Game.getInstance().state == Game.State.STRAFE)
+        {
+            myViewPosition = freeRoamLocalPosition;
+            myAngle = myTarget.eulerAngles.y;
         }
 
         myViewPosition = Quaternion.Euler(0, myAngle, 0) * myViewPosition + myTarget.position;
