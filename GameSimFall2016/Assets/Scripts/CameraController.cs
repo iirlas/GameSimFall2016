@@ -46,6 +46,11 @@ public class CameraController : MonoBehaviour {
                 h = (h > 0 ? 1 : -1) * speed;
             }
             myAngle += h;
+
+            if (Input.GetButtonDown("Center"))
+            {
+                myAngle = myTarget.eulerAngles.y;
+            }
         }
         else if (Game.getInstance().state == Game.State.PUZZLE)
         {
@@ -55,7 +60,7 @@ public class CameraController : MonoBehaviour {
         else if (Game.getInstance().state == Game.State.STRAFE)
         {
             myViewPosition = freeRoamLocalPosition;
-            myAngle = myTarget.eulerAngles.y;
+            myAngle = Mathf.LerpAngle(transform.eulerAngles.y, myTarget.eulerAngles.y, 10.0f * Time.deltaTime);
         }
 
         myViewPosition = Quaternion.Euler(0, myAngle, 0) * myViewPosition + myTarget.position;
