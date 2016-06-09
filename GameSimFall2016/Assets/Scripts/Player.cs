@@ -13,7 +13,6 @@ public class Player : MonoBehaviour {
     [HideInInspector]
     public new Rigidbody rigidbody;
 
-    protected bool canRotate = true;
     protected bool canMove = true;
 
     private float mySmoothAngle;
@@ -38,14 +37,11 @@ public class Player : MonoBehaviour {
             float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
 
             // smooths the rotation transition
-            if (canRotate)
-            {
-                mySmoothAngle = Mathf.LerpAngle(mySmoothAngle, angle, Time.deltaTime * rotationSmoothSpeed);
-                transform.localEulerAngles = new Vector3(0, mySmoothAngle, 0);
-            }
             if ( canMove )
             {
                 transform.position += transform.forward * movementSpeed * Time.deltaTime;
+                mySmoothAngle = Mathf.LerpAngle(mySmoothAngle, angle, Time.deltaTime * rotationSmoothSpeed);
+                transform.localEulerAngles = new Vector3(0, mySmoothAngle, 0);
             }
 
         }
