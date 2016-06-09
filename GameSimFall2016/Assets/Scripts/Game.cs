@@ -19,6 +19,8 @@ public class Game : MonoBehaviour {
     public Player currentPlayer = null;
     public Player[] players = new Player[4];
 
+    private Player lastPlayer;
+
     public static Game getInstance()
     {
         if (instance == null)
@@ -36,31 +38,21 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach ( GameObject player in players )
-        {
-            switch (player.name)
-            {
-            case "Girl":
-                this.players[0] = player.GetComponent<Player>();
-                break;
-            case "Bird":
-                this.players[1] = player.GetComponent<Player>();
-                break;
-            case "Rabbit":
-                this.players[2] = player.GetComponent<Player>();
-                break;
-            case "Cat":
-                this.players[3] = player.GetComponent<Player>();
-                break;
-            }
-        }
+        players[0] = GameObject.FindObjectOfType<Girl>();
+        players[1] = GameObject.FindObjectOfType<Bird>();
+        players[2] = GameObject.FindObjectOfType<Rabbit>();
+        players[3] = GameObject.FindObjectOfType<Cat>();
+
         currentPlayer = this.players[0];
+        lastPlayer = currentPlayer;
+
+        StartCoroutine(activeSet());
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        Player lastPlayer = currentPlayer;
+	void Update () 
+    {
+        lastPlayer = currentPlayer;
 
         float h = Input.GetAxis("Switch_Horizontal");
         float v = Input.GetAxis("Switch_Vertical");
@@ -73,7 +65,7 @@ public class Game : MonoBehaviour {
 
 
 
-        if ( switchIndex != -1 )
+        if (switchIndex != -1 && players[switchIndex])
         {
             currentPlayer = players[switchIndex];
         }
@@ -84,29 +76,37 @@ public class Game : MonoBehaviour {
             {
                 if (currentPlayer == players[i])
                 {
-                    do 
+                    next = i;
+                    do
                     {
-                        next = (i + 1) % players.Length;
-                    }
-                    while (!players[next] && next != i);
+                        next = (next + 1) % players.Length;
+                    } while (!players[next] && next != i);
 
-                    currentPlayer = (players[next]);
+                    currentPlayer = players[next];
                     break;
                 }
             }
         }
-        foreach ( Player player in players )
+	}
+
+    IEnumerator activeSet ( )
+    {
+        while ( true )
         {
-            if ( !!player )
+            foreach (Player player in players)
             {
-                bool isPlayer = (player == currentPlayer);
-                player.gameObject.SetActive(isPlayer);
-                if ( isPlayer && currentPlayer != lastPlayer )
+                if (player != null)
                 {
-                    currentPlayer.transform.eulerAngles = lastPlayer.transform.eulerAngles;
-                    currentPlayer.transform.position = lastPlayer.transform.position;
+                    bool isCurrentPlayer = (player == currentPlayer);
+                    player.gameObject.SetActive(isCurrentPlayer);
+                    if (isCurrentPlayer && currentPlayer != lastPlayer)
+                    {
+                        currentPlayer.transform.eulerAngles = lastPlayer.transform.eulerAngles;
+                        currentPlayer.transform.position = lastPlayer.transform.position;
+                    }
                 }
             }
+            yield return null;
         }
-	}
+    }
 }
