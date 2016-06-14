@@ -14,10 +14,12 @@ public class Girl : Player {
 
     public Object rockPrefab;
     public State state;
+    public Transform rockSpawnNode;
+    public float targetRange = 10.0f;
+    public float shootingForce = 30.0f;
 
     private Transform[] myTargets;
     private Transform myTarget;
-    //private int myTargetIndex = 0;
 
     // Use this for initialization
     protected override void Start() 
@@ -31,24 +33,28 @@ public class Girl : Player {
         // Are we level with the ground?
         if ( state == State.JUMP || state == State.FALL || state == State.MOVE )
         {
+            float outRadius = 0.5f;
+            float distance = 1.1f;
+
             for (int angle = 0; angle < Mathf.PI * 2; angle++)
             {
-                Vector3 direction = Quaternion.Euler(0, Mathf.Rad2Deg * angle, 0) * (Vector3.right / 2);
-                if ( Physics.Raycast(transform.position + direction, Vector3.down, 0.55f) )
+                Vector3 origin = transform.position + (Quaternion.Euler(0, Mathf.Rad2Deg * angle, 0) * (transform.right * outRadius));
+
+                Debug.DrawLine(origin, (origin + Vector3.down));
+
+                if (Physics.Raycast(origin, Vector3.down, distance))
                 {
                     state = State.MOVE;
                     break;
                 }
-                state = State.FALL;            
+                state = State.FALL;
             }
         }
-
-        Debug.DrawLine(transform.position, transform.position + Vector3.down * 0.5f);
 
         //can we attack?
         if (state == State.MOVE && Input.GetButtonDown("Attack"))
         {
-            findShootingTarget();
+            myTarget = null;
             Game.getInstance().state = Game.State.STRAFE;
             state = State.SHOOT;
         }
@@ -61,7 +67,9 @@ public class Girl : Player {
                 findShootingTarget();
                 if (myTargets != null && myTarget != null)
                 {
-                    Quaternion targetRotation = Quaternion.LookRotation(myTarget.position - transform.position);
+                    Vector3 direction = myTarget.position - transform.position;
+                    direction.y = 0;//aligns facing direction with the ground.
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
                     state = State.SHOOT;
                 }
@@ -84,16 +92,16 @@ public class Girl : Player {
                         break;
                     }
                 }
-                //myTargetIndex = (myTargetIndex + 1) % myTargets.Length;
             }
 
             //fire a projectile towards the shooting target.
             if (Input.GetButtonUp("Attack"))
             {
-                GameObject rock = Instantiate( rockPrefab, transform.position, transform.rotation ) as GameObject;
+                GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
                 Rigidbody rockBody = rock.GetComponent<Rigidbody>();
                 Physics.IgnoreCollision( rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>() );
-                rockBody.AddForce( transform.forward * 50, ForceMode.Impulse );
+                Vector3 force = (myTarget ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
+                rockBody.AddForce(force, ForceMode.Impulse);
                 state = State.MOVE;
                 Game.getInstance().state = Game.State.FREEROAM;
             }            
@@ -129,13 +137,14 @@ public class Girl : Player {
         int targetableLayerMask = 1 << 9;
         bool isCurrentTargetLost = true;
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, 10.0f, targetableLayerMask);
+        Collider[] hits = Physics.OverlapSphere(transform.position, targetRange, targetableLayerMask);
         myTargets = new Transform[hits.Length];
 
         for (int index = 0; index < myTargets.Length; index++ )
         {
             myTargets[index] = hits[index].transform;
             isCurrentTargetLost &= (myTargets[index] != myTarget);
+            Debug.DrawLine(transform.position, myTargets[index].position);
         }
 
         if ( isCurrentTargetLost )
