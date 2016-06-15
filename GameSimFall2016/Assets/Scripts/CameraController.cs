@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour {
         if (!myTarget)
             return;
 
-        if ( Game.getInstance().state == Game.State.FREEROAM )
+        if ( Game.getInstance().gameState == Game.GameState.FREEROAM )
         {
             float h = Input.GetAxis("Alt_Horizontal");
             //float v = Input.GetAxis("Alt_Vertical");
@@ -52,12 +52,12 @@ public class CameraController : MonoBehaviour {
                 myAngle = myTarget.eulerAngles.y;
             }
         }
-        else if (Game.getInstance().state == Game.State.PUZZLE)
+        else if (Game.getInstance().gameState == Game.GameState.PUZZLE)
         {
             myViewPosition = fixedLocalPosition;
             myAngle = 0;
         }
-        else if (Game.getInstance().state == Game.State.STRAFE)
+        else if (Game.getInstance().gameState == Game.GameState.STRAFE)
         {
             myViewPosition = freeRoamLocalPosition;
             myAngle = Mathf.LerpAngle(transform.eulerAngles.y, myTarget.eulerAngles.y, 10.0f * Time.deltaTime);

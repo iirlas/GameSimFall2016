@@ -55,7 +55,7 @@ public class Girl : Player {
         if (state == State.MOVE && Input.GetButtonDown("Attack"))
         {
             myTarget = null;
-            Game.getInstance().state = Game.State.STRAFE;
+            Game.getInstance().gameState = Game.GameState.STRAFE;
             state = State.SHOOT;
         }
 
@@ -103,7 +103,7 @@ public class Girl : Player {
                 Vector3 force = (myTarget ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
                 rockBody.AddForce(force, ForceMode.Impulse);
                 state = State.MOVE;
-                Game.getInstance().state = Game.State.FREEROAM;
+                Game.getInstance().gameState = Game.GameState.FREEROAM;
             }            
         }
 
