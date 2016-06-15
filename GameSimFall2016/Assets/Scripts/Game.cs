@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Game : MonoBehaviour {
 
-    public enum State
+    public enum GameState
     {
         FREEROAM,
         STRAFE,
@@ -12,14 +12,23 @@ public class Game : MonoBehaviour {
         PAUSE,
     }
 
+    public enum InputState
+    {
+        KEYBOARD,
+        JOYSTICK
+    }
+
     static private Game instance;
 
-    public State state;
+    public GameState gameState;
+
+    public InputState inputState;
+
     [HideInInspector]
     public Player currentPlayer = null;
     public Player[] players = new Player[4];
 
-    private Player lastPlayer;
+    private Player myLastPlayer;
 
     public static Game getInstance()
     {
@@ -47,7 +56,7 @@ public class Game : MonoBehaviour {
         players[3] = GameObject.FindObjectOfType<Cat>();
 
         currentPlayer = this.players[0];
-        lastPlayer = currentPlayer;
+        myLastPlayer = currentPlayer;
 
         StartCoroutine(activeSet());
 	}
@@ -55,15 +64,47 @@ public class Game : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        
 	}
+
+    public void OnGUI()
+    {
+        if ( Event.current.isKey || Event.current.isMouse )
+        {
+            inputState = InputState.KEYBOARD;
+        }
+        else if (Input.GetKey(KeyCode.Joystick1Button0) ||
+                  Input.GetKey(KeyCode.Joystick1Button1) ||
+                  Input.GetKey(KeyCode.Joystick1Button2) ||
+                  Input.GetKey(KeyCode.Joystick1Button3) ||
+                  Input.GetKey(KeyCode.Joystick1Button4) ||
+                  Input.GetKey(KeyCode.Joystick1Button5) ||
+                  Input.GetKey(KeyCode.Joystick1Button6) ||
+                  Input.GetKey(KeyCode.Joystick1Button7) ||
+                  Input.GetKey(KeyCode.Joystick1Button8) ||
+                  Input.GetKey(KeyCode.Joystick1Button9) ||
+                  Input.GetKey(KeyCode.Joystick1Button10) ||
+                  Input.GetKey(KeyCode.Joystick1Button11) ||
+                  Input.GetKey(KeyCode.Joystick1Button12) ||
+                  Input.GetKey(KeyCode.Joystick1Button13) ||
+                  Input.GetKey(KeyCode.Joystick1Button14) ||
+                  Input.GetKey(KeyCode.Joystick1Button15) ||
+                  Input.GetKey(KeyCode.Joystick1Button16) ||
+                  Input.GetKey(KeyCode.Joystick1Button17) ||
+                  Input.GetKey(KeyCode.Joystick1Button18) ||
+                  Input.GetKey(KeyCode.Joystick1Button19))
+        {
+            inputState = InputState.JOYSTICK;
+        }
+    }
+
+
 
     IEnumerator activeSet ( )
     {
         while ( true )
         {
 
-            lastPlayer = currentPlayer;
+            myLastPlayer = currentPlayer;
 
             float h = Input.GetAxis("Switch_Horizontal");
             float v = Input.GetAxis("Switch_Vertical");
@@ -107,10 +148,10 @@ public class Game : MonoBehaviour {
                 {
                     bool isCurrentPlayer = (player == currentPlayer);
                     player.gameObject.SetActive(isCurrentPlayer);
-                    if (isCurrentPlayer && currentPlayer != lastPlayer)
+                    if (isCurrentPlayer && currentPlayer != myLastPlayer)
                     {
-                        currentPlayer.transform.eulerAngles = lastPlayer.transform.eulerAngles;
-                        currentPlayer.transform.position = lastPlayer.transform.position;
+                        currentPlayer.transform.eulerAngles = myLastPlayer.transform.eulerAngles;
+                        currentPlayer.transform.position = myLastPlayer.transform.position;
                     }
                 }
             }
