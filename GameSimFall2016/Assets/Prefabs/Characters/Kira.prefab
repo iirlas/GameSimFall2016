@@ -26,6 +26,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 442176}
   - 54: {fileID: 5425462}
+  - 95: {fileID: 9595654}
   - 114: {fileID: 11490044}
   - 136: {fileID: 13649302}
   m_Layer: 0
@@ -136,6 +137,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &9595654
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160424}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80a0a715268ad2046b6760d1b9adc945, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11490044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,6 +170,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   transform: {fileID: 0}
   rigidbody: {fileID: 0}
+  animator: {fileID: 0}
   rockPrefab: {fileID: 134040, guid: 8f0a52665faa95f4fa0f21a0f2fdfc9d, type: 2}
   state: 0
   rockSpawnNode: {fileID: 465280}
