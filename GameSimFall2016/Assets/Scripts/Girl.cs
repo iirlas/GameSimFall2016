@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class Girl : Player {
 
@@ -12,40 +11,42 @@ public class Girl : Player {
         FALL
     }
 
-    private delegate void StateRunner();
-
-    public Object rockPrefab;
-    public State state;
+    [HideInInspector]
+    public Animator animator;
+    
+    public GameObject rockPrefab;
     public Transform rockSpawnNode;
     public float targetRange = 10.0f;
     public float shootingForce = 30.0f;
 
-
     private Transform[] myTargets;
     private Transform myTarget;
-    private Dictionary<State, StateRunner> myStates = new Dictionary<State,StateRunner>();
 
 
     // Use this for initialization
-    protected override void Start() 
+    protected override void Start()
     {
         base.Start();
-        myStates.Add(State.MOVE, runMoveState);
-        myStates.Add(State.SHOOT, runShootingState);
-        myStates.Add(State.FALL, runFallingState);
+        animator = GetComponent<Animator>();
+
+        addRunnable(State.MOVE, runMoveState);
+        addRunnable(State.SHOOT, runShootingState);
+        addRunnable(State.FALL, runFallingState);
+
+        playerState = State.MOVE;
     }
 	
 	// Update is called once per frame
     protected override void Update() 
     {
-        myStates[state]();
+        base.Update();
 	}
 
     void runMoveState()
     {
         if (!isGrounded())
         {
-            state = State.FALL;
+            playerState = State.FALL;
             return;
         }
 
@@ -54,7 +55,7 @@ public class Girl : Player {
         {
             myTarget = null;
             Game.getInstance().gameState = Game.GameState.STRAFE;
-            state = State.SHOOT;
+            playerState = State.SHOOT;
             return;
         }
 
@@ -66,22 +67,21 @@ public class Girl : Player {
                 //launches the player forward and up
                 rigidbody.velocity = Vector3.zero;
                 rigidbody.AddForce((transform.up + transform.forward) * movementSpeed, ForceMode.Impulse);
-                state = State.FALL;
+                playerState = State.FALL;
                 return;
             }
         }
 
-        base.Update();
+        movePlayer();
     }
 
     void runShootingState()
     {
-        if ( !isGrounded() )
+        if (!isGrounded())
         {
-            state = State.FALL;
+            playerState = State.FALL;
             return;
         }
-
 
         //rotate towards the shooting target
         if (Input.GetButton("Attack"))
@@ -98,8 +98,6 @@ public class Girl : Player {
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
             }
         }
-
-
 
         //toggle our shooting target
         if (Input.GetButtonDown("Action"))
@@ -129,15 +127,15 @@ public class Girl : Player {
             Vector3 force = (myTarget ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
             rockBody.AddForce(force, ForceMode.Impulse);
             Game.getInstance().gameState = Game.GameState.FREEROAM;
-            state = State.MOVE;
+            playerState = State.MOVE;
         }            
     }
 
     void runFallingState ()
     {
-        if ( isGrounded() )
+        if (isGrounded())
         {
-            state = State.MOVE;
+            playerState = State.MOVE;
         }
     }
 
@@ -160,7 +158,7 @@ public class Girl : Player {
 
     bool findShootableTarget()
     {
-        int targetableLayerMask = 1 << 9;
+        int targetableLayerMask = 1 << LayerMask.NameToLayer("Targetable");
         bool isCurrentTargetLost = true;
 
         Collider[] hits = Physics.OverlapSphere(transform.position, targetRange, targetableLayerMask);
