@@ -97,6 +97,7 @@ GameObject:
   - 92: {fileID: 502312508}
   - 124: {fileID: 502312507}
   - 81: {fileID: 502312506}
+  - 114: {fileID: 502312511}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -171,6 +172,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &502312511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 502312505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b870fa8823b17234b85dabe9ecabba62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2.5
+  pivotPoint: {x: 0, y: 0, z: 0}
+  freeRoamLocalPosition: {x: -4, y: 10, z: 5}
+  fixedLocalPosition: {x: 0, y: 0, z: 0}
+  transform: {fileID: 0}
+--- !u!1001 &690524611
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490044, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 502312509}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &785646201
 Prefab:
   m_ObjectHideFlags: 0
@@ -210,9 +273,66 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6576410, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447666, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 440718, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 5.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 119334, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_TagString
+      value: PushIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 440718, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575942, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 193548, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_TagString
+      value: DeathZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 440718, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 459630, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 50.11249
+      objectReference: {fileID: 0}
+    - target: {fileID: 459630, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 62.66281
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &794657611 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 119334, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+  m_PrefabInternal: {fileID: 785646201}
+--- !u!114 &794657616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 794657611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03868c45c1cbb5b47addf8af421df117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggering: {fileID: 1328099083}
+  respawnPt: {x: 0, y: 0, z: 0}
 --- !u!1 &1060089132
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,3 +394,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1 &1245766445 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 160424, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+  m_PrefabInternal: {fileID: 690524611}
+--- !u!1 &1328099083 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 162718, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+  m_PrefabInternal: {fileID: 785646201}
+--- !u!1 &1693578769 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 193548, guid: dfeb08180ecc8774dab71c79d1484aaa, type: 2}
+  m_PrefabInternal: {fileID: 785646201}
+--- !u!114 &1693578774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693578769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03868c45c1cbb5b47addf8af421df117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggering: {fileID: 1245766445}
+  respawnPt: {x: 0.65, y: 1, z: 2.89}
