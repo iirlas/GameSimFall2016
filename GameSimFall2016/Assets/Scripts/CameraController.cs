@@ -65,7 +65,15 @@ public class CameraController : MonoBehaviour {
 
         myViewPosition = Quaternion.Euler(0, myAngle, 0) * myViewPosition + myTarget.position;
 
-        transform.position = myViewPosition;//
+        RaycastHit hit;
+        if ( Physics.Linecast( myTarget.position, myViewPosition, out hit ) )
+        {
+            transform.position = hit.point;
+        }
+        else
+        {
+            transform.position = myViewPosition;//
+        }
 
         transform.LookAt(myTarget.position + pivotPoint, Vector3.up);
     }
