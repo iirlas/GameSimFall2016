@@ -17,18 +17,19 @@ public class Player : MonoBehaviour {
     public new Transform transform;
     [HideInInspector]
     public new Rigidbody rigidbody;
+    [HideInInspector]
+    public new Collider collider;
 
     public Enum playerState;
-
-    private float mySmoothAngle;
+    
     private Dictionary<Enum, StateRunner> myStates;
 
 	// Use this for initialization
 	protected virtual void Start () {
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
         myStates = new Dictionary<Enum, StateRunner>();
-
 	}
 	
 	// Update is called once per frame
@@ -51,13 +52,21 @@ public class Player : MonoBehaviour {
 
         if ( h != 0 || v != 0 )
         {
-            //            angle of joystick  + angle of camera   
+            //            angle of joystick  + angle of camera
             float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
 
             // smooths the rotation transition
             transform.position += transform.forward * movementSpeed * Time.deltaTime;
-            mySmoothAngle = Mathf.LerpAngle(mySmoothAngle, angle, Time.deltaTime * rotationSmoothSpeed);
-            transform.localEulerAngles = new Vector3(0, mySmoothAngle, 0);
+            smoothRotateTowards( 0, angle, 0, Time.deltaTime * rotationSmoothSpeed );
         }
+    }
+
+    protected void smoothRotateTowards ( float x, float y, float z, float speed )
+    {
+        Vector3 angle = transform.localEulerAngles;
+        angle.x = Mathf.LerpAngle(angle.x, x, speed);
+        angle.y = Mathf.LerpAngle(angle.y, y, speed);
+        angle.z = Mathf.LerpAngle(angle.z, z, speed);
+        transform.localEulerAngles = angle;
     }
 }
