@@ -7,7 +7,10 @@ public class Cat : Player {
     {
         WALK,
         CLIMB,
+        FALL,
     }
+
+    public LayerMask climbingLayer;
 
     // Use this for initialization
     protected override void Start()
@@ -15,21 +18,34 @@ public class Cat : Player {
         base.Start();
         addRunnable(State.WALK, runWalkState);
         addRunnable(State.CLIMB, runClimbState);
+        addRunnable(State.FALL, runFallingState);
         playerState = State.WALK;
     }
 
     void runWalkState ()
     {
-        if (Physics.BoxCast(transform.position, collider.bounds.extents / 2, Vector3.down, Quaternion.identity, 1.0f)) 
+        if (isGrounded( .7f)) 
         {
             movePlayer();
         }
 
+        //Are we on an edge?
+        if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, 2.0f))
+        {
+            if (Input.GetButtonDown("Action"))
+            {
+                //launches the player forward and up
+                rigidbody.velocity = Vector3.zero;
+                rigidbody.AddForce((transform.up + transform.forward) * movementSpeed, ForceMode.Impulse);
+                playerState = State.FALL;
+                return;
+            }
+        }
 
         if (Input.GetButtonDown("Action"))
         {
             RaycastHit hit;
-            if ( Physics.Raycast( transform.position, transform.forward, out hit, 1.5f ) )
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 1.5f, climbingLayer))
             {
                 rigidbody.useGravity = false;
                 rigidbody.velocity = Vector3.zero;
@@ -71,5 +87,13 @@ public class Cat : Player {
             playerState = State.WALK;
         }
         rigidbody.velocity = Vector3.zero;
+    }
+
+    void runFallingState()
+    {
+        if (isGrounded())
+        {
+            playerState = State.WALK;
+        }
     }
 }
