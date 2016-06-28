@@ -98,6 +98,16 @@ public class Girl : Player {
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
             }
         }
+        else //fire a projectile towards the shooting target.
+        {
+            GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
+            Rigidbody rockBody = rock.GetComponent<Rigidbody>();
+            Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
+            Vector3 force = (myTarget ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
+            rockBody.AddForce(force, ForceMode.Impulse);
+            Game.getInstance().gameState = Game.GameState.FREEROAM;
+            playerState = State.MOVE;
+        }
 
         //toggle our shooting target
         if (Input.GetButtonDown("Action"))
@@ -116,19 +126,7 @@ public class Girl : Player {
                     break;
                 }
             }
-        }
-
-        //fire a projectile towards the shooting target.
-        if (Input.GetButtonUp("Attack"))
-        {
-            GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
-            Rigidbody rockBody = rock.GetComponent<Rigidbody>();
-            Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
-            Vector3 force = (myTarget ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
-            rockBody.AddForce(force, ForceMode.Impulse);
-            Game.getInstance().gameState = Game.GameState.FREEROAM;
-            playerState = State.MOVE;
-        }            
+        }      
     }
 
     void runFallingState ()
@@ -137,23 +135,6 @@ public class Girl : Player {
         {
             playerState = State.MOVE;
         }
-    }
-
-    bool isGrounded ( float outRadius = 0.5f, float distance = 1.1f )
-    {
-        // Are we level with the ground?
-        for (int angle = 0; angle < Mathf.PI * 2; angle++)
-        {
-            Vector3 origin = transform.position + (Quaternion.Euler(0, Mathf.Rad2Deg * angle, 0) * (transform.right * outRadius));
-
-            Debug.DrawLine(origin, (origin + Vector3.down));
-
-            if (Physics.Raycast(origin, Vector3.down, distance))
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     bool findShootableTarget()
