@@ -69,4 +69,26 @@ public class Player : MonoBehaviour {
         angle.z = Mathf.LerpAngle(angle.z, z, speed);
         transform.localEulerAngles = angle;
     }
+
+    protected bool isGrounded(float outRadius = 0.5f, float? distance = null, int step = 30)
+    {
+        if (distance == null)
+        {
+            distance = collider.bounds.extents.y * 1.25f;
+        }
+
+        // Are we level with the ground?
+        for (int angle = 0; angle < 360; angle += step )
+        {
+            Vector3 origin = transform.position + (Quaternion.Euler(0, angle, 0) * (transform.right * outRadius));
+
+            Debug.DrawLine(origin, (origin + Vector3.down * (float)distance));
+
+            if (Physics.Raycast(origin, Vector3.down, (float)distance))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
