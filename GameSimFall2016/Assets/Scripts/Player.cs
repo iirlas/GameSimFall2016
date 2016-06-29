@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player : MonoBehaviour {
+abstract public class Player : MonoBehaviour {
 
     protected delegate void StateRunner();
 
