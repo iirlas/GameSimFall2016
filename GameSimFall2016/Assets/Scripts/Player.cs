@@ -35,7 +35,10 @@ abstract public class Player : MonoBehaviour {
 	// Update is called once per frame
     protected virtual void Update()
     {
-        myStates[playerState]();
+        if ( Game.getInstance().currentPlayer == this )
+        {
+            myStates[playerState]();
+        }
 	}
 
     protected void addRunnable ( Enum state, StateRunner stateRunner )
@@ -61,12 +64,21 @@ abstract public class Player : MonoBehaviour {
         }
     }
 
-    protected void smoothRotateTowards ( float x, float y, float z, float speed )
+    public void smoothRotateTowards ( float x, float y, float z, float speed )
     {
         Vector3 angle = transform.localEulerAngles;
         angle.x = Mathf.LerpAngle(angle.x, x, speed);
         angle.y = Mathf.LerpAngle(angle.y, y, speed);
         angle.z = Mathf.LerpAngle(angle.z, z, speed);
+        transform.localEulerAngles = angle;
+    }
+
+    public void smoothRotateTowards( Vector3 target, float speed)
+    {
+        Vector3 angle = transform.localEulerAngles;
+        angle.x = Mathf.LerpAngle(angle.x, target.x, speed);
+        angle.y = Mathf.LerpAngle(angle.y, target.y, speed);
+        angle.z = Mathf.LerpAngle(angle.z, target.z, speed);
         transform.localEulerAngles = angle;
     }
 
