@@ -131,16 +131,33 @@ public class Game : MonoBehaviour {
                 }
             }
 
-            foreach (Player player in players)
+            if ( currentPlayer == players[0] )
             {
-                if (player != null)
+                for ( int index = 0; index < players.Length; index++ )
                 {
-                    bool isCurrentPlayer = (player == currentPlayer);
-                    player.gameObject.SetActive(isCurrentPlayer);
-                    if (isCurrentPlayer && currentPlayer != myLastPlayer)
+                    Player player = players[index];
+                    if (player != null && currentPlayer != player &&
+                        Vector3.Distance(player.transform.position, currentPlayer.transform.position) < 5.0f)
                     {
-                        currentPlayer.transform.eulerAngles = myLastPlayer.transform.eulerAngles;
-                        currentPlayer.transform.position = myLastPlayer.transform.position;
+                        Player target = null;
+                        for (int j = index, breakCount = 0; target == null && breakCount < players.Length; 
+                            j = (--j >= 0 ? j : j + players.Length), breakCount++ )
+                        {
+                            if (players[j] != null && players[j] != player && 
+                                Vector3.Distance(players[j].transform.position, currentPlayer.transform.position) < 5.0f)
+                            {
+                                target = players[j];
+                            }
+                        }
+
+                        if ( target != null )
+                        {
+                            player.smoothRotateTowards(target.transform.eulerAngles, Time.deltaTime * player.rotationSmoothSpeed);
+                            player.transform.position = Vector3.MoveTowards(player.transform.position, 
+                                                                            target.transform.position - 
+                                                                                (player.transform.forward), 
+                                                                            player.movementSpeed * Time.deltaTime   );
+                        }
                     }
                 }
             }
