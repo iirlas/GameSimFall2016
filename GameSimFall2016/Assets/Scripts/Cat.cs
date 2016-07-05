@@ -24,36 +24,33 @@ public class Cat : Player {
 
     void runWalkState ()
     {
-        if (isGrounded( .7f)) 
+        if (!isGrounded()) 
         {
-            movePlayer();
+            playerState = State.FALL;
+            return;
         }
 
-        //Are we on an edge?
-        if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, 2.0f))
-        {
-            if (Input.GetButtonDown("Action"))
-            {
-                //launches the player forward and up
-                rigidbody.velocity = Vector3.zero;
-                rigidbody.AddForce((transform.up + transform.forward) * movementSpeed, ForceMode.Impulse);
-                playerState = State.FALL;
-                return;
-            }
-        }
+        movePlayer();
 
         if (Input.GetButtonDown("Action"))
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 1.5f, climbingLayer))
+            //Are we facing a climbable object
+            if (Physics.Raycast(transform.position, transform.forward.normalized, out hit, 1.5f, climbingLayer))
             {
                 rigidbody.useGravity = false;
                 rigidbody.velocity = Vector3.zero;
 
                 transform.position = hit.point;
-                transform.eulerAngles = hit.normal;
-
+                transform.forward = -hit.normal;
                 playerState = State.CLIMB;
+            }
+            else if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, 2.0f))//Are we on an edge then?
+            {
+                //launches the player forward and up
+                rigidbody.velocity = Vector3.zero;
+                rigidbody.AddForce((transform.up + transform.forward) * movementSpeed, ForceMode.Impulse);
+                playerState = State.FALL;
             }
         }
     }
