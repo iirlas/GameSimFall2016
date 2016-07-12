@@ -5,11 +5,9 @@ public class Game : MonoBehaviour {
 
     public enum GameState
     {
-        FREEROAM,
-        STRAFE,
-        PUZZLE,
         CUTSCENE,
         PAUSE,
+        PLAY,
     }
 
     public enum InputState
@@ -28,8 +26,6 @@ public class Game : MonoBehaviour {
     public Player currentPlayer = null;
     public Player[] players = new Player[4];
 
-    private Player myLastPlayer;
-
     public static Game getInstance()
     {
         if (instance == null)
@@ -37,7 +33,7 @@ public class Game : MonoBehaviour {
             instance = FindObjectOfType<Game>();
             if (instance == null)
             {
-                GameObject singleton = new GameObject("Singleton.Game");
+                GameObject singleton = new GameObject("Game");
                 instance = singleton.AddComponent<Game>();
                 DontDestroyOnLoad(singleton);
             }
@@ -56,7 +52,6 @@ public class Game : MonoBehaviour {
         players[3] = GameObject.FindObjectOfType<Cat>();
 
         currentPlayer = this.players[0];
-        myLastPlayer = currentPlayer;
 
         StartCoroutine(activeSet());
 	}
@@ -90,13 +85,10 @@ public class Game : MonoBehaviour {
         }
     }
 
-    IEnumerator activeSet ( )
+    IEnumerator activeSet ()
     {
         while ( true )
         {
-
-            myLastPlayer = currentPlayer;
-
             float h = Input.GetAxis("Switch_Horizontal");
             float v = Input.GetAxis("Switch_Vertical");
 

@@ -54,7 +54,6 @@ public class Girl : Player {
         if (Input.GetButtonDown("Attack"))
         {
             myTarget = null;
-            Game.getInstance().gameState = Game.GameState.STRAFE;
             playerState = State.SHOOT;
             return;
         }
@@ -105,7 +104,6 @@ public class Girl : Player {
             Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
             Vector3 force = (myTarget ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
             rockBody.AddForce(force, ForceMode.Impulse);
-            Game.getInstance().gameState = Game.GameState.FREEROAM;
             playerState = State.MOVE;
         }
 
