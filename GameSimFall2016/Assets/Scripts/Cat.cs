@@ -5,7 +5,7 @@ public class Cat : Player {
 
     enum State 
     {
-        WALK,
+        MOVE,
         CLIMB,
         FALL,
     }
@@ -16,10 +16,10 @@ public class Cat : Player {
     protected override void Start()
     {
         base.Start();
-        addRunnable(State.WALK, runWalkState);
+        addRunnable(State.MOVE, runWalkState);
         addRunnable(State.CLIMB, runClimbState);
         addRunnable(State.FALL, runFallingState);
-        playerState = State.WALK;
+        playerState = State.MOVE;
     }
 
     void runWalkState ()
@@ -81,7 +81,7 @@ public class Cat : Player {
                 transform.position += Vector3.up + transform.forward.normalized;
             }
             rigidbody.useGravity = true;
-            playerState = State.WALK;
+            playerState = State.MOVE;
         }
         rigidbody.velocity = Vector3.zero;
     }
@@ -90,7 +90,7 @@ public class Cat : Player {
     {
         if (isGrounded())
         {
-            playerState = State.WALK;
+            playerState = State.MOVE;
         }
     }
 }
