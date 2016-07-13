@@ -82,25 +82,31 @@ abstract public class Player : MonoBehaviour {
         transform.localEulerAngles = angle;
     }
 
-    protected bool isGrounded(float outRadius = 0.5f, float? distance = null, int step = 30)
+    protected bool isGrounded(float outRadius = 1f, float? distance = null, int step = 10)
     {
         if (distance == null)
         {
             distance = collider.bounds.extents.y * 1.25f;
         }
 
+        float width = collider.bounds.size.x;
+        float depth = collider.bounds.size.z;
+
         // Are we level with the ground?
-        for (int angle = 0; angle < 360; angle += step )
+        for (float x = 0; x < width; x += (width / step))
         {
-            Vector3 origin = transform.position + (Quaternion.Euler(0, angle, 0) * (transform.right * outRadius));
-
-            Debug.DrawLine(origin, (origin + Vector3.down * (float)distance));
-
-            if (Physics.Raycast(origin, Vector3.down, (float)distance))
+            for (float z = 0; z < depth; z += (depth / step))
             {
-                return true;
+                Vector3 origin = collider.bounds.min + (Vector3.right * x) + (Vector3.forward * z);
+
+                Debug.DrawRay(origin, Vector3.down * (float)distance);
+                if (Physics.Raycast(origin, Vector3.down, (float)distance))
+                {
+                    return true;
+                }
             }
         }
+
         return false;
     }
 }
