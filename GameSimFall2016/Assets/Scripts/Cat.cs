@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Cat : Player {
@@ -61,17 +61,29 @@ public class Cat : Player {
         float v = Input.GetAxis("Vertical");
 
         float colliderMag = collider.bounds.size.z;
-
+        
         if ( h != 0 || v != 0 )
         {
-            if (Physics.Raycast(transform.position, transform.forward + transform.right * h, colliderMag))
+            float speed = movementSpeed * Time.deltaTime;
+
+            Vector3 hPos = transform.position + (transform.right * h * speed);
+            Vector3 vPos = transform.position + (transform.up * v * speed);
+            Vector3 offset = Vector3.zero;
+            RaycastHit hit;
+
+            if (h != 0 && Physics.Raycast(hPos, transform.forward, out hit, 2f, climbingLayer))
             {
-                transform.position += transform.right * h * movementSpeed * Time.deltaTime;
+                transform.forward = -hit.normal;
+                offset += (hit.point - (transform.forward / 2)) - transform.position;
+
             }
-            if ( Physics.Raycast(transform.position, transform.forward + transform.up * v, colliderMag)) 
+            if (v != 0 && Physics.Raycast(vPos, transform.forward, out hit, 2f, climbingLayer))
             {
-                transform.position += transform.up * v * movementSpeed * Time.deltaTime;
+                transform.forward = -hit.normal;
+                offset += (hit.point - (transform.forward / 2)) - transform.position;
             }
+            
+            transform.position += offset;
         }
 
         if (Input.GetButtonDown("Action"))
