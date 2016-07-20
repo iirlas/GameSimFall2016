@@ -82,7 +82,7 @@ abstract public class Player : MonoBehaviour {
         transform.localEulerAngles = angle;
     }
 
-    protected bool isGrounded(float outRadius = 1f, float? distance = null, int step = 10)
+    protected bool isGrounded(float? distance = null, int step = 10)
     {
         if (distance == null)
         {
@@ -92,15 +92,18 @@ abstract public class Player : MonoBehaviour {
         float width = collider.bounds.size.x;
         float depth = collider.bounds.size.z;
 
+        float xSteps = width / step;
+        float zSteps = depth / step;
+
         // Are we level with the ground?
-        for (float x = 0; x < width; x += (width / step))
+        for (float x = 0; Mathf.Round(x) < width; x += xSteps )
         {
-            for (float z = 0; z < depth; z += (depth / step))
+            for (float z = 0; Mathf.Round(z) < depth; z += zSteps )
             {
-                Vector3 origin = collider.bounds.min +(Vector3.right * x) + (Vector3.forward * z);
+                Vector3 origin = collider.bounds.min + (Vector3.right * x) + (Vector3.forward * z);
                 origin.y = transform.position.y;
 
-                Debug.DrawRay(origin, Vector3.down * (float)distance);
+                Debug.DrawRay(origin, Vector3.down * (float)distance );
                 if (Physics.Raycast(origin, Vector3.down, (float)distance))
                 {
                     return true;
