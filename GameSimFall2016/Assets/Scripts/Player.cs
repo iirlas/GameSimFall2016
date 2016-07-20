@@ -97,7 +97,8 @@ abstract public class Player : MonoBehaviour {
         {
             for (float z = 0; z < depth; z += (depth / step))
             {
-                Vector3 origin = collider.bounds.min + (Vector3.right * x) + (Vector3.forward * z);
+                Vector3 origin = collider.bounds.min +(Vector3.right * x) + (Vector3.forward * z);
+                origin.y = transform.position.y;
 
                 Debug.DrawRay(origin, Vector3.down * (float)distance);
                 if (Physics.Raycast(origin, Vector3.down, (float)distance))
