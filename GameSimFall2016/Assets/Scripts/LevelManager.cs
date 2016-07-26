@@ -50,7 +50,6 @@ public class LevelManager : Singleton<LevelManager> {
                 float entranceDoorAngle = Mathf.Round(Extension.angle(entranceDoor.localPosition.z, entranceDoor.localPosition.x) / angleAlignment) * angleAlignment;
                 float exitDoorAngle = Mathf.Round(Extension.angle(prevExitDoor.localPosition.z, prevExitDoor.localPosition.x) / angleAlignment) * angleAlignment;
                 float angle = (exitDoorAngle + 180) - entranceDoorAngle;
-                print(angle);
                 level.transform.rotation = prevTransform.rotation * Quaternion.Euler(0, -angle, 0);
                 level.transform.position = prevExitDoor.position - (entranceDoor.position - level.transform.position);
             }
