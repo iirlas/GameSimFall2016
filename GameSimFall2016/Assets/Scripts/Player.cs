@@ -124,18 +124,20 @@ abstract public class Player : MonoBehaviour
 
         float width = collider.bounds.size.x + sizeOffset;
         float depth = collider.bounds.size.z + sizeOffset;
-
         float xSteps = width / step;
         float zSteps = depth / step;
+        print(xSteps+ ", " + zSteps);
+
+        Debug.DrawLine(collider.bounds.max, collider.bounds.min);
+
+        Vector3 origin = collider.bounds.min;
 
         // Are we level with the ground?
-        for (float x = -sizeOffset; Mathf.Round(x) < width; x += xSteps)
+        for (int x = 0; x <= step; x++)
         {
-            for (float z = -sizeOffset; Mathf.Round(z) < depth; z += zSteps)
+            for (int z = 0; z <= step; z++)
             {
-                Vector3 origin = collider.bounds.min + (Vector3.right * x) + (Vector3.forward * z);
-                origin.y = transform.position.y;
-
+                origin = new Vector3(collider.bounds.min.x + (x / (float)step), transform.position.y, collider.bounds.min.z + (z / (float)step));
                 Debug.DrawRay(origin, Vector3.down * (float)distance);
                 if (Physics.Raycast(origin, Vector3.down, (float)distance))
                 {
