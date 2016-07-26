@@ -21,8 +21,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Game.getInstance().currentPlayer)
-            myTarget = Game.getInstance().currentPlayer;
+        if (PlayerManager.getInstance().currentPlayer)
+            myTarget = PlayerManager.getInstance().currentPlayer;
 	}
 
     public void LateUpdate()
@@ -43,8 +43,8 @@ public class ThirdPersonCamera : MonoBehaviour {
         }
         else if (h != 0)
         {
-            h = (h > 0 ? 1 : -1) * speed; // unify speed between mouse and joystick
-            myAngle += h;
+            h = (h > 0 ? 1 : -1); // unify speed between mouse and joystick
+            myAngle += h * speed;
         }
         Vector3 targetPosition = myTarget.transform.position + pivotPoint;
         Vector3 viewPosition = targetPosition + Quaternion.Euler(0, myAngle, 0) * offset;

@@ -19,8 +19,8 @@ public class FixedCamera : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Game.getInstance().currentPlayer)
-            myPlayer = Game.getInstance().currentPlayer;
+        if (PlayerManager.getInstance().currentPlayer)
+            myPlayer = PlayerManager.getInstance().currentPlayer;
     }
 
     public void LateUpdate()
