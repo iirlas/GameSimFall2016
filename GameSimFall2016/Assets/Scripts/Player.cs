@@ -126,7 +126,6 @@ abstract public class Player : MonoBehaviour
         float depth = collider.bounds.size.z + sizeOffset;
         float xSteps = width / step;
         float zSteps = depth / step;
-        print(xSteps+ ", " + zSteps);
 
         Debug.DrawLine(collider.bounds.max, collider.bounds.min);
 
