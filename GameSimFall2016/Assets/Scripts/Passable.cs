@@ -3,18 +3,29 @@ using System.Collections;
 
 public class Passable : MonoBehaviour {
 
-    [HideInInspector]
-    new public Collider collider;
+    private Collider myCollider;
 
-    public MonoBehaviour[] targets;
+    [HideInInspector]
+    new public Collider collider
+    {
+        get
+        {
+            if ( myCollider == null )
+            {
+                myCollider = GetComponent<Collider>();
+            }
+            return myCollider;
+        }
+    }
+
+    public GameObject[] targets = new GameObject[1];
 
 	// Use this for initialization
 	void Start () {
-        collider = GetComponent<Collider>();
 
-        foreach ( MonoBehaviour target in targets )
+        for (int index = 0; index < targets.Length; index++ )
         {
-            Physics.IgnoreCollision(collider, target.GetComponent<Collider>());
+            Physics.IgnoreCollision(collider, targets[index].GetComponent<Collider>());
         }
 	}
 	
