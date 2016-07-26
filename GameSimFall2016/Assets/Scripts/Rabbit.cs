@@ -10,22 +10,14 @@ public class Rabbit : Player {
     }
 
 	// Use this for initialization
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
-
         addRunnable(State.MOVE, runMoveState);
         addRunnable(State.FALL, runFallingState);
 
         playerState = State.MOVE;
 	}
 	
-	// Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-	}
-
     void runMoveState ()
     {
         movePlayer();

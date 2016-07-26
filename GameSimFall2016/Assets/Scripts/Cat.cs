@@ -13,9 +13,8 @@ public class Cat : Player {
     public LayerMask climbingLayer;
 
     // Use this for initialization
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
         addRunnable(State.MOVE, runWalkState);
         addRunnable(State.CLIMB, runClimbState);
         addRunnable(State.FALL, runFallingState);
@@ -59,8 +58,6 @@ public class Cat : Player {
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-
-        float colliderMag = collider.bounds.size.z;
         
         if ( h != 0 || v != 0 )
         {

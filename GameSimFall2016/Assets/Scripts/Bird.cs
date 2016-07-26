@@ -13,20 +13,10 @@ public class Bird : Player {
     private Vector3 myDirection;
 
     // Use this for initialization
-    protected override void Start()
+    void Start()
     {
-        base.Start();
-
         addRunnable(State.FLY, runFlyState);
-
         playerState = State.FLY;
-    }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-        rigidbody.velocity = Vector3.zero;
     }
 
     void runFlyState ()

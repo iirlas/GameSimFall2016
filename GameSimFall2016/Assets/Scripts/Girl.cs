@@ -24,9 +24,8 @@ public class Girl : Player {
 
 
     // Use this for initialization
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         animator = GetComponent<Animator>();
 
         addRunnable(State.MOVE, runMoveState);
@@ -36,12 +35,6 @@ public class Girl : Player {
         playerState = State.MOVE;
     }
 	
-	// Update is called once per frame
-    protected override void Update() 
-    {
-        base.Update();
-	}
-
     void runMoveState()
     {
         if (!isGrounded())
