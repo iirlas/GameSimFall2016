@@ -119,7 +119,7 @@ abstract public class Player : MonoBehaviour
     {
         if (distance == null)
         {
-            distance = collider.bounds.extents.y * 1.25f;
+            distance = collider.bounds.size.y * 0.75f;
         }
 
         float width = collider.bounds.size.x + sizeOffset;
@@ -138,13 +138,27 @@ abstract public class Player : MonoBehaviour
             {
                 origin = new Vector3(collider.bounds.min.x + (x / (float)step), transform.position.y, collider.bounds.min.z + (z / (float)step));
                 Debug.DrawRay(origin, Vector3.down * (float)distance);
-                if (Physics.Raycast(origin, Vector3.down, (float)distance))
+                RaycastHit hit;
+                if (Physics.Raycast(origin, Vector3.down, out hit, (float)distance))
                 {
+                    if ( transform.parent == null )
+                    {
+                        GameObject node = new GameObject("Player Parent");
+                        node.transform.parent = hit.transform;
+                        transform.parent = node.transform;
+                    }
+                    else if (transform.parent.parent != hit.transform)
+                    {
+                        transform.parent.parent = hit.transform;
+                    }
                     return true;
                 }
             }
         }
-
+        if (transform.parent != null)
+        {
+            transform.parent.parent = null;
+        }
         return false;
     }
 }
