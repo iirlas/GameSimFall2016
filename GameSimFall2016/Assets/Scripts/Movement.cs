@@ -11,13 +11,17 @@ public class Movement : MonoBehaviour {
     }
 
     public float movementSpeed = 5.0f;
+    public bool  canRotate;
     public float rotationSmoothSpeed = 10.0f;
+
 
     public Type type;
 
     public bool ignoreY = false;
 
-    public bool isMoving;
+    public bool canMove;
+
+    public MonoBehaviour eventScript;
 
     public Transform[] targetNodes;
 
@@ -31,13 +35,14 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         transform = GetComponent<Transform>();
-        isMoving = true;
+        canMove = true;
+        eventScript.SendMessage("OnMovementStart", this);
 	}
 	
 	// Update is called once per frame
 	public void Update () 
     {
-        if (!isMoving)
+        if (!canMove)
             return;
 
         Quaternion rotation = transform.rotation;
@@ -58,13 +63,18 @@ public class Movement : MonoBehaviour {
                 case Type.SINGLE:
                     if (nextIndex >= targetNodes.Length)
                     {
-                        isMoving = false;
+                        canMove = false;
                         nextIndex = targetNodes.Length - 1;
+                        eventScript.SendMessage("OnMovementEnd");
                     }
                     break;
 
                 case Type.LOOP:
                     nextIndex = nextIndex % targetNodes.Length;
+                    if (myIndex == (targetNodes.Length - 1))
+                    {
+                        eventScript.SendMessage("OnMovementEnd");
+                    }
                     break;
 
                 case Type.ROCK:
@@ -73,18 +83,22 @@ public class Movement : MonoBehaviour {
                     {
                         myIndexDirection = -myIndexDirection;
                         nextIndex = Mathf.Clamp(nextIndex, 0, targetNodes.Length - 1);
+                        eventScript.SendMessage("OnMovementEnd");
                     }
                     break;
                 }
                 myIndex = nextIndex;
             } while (!targetNodes[myIndex]);
+            eventScript.SendMessage("OnNodeReached");
         }
         else
         {
             rotation = Quaternion.LookRotation(nextTarget - transform.position);
         }
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSmoothSpeed * Time.deltaTime);
+        if ( canRotate )
+        { 
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSmoothSpeed * Time.deltaTime);
+        }
 
         transform.position = Vector3.MoveTowards(transform.position, nextTarget, movementSpeed * Time.deltaTime);
 	}
