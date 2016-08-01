@@ -5,6 +5,13 @@ using System.Collections.Generic;
 
 abstract public class Player : MonoBehaviour
 {
+    public enum State
+    {
+        MOVE,
+        FALL,
+        ATTACK,
+        ACTION
+    };
 
     protected delegate void StateRunner();
 
@@ -55,6 +62,7 @@ abstract public class Player : MonoBehaviour
             return myCollider;
         }
     }
+
     public Enum playerState { get; protected set; }
 
     private Dictionary<Enum, StateRunner> myStates;
@@ -63,6 +71,9 @@ abstract public class Player : MonoBehaviour
     public Player()
     {
         myStates = new Dictionary<Enum, StateRunner>();
+        addRunnable( State.MOVE, runMoveState );
+        addRunnable(State.FALL, runFallingState);
+        playerState = State.MOVE;
     }
 
     // Update is called once per frame
@@ -70,13 +81,97 @@ abstract public class Player : MonoBehaviour
     {
         if (PlayerManager.getInstance().currentPlayer == this)
         {
-            myStates[playerState]();
+            if ( !myStates.ContainsKey(playerState) )
+            {
+                throw new System.Exception("State [" + playerState + "] is not valid!");
+            }
+            else
+            {
+                myStates[playerState]();
+            }
         }
     }
 
     protected void addRunnable(Enum state, StateRunner stateRunner)
     {
+        if (myStates.ContainsKey(state))
+        {
+            Debug.Log("Warning: Overriding state [" + myStates[state] + "]!");
+            myStates.Remove(state);
+        }
         myStates.Add(state, stateRunner);
+    }
+    
+    protected void runMoveState ()
+    {
+        RaycastHit hit;
+        if ( rigidbody.useGravity )
+        {
+            if ( isGrounded(out hit) )
+            {
+                if (transform.parent == null)
+                {
+                    GameObject node = new GameObject("Player Parent");
+                    node.transform.parent = hit.transform;
+                    transform.parent = node.transform;
+                }
+                else if (transform.parent.parent != hit.transform)
+                {
+                    transform.parent.parent = hit.transform;
+                }
+                OnMoveState();
+            }
+            else
+            {
+                if (transform.parent != null)
+                {
+                    transform.parent.parent = null;
+                }
+                playerState = State.FALL;
+            }
+        }
+        else
+        {
+            OnMoveState();
+        }
+
+        if ( !playerState.Equals(State.MOVE) )
+        {
+            return;
+        }
+
+        if (Input.GetButton("Attack") && myStates.ContainsKey(State.ATTACK))
+        {
+            playerState = State.ATTACK;
+        }
+        else if (Input.GetButton("Action") && myStates.ContainsKey(State.ACTION))
+        {
+            playerState = State.ACTION;
+        }
+
+    }
+
+    protected void runFallingState()
+    {
+        if (isGrounded())
+        {
+            playerState = Player.State.MOVE;
+        }
+        else if ( transform.parent != null )
+        {
+            transform.parent.parent = null;
+        }
+        OnFallingState();
+    }
+
+    protected virtual void OnMoveState()
+    {
+        movePlayer();
+    }
+
+    protected virtual void OnFallingState()
+    {
+        //empty
     }
 
     protected void movePlayer()
@@ -115,49 +210,36 @@ abstract public class Player : MonoBehaviour
         transform.localEulerAngles = angle;
     }
 
-    protected bool isGrounded(float sizeOffset = 0, int step = 10, float? distance = null)
+    protected bool isGrounded ( int steps = 10 )
     {
-        if (distance == null)
-        {
-            distance = collider.bounds.size.y * 0.75f;
-        }
+        RaycastHit hit;
+        return isGrounded(out hit, steps);
+    }
 
-        float width = collider.bounds.size.x + sizeOffset;
-        float depth = collider.bounds.size.z + sizeOffset;
-        float xSteps = width / step;
-        float zSteps = depth / step;
-
-        Debug.DrawLine(collider.bounds.max, collider.bounds.min);
-
+    protected bool isGrounded(out RaycastHit hit, int steps = 10)
+    {
+        float distance = collider.bounds.size.y * 0.75f;
+        float width = collider.bounds.size.x;
+        float depth = collider.bounds.size.z;
         Vector3 origin = collider.bounds.min;
 
+        hit = new RaycastHit();
+
         // Are we level with the ground?
-        for (int x = 0; x <= step; x++)
+        for (int x = 0; x <= steps; x++)
         {
-            for (int z = 0; z <= step; z++)
+            for (int z = 0; z <= steps; z++)
             {
-                origin = new Vector3(collider.bounds.min.x + (x / (float)step), transform.position.y, collider.bounds.min.z + (z / (float)step));
-                Debug.DrawRay(origin, Vector3.down * (float)distance);
-                RaycastHit hit;
-                if (Physics.Raycast(origin, Vector3.down, out hit, (float)distance))
+                origin.x = collider.bounds.min.x + ((x / (float)steps) * width);
+                origin.y = transform.position.y;
+                origin.z = collider.bounds.min.z + ((z / (float)steps) * depth);
+
+                Debug.DrawRay(origin, Vector3.down * distance);
+                if (Physics.Raycast(origin, Vector3.down, out hit, distance))
                 {
-                    if ( transform.parent == null )
-                    {
-                        GameObject node = new GameObject("Player Parent");
-                        node.transform.parent = hit.transform;
-                        transform.parent = node.transform;
-                    }
-                    else if (transform.parent.parent != hit.transform)
-                    {
-                        transform.parent.parent = hit.transform;
-                    }
                     return true;
                 }
             }
-        }
-        if (transform.parent != null)
-        {
-            transform.parent.parent = null;
         }
         return false;
     }
