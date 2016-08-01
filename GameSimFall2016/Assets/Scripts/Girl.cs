@@ -28,7 +28,6 @@ public class Girl : Player {
         animator = GetComponent<Animator>();
         addRunnable(Player.State.ATTACK, runAttackState);
         addRunnable(Player.State.ACTION, runActionState);
-        addRunnable(Player.State.FALL, runFallingState);
         addRunnable(State.SHOOT, runShootingState);
     }
 

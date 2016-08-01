@@ -15,7 +15,6 @@ public class Cat : Player {
     protected void Start()
     {
         addRunnable(Player.State.ACTION,runActionState);
-        addRunnable(Player.State.FALL, runFallingState);
         addRunnable(State.CLIMB, runClimbState);
     }
 
