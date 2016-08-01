@@ -3,70 +3,56 @@ using System.Collections;
 
 public class Bird : Player {
 
-    enum State
+    new public enum State
     {
-        FLY,
     }
 
     public GameObject rockPrefab;
 
-    private Vector3 myDirection;
-
     // Use this for initialization
     void Start()
     {
-        addRunnable(State.FLY, runFlyState);
-        playerState = State.FLY;
+        addRunnable(Player.State.ATTACK, runAttackState);
+        addRunnable(Player.State.ACTION, runActionState);
+        addRunnable(Player.State.FALL, runFallingState);
     }
 
-    void runFlyState ()
+
+    void runAttackState ()
+    {
+        playerState = Player.State.MOVE;
+        GameObject rock = Instantiate(rockPrefab, transform.position, transform.rotation) as GameObject;
+        Rigidbody rockBody = rock.GetComponent<Rigidbody>();
+        Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
+        rockBody.AddForce(-transform.up * movementSpeed, ForceMode.Impulse);
+    }
+
+    void runActionState ()
+    {
+        playerState = Player.State.MOVE;
+        transform.position += transform.up * (movementSpeed * Time.deltaTime);
+    }
+
+    override protected void OnFallingState()
+    {
+        if (Input.GetButton("Action"))
+        {
+            rigidbody.useGravity = false;
+            playerState = Player.State.MOVE;
+        }
+    }
+
+    override protected void OnMoveState()
     {
         movePlayer();
-
-        if ( myDirection == Vector3.zero )
+        if (!Input.GetButton("Action"))
         {
-            StartCoroutine(setFlyDirection(0.3f));
-        }
-
-        if ( Input.GetButtonDown("Attack") )
-        {
-            GameObject rock = Instantiate(rockPrefab, transform.position, transform.rotation) as GameObject;
-            Rigidbody rockBody = rock.GetComponent<Rigidbody>();
-            Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
-            rockBody.AddForce(-transform.up * movementSpeed, ForceMode.Impulse);
-        }
-
-        if (Input.GetButton("Action"))
-        { 
-            transform.position += myDirection * movementSpeed * Time.deltaTime;
-        }
-        else
-        {
-            myDirection = Vector3.zero;
-        }
-    }
-
-    IEnumerator setFlyDirection ( float pressDelay )
-    {
-        Timer timer = new Timer();
-        if (Input.GetButtonDown("Action"))
-        {
-            myDirection = transform.up;
-            timer.start();
-
-            yield return new WaitForEndOfFrame();// wait for input reset.
-            while (timer.elapsedTime() < pressDelay)
+            transform.position -= transform.up * (Time.deltaTime);// * 0.1f);
+            if ( isGrounded() )
             {
-                if (Input.GetButtonDown("Action"))
-                {
-                    myDirection = -transform.up;
-                    break;
-                }
-                yield return null;
+                rigidbody.useGravity = true;
             }
-            yield break;
         }
-        myDirection = Vector3.zero;
-        yield break;
+        rigidbody.velocity = Vector3.zero;
     }
 }

@@ -3,54 +3,43 @@ using System.Collections;
 
 public class Cat : Player {
 
-    enum State 
+    new public enum State 
     {
-        MOVE,
         CLIMB,
-        FALL,
     }
 
-    public LayerMask climbingLayer;
+    public float jumpDistance = 5.0f;
+    public LayerMask climbingLayer = 1 << 8;
 
     // Use this for initialization
     protected void Start()
     {
-        addRunnable(State.MOVE, runWalkState);
+        addRunnable(Player.State.ACTION,runActionState);
+        addRunnable(Player.State.FALL, runFallingState);
         addRunnable(State.CLIMB, runClimbState);
-        addRunnable(State.FALL, runFallingState);
-        playerState = State.MOVE;
     }
 
-    void runWalkState ()
+    void runActionState()
     {
-        if (!isGrounded()) 
+        playerState = Player.State.MOVE;
+
+        RaycastHit hit;
+        //Are we facing a climbable object
+        if (Physics.Raycast(transform.position, transform.forward.normalized, out hit, 1.5f, climbingLayer))
         {
-            playerState = State.FALL;
-            return;
+            rigidbody.useGravity = false;
+            rigidbody.velocity = Vector3.zero;
+
+            transform.position = hit.point;
+            transform.forward = -hit.normal;
+            playerState = State.CLIMB;
         }
-
-        movePlayer();
-
-        if (Input.GetButtonDown("Action"))
+        else if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, collider.bounds.size.y))//Are we on an edge then?
         {
-            RaycastHit hit;
-            //Are we facing a climbable object
-            if (Physics.Raycast(transform.position, transform.forward.normalized, out hit, 1.5f, climbingLayer))
-            {
-                rigidbody.useGravity = false;
-                rigidbody.velocity = Vector3.zero;
-
-                transform.position = hit.point;
-                transform.forward = -hit.normal;
-                playerState = State.CLIMB;
-            }
-            else if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, 2.0f))//Are we on an edge then?
-            {
-                //launches the player forward and up
-                rigidbody.velocity = Vector3.zero;
-                rigidbody.AddForce((transform.up + transform.forward) * movementSpeed, ForceMode.Impulse);
-                playerState = State.FALL;
-            }
+            //launches the player forward and up
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce((transform.up + transform.forward) * jumpDistance, ForceMode.Impulse);
+            playerState = Player.State.FALL;
         }
     }
 
@@ -90,16 +79,8 @@ public class Cat : Player {
                 transform.position += Vector3.up + transform.forward.normalized;
             }
             rigidbody.useGravity = true;
-            playerState = State.MOVE;
+            playerState = Player.State.MOVE;
         }
         rigidbody.velocity = Vector3.zero;
-    }
-
-    void runFallingState()
-    {
-        if (isGrounded())
-        {
-            playerState = State.MOVE;
-        }
     }
 }

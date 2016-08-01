@@ -3,12 +3,10 @@ using System.Collections;
 
 public class Girl : Player {
 
-    public enum State
+    new public enum State
     {
-        MOVE,
         CLIMB,
         SHOOT,
-        FALL
     }
 
     [HideInInspector]
@@ -18,6 +16,7 @@ public class Girl : Player {
     public Transform rockSpawnNode;
     public float targetRange = 10.0f;
     public float shootingForce = 30.0f;
+    public float jumpDistance = 2.5f;
 
     private Transform[] myTargets;
     private Transform myTarget;
@@ -27,51 +26,37 @@ public class Girl : Player {
     void Start()
     {
         animator = GetComponent<Animator>();
-
-        addRunnable(State.MOVE, runMoveState);
+        addRunnable(Player.State.ATTACK, runAttackState);
+        addRunnable(Player.State.ACTION, runActionState);
+        addRunnable(Player.State.FALL, runFallingState);
         addRunnable(State.SHOOT, runShootingState);
-        addRunnable(State.FALL, runFallingState);
-
-        playerState = State.MOVE;
     }
-	
-    void runMoveState()
-    {
-        if (!isGrounded())
-        {
-            playerState = State.FALL;
-            return;
-        }
 
-        //can we attack?
-        if (Input.GetButtonDown("Attack"))
-        {
-            myTarget = null;
-            playerState = State.SHOOT;
-            return;
-        }
+    void runAttackState()
+    {
+        myTarget = null;
+        playerState = State.SHOOT;
+    }
+
+    void runActionState()
+    {
+        playerState = Player.State.MOVE;
 
         //Are we on an edge?
-        if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, 2.0f))
+        if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, collider.bounds.size.y))
         {
-            if (Input.GetButtonDown("Action"))
-            {
-                //launches the player forward and up
-                rigidbody.velocity = Vector3.zero;
-                rigidbody.AddForce((transform.up + transform.forward) * movementSpeed, ForceMode.Impulse);
-                playerState = State.FALL;
-                return;
-            }
+            //launches the player forward and up
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce((transform.up + transform.forward) * jumpDistance, ForceMode.Impulse);
+            playerState = Player.State.FALL;
         }
-
-        movePlayer();
     }
-
+	
     void runShootingState()
     {
         if (!isGrounded())
         {
-            playerState = State.FALL;
+            playerState = Player.State.FALL;
             return;
         }
 
@@ -97,7 +82,7 @@ public class Girl : Player {
             Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
             Vector3 force = (myTarget ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
             rockBody.AddForce(force, ForceMode.Impulse);
-            playerState = State.MOVE;
+            playerState = Player.State.MOVE;
         }
 
         //toggle our shooting target
@@ -118,14 +103,6 @@ public class Girl : Player {
                 }
             }
         }      
-    }
-
-    void runFallingState ()
-    {
-        if (isGrounded())
-        {
-            playerState = State.MOVE;
-        }
     }
 
     bool findShootableTarget()
