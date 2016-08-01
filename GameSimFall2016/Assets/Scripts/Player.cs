@@ -96,7 +96,7 @@ abstract public class Player : MonoBehaviour
     {
         if (myStates.ContainsKey(state))
         {
-            Debug.Log("Warning: Overriding state [" + myStates[state] + "]!");
+            Debug.Log("Warning: Overriding state [" + state + "] for " + this.name + " !");
             myStates.Remove(state);
         }
         myStates.Add(state, stateRunner);
