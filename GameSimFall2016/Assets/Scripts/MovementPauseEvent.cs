@@ -27,12 +27,12 @@ public class MovementPauseEvent : MonoBehaviour {
         myMovement = movement;
     }
 
-    void OnMovementEnd ( )
+    void OnMovementEnd ()
     {
 
     }
 
-    void OnNodeReached ( )
+    void OnNodeReached ()
     {
         myMovement.canMove = false;
         myTimer.start();
