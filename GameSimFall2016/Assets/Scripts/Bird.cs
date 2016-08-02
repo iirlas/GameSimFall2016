@@ -14,9 +14,7 @@ public class Bird : Player {
     {
         addRunnable(Player.State.ATTACK, runAttackState);
         addRunnable(Player.State.ACTION, runActionState);
-        addRunnable(Player.State.FALL, runFallingState);
     }
-
 
     void runAttackState ()
     {
@@ -29,30 +27,35 @@ public class Bird : Player {
 
     void runActionState ()
     {
-        playerState = Player.State.MOVE;
-        transform.position += transform.up * (movementSpeed * Time.deltaTime);
+        playerState = Player.State.FALL;
+
+        if (transform.parent != null)
+        {
+            transform.parent.parent = null;
+        }
+
+        rigidbody.AddForce(transform.up, ForceMode.Impulse);
+        rigidbody.useGravity = false;
     }
 
-    override protected void OnFallingState()
+    override protected void runFallingState()
     {
+        movePlayer();
         if (Input.GetButton("Action"))
         {
             rigidbody.useGravity = false;
-            playerState = Player.State.MOVE;
+            playerState = Player.State.FALL;
+            transform.position += transform.up * (movementSpeed * Time.deltaTime);
         }
-    }
-
-    override protected void OnMoveState()
-    {
-        movePlayer();
-        if (!Input.GetButton("Action"))
+        else
         {
             transform.position -= transform.up * (Time.deltaTime);// * 0.1f);
-            if ( isGrounded() )
+            if (isGrounded())
             {
                 rigidbody.useGravity = true;
+                playerState = Player.State.MOVE;
             }
+            rigidbody.velocity = Vector3.zero;
         }
-        rigidbody.velocity = Vector3.zero;
     }
 }
