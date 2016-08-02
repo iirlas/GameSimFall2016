@@ -24,11 +24,11 @@ public class Cat : Player {
 
         RaycastHit hit;
         //Are we facing a climbable object
-        if (Physics.Raycast(transform.position, transform.forward.normalized, out hit, 1.5f, climbingLayer))
+        if (Physics.Raycast(transform.position, transform.forward.normalized, out hit, collider.bounds.size.z, climbingLayer))
         {
             rigidbody.useGravity = false;
             rigidbody.velocity = Vector3.zero;
-
+			setParent(hit);
             transform.position = hit.point;
             transform.forward = -hit.normal;
             playerState = State.CLIMB;
@@ -58,12 +58,14 @@ public class Cat : Player {
 
             if (h != 0 && Physics.Raycast(hPos, transform.forward, out hit, 2f, climbingLayer))
             {
+                setParent(hit);
                 transform.forward = -hit.normal;
                 offset += (hit.point - (transform.forward / 2)) - transform.position;
 
             }
             if (v != 0 && Physics.Raycast(vPos, transform.forward, out hit, 2f, climbingLayer))
             {
+                setParent(hit);
                 transform.forward = -hit.normal;
                 offset += (hit.point - (transform.forward / 2)) - transform.position;
             }
@@ -73,7 +75,7 @@ public class Cat : Player {
 
         if (Input.GetButtonDown("Action"))
         {
-            if ( !Physics.Raycast(transform.position + Vector3.up, transform.forward, 2.0f ) )
+            if (!Physics.Raycast(transform.position + Vector3.up, transform.forward, collider.bounds.size.y))
             {
                 transform.position += Vector3.up + transform.forward.normalized;
             }
