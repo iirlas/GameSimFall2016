@@ -71,7 +71,7 @@ abstract public class Player : MonoBehaviour
     public Player()
     {
         myStates = new Dictionary<Enum, StateRunner>();
-        addRunnable( State.MOVE, runMoveState );
+        addRunnable(State.MOVE, runMoveState);
         addRunnable(State.FALL, runFallingState);
         playerState = State.MOVE;
     }
@@ -102,27 +102,19 @@ abstract public class Player : MonoBehaviour
         myStates.Add(state, stateRunner);
     }
     
-    protected void runMoveState ()
+    virtual protected void runMoveState ()
     {
         RaycastHit hit;
         if ( rigidbody.useGravity )
         {
             if ( isGrounded(out hit) )
             {
-                if (transform.parent == null)
-                {
-                    GameObject node = new GameObject("Player Parent");
-                    node.transform.parent = hit.transform;
-                    transform.parent = node.transform;
-                }
-                else if (transform.parent.parent != hit.transform)
-                {
-                    transform.parent.parent = hit.transform;
-                }
-                OnMoveState();
+                setParent(hit);
+                movePlayer();
             }
             else
             {
+                //clearParent();
                 if (transform.parent != null)
                 {
                     transform.parent.parent = null;
@@ -130,28 +122,24 @@ abstract public class Player : MonoBehaviour
                 playerState = State.FALL;
             }
         }
-        else
-        {
-            OnMoveState();
-        }
 
         if ( !playerState.Equals(State.MOVE) )
         {
             return;
         }
 
-        if (Input.GetButton("Attack") && myStates.ContainsKey(State.ATTACK))
+        if (Input.GetButtonDown("Attack") && myStates.ContainsKey(State.ATTACK))
         {
             playerState = State.ATTACK;
         }
-        else if (Input.GetButton("Action") && myStates.ContainsKey(State.ACTION))
+        else if (Input.GetButtonDown("Action") && myStates.ContainsKey(State.ACTION))
         {
             playerState = State.ACTION;
         }
 
     }
 
-    protected void runFallingState()
+    virtual protected void runFallingState()
     {
         if (isGrounded())
         {
@@ -161,17 +149,20 @@ abstract public class Player : MonoBehaviour
         {
             transform.parent.parent = null;
         }
-        OnFallingState();
     }
 
-    protected virtual void OnMoveState()
+    protected void setParent ( RaycastHit hit )
     {
-        movePlayer();
-    }
-
-    protected virtual void OnFallingState()
-    {
-        //empty
+        if (transform.parent == null)
+        {
+            GameObject node = new GameObject("Player Parent");
+            node.transform.parent = hit.transform;
+            transform.parent = node.transform;
+        }
+        else if (transform.parent.parent != hit.transform)
+        {
+            transform.parent.parent = hit.transform;
+        }
     }
 
     protected void movePlayer()
