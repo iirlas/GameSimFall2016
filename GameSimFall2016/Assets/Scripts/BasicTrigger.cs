@@ -15,39 +15,41 @@ using System.Collections;
 //========================================================================================================
 
 public class BasicTrigger : MonoBehaviour {
-	
 
-	public GameObject triggering;
-	public Vector3 respawnPt; // only needed  if trigger is deathZone
-	void OnTriggerEnter(Collider other)
+    public enum Type
+    {
+        TRIGGER,
+        COLLISION,
+        ACTION,
+    };
+
+    public GameObject triggerObject;
+    public Type type;
+    public float distance = 1.0f;
+
+    public void Update()
+    {
+        if ( type == Type.ACTION && Input.GetButtonDown("Action") &&
+             Vector3.Distance(transform.position, triggerObject.transform.position) < distance )
+        {
+            triggerObject.SendMessage("OnEvent", transform);
+        }
+
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if ( type == Type.COLLISION && collision.transform == triggerObject.transform )
+        {
+            triggerObject.SendMessage("OnEvent", transform);
+        }
+    }
+
+	public void OnTriggerEnter(Collider other)
 	{
-		if (triggering.tag == "Player" && this.tag == "DeathZone")
-		{
-			Debug.Log ("DEAD");
-			reSpawn ();
-		}
-		else if (triggering.name == other.name) 
-		{
-			Debug.Log ("It's triggered!");
-
-			if (this.tag == "PushIn") 
-			{
-				pushIt ();
-			}
-		}
-	}
-
-	void pushIt ()
-	{
-		
-		this.transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
-		Debug.Log ("all's in");
-	}
-
-	void reSpawn ()
-	{
-		triggering.transform.position = respawnPt;
-		
-	}
-
+        if ( type == Type.TRIGGER && other.transform == triggerObject.transform )
+        {
+            triggerObject.SendMessage("OnEvent", transform);
+        }
+    }
 }
