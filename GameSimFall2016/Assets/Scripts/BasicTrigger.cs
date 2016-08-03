@@ -23,33 +23,34 @@ public class BasicTrigger : MonoBehaviour {
         ACTION,
     };
 
-    public GameObject triggerObject;
+    public GameObject activator;
+    public GameObject effected;
     public Type type;
     public float distance = 1.0f;
 
     public void Update()
     {
         if ( type == Type.ACTION && Input.GetButtonDown("Action") &&
-             Vector3.Distance(transform.position, triggerObject.transform.position) < distance )
+             Vector3.Distance(transform.position, activator.transform.position) < distance)
         {
-            triggerObject.SendMessage("OnEvent", transform);
+            effected.SendMessage("OnEvent", transform);
         }
 
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        if ( type == Type.COLLISION && collision.transform == triggerObject.transform )
+        if (type == Type.COLLISION && collision.transform == activator.transform)
         {
-            triggerObject.SendMessage("OnEvent", transform);
+            effected.SendMessage("OnEvent", transform);
         }
     }
 
 	public void OnTriggerEnter(Collider other)
 	{
-        if ( type == Type.TRIGGER && other.transform == triggerObject.transform )
+        if (type == Type.TRIGGER && other.transform == activator.transform)
         {
-            triggerObject.SendMessage("OnEvent", transform);
+            effected.SendMessage("OnEvent", transform);
         }
     }
 }
