@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerManager : Singleton<PlayerManager> {
 
+    new public Camera camera;
     public Player currentPlayer { get; private set; }
     public Player[] players { get; private set; }
 
