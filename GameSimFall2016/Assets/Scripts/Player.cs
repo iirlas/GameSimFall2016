@@ -19,10 +19,11 @@ abstract public class Player : MonoBehaviour
     private Rigidbody myRigidbody;
     private Collider myCollider;
 
+
     public float movementSpeed = 5.0f;
     public float rotationSmoothSpeed = 10.0f;
 
-    new public Camera camera;
+    new public Camera camera { get { return PlayerManager.getInstance().camera; } }
 
     [HideInInspector]
     public new Transform transform
@@ -109,16 +110,11 @@ abstract public class Player : MonoBehaviour
         {
             if ( isGrounded(out hit) )
             {
-                setParent(hit);
+                setParent(hit, 45);
                 movePlayer();
             }
             else
             {
-                //clearParent();
-                if (transform.parent != null)
-                {
-                    transform.parent.parent = null;
-                }
                 playerState = State.FALL;
             }
         }
@@ -145,23 +141,41 @@ abstract public class Player : MonoBehaviour
         {
             playerState = Player.State.MOVE;
         }
-        else if ( transform.parent != null )
+        else
         {
-            transform.parent.parent = null;
+            clearParent();
         }
     }
 
-    protected void setParent ( RaycastHit hit )
+    protected void setParent ( RaycastHit hit, float angleLimit = float.PositiveInfinity )
     {
-        if (transform.parent == null)
+
+        Transform parent = transform.parent;
+        if ( parent == null )
         {
-            GameObject node = new GameObject("Player Parent");
-            node.transform.parent = hit.transform;
-            transform.parent = node.transform;
+            parent = new GameObject("Parent").transform;
         }
-        else if (transform.parent.parent != hit.transform)
+
+        if (parent.parent == hit.transform)
+            return;
+
+        transform.parent = null;
+
+        if (Vector3.Angle(hit.normal, transform.up) < angleLimit )
         {
-            transform.parent.parent = hit.transform;
+            parent.parent = hit.transform;
+            parent.localEulerAngles = Vector3.zero;
+            parent.localScale = hit.transform.localScale.Inverse();
+            //transform.up = hit.normal;// new Vector3(hit.transform.up.x, transform.up.y, hit.transform.up.z);
+        }
+        transform.parent = parent;
+    }
+
+    protected void clearParent ()
+    {
+        if ( transform.parent != null && transform.parent.parent != null )
+        {
+            transform.parent.parent = null;
         }
     }
 
@@ -224,10 +238,10 @@ abstract public class Player : MonoBehaviour
                 origin.x = collider.bounds.min.x + ((x / (float)steps) * width);
                 origin.y = transform.position.y;
                 origin.z = collider.bounds.min.z + ((z / (float)steps) * depth);
-
-                Debug.DrawRay(origin, Vector3.down * distance);
-                if (Physics.Raycast(origin, Vector3.down, out hit, distance))
+                Debug.DrawRay(origin, (-transform.up) * distance);
+                if (Physics.Raycast(origin, (-transform.up), out hit, distance))
                 {
+                    Debug.DrawLine(origin, hit.point);
                     return true;
                 }
             }
