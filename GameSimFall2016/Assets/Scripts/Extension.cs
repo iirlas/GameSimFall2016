@@ -17,10 +17,16 @@ public static class Extension
         }
         return default(Type);
     }
+
+    public static Vector3 Inverse ( this Vector3 vector )
+    {
+        return new Vector3( 1.0f / vector.x, 1.0f / vector.y, 1.0f / vector.z );
+    }
    
     public static float angle ( float y, float x )
     {
         float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
         return (angle < 0 ? angle + 360 : angle);
     }
+
 }
