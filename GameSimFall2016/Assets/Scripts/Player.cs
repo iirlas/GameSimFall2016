@@ -164,7 +164,7 @@ abstract public class Player : MonoBehaviour
         if (Vector3.Angle(hit.normal, transform.up) < angleLimit )
         {
             parent.parent = hit.transform;
-            parent.localEulerAngles = Vector3.zero;
+            parent.localEulerAngles = new Vector3(0, -hit.transform.eulerAngles.y, 0);
             parent.localScale = hit.transform.localScale.Inverse();
             //transform.up = hit.normal;// new Vector3(hit.transform.up.x, transform.up.y, hit.transform.up.z);
         }
