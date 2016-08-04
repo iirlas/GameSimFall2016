@@ -14,7 +14,8 @@ using System.Collections;
 //
 //========================================================================================================
 
-public class BasicTrigger : MonoBehaviour {
+public class BasicTrigger : MonoBehaviour
+{
 
     public enum Type
     {
@@ -23,34 +24,58 @@ public class BasicTrigger : MonoBehaviour {
         ACTION,
     };
 
-    public GameObject activator;
-    public GameObject effected;
+    public Tag activator = "Untagged";
+    public MonoBehaviour effected;
     public Type type;
+    public string message;
     public float distance = 1.0f;
+    public bool canRepeat = false;
+
+    private bool isActive = true;
+
+    public void Start()
+    {
+        print(activator);
+    }
+
+
 
     public void Update()
     {
-        if ( type == Type.ACTION && Input.GetButtonDown("Action") &&
-             Vector3.Distance(transform.position, activator.transform.position) < distance)
+        if ( isActive && type == Type.ACTION && Input.GetButtonDown("Action") )
         {
-            effected.SendMessage("OnEvent", transform);
+            Collider[] colliders = Physics.OverlapSphere( transform.position, distance );
+            foreach ( Collider col in colliders )
+            {
+                if ( col.transform.tag == activator )
+                {
+                    effected.SendMessage("OnEvent", this);
+                    isActive = false;
+                }
+            }
         }
+    }
 
+    public void LateUpdate()
+    {
+        isActive = (canRepeat ? true : isActive);
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (type == Type.COLLISION && collision.transform == activator.transform)
+        if (isActive && type == Type.COLLISION && collision.transform.tag == activator)
         {
-            effected.SendMessage("OnEvent", transform);
+            effected.SendMessage("OnEvent", this);
+            isActive = false;
         }
     }
 
 	public void OnTriggerEnter(Collider other)
 	{
-        if (type == Type.TRIGGER && other.transform == activator.transform)
+        if (isActive && type == Type.TRIGGER && other.transform.tag == activator)
         {
-            effected.SendMessage("OnEvent", transform);
+            effected.SendMessage("OnEvent", this);
+            isActive = false;
         }
     }
 }
