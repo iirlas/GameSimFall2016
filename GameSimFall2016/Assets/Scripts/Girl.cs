@@ -5,7 +5,6 @@ public class Girl : Player {
 
     new public enum State
     {
-        CLIMB,
         SHOOT,
     }
 
@@ -18,8 +17,9 @@ public class Girl : Player {
     public float shootingForce = 30.0f;
     public float jumpDistance = 2.5f;
 
-    private Transform[] myTargets;
+    private Collider[] myTargets;
     private Transform myTarget;
+    private int myTargetableLayerMask;
 
 
     // Use this for initialization
@@ -29,6 +29,7 @@ public class Girl : Player {
         addRunnable(Player.State.ATTACK, runAttackState);
         addRunnable(Player.State.ACTION, runActionState);
         addRunnable(State.SHOOT, runShootingState);
+        myTargetableLayerMask = 1 << LayerMask.NameToLayer("Targetable"); 
     }
 
     void runAttackState()
@@ -53,6 +54,7 @@ public class Girl : Player {
 	
     void runShootingState()
     {
+        strafe();
         if (!isGrounded())
         {
             playerState = Player.State.FALL;
@@ -62,7 +64,7 @@ public class Girl : Player {
         //rotate towards the shooting target
         if (Input.GetButton("Attack"))
         {
-            if (!findShootableTarget())
+            if (!findTargets())
             {
                 transform.eulerAngles += Vector3.up * Input.GetAxis("Horizontal");
             }
@@ -79,7 +81,7 @@ public class Girl : Player {
             GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
             Rigidbody rockBody = rock.GetComponent<Rigidbody>();
             Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
-            Vector3 force = (myTarget ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
+            Vector3 force = (myTarget != null ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
             rockBody.AddForce(force, ForceMode.Impulse);
             playerState = Player.State.MOVE;
         }
@@ -87,46 +89,44 @@ public class Girl : Player {
         //toggle our shooting target
         if (Input.GetButtonDown("Action"))
         {
-            for (int i = 0, next = 0; i < myTargets.Length; i++)
-            {
-                if (myTarget == myTargets[i])
-                {
-                    next = i;
-                    do
-                    {
-                        next = (next + 1) % myTargets.Length;
-                    } while (!myTargets[next] && next != i);
-
-                    myTarget = myTargets[next];
-                    break;
-                }
-            }
-        }      
+            int index = 0;
+            for (; index < myTargets.Length && myTarget != myTargets[index].transform; index++ ) ;
+            index = (++index % myTargets.Length);
+            myTarget = myTargets[index].transform;
+        }
     }
 
-    bool findShootableTarget()
+    void strafe ()
     {
-        int targetableLayerMask = 1 << LayerMask.NameToLayer("Targetable");
-        bool isCurrentTargetLost = true;
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, targetRange, targetableLayerMask);
-        myTargets = new Transform[hits.Length];
-
-        for (int index = 0; index < myTargets.Length; index++)
+        if (h != 0 || v != 0)
         {
-            myTargets[index] = hits[index].transform;
-            isCurrentTargetLost &= (myTargets[index] != myTarget);
-            Debug.DrawLine(transform.position, myTargets[index].position);
+            transform.position += ((camera.transform.forward * v) +
+                                   (camera.transform.right * h)) *
+                                    movementSpeed * Time.deltaTime;
         }
+    }
 
-        if (isCurrentTargetLost)
+    bool findTargets ()
+    {
+        myTargets = Physics.OverlapSphere(transform.position, targetRange, myTargetableLayerMask);
+
+        if (myTarget == null || Vector3.Distance(transform.position, myTarget.position) > targetRange)
         {
-            if (myTargets.Length > 0)
+            myTarget = (myTargets.Length != 0 ? myTargets[0].transform : null );
+
+            for (int index = 0; index < myTargets.Length; index++)
             {
-                myTarget = myTargets[0];
+                float currentAngle = Vector3.Angle( transform.forward, myTarget.position - transform.position );
+                float angle = Vector3.Angle( transform.forward, myTargets[index].transform.position - transform.position );
+                if ( angle < currentAngle )
+                {
+                    myTarget = myTargets[index].transform;
+                }
             }
         }
-
         return (myTarget != null);
     }
 }
