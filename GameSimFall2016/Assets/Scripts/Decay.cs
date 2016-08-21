@@ -5,7 +5,8 @@ public class Decay : MonoBehaviour {
 
     public float life = 100.0f;
     public float decaySpeed = 1.0f;
-
+    public bool destroyOnCollision = false;
+    public bool destroyOnTrigger = false;
 
 	// Use this for initialization
 	void Start () {
@@ -20,4 +21,22 @@ public class Decay : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if ( destroyOnCollision )
+        {
+            print(collision.transform.name);
+            Destroy(gameObject);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if ( destroyOnTrigger )
+        {
+            print(other.name);
+            Destroy(gameObject);
+        }
+    }
 }
