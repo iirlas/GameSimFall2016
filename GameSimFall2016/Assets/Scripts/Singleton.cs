@@ -13,7 +13,7 @@ abstract public class Singleton <Type> : MonoBehaviour
             ourInstance = GameObject.FindObjectOfType<Type>();
             if ( ourInstance == null )
             {
-                throw new System.Exception( "Singleton [" + ourInstance.GetType() + "] not in the current scene!" );
+                throw new System.Exception("Singleton [" + typeof(Type) + "] not in the current scene!");
             }
         }
         return ourInstance;
