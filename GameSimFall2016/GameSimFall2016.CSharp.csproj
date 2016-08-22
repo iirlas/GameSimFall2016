@@ -61,12 +61,20 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scenes\Test\RabbitTemple\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\BasicTrigger.cs" />
     <Compile Include="Assets\Scripts\Bird.cs" />
     <Compile Include="Assets\Scripts\Cat.cs" />
     <Compile Include="Assets\Scripts\Decay.cs" />
+    <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\DoorOpen.cs" />
     <Compile Include="Assets\Scripts\Extension.cs" />
     <Compile Include="Assets\Scripts\FixedCamera.cs" />
@@ -81,7 +89,9 @@
     <Compile Include="Assets\Scripts\PillarRotate.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\PressurePlate.cs" />
     <Compile Include="Assets\Scripts\Rabbit.cs" />
+    <Compile Include="Assets\Scripts\RespawnFloor.cs" />
     <Compile Include="Assets\Scripts\Rotation.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Slant.cs" />
@@ -97,5 +107,5 @@
     <None Include="Assets\Textures\Environment\PlaceHolder.txt" />
     <None Include="Assets\Textures\Miscellaneous\PlaceHolder.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
