@@ -7,6 +7,7 @@ public class LevelManager : Singleton<LevelManager> {
 
     public Object start;
     public Object end;
+    public int midLevelCount = 1;
     public Object[] midLevels;
 
 	// Use this for initialization
@@ -16,14 +17,15 @@ public class LevelManager : Singleton<LevelManager> {
         System.Random randomizer = new System.Random();
         List<Object> levels = new List<Object>();
 
-        midLevels = midLevels.OrderBy(index => randomizer.Next()).ToArray();
+        List<Object> midLevelList = midLevels.OrderBy(index => randomizer.Next()).ToList();
+        midLevelList.RemoveRange( midLevelCount, midLevels.Length - midLevelCount );
+        midLevels = midLevelList.ToArray();
 
         levels.Add(start);
         levels.AddRange(midLevels);
         levels.Add(end);
 
         setup(levels.ToArray());
-
     }
 
     void setup ( Object[] levels )
