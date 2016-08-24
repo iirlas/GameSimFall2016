@@ -61,51 +61,62 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scenes\Test\RabbitTemple\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scripts\BasicTrigger.cs" />
-    <Compile Include="Assets\Scripts\Bird.cs" />
-    <Compile Include="Assets\Scripts\Cat.cs" />
-    <Compile Include="Assets\Scripts\Decay.cs" />
-    <Compile Include="Assets\Scripts\Door.cs" />
-    <Compile Include="Assets\Scripts\DoorOpen.cs" />
-    <Compile Include="Assets\Scripts\Extension.cs" />
-    <Compile Include="Assets\Scripts\FixedCamera.cs" />
+    <Compile Include="Assets\Scripts\AI\Ant.cs" />
+    <Compile Include="Assets\Scripts\AI\Enemy.cs" />
+    <Compile Include="Assets\Scripts\CameraScripts\FixedCamera.cs" />
+    <Compile Include="Assets\Scripts\CameraScripts\ThirdPersonCamera.cs" />
+    <Compile Include="Assets\Scripts\CompanionScripts\Bird.cs" />
+    <Compile Include="Assets\Scripts\CompanionScripts\Cat.cs" />
+    <Compile Include="Assets\Scripts\CompanionScripts\Rabbit.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
-    <Compile Include="Assets\Scripts\Girl.cs" />
-    <Compile Include="Assets\Scripts\HealthPlayer.cs" />
-    <Compile Include="Assets\Scripts\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\Movement.cs" />
-    <Compile Include="Assets\Scripts\MovementPauseEvent.cs" />
+    <Compile Include="Assets\Scripts\ManagerScripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\ManagerScripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Passable.cs" />
-    <Compile Include="Assets\Scripts\PillarMatch.cs" />
-    <Compile Include="Assets\Scripts\PillarRotate.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\PlayerManager.cs" />
-    <Compile Include="Assets\Scripts\PressurePlate.cs" />
-    <Compile Include="Assets\Scripts\Rabbit.cs" />
-    <Compile Include="Assets\Scripts\RespawnFloor.cs" />
-    <Compile Include="Assets\Scripts\Rotation.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Girl.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\HealthPlayer.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\BasicTrigger.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\Door.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\DoorOpen.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PillarMatch.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PillarRotate.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PressurePlate.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\RespawnFloor.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\Slant.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
-    <Compile Include="Assets\Scripts\Slant.cs" />
-    <Compile Include="Assets\Scripts\Tag.cs" />
-    <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
-    <Compile Include="Assets\Scripts\Timer.cs" />
+    <Compile Include="Assets\Scripts\Sounds\SoundTest.cs" />
+    <Compile Include="Assets\Scripts\TurningTarget.cs" />
+    <Compile Include="Assets\Scripts\UtilityScripts\Decay.cs" />
+    <Compile Include="Assets\Scripts\UtilityScripts\Extension.cs" />
+    <Compile Include="Assets\Scripts\UtilityScripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\UtilityScripts\MovementPauseEvent.cs" />
+    <Compile Include="Assets\Scripts\UtilityScripts\Rotation.cs" />
+    <Compile Include="Assets\Scripts\UtilityScripts\Tag.cs" />
+    <Compile Include="Assets\Scripts\UtilityScripts\Timer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Audio\AmbientSounds\placeHolder.txt" />
+    <None Include="Assets\Audio\Dialogue\placeHolder.txt" />
+    <None Include="Assets\Audio\Music\placeHolder.txt" />
     <None Include="Assets\Materials\Environment\PlaceHolder.txt" />
     <None Include="Assets\PlaceHolder.txt" />
     <None Include="Assets\Scenes\Main\PlaceHolder.txt" />
+    <None Include="Assets\Scenes\Test\tutorialJournalPage5.txt" />
+    <None Include="Assets\Scenes\Test\tutorialPressureSwitch6.txt" />
+    <None Include="Assets\Scripts\AI\placeHolder.txt" />
+    <None Include="Assets\Scripts\CameraScripts\placeHolder.txt" />
+    <None Include="Assets\Scripts\CompanionScripts\placeHolder.txt" />
+    <None Include="Assets\Scripts\ManagerScripts\placeHolder.txt" />
+    <None Include="Assets\Scripts\PlayerScripts\placeHolder.txt" />
+    <None Include="Assets\Scripts\PuzzleMechanicsAndDoors\placeHolder.txt" />
+    <None Include="Assets\Scripts\Sounds\placeHolder.txt" />
+    <None Include="Assets\Scripts\UtilityScripts\placeHolder.txt" />
     <None Include="Assets\Textures\Characters\PlaceHolder.txt" />
     <None Include="Assets\Textures\Environment\PlaceHolder.txt" />
     <None Include="Assets\Textures\Miscellaneous\PlaceHolder.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
