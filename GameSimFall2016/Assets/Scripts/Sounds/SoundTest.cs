@@ -9,12 +9,11 @@ public class SoundTest : MonoBehaviour {
 
 	}
 
-
 	void Update () {
 		
 	}
 
-	public void OnTriggerEnter(Collider col)
+	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.tag == "Player" && soundEffect.isPlaying == false) {
 			soundEffect.Play ();
@@ -22,16 +21,29 @@ public class SoundTest : MonoBehaviour {
 			
 	}
 
-	public void OnTriggerStay(Collider col)
+	void OnTriggerStay(Collider col)
 	{
+		// once inside will trigger a continous loop.
 		if (col.gameObject.tag == "Player" && soundEffect.isPlaying == true) {
 			soundEffect.loop = true;
 		}
 	}
-	public void OnTriggerExit(Collider col)
+	void OnTriggerExit(Collider col)
 	{
-		if (soundEffect.loop == true) {
+		// Turns off the loop in the sound loop but plays it one last time beforeand then it turns off.
+		/*if (soundEffect.loop == true) {
 			soundEffect.loop = false;
+		}*/
+
+		// Completely stops the loop once the player leaves the collider.
+		soundEffect.Stop ();
+	}
+
+	void OnCollisionEnter(Collision col)
+	{
+		Debug.Log ("Inside collision!!");
+		if (col.gameObject.tag == "Player") {
+			soundEffect.Play ();
 		}
 	}
 }
