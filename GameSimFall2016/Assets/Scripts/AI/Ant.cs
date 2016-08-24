@@ -15,7 +15,6 @@ public class Ant : Enemy
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
    public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
                                 //and rotationspeed with values provided in the inspector
-
    public int antHealthCustom;
    public int antDamageCustom;
    public float antSpeedCustom;
@@ -111,6 +110,15 @@ public class Ant : Enemy
       }
    }
 
+   //=============================================================================
+   // If something enters the trigger box, do something base upon it's type.
+   void OnTriggerStay(Collider other)
+   {
+      if (other.tag.Equals("Player"))
+      {
+         this.myState = enState.ATTACK;
+      }
+   }
 
    //=============================================================================
    // Looks for the player and stores a refernce to it, so it may be used later.
@@ -168,7 +176,7 @@ public class Ant : Enemy
       if (timeSinceLastAttack == 0.0f)
       {
          //do damage to player.
-
+         Debug.Log(this.name + " has damaged the player.");
 
          timeSinceLastAttack += Time.deltaTime;
       }
@@ -177,7 +185,7 @@ public class Ant : Enemy
          timeSinceLastAttack += Time.deltaTime;
       }
 
-      if (timeSinceLastAttack <= attackInterval)
+      if (timeSinceLastAttack >= attackInterval)
       {
          timeSinceLastAttack = 0;
       }
