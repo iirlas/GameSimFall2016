@@ -51,13 +51,6 @@ public class Enemy : MonoBehaviour
    protected float myRotationSpeed;  // The base speed at which this enemy will "turn".
 
    //=============================================================================
-   // Initialize any missing member variables, if needed.
-   void init()
-   {
-
-   }
-
-   //=============================================================================
    // Default ctor
    public Enemy()
    {
@@ -68,8 +61,6 @@ public class Enemy : MonoBehaviour
       this.myDamage = -1;
       this.mySpeed = 1;
       this.myRotationSpeed = 1;
-
-      this.init();
    }
 
    //=============================================================================
