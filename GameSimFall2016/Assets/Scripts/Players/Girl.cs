@@ -43,7 +43,7 @@ public class Girl : Player {
         playerState = Player.State.MOVE;
 
         //Are we on an edge?
-        if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, collider.bounds.size.y))
+        if (!Physics.Raycast(rigidbody.position + transform.forward, Vector3.down, collider.bounds.size.y))
         {
             //launches the player forward and up
             rigidbody.velocity = Vector3.zero;
@@ -54,7 +54,6 @@ public class Girl : Player {
 	
     void runShootingState()
     {
-        strafe();
         if (!isGrounded())
         {
             playerState = Player.State.FALL;
@@ -67,13 +66,16 @@ public class Girl : Player {
             if (!findTargets())
             {
                 transform.eulerAngles += Vector3.up * Input.GetAxis("Horizontal");
+                rigidbody.position += camera.transform.forward * Input.GetAxis("Vertical") * 
+                                      movementSpeed * Time.deltaTime;
             }
             else
             {
-                Vector3 direction = myTarget.position - transform.position;
+                Vector3 direction = myTarget.position - rigidbody.position;
                 direction.y = 0;//aligns facing direction with the ground.
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
+                strafe();
             }
         }
         else //fire a projectile towards the shooting target.
@@ -81,7 +83,7 @@ public class Girl : Player {
             GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
             Rigidbody rockBody = rock.GetComponent<Rigidbody>();
             Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
-            Vector3 force = (myTarget != null ? (myTarget.position - transform.position).normalized : transform.forward) * shootingForce;
+            Vector3 force = (myTarget != null ? (myTarget.position - rigidbody.position).normalized : transform.forward) * shootingForce;
             rockBody.AddForce(force, ForceMode.Impulse);
             playerState = Player.State.MOVE;
         }
@@ -103,7 +105,7 @@ public class Girl : Player {
 
         if (h != 0 || v != 0)
         {
-            transform.position += ((camera.transform.forward * v) +
+            rigidbody.position += ((camera.transform.forward * v) +
                                    (camera.transform.right * h)) *
                                     movementSpeed * Time.deltaTime;
         }
@@ -111,16 +113,16 @@ public class Girl : Player {
 
     bool findTargets ()
     {
-        myTargets = Physics.OverlapSphere(transform.position, targetRange, myTargetableLayerMask);
+        myTargets = Physics.OverlapSphere(rigidbody.position, targetRange, myTargetableLayerMask);
 
-        if (myTarget == null || Vector3.Distance(transform.position, myTarget.position) > targetRange)
+        if (myTarget == null || Vector3.Distance(rigidbody.position, myTarget.position) > targetRange)
         {
             myTarget = (myTargets.Length != 0 ? myTargets[0].transform : null );
 
             for (int index = 0; index < myTargets.Length; index++)
             {
-                float currentAngle = Vector3.Angle( transform.forward, myTarget.position - transform.position );
-                float angle = Vector3.Angle( transform.forward, myTargets[index].transform.position - transform.position );
+                float currentAngle = Vector3.Angle( transform.forward, myTarget.position - rigidbody.position );
+                float angle = Vector3.Angle( transform.forward, myTargets[index].transform.position - rigidbody.position );
                 if ( angle < currentAngle )
                 {
                     myTarget = myTargets[index].transform;
