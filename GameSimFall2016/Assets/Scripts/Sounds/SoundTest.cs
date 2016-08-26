@@ -5,29 +5,26 @@ public class SoundTest : MonoBehaviour {
 
 	public AudioSource soundEffect;
 
-	void Start () {
-
-	}
-
-	void Update () {
-		
-	}
-
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.tag == "Player" && soundEffect.isPlaying == false) {
 			soundEffect.Play ();
 		}
-			
 	}
 
 	void OnTriggerStay(Collider col)
 	{
 		// once inside will trigger a continous loop.
-		if (col.gameObject.tag == "Player" && soundEffect.isPlaying == true) {
+		if (col.gameObject.tag == "Player" && soundEffect.isPlaying == true) 
+		{
 			soundEffect.loop = true;
 		}
+		if (soundEffect.isPlaying == true) 
+		{
+			//soundEffect.PlayDelayed (.1f);
+		}
 	}
+
 	void OnTriggerExit(Collider col)
 	{
 		// Turns off the loop in the sound loop but plays it one last time beforeand then it turns off.

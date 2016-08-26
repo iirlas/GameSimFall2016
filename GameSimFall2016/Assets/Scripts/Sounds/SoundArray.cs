@@ -12,22 +12,20 @@ public class SoundArray : MonoBehaviour {
 	float delay;
 	int randomNumber;
 
-
 	// saving sound clips into an array of sounds that can randomize different sounds for the enemy.
 	void Start () 
 	{
 		soundSource = GetComponent<AudioSource> ();
-		randomNumber = Random.Range (0, 3);
+		randomNumber = Random.Range (0, soundArray.Length);
 		Debug.Log (randomNumber);
 		soundArray = new AudioClip[3];
 		soundArray [0] = sound1;
 		soundArray [1] = sound2;
 		soundArray [2] = sound3;
 		soundSource.clip = soundArray [randomNumber];
-		AudioSource.PlayClipAtPoint(soundArray[randomNumber],this.gameObject.GetComponent<Transform>().position);
+		//AudioSource.PlayClipAtPoint(soundArray[randomNumber],this.gameObject.GetComponent<Transform>().position);
 		delay = timeSec;
 	}
-		
 
 	void Update () 
 	{
@@ -35,15 +33,15 @@ public class SoundArray : MonoBehaviour {
 		// get the constant update position of the gameobject and use it to move the sound around with it.
 		if (soundSource.isPlaying == false && timeSec <= 0.0f) 
 		{
-			randomNumber = Random.Range (0, 3);
+			randomNumber = Random.Range (0, soundArray.Length);
 			Debug.Log (randomNumber);
 			soundSource.clip = soundArray [randomNumber];
 			//soundSource.Play ();
 			AudioSource.PlayClipAtPoint(soundArray[randomNumber],this.gameObject.GetComponent<Transform>().position);
 			timeSec = delay;
 		}
-
 	
+			
 		if (soundSource.isPlaying == false) {
 			timeSec -= Time.deltaTime;
 		}
