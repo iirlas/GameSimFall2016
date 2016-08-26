@@ -188,7 +188,13 @@ public class Ant : Enemy
    void pursuePlayer()
    {
       //Vector3.MoveTowards(this.transform.position, thePlayer.transform.position, this.mySpeed * Time.deltaTime);
-      this.transform.position = thePlayer.transform.position;
+      //this.transform.position = thePlayer.transform.position;
+      this.transform.LookAt(thePlayer.transform);
+
+      if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.2f)
+      {
+         this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
+      }
    }
 
    //=============================================================================
