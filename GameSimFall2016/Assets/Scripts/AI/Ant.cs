@@ -18,7 +18,10 @@ using System.Collections;
 public class Ant : Enemy
 {
    //-----------------------------------------------------------------------------
-   // Inspector-editable variables
+   // Public Inspector-editable variables
+   [Tooltip("Changing this value will change the detection radius of the Ant.")]
+   public float detectionRadius; // How far out the Ant will search for the player.
+
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
    public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
                                 //and rotationspeed with values provided in the inspector
@@ -226,15 +229,15 @@ public class Ant : Enemy
       bool withinY = false;
       bool withinZ = false;
 
-      if (Mathf.Abs(this.transform.position.x - thePlayer.transform.position.x) <= 1.5)
+      if (Mathf.Abs(this.transform.position.x - thePlayer.transform.position.x) <= this.detectionRadius)
       {
          withinX = true;
       }
-      if (Mathf.Abs(this.transform.position.y - thePlayer.transform.position.y) <= 1.5)
+      if (Mathf.Abs(this.transform.position.y - thePlayer.transform.position.y) <= this.detectionRadius)
       {
          withinY = true;
       }
-      if (Mathf.Abs(this.transform.position.z - thePlayer.transform.position.z) <= 1.5)
+      if (Mathf.Abs(this.transform.position.z - thePlayer.transform.position.z) <= this.detectionRadius)
       {
          withinZ = true;
       }
