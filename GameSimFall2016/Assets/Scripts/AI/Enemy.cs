@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
    //=============================================================================
    // Check to see if the enemy has been defeated.  The enemy is defeated when
    //  it's remaining health is 0.
-   bool isDefeated()
+   protected bool isDefeated()
    {
       if (this.myHealth == 0)
       {

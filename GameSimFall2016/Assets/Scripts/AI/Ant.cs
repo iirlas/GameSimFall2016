@@ -1,24 +1,30 @@
 ﻿//=============================================================================
+// Author:  Nathan C.
+// Version: 1.0
+// Date:    08/26/2016
+// Ownership belongs to all affiliates of Scott Free Games.
+//=============================================================================
+
+using UnityEngine;
+using System.Collections;
+
+//=============================================================================
 // Ant.cs
 // Ant will be one of the various enemies found within the game.
 // The Ant will:
 // - Deal five points of damage
 // - Be defeated in two hits
 // - Consistently follow player, stopping next to the player to attack.
-//=============================================================================
-
-using UnityEngine;
-using System.Collections;
-
 public class Ant : Enemy
 {
+   //-----------------------------------------------------------------------------
+   // Inspector-editable variables
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
    public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
                                 //and rotationspeed with values provided in the inspector
-
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public int antHealthCustom;   // the new health value to replace the default.
-
+   
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public int antDamageCustom;   // the new damage value to replace the default.
 
@@ -28,21 +34,24 @@ public class Ant : Enemy
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public float antRotationSpeedCustom;   // the new rotational speed value to replace the default.
 
-   private const int   ANTHEALTHDEFAULT = 2;          // default value for an Ant, provided by juan.
-   private const int   ANTDAMAGEDEFAULT = 5;          // default value for an Ant, provided by juan.
-   private const float ANTSPEEDDEFAULT = 1;           // default value for an Ant, provided by juan.
-   private const float ANTROTATIONSPEEDDEFAULT = 1;   // default value for an Ant, provided by juan.
-
-   private bool  isInAttackRadius = false;
-
+   //-----------------------------------------------------------------------------
+   // Default values for an Ant, provided by juan.
+   private const int   ANTHEALTHDEFAULT = 2;         
+   private const int   ANTDAMAGEDEFAULT = 5;          
+   private const float ANTSPEEDDEFAULT = 1;           
+   private const float ANTROTATIONSPEEDDEFAULT = 1;   
    private const float ATTACKINTERVAL = 1.0f;  // The number of seconds the player will be invulnerable for after being attacked.
+
+   //-----------------------------------------------------------------------------
+   // Misc constant values.
+   private readonly Vector3 OUTOFBOUNDS = new Vector3(-1000, -1000, -1000);  // Magic position in the game world, where all enemies
+                                                                          // will be moved to when it is "killed".
+   
+   //-----------------------------------------------------------------------------
+   // Private member variable data.
    private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
-
-
-   private GameObject thePlayer;  // A refernce to the player.
-
-   private Vector3 outOfBounds = new Vector3(-1000, -1000, -1000);  // Magic position in the game world, where all enemies
-                                                                    // will be moved to when it is "killed".
+   private bool  isInAttackRadius = false;     // Is the player within this Ant's attack radius?
+   private GameObject thePlayer;               // A refernce to the player.
 
    //=============================================================================
    // Initialize things here
@@ -75,25 +84,32 @@ public class Ant : Enemy
    {
       switch (this.myState)
       {
+         //-----------------------------------------------------------------------------
          case enState.IDLE:
             //do nothing, just hang out m80
             break;
+         //-----------------------------------------------------------------------------
          case enState.TRACK:
             pursuePlayer();
             break;
+         //-----------------------------------------------------------------------------
          case enState.ATTACK:
             attackPlayer();
             break;
+         //-----------------------------------------------------------------------------
          case enState.MOVE:
             //do some patroling, maybe?
             break;
+         //-----------------------------------------------------------------------------
          case enState.DEAD:
             killAnt();
             break;
+         //-----------------------------------------------------------------------------
          default:
             break;
       }
 
+      checkAntHealth();
       stateUpdate();
    }
 
@@ -103,6 +119,7 @@ public class Ant : Enemy
    {
       switch (this.myState)
       {
+         //-----------------------------------------------------------------------------
          case enState.IDLE:
             //check to see if the player has entered the aggression radius
             if (isPlayerNearby())
@@ -110,6 +127,7 @@ public class Ant : Enemy
                this.myState = enState.TRACK;
             }
             break;
+         //-----------------------------------------------------------------------------
          case enState.TRACK:
             //check to see if the player has left aggression radius
             if (!isPlayerNearby())
@@ -117,19 +135,24 @@ public class Ant : Enemy
                this.myState = enState.IDLE;
             }
             break;
+         //-----------------------------------------------------------------------------
          case enState.ATTACK:
+            //check to see if the player has left the attack radius
             if (isPlayerNearby() && !isInAttackRadius)
             {
                this.myState = enState.MOVE;
             }
+            // check to see if the player has left the aggression radius
             else if (!isPlayerNearby() && !isInAttackRadius)
             {
                this.myState = enState.IDLE;
             }
             break;
+         //-----------------------------------------------------------------------------
          case enState.MOVE:
             //if the Ant will patrol, patrol the ant around.
             break;
+         //-----------------------------------------------------------------------------
          case enState.DEAD:
             //Ant is dead, object should be destroyed, if not already.
             killAnt();
@@ -162,7 +185,7 @@ public class Ant : Enemy
    // Ant to enState.DEAD
    void checkAntHealth()
    {
-      if (this.myHealth <= 0)
+      if (isDefeated())
       {
          this.myState = enState.DEAD;
       }
@@ -187,8 +210,6 @@ public class Ant : Enemy
    // Follow the player around, until the player enters the hitbox for attacking.
    void pursuePlayer()
    {
-      //Vector3.MoveTowards(this.transform.position, thePlayer.transform.position, this.mySpeed * Time.deltaTime);
-      //this.transform.position = thePlayer.transform.position;
       this.transform.LookAt(thePlayer.transform);
 
       if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.2f)
@@ -248,8 +269,10 @@ public class Ant : Enemy
    // ALL enemies will be moved to a magic value, where they will be deactivated.
    void killAnt()
    {
-      this.transform.position = outOfBounds;
-      this.gameObject.SetActive(false);
+      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
+                                                          // from clipping back onto the platform after being "killed".
+      this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
+      this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.
    }
 
    //=============================================================================
