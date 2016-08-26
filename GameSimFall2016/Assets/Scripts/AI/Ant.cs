@@ -15,43 +15,52 @@ public class Ant : Enemy
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
    public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
                                 //and rotationspeed with values provided in the inspector
-   public int antHealthCustom;
-   public int antDamageCustom;
-   public float antSpeedCustom;
-   public float antRotationSpeedCustom;
 
-   private int antHealthDefault = 2;
-   private int antDamageDefault = 5;
-   private float antSpeedDefault = 1;
-   private float antRotationSpeedDefault = 1;
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
+   public int antHealthCustom;   // the new health value to replace the default.
 
-   float attackInterval = 1.0f;      // The number of seconds the player will be 
-                                     // invulnerable for after being attacked.
-   float timeSinceLastAttack = 0.0f; // The current time that has elapsed since 
-                                     // this Ant has attacked.
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
+   public int antDamageCustom;   // the new damage value to replace the default.
 
-   GameObject thePlayer;             // A refernce to the player.
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
+   public float antSpeedCustom;  // the new speed value to replace the default.
 
-   Vector3 outOfBounds = new Vector3(-1000, -1000, -1000);  // Magic position in the game world, where all enemies
-                                                            // will be moved to when it is "killed".
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
+   public float antRotationSpeedCustom;   // the new rotational speed value to replace the default.
+
+   private const int   ANTHEALTHDEFAULT = 2;          // default value for an Ant, provided by juan.
+   private const int   ANTDAMAGEDEFAULT = 5;          // default value for an Ant, provided by juan.
+   private const float ANTSPEEDDEFAULT = 1;           // default value for an Ant, provided by juan.
+   private const float ANTROTATIONSPEEDDEFAULT = 1;   // default value for an Ant, provided by juan.
+
+   private bool  isInAttackRadius = false;
+
+   private const float ATTACKINTERVAL = 1.0f;  // The number of seconds the player will be invulnerable for after being attacked.
+   private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
+
+
+   private GameObject thePlayer;  // A refernce to the player.
+
+   private Vector3 outOfBounds = new Vector3(-1000, -1000, -1000);  // Magic position in the game world, where all enemies
+                                                                    // will be moved to when it is "killed".
 
    //=============================================================================
    // Initialize things here
    void Start()
    {
-      if (overrideValues)  //if custom values are to be provided.
+      if (overrideValues)  // If custom values are provided, assign them to this Ant.
       {
          this.myHealth = antHealthCustom;
          this.myDamage = antDamageCustom;
-         this.mySpeed = antSpeedCustom;
+         this.mySpeed  = antSpeedCustom;
          this.myRotationSpeed = antRotationSpeedCustom;
       }
-      else  //utilize default values.
+      else  // If custom values are not provided, utilize the default values for this Ant.
       {
-         this.myHealth = antHealthDefault;
-         this.myDamage = antDamageDefault;
-         this.mySpeed = antSpeedDefault;
-         this.myRotationSpeed = antRotationSpeedDefault;
+         this.myHealth = ANTHEALTHDEFAULT;
+         this.myDamage = ANTDAMAGEDEFAULT;
+         this.mySpeed = ANTSPEEDDEFAULT;
+         this.myRotationSpeed = ANTROTATIONSPEEDDEFAULT;
       }
 
       this.myType = enType.ANT;
@@ -81,6 +90,8 @@ public class Ant : Enemy
          case enState.DEAD:
             killAnt();
             break;
+         default:
+            break;
       }
 
       stateUpdate();
@@ -93,19 +104,35 @@ public class Ant : Enemy
       switch (this.myState)
       {
          case enState.IDLE:
-            //do nothing, just hang out m80
+            //check to see if the player has entered the aggression radius
+            if (isPlayerNearby())
+            {
+               this.myState = enState.TRACK;
+            }
             break;
          case enState.TRACK:
             //check to see if the player has left aggression radius
+            if (!isPlayerNearby())
+            {
+               this.myState = enState.IDLE;
+            }
             break;
          case enState.ATTACK:
-            //check to see if the player has left aggression radius
+            if (isPlayerNearby() && !isInAttackRadius)
+            {
+               this.myState = enState.MOVE;
+            }
+            else if (!isPlayerNearby() && !isInAttackRadius)
+            {
+               this.myState = enState.IDLE;
+            }
             break;
          case enState.MOVE:
-            //check to see if the player is near
+            //if the Ant will patrol, patrol the ant around.
             break;
          case enState.DEAD:
             //Ant is dead, object should be destroyed, if not already.
+            killAnt();
             break;
       }
    }
@@ -117,6 +144,27 @@ public class Ant : Enemy
       if (other.tag.Equals("Player"))
       {
          this.myState = enState.ATTACK;
+      }
+   }
+
+   //=============================================================================
+   // If something enters the trigger box, do something base upon it's type.
+   void OnTriggerExit(Collider other)
+   {
+      if (other.tag.Equals("Player"))
+      {
+         this.myState = enState.TRACK;
+      }
+   }
+
+   //=============================================================================
+   // Check to see if the health of this Ant is 0, if so, change the state of this
+   // Ant to enState.DEAD
+   void checkAntHealth()
+   {
+      if (this.myHealth <= 0)
+      {
+         this.myState = enState.DEAD;
       }
    }
 
@@ -139,10 +187,8 @@ public class Ant : Enemy
    // Follow the player around, until the player enters the hitbox for attacking.
    void pursuePlayer()
    {
-      if (isPlayerNearby())
-      {
-         this.GetComponent<Rigidbody>().MovePosition(this.transform.position - thePlayer.transform.position);
-      }
+      //Vector3.MoveTowards(this.transform.position, thePlayer.transform.position, this.mySpeed * Time.deltaTime);
+      this.transform.position = thePlayer.transform.position;
    }
 
    //=============================================================================
@@ -153,15 +199,15 @@ public class Ant : Enemy
       bool withinY = false;
       bool withinZ = false;
 
-      if (Mathf.Abs(this.transform.position.x - thePlayer.transform.position.x) <= 10)
+      if (Mathf.Abs(this.transform.position.x - thePlayer.transform.position.x) <= 1.5)
       {
          withinX = true;
       }
-      if (Mathf.Abs(this.transform.position.y - thePlayer.transform.position.y) <= 10)
+      if (Mathf.Abs(this.transform.position.y - thePlayer.transform.position.y) <= 1.5)
       {
          withinY = true;
       }
-      if (Mathf.Abs(this.transform.position.z - thePlayer.transform.position.z) <= 10)
+      if (Mathf.Abs(this.transform.position.z - thePlayer.transform.position.z) <= 1.5)
       {
          withinZ = true;
       }
@@ -185,7 +231,7 @@ public class Ant : Enemy
          timeSinceLastAttack += Time.deltaTime;
       }
 
-      if (timeSinceLastAttack >= attackInterval)
+      if (timeSinceLastAttack >= ATTACKINTERVAL)
       {
          timeSinceLastAttack = 0;
       }
