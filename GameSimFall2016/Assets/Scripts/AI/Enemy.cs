@@ -1,17 +1,27 @@
 ﻿//=============================================================================
-// Enemy.cs
-// Generic enemy class that all future enemies will inherit from.  Enemy.cs
-// will contain features that all enemies share, such as a value for health, 
-// or a value for damage.
+// Author:  Nathan C.
+// Version: 1.0
+// Date:    08/26/2016
+// Ownership belongs to all affiliates of Scott Free Games.
 //=============================================================================
 
 using UnityEngine;
 using System.Collections;
 
+//=============================================================================
+// Enemy.cs
+// Generic enemy class that all future enemies will inherit from.  Enemy.cs
+// will contain features that all enemies share, such as a value for health, 
+// or a value for damage.
 public class Enemy : MonoBehaviour
 {
 
-   //=============================================================================
+   //-----------------------------------------------------------------------------
+   // Magic position in the game world, where all enemies will be moved to when
+   // they enter the DEAD state.
+   protected readonly Vector3 OUTOFBOUNDS = new Vector3(-1000, -1000, -1000);  
+
+   //-----------------------------------------------------------------------------
    // Common states that most enemies, if not all, share.
    public enum enState
    {
@@ -23,7 +33,7 @@ public class Enemy : MonoBehaviour
       DEAD
    }
 
-   //=============================================================================
+   //-----------------------------------------------------------------------------=
    // A list of the common enemy types that can be found in the world. 
    public enum enType
    {
@@ -41,8 +51,10 @@ public class Enemy : MonoBehaviour
       FLAPFLAP
    }
 
-   protected enState myState;
-   protected enType myType;
+   //-----------------------------------------------------------------------------
+   // Protected member data
+   protected enState myState; // The current state of this enemy, as defined in enState.
+   protected enType myType;   // The current type of this enemy, as defined in enType.
 
    protected int myHealth;   // The health of this enemy.
    protected int myDamage;   // The damage this enemy does to other GameObjects.
@@ -85,4 +97,6 @@ public class Enemy : MonoBehaviour
 
       return false;
    }
+
 }
+

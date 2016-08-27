@@ -24,10 +24,10 @@ public class Ant : Enemy
 
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
    public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
-                                //and rotationspeed with values provided in the inspector
+   //and rotationspeed with values provided in the inspector
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public int antHealthCustom;   // the new health value to replace the default.
-   
+
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public int antDamageCustom;   // the new damage value to replace the default.
 
@@ -39,22 +39,21 @@ public class Ant : Enemy
 
    //-----------------------------------------------------------------------------
    // Default values for an Ant, provided by juan.
-   private const int   ANTHEALTHDEFAULT = 2;         
-   private const int   ANTDAMAGEDEFAULT = 5;          
-   private const float ANTSPEEDDEFAULT = 1;           
-   private const float ANTROTATIONSPEEDDEFAULT = 1;   
-   private const float ATTACKINTERVAL = 1.0f;  // The number of seconds the player will be invulnerable for after being attacked.
+   private const int ANTHEALTHDEFAULT = 2;
+   private const int ANTDAMAGEDEFAULT = 5;
+   private const float ANTSPEEDDEFAULT = 1;
+   private const float ANTROTATIONSPEEDDEFAULT = 1;
+   private const float ATTACKINTERVAL = 1.0f;       // The number of seconds the player will be invulnerable for after being attacked.
 
-   //-----------------------------------------------------------------------------
-   // Misc constant values.
-   private readonly Vector3 OUTOFBOUNDS = new Vector3(-1000, -1000, -1000);  // Magic position in the game world, where all enemies
-                                                                          // will be moved to when it is "killed".
-   
    //-----------------------------------------------------------------------------
    // Private member variable data.
    private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
-   private bool  isInAttackRadius = false;     // Is the player within this Ant's attack radius?
+   private bool isInAttackRadius = false;     // Is the player within this Ant's attack radius?
    private GameObject thePlayer;               // A refernce to the player.
+
+   //!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!~!
+   bool hasStatedWarning = false;
+   //!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
 
    //=============================================================================
    // Initialize things here
@@ -64,7 +63,7 @@ public class Ant : Enemy
       {
          this.myHealth = antHealthCustom;
          this.myDamage = antDamageCustom;
-         this.mySpeed  = antSpeedCustom;
+         this.mySpeed = antSpeedCustom;
          this.myRotationSpeed = antRotationSpeedCustom;
       }
       else  // If custom values are not provided, utilize the default values for this Ant.
@@ -79,12 +78,30 @@ public class Ant : Enemy
 
       thePlayer = null;
       findThePlayer();
+
    }
 
    //=============================================================================
-   // Update is called once per frame
+   // Update is called once per frames
    void Update()
    {
+      //!~!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!
+      //!~!~!~ Testing DEATH state transitions ~!~!~!
+      //!~!~!~!~!~DELETE BEFORE FINAL BUILD~!~!~!~!~!
+      if (!hasStatedWarning)
+      {
+         hasStatedWarning = true;
+         Debug.LogWarning("A debug key is in use, if this is the final build, remove it!\n" +
+                          this.name + ".cs.  Be sure to also remove the variable \"hasStatedWarning\".  Click for more details.\n" +
+                          "Ctrl+F and search for \"TODO\" to find statements in question.");
+      }
+      if (Input.GetKeyDown(KeyCode.Delete))
+      {
+         this.myState = enState.DEAD;
+      }
+      //!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
+
+
       switch (this.myState)
       {
          //-----------------------------------------------------------------------------
@@ -213,7 +230,9 @@ public class Ant : Enemy
    // Follow the player around, until the player enters the hitbox for attacking.
    void pursuePlayer()
    {
-      this.transform.LookAt(thePlayer.transform);
+      this.transform.LookAt(new Vector3(thePlayer.transform.position.x,
+                                        this.transform.position.y,
+                                        thePlayer.transform.position.z));
 
       if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.2f)
       {
@@ -222,7 +241,7 @@ public class Ant : Enemy
    }
 
    //=============================================================================
-   // Follow the player around, until the player enters the hitbox for attacking.
+   // Returns whether or not the player is within aggression radius.
    bool isPlayerNearby()
    {
       bool withinX = false;
@@ -268,7 +287,7 @@ public class Ant : Enemy
    }
 
    //=============================================================================
-   // "Destroys" the ant and all assosciated game.
+   // "Destroys" the ant and all assosciated gameobjects.
    // ALL enemies will be moved to a magic value, where they will be deactivated.
    void killAnt()
    {
