@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RespawnFloor : MonoBehaviour {
 
-    public GameObject respawnPoint;
+    public GameObject player;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,7 @@ public class RespawnFloor : MonoBehaviour {
     {
         if (trigger.message == "respawn")
         {
-            this.gameObject.transform.Translate(respawnPoint.transform.position);
+            player.transform.position = transform.position;
         }
     }
 }
