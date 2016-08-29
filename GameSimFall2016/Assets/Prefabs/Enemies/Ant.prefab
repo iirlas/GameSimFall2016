@@ -15,6 +15,7 @@ GameObject:
   - 114: {fileID: 11402460}
   - 33: {fileID: 3353538}
   - 23: {fileID: 2313904}
+  - 65: {fileID: 6531066}
   m_Layer: 0
   m_Name: Ant
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111636}
-  m_Mesh: {fileID: 4300000, guid: 5485500f4dac06a4fafae9414e18067d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 30f59703de4f61c4883f79f3a432f29c, type: 3}
 --- !u!54 &5463654
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -82,6 +83,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &6531066
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111636}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.1, z: 0.25}
+  m_Center: {x: -0.0039710924, y: 0.07164095, z: -0.015192233}
 --- !u!95 &9539478
 Animator:
   serializedVersion: 3
@@ -110,7 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99488662b401399499fb962fc9d3ddac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 0
+  theDirector: {fileID: 0}
+  detectionRadius: 5
   overrideValues: 0
   antHealthCustom: 0
   antDamageCustom: 0
