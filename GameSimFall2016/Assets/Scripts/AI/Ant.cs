@@ -79,11 +79,7 @@ public class Ant : Enemy
 
       this.myType = enType.ANT;
       findThePlayer();
-
-      if (this.theDirector == null)
-      {
-         Debug.LogError("The director was not defined in the inspector for " + this.name + ".");
-      }
+      findTheDirector();
    }
 
    //=============================================================================
@@ -216,6 +212,20 @@ public class Ant : Enemy
          {
             Debug.LogError("The player could not be found for " + this.name + ".  " + this.name + " requires there/n" +
                            "to be a player in the scene in order to function.");
+         }
+      }
+   }
+
+   //=============================================================================
+   // Looks for the director and stores a refernce to it, so it may be used later.
+   void findTheDirector()
+   {
+      if (theDirector == null)
+      {
+         theDirector = GameObject.FindGameObjectWithTag("Director");
+         if (this.theDirector == null)
+         {
+            Debug.LogError("The director was not defined in the inspector for " + this.name + ".");
          }
       }
    }
