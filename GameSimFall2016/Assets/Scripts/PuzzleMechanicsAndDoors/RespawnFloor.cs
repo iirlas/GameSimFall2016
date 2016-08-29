@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RespawnFloor : MonoBehaviour {
 
+    public GameObject respawnPoint;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -12,4 +14,12 @@ public class RespawnFloor : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnEvent(BasicTrigger trigger)
+    {
+        if (trigger.message == "respawn")
+        {
+            this.gameObject.transform.Translate(respawnPoint.transform.position);
+        }
+    }
 }
