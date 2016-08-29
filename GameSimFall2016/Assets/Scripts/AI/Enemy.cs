@@ -19,7 +19,12 @@ public class Enemy : MonoBehaviour
    //-----------------------------------------------------------------------------
    // Magic position in the game world, where all enemies will be moved to when
    // they enter the DEAD state.
-   protected readonly Vector3 OUTOFBOUNDS = new Vector3(-1000, -1000, -1000);  
+   protected readonly Vector3 OUTOFBOUNDS = new Vector3(-1000, -1000, -1000);
+
+   //-----------------------------------------------------------------------------
+   // A reference to the "director", which manages scripts such as PlayerManager,
+   // and HealthPlayer.
+   public GameObject theDirector;
 
    //-----------------------------------------------------------------------------
    // Common states that most enemies, if not all, share.
@@ -97,6 +102,8 @@ public class Enemy : MonoBehaviour
 
       return false;
    }
+
+
 
 }
 

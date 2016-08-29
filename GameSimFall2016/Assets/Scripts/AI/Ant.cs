@@ -49,7 +49,10 @@ public class Ant : Enemy
    // Private member variable data.
    private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
    private bool isInAttackRadius = false;     // Is the player within this Ant's attack radius?
-   private GameObject thePlayer;               // A refernce to the player.
+
+   //-----------------------------------------------------------------------------
+   // A reference to the player.
+   protected GameObject thePlayer;
 
    //!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!~!
    bool hasStatedWarning = false;
@@ -75,10 +78,12 @@ public class Ant : Enemy
       }
 
       this.myType = enType.ANT;
-
-      thePlayer = null;
       findThePlayer();
 
+      if (this.theDirector == null)
+      {
+         Debug.LogError("The director was not defined in the inspector for " + this.name + ".");
+      }
    }
 
    //=============================================================================
@@ -184,7 +189,7 @@ public class Ant : Enemy
    // If something enters the trigger box, do something base upon it's type.
    void OnTriggerStay(Collider other)
    {
-      if (other.tag.Equals("Player"))
+      if (other.tag.Equals("Player") && this.myState != enState.ATTACK)
       {
          this.myState = enState.ATTACK;
       }
@@ -197,17 +202,6 @@ public class Ant : Enemy
       if (other.tag.Equals("Player"))
       {
          this.myState = enState.TRACK;
-      }
-   }
-
-   //=============================================================================
-   // Check to see if the health of this Ant is 0, if so, change the state of this
-   // Ant to enState.DEAD
-   void checkAntHealth()
-   {
-      if (isDefeated())
-      {
-         this.myState = enState.DEAD;
       }
    }
 
@@ -227,6 +221,17 @@ public class Ant : Enemy
    }
 
    //=============================================================================
+   // Check to see if the health of this Ant is 0, if so, change the state of this
+   // Ant to enState.DEAD
+   void checkAntHealth()
+   {
+      if (isDefeated())
+      {
+         this.myState = enState.DEAD;
+      }
+   }
+
+   //=============================================================================
    // Follow the player around, until the player enters the hitbox for attacking.
    void pursuePlayer()
    {
@@ -234,7 +239,7 @@ public class Ant : Enemy
                                         this.transform.position.y,
                                         thePlayer.transform.position.z));
 
-      if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.2f)
+      if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
       {
          this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
       }
@@ -270,8 +275,16 @@ public class Ant : Enemy
    {
       if (timeSinceLastAttack == 0.0f)
       {
-         //do damage to player.
-         Debug.Log(this.name + " has damaged the player.");
+         if (theDirector.GetComponent<HealthPlayer>().healthCurrent <= 1)
+         {
+            //do nothing
+         }
+         else
+         {
+            //do damage to player.
+            Debug.Log(this.name + " has damaged the player.");
+            theDirector.GetComponent<HealthPlayer>().modifyHealth(-5);
+         }
 
          timeSinceLastAttack += Time.deltaTime;
       }
