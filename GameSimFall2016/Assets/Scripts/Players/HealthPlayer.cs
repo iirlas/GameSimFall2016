@@ -10,7 +10,11 @@
 // public static int healthChange: this number is for changing the value and is accessible by all other classes.
 // private int healthCurrent: stores the current health for display inside the slider
 // 
-//
+//========================================================================================================
+
+//========================================================================================================
+// NRC:
+// Attach this script to an empty game object, which will be refered to as the "director"
 //========================================================================================================
 
 using UnityEngine;
