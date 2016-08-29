@@ -10,7 +10,7 @@ public class SoundArray : MonoBehaviour {
 	public AudioClip sound3;
 	public AudioClip sound4;
 	public AudioClip sound5;
-	public float timeSec = 2f;
+	public float timeSecDelay = 2f;
 	float delay;
 	int randomNumber;
 
@@ -60,17 +60,17 @@ public class SoundArray : MonoBehaviour {
 		Debug.Log (randomNumber);
 
 		soundSource.clip = soundArray [randomNumber];
-		delay = timeSec;
-		AudioSource.PlayClipAtPoint(soundSource.clip,this.gameObject.GetComponent<Transform>().position);
+		delay = timeSecDelay;
+		soundSource.Play ();
+		//AudioSource.PlayClipAtPoint(soundSource.clip,this.gameObject.GetComponent<Transform>().position);
 
 		//needs to go through the array to determined if there are any nulls in the array then resize it???.
-
 	}
 
 	void Update () {
 		
 		// get the constant update position of the gameobject and use it to move the sound around with it.
-		if (soundSource.isPlaying == false && timeSec <= 0.0f) {
+		if (soundSource.isPlaying == false && timeSecDelay <= 0.0f) {
 			
 			// if there is a automatic One shot audio gameobject created it will be destroyed. because automaticlly ends when sound ends.
 			if (GameObject.Find("One shot audio")) {
@@ -79,18 +79,20 @@ public class SoundArray : MonoBehaviour {
 			randomNumber = Random.Range (0, soundArray.Length);
 			Debug.Log (randomNumber);
 			soundSource.clip = soundArray [randomNumber];
-			AudioSource.PlayClipAtPoint(soundSource.clip,this.gameObject.GetComponent<Transform>().position);
-			timeSec = delay;
+			soundSource.Play ();
+			//AudioSource.PlayClipAtPoint(soundSource.clip,this.gameObject.GetComponent<Transform>().position);
+			timeSecDelay = delay;
 		}
+		soundSource.transform.position = this.gameObject.transform.position;
 		//soundSource.transform.position = this.gameObject.transform.position;
 
 
-		if (soundSource.isPlaying == false && timeSec > 0.0f) {
-			timeSec -= Time.deltaTime;
+		if (soundSource.isPlaying == false && timeSecDelay > 0.0f) {
+			timeSecDelay -= Time.deltaTime;
 
 			//if gameobject exsist then it will move the position of it to follow the game object it is currently attached to.
 			if (GameObject.Find ("One shot audio")) {
-				GameObject.Find ("One shot audio").transform.position = this.gameObject.GetComponent<Transform> ().position;
+				//GameObject.Find ("One shot audio").transform.position = this.gameObject.GetComponent<Transform> ().position;
 				Debug.Log (GameObject.Find ("One shot audio").transform.position);
 				Debug.Log ("Made it inside the movement");
 			}
