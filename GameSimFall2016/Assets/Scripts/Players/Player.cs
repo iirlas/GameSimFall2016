@@ -15,6 +15,7 @@ abstract public class Player : MonoBehaviour
 
     protected delegate void StateRunner();
 
+    private Transform myPlatform;
     private Transform myTransform;
     private Rigidbody myRigidbody;
     private Collider myCollider;
@@ -93,6 +94,16 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    public void FixedUpdate()
+    {
+        if (transform.parent != null && myPlatform != null)
+        {
+            transform.parent.position = Vector3.Lerp(transform.parent.position, myPlatform.position, float.PositiveInfinity);
+        }
+    }
+
+
+
     protected void addRunnable(Enum state, StateRunner stateRunner)
     {
         if (myStates.ContainsKey(state))
@@ -163,17 +174,16 @@ abstract public class Player : MonoBehaviour
 
         if (Vector3.Angle(hit.normal, transform.up) < angleLimit )
         {
-            parent.parent = hit.transform;
-            parent.localEulerAngles = new Vector3(0, -hit.transform.eulerAngles.y, 0);
-            parent.localScale = hit.transform.localScale.Inverse();
-            //transform.up = hit.normal;// new Vector3(hit.transform.up.x, transform.up.y, hit.transform.up.z);
+            parent.position = hit.transform.position;
+            parent.up = hit.normal;
+            myPlatform = hit.transform;
         }
         transform.parent = parent;
     }
 
     protected void clearParent ()
     {
-        if ( transform.parent != null && transform.parent.parent != null )
+        if ( transform.parent != null )
         {
             transform.parent.parent = null;
         }
