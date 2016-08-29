@@ -27,7 +27,7 @@ GameObject:
   - 33: {fileID: 3369624}
   - 64: {fileID: 6436120}
   - 23: {fileID: 2314540}
-  - 114: {fileID: 11468756}
+  - 114: {fileID: 11440278}
   m_Layer: 0
   m_Name: DeathFloor
   m_TagString: Untagged
@@ -810,10 +810,10 @@ MeshCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112492}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!64 &6445590
 MeshCollider:
@@ -992,6 +992,24 @@ MonoBehaviour:
   message: doorOpen
   distance: 1
   canRepeat: 0
+--- !u!114 &11440278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activator:
+    value: Player
+  effected: {fileID: 11477042}
+  type: 0
+  message: respawn
+  distance: 1
+  canRepeat: 1
 --- !u!114 &11444186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1010,18 +1028,6 @@ MonoBehaviour:
   message: grabKey
   distance: 1
   canRepeat: 0
---- !u!114 &11468756
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686d47b64d235e6419ccf8a9f42750f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &11477042
 MonoBehaviour:
   m_ObjectHideFlags: 1
