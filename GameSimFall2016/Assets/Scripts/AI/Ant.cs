@@ -182,7 +182,17 @@ public class Ant : Enemy
    }
 
    //=============================================================================
-   // If something enters the trigger box, do something base upon it's type.
+   // If something enters the trigger box, do something based upon it's type.
+   void OnTriggerEnter(Collider other)
+   {
+      if(other.tag.Equals("Projectile"))
+      {
+         damageAnt();
+      }
+   }
+
+   //=============================================================================
+   // If something enters the trigger box, do something based upon it's type.
    void OnTriggerStay(Collider other)
    {
       if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
@@ -192,7 +202,7 @@ public class Ant : Enemy
    }
 
    //=============================================================================
-   // If something enters the trigger box, do something base upon it's type.
+   // If something enters the trigger box, do something based upon it's type.
    void OnTriggerExit(Collider other)
    {
       if (other.tag.Equals("Player"))
