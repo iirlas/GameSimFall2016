@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerManager : Singleton<PlayerManager> {
 
     new public Camera camera;
     public Player currentPlayer { get; private set; }
     public Player[] players { get; private set; }
+    public Dictionary<string, Item> items;
 
     // Use this for initialization
-    override protected void Init()
+    override protected void Init ()
     {
         players = new Player[4];
+        items = new Dictionary<string, Item>();
 
         players[0] = GameObject.FindObjectOfType<Girl>();
         players[1] = GameObject.FindObjectOfType<Bird>();
@@ -26,15 +29,17 @@ public class PlayerManager : Singleton<PlayerManager> {
             }
         }
 
+
+
         StartCoroutine(activeSet());
     }
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
     }
 
-    IEnumerator activeSet()
+    IEnumerator activeSet ()
     {
         while (true)
         {
@@ -82,7 +87,7 @@ public class PlayerManager : Singleton<PlayerManager> {
                     {
                         Player target = null;
                         for (int j = index, breakCount = 0; target == null && breakCount < players.Length;
-                            j = (--j >= 0 ? j : j + players.Length), breakCount++)
+                             j = (--j >= 0 ? j : j + players.Length), breakCount++)
                         {
                             if (players[j] != null && players[j] != player &&
                                 Vector3.Distance(players[j].transform.position, currentPlayer.transform.position) < 5.0f)
@@ -95,8 +100,7 @@ public class PlayerManager : Singleton<PlayerManager> {
                         {
                             player.smoothRotateTowards(target.transform.eulerAngles, Time.deltaTime * player.rotationSmoothSpeed);
                             player.transform.position = Vector3.MoveTowards(player.transform.position,
-                                                                            target.transform.position -
-                                                                                (player.transform.forward),
+                                                                            target.transform.position - (player.transform.forward),
                                                                             player.movementSpeed * Time.deltaTime);
                         }
                     }
