@@ -185,7 +185,7 @@ public class Ant : Enemy
    // If something enters the trigger box, do something base upon it's type.
    void OnTriggerStay(Collider other)
    {
-      if (other.tag.Equals("Player") && this.myState != enState.ATTACK)
+      if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
       {
          this.myState = enState.ATTACK;
       }
@@ -207,7 +207,7 @@ public class Ant : Enemy
    {
       if (thePlayer == null)
       {
-         thePlayer = GameObject.FindGameObjectWithTag("Player");
+         thePlayer = GameObject.Find("Kira");
          if (thePlayer == null)
          {
             Debug.LogError("The player could not be found for " + this.name + ".  " + this.name + " requires there/n" +
