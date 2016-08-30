@@ -42,23 +42,26 @@ public class BasicTrigger : MonoBehaviour
 
     public void Update()
     {
-        if ( isActive && type == Type.ACTION && Input.GetButtonDown("Action") )
+        if ( type == Type.ACTION )
         {
-            Collider[] colliders = Physics.OverlapSphere( transform.position, distance );
-            foreach ( Collider col in colliders )
+            if ( isActive && Input.GetButtonDown("Action") )
             {
-                if ( col.transform.tag == activator )
+                Collider[] colliders = Physics.OverlapSphere( transform.position, distance );
+                foreach ( Collider col in colliders )
                 {
-                    effected.SendMessage("OnEvent", this);
-                    isActive = false;
+                    if ( col.transform.tag == activator )
+                    {
+                        effected.SendMessage("OnEvent", this);
+                        isActive = false;
+                    }
                 }
             }
+            else if ( Input.GetButtonUp("Action") )
+            {
+                effected.SendMessage("OnEventEnd", this);
+                isActive = (canRepeat ? true : isActive);
+            }
         }
-    }
-
-    public void LateUpdate()
-    {
-        isActive = (canRepeat ? true : isActive);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -70,12 +73,30 @@ public class BasicTrigger : MonoBehaviour
         }
     }
 
+    public void OnCollisionExit(Collision collision)
+    {
+        if (!isActive && type == Type.COLLISION && collision.transform.tag == activator)
+        {
+            effected.SendMessage("OnEventEnd", this);
+            isActive = (canRepeat ? true : isActive);
+        }
+    }
+
 	public void OnTriggerEnter(Collider other)
 	{
         if (isActive && type == Type.TRIGGER && other.transform.tag == activator)
         {
             effected.SendMessage("OnEvent", this);
             isActive = false;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (!isActive && type == Type.TRIGGER && other.transform.tag == activator)
+        {
+            effected.SendMessage("OnEventEnd", this);
+            isActive = (canRepeat ? true : isActive);
         }
     }
 }
