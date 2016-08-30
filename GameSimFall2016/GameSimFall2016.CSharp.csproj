@@ -61,12 +61,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scenes\Test\RabbitTemple\NewBehaviourScript.cs" />
@@ -96,6 +90,7 @@
     <Compile Include="Assets\Scripts\Sounds\SoundTest.cs" />
     <Compile Include="Assets\Scripts\Utilities\Decay.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extension.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Item.cs" />
     <Compile Include="Assets\Scripts\Utilities\Movement.cs" />
     <Compile Include="Assets\Scripts\Utilities\MovementPauseEvent.cs" />
     <Compile Include="Assets\Scripts\Utilities\Passable.cs" />
@@ -111,6 +106,7 @@
     <None Include="Assets\Materials\Environment\PlaceHolder.txt" />
     <None Include="Assets\PlaceHolder.txt" />
     <None Include="Assets\Scenes\Main\PlaceHolder.txt" />
+    <None Include="Assets\Scenes\Test\MiscScenes\PlaceHolder.txt" />
     <None Include="Assets\Scenes\Test\RoomPool\CatMirrorPuzzleDescription.txt" />
     <None Include="Assets\Scenes\Test\RoomPool\placeholder.txt" />
     <None Include="Assets\Scenes\Test\tutorialJournalPage5.txt" />
@@ -122,5 +118,5 @@
     <None Include="Assets\Textures\Environment\PlaceHolder.txt" />
     <None Include="Assets\Textures\Miscellaneous\PlaceHolder.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
