@@ -110,3 +110,8 @@ public class PlayerManager : Singleton<PlayerManager> {
         }
     }
 }
+
+public class Item
+{
+	// holy shit delete this
+}
