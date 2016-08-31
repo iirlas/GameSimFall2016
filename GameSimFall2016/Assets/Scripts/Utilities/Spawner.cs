@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Spawner : MonoBehaviour
+public class Spawner : BasicTrigger
 {
    [Tooltip("The total number of enemies you want this spawner to spawn.")]
    public int totalNumberOfEnemies;
@@ -25,15 +25,15 @@ public class Spawner : MonoBehaviour
    [Tooltip("The desired enemy type to be spawned.  Be sure to use a prefab, and not the model.")]
    public GameObject enemy;
 
-   [Tooltip("If this spawner has a trigger collider that will be used to activate the spawner, check this tickbox.")]
-   public bool usingTriggerBox;
+   //[Tooltip("If this spawner has a trigger collider that will be used to activate the spawner, check this tickbox.")]
+   //public bool usingTriggerBox;
 
    [Tooltip("The desired spawnpoint for this spawner.")]
    public GameObject spawnPoint;
 
    private float dTime;               //How much time has elapsed?
 
-   private bool hasActivatedTrigger;  //Has the trigger to enable spawning of enemies been activated before?
+   //private bool hasActivatedTrigger;  //Has the trigger to enable spawning of enemies been activated before?
 
    private bool isSpawningEnemies;    //Are we currently spawning enemies?
 
@@ -51,13 +51,14 @@ public class Spawner : MonoBehaviour
       this.dTime = 0.0f;
       this.enemyList = new ArrayList();
       this.numSpawnedEnemies = 0;
-      this.hasActivatedTrigger = false;
+      //this.hasActivatedTrigger = false;
    }
 
    //========================================================================================================
    // Update is called once per frame
    void Update()
    {
+      base.Update();
       if (isSpawningEnemies)
       {
          // If we have reached the time to spawn an enemy, and we are still allowed to spawn an enemy...
@@ -95,16 +96,22 @@ public class Spawner : MonoBehaviour
       }
    }
 
+   public override bool OnAction ()
+   {
+      return !isSpawningEnemies && enemyList.Count == 0;
+   }
+
+   public override bool OnActionEnd()
+   {
+      return false;
+   }
    //========================================================================================================
    // When the player enters the trigger zone, enable spawning enemies if the option has been selected.
    void OnTriggerEnter(Collider other)
    {
-      if (usingTriggerBox && hasActivatedTrigger == false)
+      if (other.tag.Equals("Player"))
       {
-         if (other.tag.Equals("Player"))
-         {
-            this.setSpawningState(true);
-         }
+         this.setSpawningState(true);
       }
    }
 
@@ -129,7 +136,7 @@ public class Spawner : MonoBehaviour
    }
 
    //========================================================================================================
-   // Returns the number of living enemies out of the ones that are spawned.
+   // Returns the number of remaining enemies for the spawner to spawn.
    public int getRemainingEnemies()
    {
       return (totalNumberOfEnemies - killedEnemies);
