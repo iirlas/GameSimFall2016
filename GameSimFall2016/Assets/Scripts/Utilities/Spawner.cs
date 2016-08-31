@@ -31,13 +31,15 @@ public class Spawner : MonoBehaviour
    [Tooltip("The desired spawnpoint for this spawner.")]
    public GameObject spawnPoint;
 
+   private float dTime;               //How much time has elapsed?
+
    private bool hasActivatedTrigger;  //Has the trigger to enable spawning of enemies been activated before?
 
    private bool isSpawningEnemies;    //Are we currently spawning enemies?
 
-   private float dTime;               //How much time has elapsed?
-
    private int numSpawnedEnemies;     //Count of the number of enemies spawned.
+
+   private int killedEnemies;         //Count of the number of enemies killed.
 
    private ArrayList enemyList;       //ArrayList of the spawned enemies.
 
@@ -84,8 +86,11 @@ public class Spawner : MonoBehaviour
 
          for (int ix = 0; ix < this.enemyList.Count; ix++)
          {
-            if (((GameObject)this.enemyList[ix]).active == false)
+            if (((GameObject)this.enemyList[ix]).activeSelf == false)
+            {
                this.enemyList.RemoveAt(ix);
+               this.killedEnemies++;
+            }
          }
       }
    }
@@ -113,7 +118,6 @@ public class Spawner : MonoBehaviour
       }
 
       this.isSpawningEnemies = state;
-
    }
 
    //========================================================================================================
@@ -122,5 +126,19 @@ public class Spawner : MonoBehaviour
    {
       Vector3 startPos = this.spawnPoint.transform.position;
       this.enemyList.Add(Instantiate(enemy, startPos, Quaternion.identity) as GameObject);
+   }
+
+   //========================================================================================================
+   // Returns the number of living enemies out of the ones that are spawned.
+   public int getRemainingEnemies()
+   {
+      return (totalNumberOfEnemies - killedEnemies);
+   }
+
+   //========================================================================================================
+   // Returns whether or not this spawner is spawning enemies.
+   public bool getSpawningStatus()
+   {
+      return this.isSpawningEnemies;
    }
 }
