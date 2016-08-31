@@ -381,7 +381,6 @@ MonoBehaviour:
   triggers:
   - {fileID: 1953378049}
   - {fileID: 1966316566}
-  isConcurrent: 1
 --- !u!1 &438572694 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 152806, guid: 05669a19d06e2384e9fe78695b5d337c, type: 2}
@@ -926,7 +925,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 462064, guid: f761bde461f80fe47b5cebe3a10c7efa, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -193.896
+      value: -183.9
       objectReference: {fileID: 0}
     - target: {fileID: 462064, guid: f761bde461f80fe47b5cebe3a10c7efa, type: 2}
       propertyPath: m_LocalRotation.x
@@ -972,7 +971,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -200
+      value: -190
       objectReference: {fileID: 0}
     - target: {fileID: 442176, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1100,6 +1099,22 @@ Prefab:
     - target: {fileID: 6560200, guid: 78f70b350eeb5f24fbf5e70242c45d47, type: 2}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435784, guid: 78f70b350eeb5f24fbf5e70242c45d47, type: 2}
+      propertyPath: activator.value
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435784, guid: 78f70b350eeb5f24fbf5e70242c45d47, type: 2}
+      propertyPath: effected
+      value: 
+      objectReference: {fileID: 2003013061}
+    - target: {fileID: 11435784, guid: 78f70b350eeb5f24fbf5e70242c45d47, type: 2}
+      propertyPath: message
+      value: doorOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435784, guid: 78f70b350eeb5f24fbf5e70242c45d47, type: 2}
+      propertyPath: type
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78f70b350eeb5f24fbf5e70242c45d47, type: 2}
@@ -1266,6 +1281,10 @@ Prefab:
       propertyPath: healthCurrent
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 116796, guid: 68c0bebf66e47a547b0a83f615c826e7, type: 2}
+      propertyPath: m_TagString
+      value: HealthManager
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68c0bebf66e47a547b0a83f615c826e7, type: 2}
   m_IsPrefabParent: 0
@@ -1339,6 +1358,22 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1586170642}
   m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+--- !u!1 &2003013059 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 125440, guid: 39005622935746e48bb44ac730c229fc, type: 2}
+  m_PrefabInternal: {fileID: 1222212876}
+--- !u!114 &2003013061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2003013059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfc59789b7ae7145832069c1b42245a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfPuzzles: 0
 --- !u!1001 &2102007344
 Prefab:
   m_ObjectHideFlags: 0
