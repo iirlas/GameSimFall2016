@@ -38,13 +38,21 @@ public class BasicTrigger : MonoBehaviour
         print(activator);
     }
 
+    public virtual bool OnAction ()
+    {
+       return Input.GetButtonDown("Action");
+    }
 
+    public virtual bool OnActionEnd ()
+    {
+       return Input.GetButtonUp("Action");
+    }
 
     public void Update()
     {
         if ( type == Type.ACTION )
         {
-            if ( isActive && Input.GetButtonDown("Action") )
+            if ( isActive && OnAction() )
             {
                 Collider[] colliders = Physics.OverlapSphere( transform.position, distance );
                 foreach ( Collider col in colliders )
@@ -56,7 +64,7 @@ public class BasicTrigger : MonoBehaviour
                     }
                 }
             }
-            else if ( Input.GetButtonUp("Action") )
+            else if ( OnActionEnd()  )
             {
                 effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
                 isActive = (canRepeat ? true : isActive);
