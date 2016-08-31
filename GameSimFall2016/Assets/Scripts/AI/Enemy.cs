@@ -22,9 +22,9 @@ public class Enemy : MonoBehaviour
    protected readonly Vector3 OUTOFBOUNDS = new Vector3(-1000, -1000, -1000);
 
    //-----------------------------------------------------------------------------
-   // A reference to the "director", which manages scripts such as PlayerManager,
+   // A reference to the "PlayerHealth", which manages scripts such as PlayerManager,
    // and HealthPlayer.
-   public GameObject theDirector;
+   public GameObject thePlayerHealth;
 
    //-----------------------------------------------------------------------------
    // Common states that most enemies, if not all, share.

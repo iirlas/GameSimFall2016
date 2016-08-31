@@ -43,12 +43,12 @@ public class Ant : Enemy
    private const int ANTDAMAGEDEFAULT = 5;
    private const float ANTSPEEDDEFAULT = 1;
    private const float ANTROTATIONSPEEDDEFAULT = 1;
-   private const float ATTACKINTERVAL = 1.0f;       // The number of seconds the player will be invulnerable for after being attacked.
+   private const float ATTACKINTERVAL = 1.0f;        // How often the Ant will attack
 
    //-----------------------------------------------------------------------------
    // Private member variable data.
    private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
-   private bool isInAttackRadius = false;     // Is the player within this Ant's attack radius?
+   private bool  isInAttackRadius = false;     // Is the player within this Ant's attack radius?
 
    //-----------------------------------------------------------------------------
    // A reference to the player.
@@ -79,7 +79,7 @@ public class Ant : Enemy
 
       this.myType = enType.ANT;
       findThePlayer();
-      findTheDirector();
+      findThePlayerHealth();
    }
 
    //=============================================================================
@@ -227,15 +227,15 @@ public class Ant : Enemy
    }
 
    //=============================================================================
-   // Looks for the director and stores a refernce to it, so it may be used later.
-   void findTheDirector()
+   // Looks for the PlayerHealth and stores a refernce to it, so it may be used later.
+   void findThePlayerHealth()
    {
-      if (theDirector == null)
+      if (thePlayerHealth == null)
       {
-         theDirector = GameObject.FindGameObjectWithTag("Director");
-         if (this.theDirector == null)
+         thePlayerHealth = GameObject.FindGameObjectWithTag("HealthManager");
+         if (this.thePlayerHealth == null)
          {
-            Debug.LogError("The director was not defined in the inspector for " + this.name + ".");
+            Debug.LogError("The PlayerHealth was not defined in the inspector for " + this.name + ".");
          }
       }
    }
@@ -295,7 +295,7 @@ public class Ant : Enemy
    {
       if (timeSinceLastAttack == 0.0f)
       {
-         if (theDirector.GetComponent<HealthPlayer>().healthCurrent <= 1)
+         if (thePlayerHealth.GetComponent<HealthPlayer>().healthCurrent <= 1)
          {
             //do nothing
          }
@@ -303,7 +303,7 @@ public class Ant : Enemy
          {
             //do damage to player.
             Debug.Log(this.name + " has damaged the player.");
-            theDirector.GetComponent<HealthPlayer>().modifyHealth(-5);
+            thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
          }
 
          timeSinceLastAttack += Time.deltaTime;
