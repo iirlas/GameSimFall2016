@@ -58,7 +58,7 @@ public class BasicTrigger : MonoBehaviour
             }
             else if ( Input.GetButtonUp("Action") )
             {
-                effected.SendMessage("OnEventEnd", this);
+                effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
                 isActive = (canRepeat ? true : isActive);
             }
         }
@@ -77,13 +77,14 @@ public class BasicTrigger : MonoBehaviour
     {
         if (!isActive && type == Type.COLLISION && collision.transform.tag == activator)
         {
-            effected.SendMessage("OnEventEnd", this);
+            effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
             isActive = (canRepeat ? true : isActive);
         }
     }
 
 	public void OnTriggerEnter(Collider other)
 	{
+        print("Trigger");
         if (isActive && type == Type.TRIGGER && other.transform.tag == activator)
         {
             effected.SendMessage("OnEvent", this);
@@ -95,7 +96,7 @@ public class BasicTrigger : MonoBehaviour
     {
         if (!isActive && type == Type.TRIGGER && other.transform.tag == activator)
         {
-            effected.SendMessage("OnEventEnd", this);
+            effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
             isActive = (canRepeat ? true : isActive);
         }
     }
