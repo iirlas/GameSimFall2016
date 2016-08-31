@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SoundArray : MonoBehaviour {
 
-	AudioSource soundSource;
+	public AudioSource soundSource;
 	public AudioClip[] soundArray;
 	public AudioClip sound1;
 	public AudioClip sound2;
@@ -62,9 +62,7 @@ public class SoundArray : MonoBehaviour {
 		soundSource.clip = soundArray [randomNumber];
 		delay = timeSecDelay;
 		soundSource.Play ();
-		//AudioSource.PlayClipAtPoint(soundSource.clip,this.gameObject.GetComponent<Transform>().position);
-
-		//needs to go through the array to determined if there are any nulls in the array then resize it???.
+		soundSource.spatialBlend = 1.0f;
 	}
 
 	void Update () {
@@ -77,24 +75,19 @@ public class SoundArray : MonoBehaviour {
 				Destroy (GameObject.Find ("One shot audio"));
 			}
 			randomNumber = Random.Range (0, soundArray.Length);
-			Debug.Log (randomNumber);
+			Debug.Log ("SoundNumber" + randomNumber);
 			soundSource.clip = soundArray [randomNumber];
 			soundSource.Play ();
-			//AudioSource.PlayClipAtPoint(soundSource.clip,this.gameObject.GetComponent<Transform>().position);
 			timeSecDelay = delay;
 		}
 		soundSource.transform.position = this.gameObject.transform.position;
-		//soundSource.transform.position = this.gameObject.transform.position;
-
-
 		if (soundSource.isPlaying == false && timeSecDelay > 0.0f) {
 			timeSecDelay -= Time.deltaTime;
 
 			//if gameobject exsist then it will move the position of it to follow the game object it is currently attached to.
 			if (GameObject.Find ("One shot audio")) {
-				//GameObject.Find ("One shot audio").transform.position = this.gameObject.GetComponent<Transform> ().position;
-				Debug.Log (GameObject.Find ("One shot audio").transform.position);
-				Debug.Log ("Made it inside the movement");
+				//Debug.Log (GameObject.Find ("One shot audio").transform.position);
+				//Debug.Log ("Made it inside the movement");
 			}
 		}
 	}
