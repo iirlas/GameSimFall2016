@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Girl : Player {
 
@@ -89,11 +90,9 @@ public class Girl : Player {
         }
 
         //toggle our shooting target
-        if (Input.GetButtonDown("Action"))
+        if (Input.GetButtonDown("Action") && myTargets.Length != 0)
         {
-            int index = 0;
-            for (; index < myTargets.Length && myTarget != myTargets[index].transform; index++ ) ;
-            index = (++index % myTargets.Length);
+            int index = (Array.IndexOf(myTargets, myTarget.GetComponent<Collider>()) + 1) % myTargets.Length;
             myTarget = myTargets[index].transform;
         }
     }
@@ -121,8 +120,8 @@ public class Girl : Player {
 
             for (int index = 0; index < myTargets.Length; index++)
             {
-                float currentAngle = Vector3.Angle( transform.forward, myTarget.position - rigidbody.position );
-                float angle = Vector3.Angle( transform.forward, myTargets[index].transform.position - rigidbody.position );
+                float currentAngle = Vector3.Angle( camera.transform.forward, myTarget.position - rigidbody.position );
+                float angle = Vector3.Angle( camera.transform.forward, myTargets[index].transform.position - rigidbody.position );
                 if ( angle < currentAngle )
                 {
                     myTarget = myTargets[index].transform;
