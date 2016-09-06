@@ -13,9 +13,16 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Spawner : BasicTrigger
 {
+   enum State
+   {
+      ACTIVE,
+      PAUSED,
+      DONE
+   }
    [Tooltip("The total number of enemies you want this spawner to spawn.")]
    public int totalNumberOfEnemies;
 
@@ -33,72 +40,56 @@ public class Spawner : BasicTrigger
 
    private float dTime;               //How much time has elapsed?
 
-   //private bool hasActivatedTrigger;  //Has the trigger to enable spawning of enemies been activated before?
+   private State spawnState;    //Are we currently spawning enemies?
 
-   private bool isSpawningEnemies;    //Are we currently spawning enemies?
-
-   private int numSpawnedEnemies;     //Count of the number of enemies spawned.
-
-   private int killedEnemies;         //Count of the number of enemies killed.
-
-   private ArrayList enemyList;       //ArrayList of the spawned enemies.
+   private List<GameObject> enemyList = new List<GameObject>();       //ArrayList of the spawned enemies.
 
    //========================================================================================================
    // Use this for initialization
    void Start()
    {
-      this.isSpawningEnemies = false;
+      this.spawnState = State.PAUSED;
       this.dTime = 0.0f;
-      this.enemyList = new ArrayList();
-      this.numSpawnedEnemies = 0;
-      //this.hasActivatedTrigger = false;
    }
 
    //========================================================================================================
    // Update is called once per frame
-   void Update()
+   new void Update()
    {
       base.Update();
-      if (isSpawningEnemies)
+      if (spawnState == State.ACTIVE)
       {
          // If we have reached the time to spawn an enemy, and we are still allowed to spawn an enemy...
-         if (this.dTime >= timeBetweenWaves && this.numSpawnedEnemies < this.totalNumberOfEnemies)
+         if ( this.enemyList.Count < this.totalNumberOfEnemies )
          {
-            this.dTime = 0.0f;             // reset the timer
-
-            if (this.enemyList.Count < 5)  // If there are fewer than 5 enemies on screen...
-            {
-               Debug.Log("Spawning enemy");
-               spawnEnemy();               // Spawn a new enemy
-               this.numSpawnedEnemies += 1;// Increment count of spawned enemies
-               Debug.Log(this.enemyList.Count);
-            }
-
+             if (this.dTime >= timeBetweenWaves)
+             {
+                 this.dTime = 0.0f;             // reset the timer
+                 if (this.enemyList.FindAll(obj => { return obj.activeSelf; }).Count < 5)  // If there are fewer than 5 enemies on screen...
+                 {
+                    Debug.Log("Spawning enemy");
+                    spawnEnemy();               // Spawn a new enemy
+                    Debug.Log(this.enemyList.Count);
+                 }
+             }
             this.dTime += Time.deltaTime;  // Increment the timer
          }
-         else if (this.numSpawnedEnemies < this.totalNumberOfEnemies)  // not enough time has elapsed
+         else if (this.enemyList.FindAll(obj => { return obj.activeSelf; }).Count == 0) //we've finished spawning enemies
          {
-            this.dTime += Time.deltaTime;  // Increment the timer
-         }
-         else  //we've finished spawning enemies
-         {
-            isSpawningEnemies = false;
-         }
-
-         for (int ix = 0; ix < this.enemyList.Count; ix++)
-         {
-            if (((GameObject)this.enemyList[ix]).activeSelf == false)
+            print("End");
+            spawnState = State.DONE;
+            foreach ( GameObject obj in enemyList )
             {
-               this.enemyList.RemoveAt(ix);
-               this.killedEnemies++;
+               Destroy(obj);
             }
+            enemyList.Clear();
          }
       }
    }
 
    public override bool OnAction ()
    {
-      return !isSpawningEnemies && enemyList.Count == 0;
+      return enemyList.Count == 0 && spawnState == State.DONE;
    }
 
    public override bool OnActionEnd()
@@ -107,24 +98,12 @@ public class Spawner : BasicTrigger
    }
    //========================================================================================================
    // When the player enters the trigger zone, enable spawning enemies if the option has been selected.
-   void OnTriggerEnter(Collider other)
+   new void OnTriggerEnter(Collider other)
    {
       if (other.tag.Equals("Player"))
       {
-         this.setSpawningState(true);
+         spawnState = State.ACTIVE;
       }
-   }
-
-   //========================================================================================================
-   // Use this method if you wish to manually control the spawning state of this Spawner. (recommended)
-   public void setSpawningState(bool state)
-   {
-      if (this.isSpawningEnemies == false && state == true)
-      {
-         this.numSpawnedEnemies = 0;
-      }
-
-      this.isSpawningEnemies = state;
    }
 
    //========================================================================================================
@@ -139,13 +118,13 @@ public class Spawner : BasicTrigger
    // Returns the number of remaining enemies for the spawner to spawn.
    public int getRemainingEnemies()
    {
-      return (totalNumberOfEnemies - killedEnemies);
+      return (totalNumberOfEnemies - enemyList.Count);
    }
 
    //========================================================================================================
    // Returns whether or not this spawner is spawning enemies.
    public bool getSpawningStatus()
    {
-      return this.isSpawningEnemies;
+      return this.spawnState == State.ACTIVE;
    }
 }
