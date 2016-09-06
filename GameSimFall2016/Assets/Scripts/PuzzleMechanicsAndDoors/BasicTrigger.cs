@@ -28,19 +28,33 @@ public class BasicTrigger : MonoBehaviour
     public MonoBehaviour effected;
     public Type type;
     public string message;
-    public float distance = 1.0f;
     public bool canRepeat = false;
 
-    private bool isActive = true;
-
-    public void Start()
+    public bool isActive
     {
-        print(activator);
+      get;
+      private set;
+    }
+
+    public BasicTrigger()
+    {
+       isActive = true;
     }
 
     public virtual bool OnAction ()
     {
-       return Input.GetButtonDown("Action");
+       if ( Input.GetButtonDown("Action") )
+       {
+         Collider[] colliders = Physics.OverlapSphere( transform.position, float.PositiveInfinity );
+         foreach ( Collider col in colliders )
+         {
+            if ( col.transform.tag == activator )
+            {
+               return true;
+            }
+         }
+       }
+       return false;
     }
 
     public virtual bool OnActionEnd ()
@@ -52,19 +66,12 @@ public class BasicTrigger : MonoBehaviour
     {
         if ( type == Type.ACTION )
         {
-            if ( isActive && OnAction() )
+           if (isActive && OnAction())
             {
-                Collider[] colliders = Physics.OverlapSphere( transform.position, distance );
-                foreach ( Collider col in colliders )
-                {
-                    if ( col.transform.tag == activator )
-                    {
-                        effected.SendMessage("OnEvent", this);
-                        isActive = false;
-                    }
-                }
+               effected.SendMessage("OnEvent", this);
+               isActive = false;
             }
-            else if ( OnActionEnd()  )
+            else if (!isActive && OnActionEnd())
             {
                 effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
                 isActive = (canRepeat ? true : isActive);
