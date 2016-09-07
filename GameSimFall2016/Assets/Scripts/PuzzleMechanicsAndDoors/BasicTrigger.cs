@@ -41,42 +41,22 @@ public class BasicTrigger : MonoBehaviour
        isActive = true;
     }
 
-    public virtual bool OnAction ()
+    public virtual void OnAction ()
     {
-       if ( Input.GetButtonDown("Action") )
+       if (isActive && type == Type.ACTION)
        {
-         Collider[] colliders = Physics.OverlapSphere( transform.position, float.PositiveInfinity );
-         foreach ( Collider col in colliders )
-         {
-            if ( col.transform.tag == activator )
-            {
-               return true;
-            }
-         }
+          effected.SendMessage("OnEvent", this);
+          isActive = false;
        }
-       return false;
     }
 
-    public virtual bool OnActionEnd ()
+    public virtual void OnActionEnd ()
     {
-       return Input.GetButtonUp("Action");
-    }
-
-    public void Update()
-    {
-        if ( type == Type.ACTION )
-        {
-           if (isActive && OnAction())
-            {
-               effected.SendMessage("OnEvent", this);
-               isActive = false;
-            }
-            else if (!isActive && OnActionEnd())
-            {
-                effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
-                isActive = (canRepeat ? true : isActive);
-            }
-        }
+       if (!isActive && type == Type.ACTION)
+       {
+          effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
+          isActive = (canRepeat ? true : isActive);
+       }
     }
 
     public void OnCollisionEnter(Collision collision)
