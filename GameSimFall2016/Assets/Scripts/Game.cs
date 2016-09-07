@@ -29,7 +29,12 @@ public class Game : Singleton<Game>
 	
 	// Update is called once per frame
 	void Update () 
-    {
+   {
+      if (Input.GetKeyDown(KeyCode.F10))
+      {
+         Cursor.lockState = (Cursor.lockState == CursorLockMode.None ? CursorLockMode.Locked : CursorLockMode.None);
+         Cursor.visible = !Cursor.visible;
+      }
 	}
 
     public void OnGUI()
