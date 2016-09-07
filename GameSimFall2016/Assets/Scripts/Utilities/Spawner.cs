@@ -91,7 +91,7 @@ public class Spawner : MonoBehaviour
    // When the player enters the trigger zone, enable spawning enemies if the option has been selected.
    void OnTriggerEnter(Collider other)
    {
-      if (other.tag.Equals("Player"))
+      if (other.tag.Equals("Player") && spawnState != State.DONE)
       {
          spawnState = State.ACTIVE;
       }
