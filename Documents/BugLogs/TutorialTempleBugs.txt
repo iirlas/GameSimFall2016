@@ -1,0 +1,5 @@
+- TutorialEntranceRoom1 doorway opens, but the player is unable to enter, preventing progress into the next room.
+- TutorialJump2 pressure plate opens the door, by launching it upwards in a large degree. The pressure plate moves upwards in the z axis when the player exits the hitbox of the pressure plate.  Each time the pressure plate moves upwards so does the exit door.
+- TutorialKeyRoom3, the wall blocks the player, must be destroyed.
+- TutorialWaterRoom4, see TutorialJump2, same issue.  Extended issue:  Standing on the pressure plate triggers the pressure plate 4 times ( 4 debug messages ), and the door blinks away, but then recenters itself, on exiting the door moves.
+- TutorialPressureSwitch6, standing on both pressure plates moves the door.  Upon moving off the switch the door moves back to it's starting position.
