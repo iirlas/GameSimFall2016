@@ -15,7 +15,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Spawner : BasicTrigger
+public class Spawner : MonoBehaviour
 {
    enum State
    {
@@ -32,8 +32,8 @@ public class Spawner : BasicTrigger
    [Tooltip("The desired enemy type to be spawned.  Be sure to use a prefab, and not the model.")]
    public GameObject enemy;
 
-   //[Tooltip("If this spawner has a trigger collider that will be used to activate the spawner, check this tickbox.")]
-   //public bool usingTriggerBox;
+   [Tooltip("The trigger to be set when all enemies are dead.")]
+   public BasicTrigger trigger;
 
    [Tooltip("The desired spawnpoint for this spawner.")]
    public GameObject spawnPoint;
@@ -54,9 +54,8 @@ public class Spawner : BasicTrigger
 
    //========================================================================================================
    // Update is called once per frame
-   new void Update()
+   void Update()
    {
-      base.Update();
       if (spawnState == State.ACTIVE)
       {
          // If we have reached the time to spawn an enemy, and we are still allowed to spawn an enemy...
@@ -83,22 +82,14 @@ public class Spawner : BasicTrigger
                Destroy(obj);
             }
             enemyList.Clear();
+            trigger.OnAction();
          }
       }
    }
 
-   public override bool OnAction ()
-   {
-      return enemyList.Count == 0 && spawnState == State.DONE;
-   }
-
-   public override bool OnActionEnd()
-   {
-      return false;
-   }
    //========================================================================================================
    // When the player enters the trigger zone, enable spawning enemies if the option has been selected.
-   new void OnTriggerEnter(Collider other)
+   void OnTriggerEnter(Collider other)
    {
       if (other.tag.Equals("Player"))
       {
