@@ -33,7 +33,7 @@ public class HealthPlayer : MonoBehaviour
 
    private bool isDead = false;
 
-   private int isPoisoned;        // whether or not the player is poison
+   private bool isPoisoned;        // whether or not the player is poison
    private int poisonDamage;      // how much damage the player will be poisoned for
    private int poisonTicks;       // the remaining poison hits the player will take
    private float poisonInterval;  // how often the player will take poison damage
@@ -76,7 +76,7 @@ public class HealthPlayer : MonoBehaviour
             this.healthBar.value = this.healthCurrent;
             if (isPoisoned)
             {
-               poisonDamage();
+               applyPoisonDamage();
             }
          }
       }
@@ -103,7 +103,7 @@ public class HealthPlayer : MonoBehaviour
 
    //==========================================================================
    // Deals automated damage to the player, hereby refered to as poison.
-   public void poisonDamage()
+   public void applyPoisonDamage()
    {
       if (this.poisonTicks <= 0)
       {
