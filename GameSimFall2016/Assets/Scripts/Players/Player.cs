@@ -20,6 +20,7 @@ abstract public class Player : MonoBehaviour
     private Rigidbody myRigidbody;
     private Collider myCollider;
 
+    [Range(5, 45)]
     public float floorAngleLimit = 30;
     public float movementSpeed = 5.0f;
     public float rotationSmoothSpeed = 10.0f;
