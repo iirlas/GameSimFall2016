@@ -24,75 +24,77 @@ public class BasicTrigger : MonoBehaviour
         ACTION,
     };
 
+    enum State
+    {
+       ENTER,
+       EXIT,
+       DONE
+    }
+
     public Tag activator = "Untagged";
     public MonoBehaviour effected;
     public Type type;
     public string message;
     public bool canRepeat = false;
 
-    public bool isActive
-    {
-      get;
-      private set;
-    }
+    private State myNextState;
 
     public BasicTrigger()
     {
-       isActive = true;
+       myNextState = State.ENTER;
     }
 
-    public virtual void OnAction ()
+    public void OnAction ()
     {
-       if (isActive && type == Type.ACTION)
+       if (myNextState == State.ENTER && type == Type.ACTION)
        {
           effected.SendMessage("OnEvent", this);
-          isActive = false;
+          myNextState = State.EXIT;
        }
     }
 
-    public virtual void OnActionEnd ()
+    public void OnActionEnd ()
     {
-       if (!isActive && type == Type.ACTION)
+       if (myNextState == State.EXIT && type == Type.ACTION)
        {
           effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
-          isActive = (canRepeat ? true : isActive);
+          myNextState = (canRepeat ? State.ENTER : State.DONE);
        }
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (isActive && type == Type.COLLISION && collision.transform.tag == activator)
+        if (myNextState == State.ENTER && type == Type.COLLISION && collision.transform.tag == activator)
         {
             effected.SendMessage("OnEvent", this);
-            isActive = false;
+            myNextState = State.EXIT;
         }
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        if (!isActive && type == Type.COLLISION && collision.transform.tag == activator)
+        if (myNextState == State.EXIT && type == Type.COLLISION && collision.transform.tag == activator)
         {
             effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
-            isActive = (canRepeat ? true : isActive);
+            myNextState = (canRepeat ? State.ENTER : State.DONE);
         }
     }
 
 	public void OnTriggerEnter(Collider other)
 	{
-        print("Trigger");
-        if (isActive && type == Type.TRIGGER && other.transform.tag == activator)
+        if (myNextState == State.ENTER && type == Type.TRIGGER && other.transform.tag == activator)
         {
             effected.SendMessage("OnEvent", this);
-            isActive = false;
+            myNextState = State.EXIT;
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (!isActive && type == Type.TRIGGER && other.transform.tag == activator)
+        if (myNextState == State.EXIT && type == Type.TRIGGER && other.transform.tag == activator)
         {
             effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
-            isActive = (canRepeat ? true : isActive);
+            myNextState = (canRepeat ? State.ENTER : State.DONE);
         }
     }
 }
