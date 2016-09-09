@@ -31,7 +31,7 @@ public class FixedCamera : MonoBehaviour {
         Vector3 target = viewPoint.position;
 
 
-        if (false)//myPlayer is Girl && myPlayer.playerState.Equals(Girl.State.PUZZLE))
+        if (true)//myPlayer is Girl && myPlayer.playerState.Equals(Girl.State.PUZZLE))
         {
             target = myPlayer.transform.position; 
         }
