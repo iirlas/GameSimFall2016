@@ -7,7 +7,7 @@ abstract public class Player : MonoBehaviour
 {
     public enum State
     {
-        MOVE,
+        DEFAULT,
         FALL,
         ATTACK,
         ACTION
@@ -19,7 +19,6 @@ abstract public class Player : MonoBehaviour
     private Transform myTransform;
     private Rigidbody myRigidbody;
     private Collider myCollider;
-
 
     public float movementSpeed = 5.0f;
     public float rotationSmoothSpeed = 10.0f;
@@ -73,9 +72,9 @@ abstract public class Player : MonoBehaviour
     public Player()
     {
         myStates = new Dictionary<Enum, StateRunner>();
-        addRunnable(State.MOVE, runMoveState);
+        addRunnable(State.DEFAULT, runMoveState);
         addRunnable(State.FALL, runFallingState);
-        playerState = State.MOVE;
+        playerState = State.DEFAULT;
     }
 
     // Update is called once per frame
@@ -101,8 +100,6 @@ abstract public class Player : MonoBehaviour
             transform.parent.position = Vector3.Lerp(transform.parent.position, myPlatform.position, float.PositiveInfinity);
         }
     }
-
-
 
     protected void addRunnable(Enum state, StateRunner stateRunner)
     {
@@ -130,7 +127,7 @@ abstract public class Player : MonoBehaviour
             }
         }
 
-        if ( !playerState.Equals(State.MOVE) )
+        if ( !playerState.Equals(State.DEFAULT) )
         {
             return;
         }
@@ -150,7 +147,7 @@ abstract public class Player : MonoBehaviour
     {
         if (isGrounded())
         {
-            playerState = Player.State.MOVE;
+            playerState = Player.State.DEFAULT;
         }
         else
         {

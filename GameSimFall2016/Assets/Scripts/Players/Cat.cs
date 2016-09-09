@@ -20,7 +20,7 @@ public class Cat : Player {
 
     void runActionState()
     {
-        playerState = Player.State.MOVE;
+        playerState = Player.State.DEFAULT;
 
         RaycastHit hit;
         //Are we facing a climbable object
@@ -80,7 +80,7 @@ public class Cat : Player {
                 transform.position += Vector3.up + transform.forward.normalized;
             }
             rigidbody.useGravity = true;
-            playerState = Player.State.MOVE;
+            playerState = Player.State.DEFAULT;
         }
         rigidbody.velocity = Vector3.zero;
     }

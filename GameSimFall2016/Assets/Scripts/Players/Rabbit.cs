@@ -17,7 +17,7 @@ public class Rabbit : Player {
 
     void runActionState ()
     {
-        playerState = Player.State.MOVE;
+        playerState = Player.State.DEFAULT;
         if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, collider.bounds.size.y))//Are we on an edge then?
         {
             //launches the player forward and up

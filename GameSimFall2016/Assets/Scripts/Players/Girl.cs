@@ -41,7 +41,7 @@ public class Girl : Player {
 
     void runActionState()
     {
-        playerState = Player.State.MOVE;
+        playerState = Player.State.DEFAULT;
 
         //Are we on an edge?
         if (!Physics.Raycast(rigidbody.position + transform.forward, Vector3.down, collider.bounds.size.y))
@@ -86,7 +86,7 @@ public class Girl : Player {
             Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
             Vector3 force = (myTarget != null ? (myTarget.position - rigidbody.position).normalized : transform.forward) * shootingForce;
             rockBody.AddForce(force, ForceMode.Impulse);
-            playerState = Player.State.MOVE;
+            playerState = Player.State.DEFAULT;
         }
 
         //toggle our shooting target

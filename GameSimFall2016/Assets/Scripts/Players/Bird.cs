@@ -18,7 +18,7 @@ public class Bird : Player {
 
     void runAttackState ()
     {
-        playerState = Player.State.MOVE;
+        playerState = Player.State.DEFAULT;
         GameObject rock = Instantiate(rockPrefab, transform.position, transform.rotation) as GameObject;
         Rigidbody rockBody = rock.GetComponent<Rigidbody>();
         Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
@@ -53,7 +53,7 @@ public class Bird : Player {
             if (isGrounded())
             {
                 rigidbody.useGravity = true;
-                playerState = Player.State.MOVE;
+                playerState = Player.State.DEFAULT;
             }
             rigidbody.velocity = Vector3.zero;
         }
