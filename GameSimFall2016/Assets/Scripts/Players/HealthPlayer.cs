@@ -26,11 +26,12 @@ public class HealthPlayer : MonoBehaviour
 
    public Slider healthBar; //hook the healthbar to this slider spot
    public Image healthBarFill;
+   public Text healthText;
+
    public int healthMax;
+   public int healthCurrent;
 
    public static int healthChange;
-
-   public int healthCurrent;
 
    private bool isDead = false;
 
@@ -74,10 +75,11 @@ public class HealthPlayer : MonoBehaviour
             this.healthBar.value = healthBar.minValue;
             Debug.Log("Player is Dead.");
             isDead = true;
+            this.healthText.text = "DEAD";
          }
          else
          {
-            this.healthBar.value = this.healthCurrent;
+            updateHealthBar();
             if (isPoisoned)
             {
                healthBarFill.color = Color.yellow;
@@ -85,6 +87,14 @@ public class HealthPlayer : MonoBehaviour
             }
          }
       }
+   }
+
+   //==========================================================================
+   // Update the health bar value, color, text, etc...
+   void updateHealthBar()
+   {
+      this.healthBar.value = this.healthCurrent;
+      this.healthText.text = this.healthCurrent.ToString();
    }
 
    //==========================================================================
