@@ -11,7 +11,7 @@ public class ThirdPersonCamera : MonoBehaviour {
     [HideInInspector]
     public new Transform transform;
 
-    private Player myTarget;    
+    private Player myPlayer;
     private float  myAngle = 0;
 
 	// Use this for initialization
@@ -22,31 +22,31 @@ public class ThirdPersonCamera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (PlayerManager.getInstance().currentPlayer)
-            myTarget = PlayerManager.getInstance().currentPlayer;
+            myPlayer = PlayerManager.getInstance().currentPlayer;
 	}
 
     public void LateUpdate()
     {
-        if (!myTarget)
+        if (!myPlayer)
             return;
 
         float h = Input.GetAxis("Alt_Horizontal");
         //float v = Input.GetAxis("Alt_Vertical");
 
-        if (myTarget is Girl && myTarget.playerState.Equals(Girl.State.SHOOT))
+        if (myPlayer is Girl && myPlayer.playerState.Equals(Girl.State.SHOOT))
         {
-            myAngle = Mathf.LerpAngle(transform.eulerAngles.y, myTarget.transform.eulerAngles.y, speed * Time.deltaTime);
+            myAngle = Mathf.LerpAngle(transform.eulerAngles.y, myPlayer.transform.eulerAngles.y, speed * Time.deltaTime);
         }
         else if (Input.GetButtonDown("Center"))
         {
-            myAngle = myTarget.transform.eulerAngles.y;
+            myAngle = myPlayer.transform.eulerAngles.y;
         }
         else if (h != 0)
         {
             h = (h > 0 ? 1 : -1); // unify speed between mouse and joystick
             myAngle += h * speed;
         }
-        Vector3 targetPosition = myTarget.transform.position + pivotPoint;
+        Vector3 targetPosition = myPlayer.transform.position + pivotPoint;
         Vector3 viewPosition = targetPosition + Quaternion.Euler(0, myAngle, 0) * offset;
 
         RaycastHit hit;
