@@ -19,11 +19,16 @@ abstract public class Player : MonoBehaviour
     private Transform myTransform;
     private Rigidbody myRigidbody;
     private Collider myCollider;
+    private Collider[] myTargets;
+    private Transform myTarget;
+    private int myTargetableLayerMask = 1 << 9;
+    private bool isTargeting = false;
 
     [Range(5, 45)]
     public float floorAngleLimit = 30;
     public float movementSpeed = 5.0f;
     public float rotationSmoothSpeed = 10.0f;
+    public float targetRange = 10.0f;
 
     new public Camera camera { get { return PlayerManager.getInstance().camera; } }
 
@@ -64,6 +69,12 @@ abstract public class Player : MonoBehaviour
             }
             return myCollider;
         }
+    }
+
+    [HideInInspector]
+    public Transform target
+    {
+       get { return myTarget;  }
     }
 
     public Enum playerState { get; protected set; }
@@ -142,7 +153,21 @@ abstract public class Player : MonoBehaviour
         {
             playerState = State.ACTION;
         }
-
+        else if (Input.GetButtonDown("Center"))
+        {
+           isTargeting = !isTargeting;
+        }
+        if (isTargeting)
+        {
+           if (!findTargets())
+           {
+              isTargeting = false;
+           }
+        }
+        else
+        {
+           myTarget = null;
+        }
     }
 
     virtual protected void runFallingState()
@@ -197,13 +222,37 @@ abstract public class Player : MonoBehaviour
 
         if (h != 0 || v != 0)
         {
-            //            angle of joystick  + angle of camera
-            float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
+            if ( myTarget != null )
+            {
+                //rotate towards the shooting target
+                Vector3 direction = myTarget.position - rigidbody.position;
+                direction.y = 0;//aligns facing direction with the ground.
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
+                rigidbody.position += ((camera.transform.forward * v) +
+                                       (camera.transform.right * h)) *
+                                        movementSpeed * Time.deltaTime;
+            }
+            else
+            {
+               //            angle of joystick  + angle of camera
+               float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
 
-            // smooths the rotation transition
-            transform.position += transform.forward * movementSpeed * Time.deltaTime;
-            smoothRotateTowards(0, angle, 0, Time.deltaTime * rotationSmoothSpeed);
+               // smooths the rotation transition
+               transform.position += transform.forward * movementSpeed * Time.deltaTime;
+               smoothRotateTowards(0, angle, 0, Time.deltaTime * rotationSmoothSpeed);
+            }
         }
+    }
+
+    void strafe()
+    {
+       float h = Input.GetAxis("Horizontal");
+       float v = Input.GetAxis("Vertical");
+
+       if (h != 0 || v != 0)
+       {
+       }
     }
 
     public void smoothRotateTowards(float x, float y, float z, float speed)
@@ -256,5 +305,26 @@ abstract public class Player : MonoBehaviour
             }
         }
         return false;
+    }
+
+    bool findTargets()
+    {
+       myTargets = Physics.OverlapSphere(rigidbody.position, targetRange, myTargetableLayerMask);
+
+       if (myTarget == null || Vector3.Distance(rigidbody.position, myTarget.position) > targetRange)
+       {
+          myTarget = (myTargets.Length != 0 ? myTargets[0].transform : null);
+
+          for (int index = 0; index < myTargets.Length; index++)
+          {
+             float currentAngle = Vector3.Angle(camera.transform.forward, myTarget.position - rigidbody.position);
+             float angle = Vector3.Angle(camera.transform.forward, myTargets[index].transform.position - rigidbody.position);
+             if (angle < currentAngle)
+             {
+                myTarget = myTargets[index].transform;
+             }
+          }
+       }
+       return (myTarget != null);
     }
 }
