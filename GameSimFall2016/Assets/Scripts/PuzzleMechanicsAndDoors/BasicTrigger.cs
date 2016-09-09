@@ -31,7 +31,8 @@ public class BasicTrigger : MonoBehaviour
        DONE
     }
 
-    public Tag activator = "Untagged";
+    public Tag tag = "Untagged";
+    public GameObject activator;
     public MonoBehaviour effected;
     public Type type;
     public string message;
@@ -48,8 +49,8 @@ public class BasicTrigger : MonoBehaviour
     {
        if (myNextState == State.ENTER && type == Type.ACTION)
        {
-          effected.SendMessage("OnEvent", this);
           myNextState = State.EXIT;
+          effected.SendMessage("OnEvent", this);
        }
     }
 
@@ -57,44 +58,46 @@ public class BasicTrigger : MonoBehaviour
     {
        if (myNextState == State.EXIT && type == Type.ACTION)
        {
-          effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
           myNextState = (canRepeat ? State.ENTER : State.DONE);
+          effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
        }
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (myNextState == State.ENTER && type == Type.COLLISION && collision.transform.tag == activator)
+        if (myNextState == State.ENTER && type == Type.COLLISION && collision.transform.tag == tag)
         {
-            effected.SendMessage("OnEvent", this);
             myNextState = State.EXIT;
+            activator = collision.gameObject;
+            effected.SendMessage("OnEvent", this);
         }
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        if (myNextState == State.EXIT && type == Type.COLLISION && collision.transform.tag == activator)
+        if (myNextState == State.EXIT && type == Type.COLLISION && collision.transform.tag == tag)
         {
-            effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
             myNextState = (canRepeat ? State.ENTER : State.DONE);
+            effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
         }
     }
 
 	public void OnTriggerEnter(Collider other)
 	{
-        if (myNextState == State.ENTER && type == Type.TRIGGER && other.transform.tag == activator)
+        if (myNextState == State.ENTER && type == Type.TRIGGER && other.transform.tag == tag)
         {
-            effected.SendMessage("OnEvent", this);
             myNextState = State.EXIT;
+            activator = other.gameObject;
+            effected.SendMessage("OnEvent", this);
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (myNextState == State.EXIT && type == Type.TRIGGER && other.transform.tag == activator)
+        if (myNextState == State.EXIT && type == Type.TRIGGER && other.transform.tag == tag)
         {
-            effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
             myNextState = (canRepeat ? State.ENTER : State.DONE);
+            effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
         }
     }
 }
