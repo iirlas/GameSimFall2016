@@ -16,16 +16,10 @@ public class Door : MonoBehaviour {
     {
         if (trigger.message == "doorOpen")
         {
-            transform.Translate(0, -10, 0);
+            gameObject.SetActive(false);
         }
 	
 	}
 
-    void OnEventEnd (BasicTrigger trigger)
-    {
-        if (trigger.message == "doorOpen")
-        {
-            transform.Translate(0, 10, 0);
-        }
-    }
+   
 }
