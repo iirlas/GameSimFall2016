@@ -137,6 +137,7 @@ public class HealthPlayer : MonoBehaviour
          if (this.poisonTimer >= this.poisonInterval)
          {
             this.poisonTimer = 0.0f;
+            Debug.Log(this.poisonDamage);
             modifyHealth(-(this.poisonDamage));
             this.poisonTicks--;
          }

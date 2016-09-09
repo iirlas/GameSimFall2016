@@ -25,7 +25,7 @@ public class Scorpion : Enemy
 
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
    public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
-                                //and rotationspeed with values provided in the inspector
+   //and rotationspeed with values provided in the inspector
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public int scorpionHealthCustom;   // the new health value to replace the default.
 
@@ -63,7 +63,7 @@ public class Scorpion : Enemy
    //-----------------------------------------------------------------------------
    // Private member variable data.
    private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Scorpion has last attacked.
-   private bool  isInAttackRadius = false;     // Is the player within this Scorpion's attack radius?
+   private bool isInAttackRadius = false;     // Is the player within this Scorpion's attack radius?
 
    //-----------------------------------------------------------------------------
    // A reference to the player.
@@ -91,7 +91,7 @@ public class Scorpion : Enemy
          this.mySpeed = SCORPIONSPEEDDEFAULT;
          this.myRotationSpeed = SCORPIONROTATIONSPEEDDEFAULT;
 
-         this.scorpionPoisonDamageCustom = SCORPIONDAMAGEDEFAULT;
+         this.scorpionPoisonDamageCustom = SCORPIONPOISONDAMAGEDEFAULT;
          this.scorpionPoisonInstancesCustom = SCORPIONPOISONINSTANCESDEFAULT;
          this.scorpionPoisonIntervalCustom = SCORPIONPOISONINTERVALDEFAULT;
       }
@@ -203,7 +203,7 @@ public class Scorpion : Enemy
    // If something enters the trigger box, do something based upon it's type.
    void OnTriggerEnter(Collider other)
    {
-      if(other.tag.Equals("Projectile"))
+      if (other.tag.Equals("Projectile"))
       {
          damageScorpion();
       }
@@ -322,6 +322,7 @@ public class Scorpion : Enemy
             //do damage to player.
             Debug.Log(this.name + " has damaged the player.");
             thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
+            Debug.Log(this.scorpionPoisonDamageCustom);
             thePlayerHealth.GetComponent<HealthPlayer>().poisonPlayer(this.scorpionPoisonDamageCustom,
                                                                       this.scorpionPoisonIntervalCustom,
                                                                       this.scorpionPoisonInstancesCustom);
@@ -346,7 +347,7 @@ public class Scorpion : Enemy
    void killScorpion()
    {
       this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Scorpion
-                                                          // from clipping back onto the platform after being "killed".
+      // from clipping back onto the platform after being "killed".
       this.transform.position = OUTOFBOUNDS;              // Move this Scorpion out of bounds to the predefined location.
       this.gameObject.SetActive(false);                   // Disable this Scorpion, preventing interactability.
    }
