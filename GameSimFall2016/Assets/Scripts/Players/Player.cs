@@ -20,6 +20,7 @@ abstract public class Player : MonoBehaviour
     private Rigidbody myRigidbody;
     private Collider myCollider;
 
+    public float floorAngleLimit = 30;
     public float movementSpeed = 5.0f;
     public float rotationSmoothSpeed = 10.0f;
 
@@ -118,7 +119,7 @@ abstract public class Player : MonoBehaviour
         {
             if ( isGrounded(out hit) )
             {
-                setParent(hit, 45);
+                setParent(hit, floorAngleLimit);
                 movePlayer();
             }
             else
