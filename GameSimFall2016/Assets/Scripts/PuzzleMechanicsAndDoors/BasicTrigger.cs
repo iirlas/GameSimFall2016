@@ -31,7 +31,7 @@ public class BasicTrigger : MonoBehaviour
        DONE
     }
 
-    public Tag tag = "Untagged";
+    public Tag activatorTag = "Untagged";
     public GameObject activator;
     public MonoBehaviour effected;
     public Type type;
@@ -65,7 +65,7 @@ public class BasicTrigger : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (myNextState == State.ENTER && type == Type.COLLISION && collision.transform.tag == tag)
+        if (myNextState == State.ENTER && type == Type.COLLISION && collision.transform.tag == activatorTag)
         {
             myNextState = State.EXIT;
             activator = collision.gameObject;
@@ -75,7 +75,7 @@ public class BasicTrigger : MonoBehaviour
 
     public void OnCollisionExit(Collision collision)
     {
-        if (myNextState == State.EXIT && type == Type.COLLISION && collision.transform.tag == tag)
+        if (myNextState == State.EXIT && type == Type.COLLISION && collision.transform.tag == activatorTag)
         {
             myNextState = (canRepeat ? State.ENTER : State.DONE);
             effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
@@ -84,7 +84,7 @@ public class BasicTrigger : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
-        if (myNextState == State.ENTER && type == Type.TRIGGER && other.transform.tag == tag)
+        if (myNextState == State.ENTER && type == Type.TRIGGER && other.transform.tag == activatorTag)
         {
             myNextState = State.EXIT;
             activator = other.gameObject;
@@ -94,7 +94,7 @@ public class BasicTrigger : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (myNextState == State.EXIT && type == Type.TRIGGER && other.transform.tag == tag)
+        if (myNextState == State.EXIT && type == Type.TRIGGER && other.transform.tag == activatorTag)
         {
             myNextState = (canRepeat ? State.ENTER : State.DONE);
             effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
