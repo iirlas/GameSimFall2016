@@ -38,12 +38,26 @@ public class Scorpion : Enemy
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public float scorpionRotationSpeedCustom;   // the new rotational speed value to replace the default.
 
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
+   public int scorpionPoisonDamageCustom;
+
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"\nInstances refers to how many times the player will take poison damage")]
+   public int scorpionPoisonInstancesCustom;
+
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"\nIntervals refers to how often the player will take poison damage")]
+   public float scorpionPoisonIntervalCustom;
+
    //-----------------------------------------------------------------------------
-   // Default values for an Scorpion, provided by juan.
-   private const int SCORPIONHEALTHDEFAULT = 2;
+   // Default values for a Scorpion, provided by juan.
+   private const int SCORPIONHEALTHDEFAULT = 4;
    private const int SCORPIONDAMAGEDEFAULT = 5;
    private const float SCORPIONSPEEDDEFAULT = 1;
-   private const float SCORPIONROTATIONSPEEDDEFAULT = 1;
+   private const float SCORPIONROTATIONSPEEDDEFAULT = 1.0f;
+
+   private const int SCORPIONPOISONDAMAGEDEFAULT = 1;
+   private const int SCORPIONPOISONINSTANCESDEFAULT = 5;
+   private const float SCORPIONPOISONINTERVALDEFAULT = 1.0f;
+
    private const float ATTACKINTERVAL = 1.0f;        // How often the Scorpion will attack
 
    //-----------------------------------------------------------------------------
@@ -76,6 +90,10 @@ public class Scorpion : Enemy
          this.myDamage = SCORPIONDAMAGEDEFAULT;
          this.mySpeed = SCORPIONSPEEDDEFAULT;
          this.myRotationSpeed = SCORPIONROTATIONSPEEDDEFAULT;
+
+         this.scorpionPoisonDamageCustom = SCORPIONDAMAGEDEFAULT;
+         this.scorpionPoisonInstancesCustom = SCORPIONPOISONINSTANCESDEFAULT;
+         this.scorpionPoisonIntervalCustom = SCORPIONPOISONINTERVALDEFAULT;
       }
 
       this.myType = enType.SCORPION;
@@ -102,7 +120,6 @@ public class Scorpion : Enemy
          this.myState = enState.DEAD;
       }
       //!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
-
 
       switch (this.myState)
       {
@@ -296,7 +313,7 @@ public class Scorpion : Enemy
    {
       if (timeSinceLastAttack == 0.0f)
       {
-         if (thePlayerHealth.GetComponent<HealthPlayer>().healthCurrent <= 1)
+         if (thePlayerHealth.GetComponent<HealthPlayer>().healthCurrent <= 0)
          {
             //do nothing
          }
@@ -305,7 +322,9 @@ public class Scorpion : Enemy
             //do damage to player.
             Debug.Log(this.name + " has damaged the player.");
             thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
-
+            thePlayerHealth.GetComponent<HealthPlayer>().poisonPlayer(this.scorpionPoisonDamageCustom,
+                                                                      this.scorpionPoisonIntervalCustom,
+                                                                      this.scorpionPoisonInstancesCustom);
          }
 
          timeSinceLastAttack += Time.deltaTime;

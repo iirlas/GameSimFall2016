@@ -14,7 +14,7 @@
 
 //========================================================================================================
 // NRC:
-// Attach this script to an empty game object, which will be refered to as the "director"
+// Attach this script to an empty game object.
 //========================================================================================================
 
 using UnityEngine;
@@ -33,9 +33,9 @@ public class HealthPlayer : MonoBehaviour
 
    private bool isDead = false;
 
-   private bool isPoisoned;        // whether or not the player is poison
    private int poisonDamage;      // how much damage the player will be poisoned for
    private int poisonTicks;       // the remaining poison hits the player will take
+   private bool isPoisoned;       // whether or not the player is poison
    private float poisonInterval;  // how often the player will take poison damage
    private float poisonTimer;     // the time elapsed since the player last took poison damage.
 
@@ -56,9 +56,10 @@ public class HealthPlayer : MonoBehaviour
       this.poisonTicks = 0;
       this.poisonInterval = 0.0f;
       this.poisonTimer = 0.0f;
+
    }
 
-   //==========================================================================
+   //=================================s=========================================
    // This updates the health and checks if she should be dead.
    // if dead, debug log tells you she's dead.
    void Update()
@@ -86,7 +87,7 @@ public class HealthPlayer : MonoBehaviour
    // Modify the health of the player, value can be positive or negative.
    // If the value is positive, the player gains health.
    // If the value is negative, the player loses health.
-   public void modifyHealth(int value)
+      public void modifyHealth(int value)
    {
       this.healthCurrent += value;
    }
@@ -115,6 +116,7 @@ public class HealthPlayer : MonoBehaviour
          {
             this.poisonTimer = 0.0f;
             modifyHealth(-(this.poisonDamage));
+            Debug.Log("Player has taken " + this.poisonDamage + " poison damage.");
          }
          else
          {
