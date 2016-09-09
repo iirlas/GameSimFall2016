@@ -76,7 +76,8 @@ public class BasicTrigger : MonoBehaviour
 
     public void OnCollisionExit(Collision collision)
     {
-        if (myNextState == State.EXIT && type == Type.COLLISION && collision.transform.tag == activatorTag)
+        if (myNextState == State.EXIT && type == Type.COLLISION && 
+            collision.transform.tag == activatorTag && collision.gameObject.Equals(activator))
         {
             myNextState = (canRepeat ? State.ENTER : State.DONE);
             effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
@@ -95,7 +96,8 @@ public class BasicTrigger : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (myNextState == State.EXIT && type == Type.TRIGGER && other.transform.tag == activatorTag)
+        if (myNextState == State.EXIT && type == Type.TRIGGER && 
+            other.transform.tag == activatorTag && other.gameObject.Equals(activator))
         {
             myNextState = (canRepeat ? State.ENTER : State.DONE);
             effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
