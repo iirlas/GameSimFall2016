@@ -47,7 +47,7 @@ GameObject:
   - 23: {fileID: 2339044}
   - 114: {fileID: 11456384}
   - 114: {fileID: 11462098}
-  - 114: {fileID: 11462582}
+  - 114: {fileID: 11419894}
   m_Layer: 0
   m_Name: PlayerPressurePlate 2
   m_TagString: PushIn
@@ -84,11 +84,27 @@ GameObject:
   - 33: {fileID: 3311558}
   - 65: {fileID: 6532078}
   - 23: {fileID: 2394170}
-  - 114: {fileID: 11479724}
+  - 114: {fileID: 11404596}
   m_Layer: 0
   m_Name: DoorExit
   m_TagString: Exit
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &183568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 429766}
+  - 114: {fileID: 11442238}
+  m_Layer: 0
+  m_Name: MultiTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -105,7 +121,7 @@ GameObject:
   - 23: {fileID: 2340190}
   - 114: {fileID: 11498610}
   - 114: {fileID: 11486730}
-  - 114: {fileID: 11484420}
+  - 114: {fileID: 11474604}
   m_Layer: 0
   m_Name: PlayerPressurePlate
   m_TagString: PushIn
@@ -113,6 +129,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &429766
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183568}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.7, y: -11.726, z: 10.299992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 477500}
+  m_RootOrder: 2
 --- !u!4 &434932
 Transform:
   m_ObjectHideFlags: 1
@@ -124,7 +152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.17500025, z: 1}
   m_Children: []
   m_Father: {fileID: 477500}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &472132
 Transform:
   m_ObjectHideFlags: 1
@@ -148,7 +176,7 @@ Transform:
   m_LocalScale: {x: 2, y: 3, z: 0.1}
   m_Children: []
   m_Father: {fileID: 477500}
-  m_RootOrder: 2
+  m_RootOrder: 5
 --- !u!4 &477500
 Transform:
   m_ObjectHideFlags: 1
@@ -161,9 +189,10 @@ Transform:
   m_Children:
   - {fileID: 489600}
   - {fileID: 472132}
-  - {fileID: 475436}
-  - {fileID: 434932}
+  - {fileID: 429766}
   - {fileID: 487950}
+  - {fileID: 434932}
+  - {fileID: 475436}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &487950
@@ -177,7 +206,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.17500025, z: 1}
   m_Children: []
   m_Father: {fileID: 477500}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &489600
 Transform:
   m_ObjectHideFlags: 1
@@ -200,7 +229,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b7a7c96213c2ae541a1c4e49979b1238, type: 2}
+  - {fileID: 2100000, guid: cc0fd9f7d4ee3e34a8d7d547280ce86d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -278,7 +307,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8020e51517c719d43856c1df68ac6eb6, type: 2}
+  - {fileID: 2100000, guid: cc0fd9f7d4ee3e34a8d7d547280ce86d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -432,6 +461,52 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11404596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfc59789b7ae7145832069c1b42245a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfPuzzles: 0
+--- !u!114 &11419894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  effected: {fileID: 11442238}
+  type: 0
+  message: doorOpen
+  canRepeat: 1
+--- !u!114 &11442238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978f2acec2815a44bab9b2a80290fd22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effected: {fileID: 11404596}
+  message: doorOpen
+  triggers:
+  - {fileID: 11498610}
+  - {fileID: 11456384}
 --- !u!114 &11456384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -443,13 +518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activator:
+  activatorTag:
     value: Player
+  activator: {fileID: 0}
   effected: {fileID: 11462098}
   type: 0
   message: pushIn
-  distance: 1
-  canRepeat: 0
+  canRepeat: 1
 --- !u!114 &11462098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -461,30 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11462582
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 152806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fcdda7b9f89a4e4bac18157b609359f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11479724
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cba8a93733976a49b28aa851926fb6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numOfPlates: 2
---- !u!114 &11484420
+--- !u!114 &11474604
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -492,9 +544,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 189702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fcdda7b9f89a4e4bac18157b609359f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  effected: {fileID: 11442238}
+  type: 0
+  message: doorOpen
+  canRepeat: 1
 --- !u!114 &11486730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,13 +576,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activator:
+  activatorTag:
     value: Player
+  activator: {fileID: 0}
   effected: {fileID: 11486730}
   type: 0
   message: pushIn
-  distance: 1
-  canRepeat: 0
+  canRepeat: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

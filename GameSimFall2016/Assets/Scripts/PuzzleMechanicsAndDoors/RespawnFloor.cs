@@ -39,8 +39,8 @@ public class RespawnFloor : MonoBehaviour {
                     unit.transform.position = transform.position; //respawn to designated respawn block
                 }
             }
-
-            GetComponent<HealthPlayer>().modifyHealth(-10);
+            //TODO: change HealthPlayer to singleton
+            GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().modifyHealth(-10);
             //player.transform.position = transform.position;
         }
     }
