@@ -69,9 +69,9 @@ public class Scorpion : Enemy
    // A reference to the player.
    protected GameObject thePlayer;
 
-   //!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!~!
-   bool hasStatedWarning = false;
-   //!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
+   ////!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!~!
+   //bool hasStatedWarning = false;
+   ////!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
 
    //=============================================================================
    // Initialize things here
@@ -105,21 +105,21 @@ public class Scorpion : Enemy
    // Update is called once per frames
    void Update()
    {
-      //!~!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!
-      //!~!~!~ Testing DEATH state transitions ~!~!~!
-      //!~!~!~!~!~DELETE BEFORE FINAL BUILD~!~!~!~!~!
-      if (!hasStatedWarning)
-      {
-         hasStatedWarning = true;
-         Debug.LogWarning("A debug key is in use, if this is the final build, remove it!\n" +
-                          this.name + ".cs.  Be sure to also remove the variable \"hasStatedWarning\".  Click for more details.\n" +
-                          "Ctrl+F and search for \"TODO\" to find statements in question.");
-      }
-      if (Input.GetKeyDown(KeyCode.Delete))
-      {
-         this.myState = enState.DEAD;
-      }
-      //!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
+      ////!~!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!
+      ////!~!~!~ Testing DEATH state transitions ~!~!~!
+      ////!~!~!~!~!~DELETE BEFORE FINAL BUILD~!~!~!~!~!
+      //if (!hasStatedWarning)
+      //{
+      //   hasStatedWarning = true;
+      //   Debug.LogWarning("A debug key is in use, if this is the final build, remove it!\n" +
+      //                    this.name + ".cs.  Be sure to also remove the variable \"hasStatedWarning\".  Click for more details.\n" +
+      //                    "Ctrl+F and search for \"TODO\" to find statements in question.");
+      //}
+      //if (Input.GetKeyDown(KeyCode.Delete))
+      //{
+      //   this.myState = enState.DEAD;
+      //}
+      ////!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
 
       switch (this.myState)
       {
