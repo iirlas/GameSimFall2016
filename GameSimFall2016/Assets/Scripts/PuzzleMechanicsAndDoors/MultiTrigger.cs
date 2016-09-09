@@ -29,7 +29,7 @@ public class MultiTrigger : MonoBehaviour {
         }
         if (--triggerCount == (triggers.Length - 1))
         {
-            effected.SendMessage("OnEventEnd", trigger);
+            effected.SendMessage("OnEventEnd", trigger, SendMessageOptions.DontRequireReceiver);
         }
     }
 
