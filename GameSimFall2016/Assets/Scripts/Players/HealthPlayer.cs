@@ -25,6 +25,7 @@ public class HealthPlayer : MonoBehaviour
 {
 
    public Slider healthBar; //hook the healthbar to this slider spot
+   public Image healthBarFill;
    public int healthMax;
 
    public static int healthChange;
@@ -50,6 +51,8 @@ public class HealthPlayer : MonoBehaviour
       this.healthCurrent = healthMax;
       this.healthBar.maxValue = healthMax;
       this.healthBar.minValue = 0;
+
+      healthBarFill.color = Color.green;
 
       this.isPoisoned = false;
       this.poisonDamage = 0;
@@ -77,6 +80,7 @@ public class HealthPlayer : MonoBehaviour
             this.healthBar.value = this.healthCurrent;
             if (isPoisoned)
             {
+               healthBarFill.color = Color.yellow;
                applyPoisonDamage();
             }
          }
@@ -87,7 +91,7 @@ public class HealthPlayer : MonoBehaviour
    // Modify the health of the player, value can be positive or negative.
    // If the value is positive, the player gains health.
    // If the value is negative, the player loses health.
-      public void modifyHealth(int value)
+   public void modifyHealth(int value)
    {
       this.healthCurrent += value;
    }
@@ -97,6 +101,8 @@ public class HealthPlayer : MonoBehaviour
    // values for the HealthPlayer manager to deal poision damage.
    public void poisonPlayer(int poisonDamage, float interval, int instances)
    {
+      this.isPoisoned = true;
+
       this.poisonDamage = poisonDamage;
       this.poisonInterval = interval;
       this.poisonTicks = instances;
@@ -109,6 +115,12 @@ public class HealthPlayer : MonoBehaviour
       if (this.poisonTicks <= 0)
       {
          this.isPoisoned = false;
+
+         this.poisonInterval = 0;
+         this.poisonDamage = 0;
+         this.poisonTicks = 0;
+
+         healthBarFill.color = Color.green;
       }
       else
       {
@@ -116,11 +128,11 @@ public class HealthPlayer : MonoBehaviour
          {
             this.poisonTimer = 0.0f;
             modifyHealth(-(this.poisonDamage));
-            Debug.Log("Player has taken " + this.poisonDamage + " poison damage.");
+            this.poisonTicks--;
          }
          else
          {
-            this.poisonInterval += Time.deltaTime;
+            this.poisonTimer += Time.deltaTime;
          }
       }
    }
