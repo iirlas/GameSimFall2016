@@ -305,6 +305,7 @@ public class Scorpion : Enemy
             //do damage to player.
             Debug.Log(this.name + " has damaged the player.");
             thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
+
          }
 
          timeSinceLastAttack += Time.deltaTime;
