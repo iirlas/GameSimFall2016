@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
    //-----------------------------------------------------------------------------
    // A reference to the "PlayerHealth", which manages scripts such as PlayerManager,
    // and HealthPlayer.
+   [HideInInspector]
    public GameObject thePlayerHealth;
 
    //-----------------------------------------------------------------------------
