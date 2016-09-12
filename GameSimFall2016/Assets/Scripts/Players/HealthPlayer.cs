@@ -30,6 +30,7 @@ public class HealthPlayer : MonoBehaviour
 
     public int healthMax;
     public int healthCurrent;
+
     [HideInInspector]
     public Transform campfireRespawn; // location of where to respawn
 
@@ -87,17 +88,12 @@ public class HealthPlayer : MonoBehaviour
             {
                     unit.transform.position = campfireRespawn.transform.position;
             }
-
-
                 //Resets the health back to full, resets bar, updates health and resets poison and death status.
                 healthCurrent = healthMax;
                 this.healthBar.value = healthBar.maxValue;
                 updateHealthBar();
                 isDead = false;
                 isPoisoned = false;
-
-
-
          }
          else
          {
@@ -126,6 +122,15 @@ public class HealthPlayer : MonoBehaviour
    public void modifyHealth(int value)
    {
       this.healthCurrent += value;
+
+      if (this.healthCurrent > this.healthMax) 
+      { 
+         this.healthCurrent = this.healthMax; 
+      }
+      else if (this.healthCurrent < 0)
+      {
+         this.healthCurrent = 0;
+      }
    }
 
    //==========================================================================

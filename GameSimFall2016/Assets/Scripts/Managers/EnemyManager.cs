@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
    {
       if (killKeyEnabled)
       {
-         Debug.LogWarning("A debug key is in use, if this is the final build, remove it!  " + this.name + ".cs.");
+         Debug.LogWarning("NRC: A debug \"KILL\" key is in use, if this is the final build, remove it!  " + this.name + ".cs.");
       }
    }
 
@@ -28,13 +28,15 @@ public class EnemyManager : MonoBehaviour
 
    //==========================================================================
    // Kills all the enemies, what did ya think this did?
+   // In reality this sets all enemies to be in the dead state, and the enemies
+   // will move themselves to the "dead" zone.
    void killAllEnemies()
    {
       GameObject[] enArr = GameObject.FindGameObjectsWithTag("Enemy");
 
       for (int ix = 0; ix < enArr.Length; ix++)
       {
-         Destroy(enArr[ix]);
+         enArr[ix].GetComponent<Enemy>().setState(Enemy.enState.DEAD);
       }
    }
 }

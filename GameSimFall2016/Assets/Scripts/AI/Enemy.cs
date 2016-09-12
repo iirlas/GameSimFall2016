@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
       DEAD
    }
 
-   //-----------------------------------------------------------------------------=
+   //-----------------------------------------------------------------------------
    // A list of the common enemy types that can be found in the world. 
    public enum enType
    {
@@ -84,10 +84,13 @@ public class Enemy : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      if (isDefeated())
-      {
-         //destroy this gameobj
-      }
+   }
+
+   //=============================================================================
+   // set the state of this enemy
+   public enState setState(enState newState)
+   {
+      return this.myState = newState;
    }
 
    //=============================================================================
