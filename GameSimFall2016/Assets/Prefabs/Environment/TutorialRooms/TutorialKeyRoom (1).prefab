@@ -25,9 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 428442}
   - 33: {fileID: 3369624}
-  - 64: {fileID: 6436120}
   - 23: {fileID: 2314540}
-  - 114: {fileID: 11440278}
   m_Layer: 0
   m_Name: DeathFloor
   m_TagString: Untagged
@@ -196,7 +194,24 @@ GameObject:
   - 65: {fileID: 6502796}
   - 23: {fileID: 2319088}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: ColombRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &150106
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 475428}
+  - 65: {fileID: 6539310}
+  - 114: {fileID: 11450212}
+  m_Layer: 0
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +266,7 @@ GameObject:
   - 65: {fileID: 6560852}
   - 23: {fileID: 2395084}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ColombLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,9 +357,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112492}
   m_LocalRotation: {x: -0.00000035762787, y: 1, z: 0.00000015754804, w: 0.00000044203944}
-  m_LocalPosition: {x: -4.1, y: -12.97, z: -7.39}
+  m_LocalPosition: {x: -2.2, y: -13, z: -7.5}
   m_LocalScale: {x: 3.1312451, y: 1, z: 2.6045988}
-  m_Children: []
+  m_Children:
+  - {fileID: 475428}
   m_Father: {fileID: 471636}
   m_RootOrder: 9
 --- !u!4 &436614
@@ -468,6 +484,18 @@ Transform:
   - {fileID: 418580}
   - {fileID: 403008}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &475428
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 428442}
   m_RootOrder: 0
 --- !u!23 &2300110
 MeshRenderer:
@@ -931,18 +959,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125480}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &6436120
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112492}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!64 &6445590
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -1027,6 +1043,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.0000005, z: 0.2505378}
   m_Center: {x: 0, y: 0, z: 0.12526843}
+--- !u!65 &6539310
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150106}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.140783, y: 1, z: 10.092487}
+  m_Center: {x: -0.016132316, y: -0.000000032003392, z: -0.0050288723}
 --- !u!65 &6543420
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1144,24 +1172,6 @@ MonoBehaviour:
   type: 0
   message: doorOpen
   canRepeat: 0
---- !u!114 &11440278
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Player
-  activator: {fileID: 0}
-  effected: {fileID: 11477042}
-  type: 0
-  message: respawn
-  canRepeat: 1
 --- !u!114 &11444186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1180,6 +1190,24 @@ MonoBehaviour:
   type: 0
   message: grabKey
   canRepeat: 0
+--- !u!114 &11450212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  effected: {fileID: 11477042}
+  type: 0
+  message: respawn
+  canRepeat: 1
 --- !u!114 &11477042
 MonoBehaviour:
   m_ObjectHideFlags: 1
