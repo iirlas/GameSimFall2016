@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif 
+
 using System.Collections;
 
 [System.Serializable]
@@ -23,6 +27,7 @@ public struct Tag
     }
 }
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(Tag))]
 public class TagDrawer : PropertyDrawer
 {
@@ -40,3 +45,4 @@ public class TagDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 }
+#endif
