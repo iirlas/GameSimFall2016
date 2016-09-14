@@ -27,6 +27,7 @@ public class Campfire : MonoBehaviour
       if (other.gameObject.name.Equals("Kira"))
       {
          GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().campfireRespawn = this.respawnPoint;
+         Debug.Log("Respawn point changed");
       }
    }
 
