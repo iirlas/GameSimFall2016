@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LeverPlace : MonoBehaviour {
+public class LeverPlaceAndRotateWheel : MonoBehaviour {
 
     public Item lever;
     
