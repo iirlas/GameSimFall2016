@@ -63,12 +63,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="GameSimFall2016.CSharp.Plugins.csproj">
+      <Project>{AD8BE9ED-A14A-B45C-DE9D-5178D4ED8858}</Project>
+      <Name>GameSimFall2016.CSharp.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scenes\Test\RabbitTemple\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\AI\Ant.cs" />
     <Compile Include="Assets\Scripts\AI\Enemy.cs" />
+    <Compile Include="Assets\Scripts\AI\Scorpion.cs" />
     <Compile Include="Assets\Scripts\Camera\FixedCamera.cs" />
     <Compile Include="Assets\Scripts\Camera\ThirdPersonCamera.cs" />
+    <Compile Include="Assets\Scripts\Campfire.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
+    <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Players\Bird.cs" />
@@ -80,12 +89,14 @@
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\BasicTrigger.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\Door.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\KeyOpen.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\LeverPlaceAndRotateWheel.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\MultiTrigger.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PillarMatch.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PillarRotate.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PressurePlate.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\RespawnFloor.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\Slant.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\TransportTo.cs" />
     <Compile Include="Assets\Scripts\Sounds\SnakeRattleLoop.cs" />
     <Compile Include="Assets\Scripts\Sounds\SoundArray.cs" />
     <Compile Include="Assets\Scripts\Sounds\SoundDelay.cs" />
@@ -108,8 +119,13 @@
     <None Include="Assets\Audio\Dialogue\placeHolder.txt" />
     <None Include="Assets\Audio\Music\placeHolder.txt" />
     <None Include="Assets\Materials\Environment\PlaceHolder.txt" />
+    <None Include="Assets\Models\Environment\JaguarTemple\PlaceHolder.txt" />
     <None Include="Assets\PlaceHolder.txt" />
+    <None Include="Assets\Prefabs\Environment\JaguarRooms\PlaceHolder.txt" />
     <None Include="Assets\Scenes\Main\PlaceHolder.txt" />
+    <None Include="Assets\Scenes\Test\JaguarTemple\CatMirrorPuzzleDescription.txt" />
+    <None Include="Assets\Scenes\Test\JaguarTemple\CatMovableWallsDescription.txt" />
+    <None Include="Assets\Scenes\Test\JaguarTemple\KiraMayanCalendarDescription.txt" />
     <None Include="Assets\Scenes\Test\MiscScenes\PlaceHolder.txt" />
     <None Include="Assets\Scenes\Test\RoomPool\CatMirrorPuzzleDescription.txt" />
     <None Include="Assets\Scenes\Test\RoomPool\placeholder.txt" />
@@ -118,6 +134,11 @@
     <None Include="Assets\Scripts\AI\placeHolder.txt" />
     <None Include="Assets\Scripts\PuzzleMechanicsAndDoors\placeHolder.txt" />
     <None Include="Assets\Scripts\Sounds\placeHolder.txt" />
+    <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
+    <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
+    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
+    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
+    <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
     <None Include="Assets\Textures\Characters\PlaceHolder.txt" />
     <None Include="Assets\Textures\Environment\PlaceHolder.txt" />
     <None Include="Assets\Textures\Miscellaneous\PlaceHolder.txt" />
