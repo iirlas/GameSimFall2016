@@ -282,13 +282,12 @@ abstract public class Player : MonoBehaviour
     protected bool isGrounded(out RaycastHit hit, int steps = 10)
     {
         float distance = collider.bounds.size.y * 0.75f;
-        float width = collider.bounds.size.x;
-        float depth = collider.bounds.size.z;
-
+        Vector3 halfExtents = new Vector3(collider.bounds.size.x, 0.1f, collider.bounds.size.z);
+        
         hit = new RaycastHit();
 
         // Are we level with the ground?
-        if (Physics.BoxCast(transform.position, collider.bounds.extents / 2, -transform.up, out hit))
+        if (Physics.BoxCast(transform.position, halfExtents, -transform.up, out hit, Quaternion.identity, distance))
         {
            Debug.DrawLine(transform.position, hit.point);
            return true;
