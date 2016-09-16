@@ -284,25 +284,14 @@ abstract public class Player : MonoBehaviour
         float distance = collider.bounds.size.y * 0.75f;
         float width = collider.bounds.size.x;
         float depth = collider.bounds.size.z;
-        Vector3 origin = collider.bounds.min;
 
         hit = new RaycastHit();
 
         // Are we level with the ground?
-        for (int x = 0; x <= steps; x++)
+        if (Physics.BoxCast(transform.position, collider.bounds.extents / 2, -transform.up, out hit))
         {
-            for (int z = 0; z <= steps; z++)
-            {
-                origin.x = collider.bounds.min.x + ((x / (float)steps) * width);
-                origin.y = transform.position.y;
-                origin.z = collider.bounds.min.z + ((z / (float)steps) * depth);
-                Debug.DrawRay(origin, (-transform.up) * distance);
-                if (Physics.Raycast(origin, (-transform.up), out hit, distance))
-                {
-                    Debug.DrawLine(origin, hit.point);
-                    return true;
-                }
-            }
+           Debug.DrawLine(transform.position, hit.point);
+           return true;
         }
         return false;
     }
