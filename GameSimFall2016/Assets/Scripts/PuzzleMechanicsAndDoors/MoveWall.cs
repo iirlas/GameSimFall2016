@@ -24,15 +24,12 @@ public class MoveWall : MonoBehaviour {
         if (beginMove)
             if (Input.GetButtonDown("Action"))
             {
-                Debug.Log("movingWall");
                 //wheel.transform.Rotate(0, 0, 360 / sides);
 
                 foreach (GameObject wall in walls)
                 {
                     myanim = wall.GetComponent<Animator>();
                     myanim.SetBool("wheelTurned", true);
-
-
                 }
             }
     }
@@ -41,11 +38,7 @@ public class MoveWall : MonoBehaviour {
     {
         if (trigger.message == "turn")
         {
-            Debug.Log("turn");
-            beginMove = true;
-            
+            beginMove = true;       
         }
     }
-
-
 }
