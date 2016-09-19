@@ -30,6 +30,8 @@ public class JaguarBoss : Enemy
    private float fireTimer;
    private float swipreTimer;
 
+   private GameObject[] waterfallArr;
+
    private GameObject thePlayer;
    private Random rand;
 
@@ -44,11 +46,14 @@ public class JaguarBoss : Enemy
       this.myType = enType.JAGUAR;
       this.myState = enState.IDLE;
 
-
-      thePlayer = GameObject.Find("Kira");
+      this.waterfallArr = GameObject.FindGameObjectsWithTag("Waterfall");
+      
+      this.thePlayer = GameObject.Find("Kira");
+      this.thePlayerHealth = GameObject.FindWithTag("HealthManager");
+      
       if (thePlayerHealth == null)
       {
-         Debug.LogError("The player could not be found for " + this.name + ".  " + this.name + " requires there/n" +
+         Debug.LogError("The HealthManager could not be found for " + this.name + ".  " + this.name + " requires there\n" +
                         "to be a player in the scene in order to function.");
       }
 
@@ -65,17 +70,26 @@ public class JaguarBoss : Enemy
       {
          //play boss cutscene
       }
+
+      // attack logic
       if (hasAttacked)
       {
          chooseNewAttack();
       }
+      else // execute selected attack
+      {
+      }
 
-      
+   }
+
+   public int currentHealth()
+   {
+      return this.myHealth;
    }
 
    private void chooseNewAttack()
    {
-      this.currentAttack = ((jagAttack)((int)Random.Range(0f, 2f)));
+      this.currentAttack = ((jagAttack)((int)Random.Range(0f, 2.99f)));
    }
 
    //==========================================================================

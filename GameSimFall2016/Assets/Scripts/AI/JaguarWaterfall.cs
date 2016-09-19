@@ -3,9 +3,12 @@ using System.Collections;
 
 public class JaguarWaterfall : MonoBehaviour {
 
-   private bool isJaguarInWaterfall;
+   public  bool isJaguarInWaterfall;
    private bool isWallActivated;
    private bool isWaterFlowing;
+   private bool useWaterTimer;
+
+   private float waterTimer;
 
    public GameObject myWall;
 
@@ -23,8 +26,8 @@ public class JaguarWaterfall : MonoBehaviour {
       this.isWallActivated = false;
       this.isWaterFlowing = false;
 
-      myEmitter = GetComponent<ParticleSystem>();
-      myEmitter.Stop(); 
+      this.myEmitter = GetComponent<ParticleSystem>();
+      this.myEmitter.Stop(); 
 
       if (this.myWall == null)
       {
@@ -38,15 +41,26 @@ public class JaguarWaterfall : MonoBehaviour {
                                               this.myWall.transform.position.z);
       }
 
-      if (bossJaguar == null)
+      if (this.bossJaguar == null)
       {
-         bossJaguar = GameObject.FindGameObjectWithTag("Boss");
+         this.bossJaguar = GameObject.FindGameObjectWithTag("Boss");
       }
 	}
 	
    //==========================================================================
 	// Update is called once per frame
 	void Update () {
+      if (this.useWaterTimer)
+      {
+         this.waterTimer += Time.deltaTime;
+
+         if (this.waterTimer >= 5.0f)
+         {
+            this.useWaterTimer = false;
+            this.waterTimer = 0.0f;
+         }
+      }
+
       if (this.isWallActivated)
       {
          this.isWaterFlowing = true;  
@@ -75,8 +89,9 @@ public class JaguarWaterfall : MonoBehaviour {
          
          if (this.isJaguarInWaterfall)
          {
-            bossJaguar.GetComponent<JaguarBoss>().damageJaguarBoss();
-            this.isWaterFlowing = false;
+            this.bossJaguar.GetComponent<JaguarBoss>().damageJaguarBoss();
+            Debug.Log(bossJaguar.GetComponent<JaguarBoss>().currentHealth());
+            this.useWaterTimer = true;
          }
       }
       else
@@ -94,14 +109,24 @@ public class JaguarWaterfall : MonoBehaviour {
    // Move the wall object out of the way, and activate the flow of water.
    public void activateWaterFlow()
    {
-      this.isWaterFlowing = true;
+      Debug.Log("Activating Water Flow");
+      this.isWallActivated = true;
+   }
+
+   //==========================================================================
+   // Move the wall object back into place, and deactivate the flow of water.
+   public void deactivateWaterFlow()
+   {
+      Debug.Log("Deactivating Water Flow");
+      this.isWallActivated = false;
    }
 
    //==========================================================================
    void OnTriggerEnter(Collider other)
    {
-      if (other.name.Equals("JaguarBoss"))
+      if (other.name.Equals("JaguarBoss") || other.tag.Equals("Boss"))
       {
+         Debug.Log("Jaguar entered waterfall: " + this.gameObject.name);
          this.isJaguarInWaterfall = true;
       }
    }
@@ -109,8 +134,9 @@ public class JaguarWaterfall : MonoBehaviour {
    //==========================================================================
    void OnTriggerExit(Collider other)
    {
-      if (other.name.Equals("JaguarBoss"))
+      if (other.name.Equals("JaguarBoss") || other.tag.Equals("Boss"))
       {
+         Debug.Log("Jaguar left waterfall: " + this.gameObject.name);
          this.isJaguarInWaterfall = false;
       }
    }
