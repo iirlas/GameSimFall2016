@@ -369,6 +369,8 @@ GameObject:
   - 114: {fileID: 11439066}
   - 114: {fileID: 11432952}
   - 114: {fileID: 11410142}
+  - 114: {fileID: 11417716}
+  - 114: {fileID: 11445376}
   m_Layer: 0
   m_Name: PlayerPressurePlate
   m_TagString: PushIn
@@ -1766,6 +1768,24 @@ MonoBehaviour:
   walls:
   - {fileID: 174256}
   - {fileID: 169508}
+--- !u!114 &11417716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  effected: {fileID: 11445376}
+  type: 0
+  message: openWalls
+  canRepeat: 0
 --- !u!114 &11419480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1828,6 +1848,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11445376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9e951502b9d4243948bb18c4acc613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walls:
+  - {fileID: 174256}
+  - {fileID: 169508}
 --- !u!114 &11451718
 MonoBehaviour:
   m_ObjectHideFlags: 1

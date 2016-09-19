@@ -85,42 +85,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &293419753 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 177282, guid: 26dd580f46406e049b19554a92567563, type: 2}
-  m_PrefabInternal: {fileID: 687631068}
---- !u!114 &293419761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 293419753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Player
-  activator: {fileID: 0}
-  effected: {fileID: 293419762}
-  type: 0
-  message: openWalls
-  canRepeat: 0
---- !u!114 &293419762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 293419753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9e951502b9d4243948bb18c4acc613, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walls:
-  - {fileID: 1900848051}
-  - {fileID: 416559124}
 --- !u!1 &377398055
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,10 +146,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1 &416559124 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 169508, guid: 26dd580f46406e049b19554a92567563, type: 2}
-  m_PrefabInternal: {fileID: 687631068}
 --- !u!1001 &687631068
 Prefab:
   m_ObjectHideFlags: 0
@@ -385,7 +345,3 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1900848051 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 174256, guid: 26dd580f46406e049b19554a92567563, type: 2}
-  m_PrefabInternal: {fileID: 687631068}
