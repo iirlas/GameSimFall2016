@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 418048}
   - 114: {fileID: 11425380}
   - 114: {fileID: 11407544}
+  - 114: {fileID: 11411658}
   m_Layer: 0
   m_Name: Director
   m_TagString: HealthManager
@@ -41,6 +42,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killKeyEnabled: 1
+--- !u!114 &11411658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d0abae73e2a9440bdcb5f0f8a2c2c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
 --- !u!114 &11425380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,6 +70,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   healthMax: 100
   healthCurrent: 100
+  campfireRespawn: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
