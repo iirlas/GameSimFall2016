@@ -4,7 +4,6 @@ using System.Collections;
 public class MoveWall : MonoBehaviour {
 
     public GameObject[] walls;
-    private bool moveOut;
     private bool beginMove;
     private Animator myanim;
 
@@ -12,7 +11,6 @@ public class MoveWall : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
-        moveOut = true;
         beginMove = false;
 
 
