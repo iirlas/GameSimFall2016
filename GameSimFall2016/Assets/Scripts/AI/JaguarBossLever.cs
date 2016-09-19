@@ -3,11 +3,11 @@ using System.Collections;
 
 public class JaguarBossLever : MonoBehaviour {
 
-   private JaguarBoss jaguarBoss;
+   //private JaguarBoss jaguarBoss;
 
 	// Use this for initialization
 	void Start () {
-      jaguarBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<JaguarBoss>();
+      //jaguarBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<JaguarBoss>();
 	}
 	
 	// Update is called once per frame

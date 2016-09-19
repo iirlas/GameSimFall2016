@@ -13,42 +13,42 @@ public class JaguarBoss : Enemy
 
    public int maxHits = 3;
    public int swipeAttackDamage = 10;
-   public int fireDamage = 25;
-   public int pounceDamage = 15;
-   public int contactDamage = 10;
+   //public int fireDamage = 25;
+   //public int pounceDamage = 15;
+   //public int contactDamage = 10;
 
    private jagAttack currentAttack;
 
    //--------------------------------------------------------------------------
    // Jaguar Boss States
-   private bool cutsceneHasPlayed;
-   private bool hasAttacked;
-   private bool isInCenterOfRoom;
+   //private bool cutsceneHasPlayed;
+   //private bool hasAttacked;
+   //private bool isInCenterOfRoom;
 
-   private float trackingTimer;
-   private float chargeTimer;
-   private float fireTimer;
-   private float swipreTimer;
+   //private float trackingTimer;
+   //private float chargeTimer;
+   //private float fireTimer;
+   //private float swipreTimer;
 
-   private GameObject[] waterfallArr;
+   //private GameObject[] waterfallArr;
 
-   private GameObject thePlayer;
-   private Random rand;
+   //private GameObject thePlayer;
+   //private Random rand;
 
    //==========================================================================
    // Use this for initialization
    void Start()
    {
-      this.rand = new Random();
+      //this.rand = new Random();
       this.myHealth = this.maxHits;
       this.myDamage = swipeAttackDamage;
 
       this.myType = enType.JAGUAR;
       this.myState = enState.IDLE;
 
-      this.waterfallArr = GameObject.FindGameObjectsWithTag("Waterfall");
+      //this.waterfallArr = GameObject.FindGameObjectsWithTag("Waterfall");
       
-      this.thePlayer = GameObject.Find("Kira");
+      //this.thePlayer = GameObject.Find("Kira");
       this.thePlayerHealth = GameObject.FindWithTag("HealthManager");
       
       if (thePlayerHealth == null)
@@ -65,6 +65,7 @@ public class JaguarBoss : Enemy
    // Update is called once per frame
    void Update()
    {
+      /*
       //do what jaguars do
       if (!cutsceneHasPlayed)
       {
@@ -80,6 +81,8 @@ public class JaguarBoss : Enemy
       {
       }
 
+      */
+
    }
 
    public int currentHealth()
@@ -89,7 +92,7 @@ public class JaguarBoss : Enemy
 
    private void chooseNewAttack()
    {
-      this.currentAttack = ((jagAttack)((int)Random.Range(0f, 2.99f)));
+      //this.currentAttack = ((jagAttack)((int)Random.Range(0f, 2.99f)));
    }
 
    //==========================================================================
