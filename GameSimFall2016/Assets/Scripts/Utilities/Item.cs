@@ -19,23 +19,21 @@ public class Item : MonoBehaviour {
         }
     }
 
-    public Collider[] targets;
-
     public void OnCollisionEnter (Collision collision)
     {
-        if (collision.transform.tag == "Player" && targets.Contains(collision.collider))
+        if (collision.transform.tag == "Player")
         {
-            PlayerManager.getInstance().items.Add(transform.name, this);
-            gameObject.SetActive(false);
+            Inventory.getInstance().Add(tag);
+            Destroy(gameObject);
         }
     }
 
     public void OnTriggerEnter (Collider other)
     {
-        if (other.transform.tag == "Player" && targets.Contains(other))
+        if (other.transform.tag == "Player")
         {
-            PlayerManager.getInstance().items.Add(transform.name, this);
-            gameObject.SetActive(false);
+            Inventory.getInstance().Remove(tag);
+            Destroy(gameObject);
         }
     }
 }

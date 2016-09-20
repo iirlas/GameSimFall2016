@@ -7,13 +7,11 @@ public class PlayerManager : Singleton<PlayerManager> {
     new public Camera camera;
     public Player currentPlayer { get; private set; }
     public Player[] players { get; private set; }
-    public Dictionary<string, Item> items;
 
     // Use this for initialization
     override protected void Init ()
     {
         players = new Player[4];
-        items = new Dictionary<string, Item>();
 
         players[0] = GameObject.FindObjectOfType<Girl>();
         players[1] = GameObject.FindObjectOfType<Bird>();
@@ -32,11 +30,6 @@ public class PlayerManager : Singleton<PlayerManager> {
 
 
         StartCoroutine(activeSet());
-    }
-
-    // Update is called once per frame
-    void Update ()
-    {
     }
 
     IEnumerator activeSet ()

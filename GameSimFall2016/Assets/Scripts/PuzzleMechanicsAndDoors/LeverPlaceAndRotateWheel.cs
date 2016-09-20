@@ -3,7 +3,8 @@ using System.Collections;
 
 public class LeverPlaceAndRotateWheel : MonoBehaviour {
 
-    public Item lever;
+    public GameObject lever;
+    public Tag leverTag;
     
     public GameObject wheel;   //wheel to turn
 
@@ -34,9 +35,6 @@ public class LeverPlaceAndRotateWheel : MonoBehaviour {
                 wheel.transform.Rotate(0, 0, 360 / sides);
             }
         }
-
-
-
     }
 
     void OnEvent(BasicTrigger trigger)
@@ -45,17 +43,16 @@ public class LeverPlaceAndRotateWheel : MonoBehaviour {
         {
             if (!leverDropped)
             {
-                if (PlayerManager.getInstance().items.ContainsValue(lever))
+                if (Inventory.getInstance().Has(leverTag))
                 {
+                    lever = Instantiate(lever) as GameObject;
                     lever.transform.position = gameObject.transform.position;
                     Vector3 vec = lever.transform.position;
                     vec.y = lever.transform.position.y + 1.5f;
                     lever.transform.forward = transform.up;
                     lever.transform.position = vec;
-                    lever.gameObject.SetActive(true);
                     Debug.Log("leverDropped");
-                    PlayerManager.getInstance().items.Remove(lever.name);
-                    Destroy(lever.GetComponent<Item>());
+                    Inventory.getInstance().Remove(leverTag);
                     turnWheel = true;
                     leverDropped = true;
 
