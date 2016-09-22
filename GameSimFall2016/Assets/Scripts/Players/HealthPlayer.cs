@@ -24,15 +24,15 @@ using UnityEngine.UI;
 public class HealthPlayer : MonoBehaviour
 {
 
-    public Slider healthBar; //hook the healthbar to this slider spot
-    public Image healthBarFill;
-    public Text healthText;
+   public Slider healthBar; //hook the healthbar to this slider spot
+   public Image healthBarFill;
+   public Text healthText;
 
-    public int healthMax;
-    public int healthCurrent;
+   public int healthMax;
+   public int healthCurrent;
 
-    [HideInInspector]
-    public Transform campfireRespawn; // location of where to respawn
+   [HideInInspector]
+   public Transform campfireRespawn; // location of where to respawn
 
    public static int healthChange;
 
@@ -45,11 +45,11 @@ public class HealthPlayer : MonoBehaviour
    private float poisonTimer;        // the time elapsed since the player last took poison damage.
    private GameObject[] playerUnits; //to collect the player units together
 
-    //==========================================================================
-    // initialises health change, healthCurrent
-    // sets maxValue of slider to healthMax
-    // sets minValue to 0
-    void Start()
+   //==========================================================================
+   // initialises health change, healthCurrent
+   // sets maxValue of slider to healthMax
+   // sets minValue to 0
+   void Start()
    {
 
       //this.healthChange = 0;
@@ -67,7 +67,7 @@ public class HealthPlayer : MonoBehaviour
 
       playerUnits = GameObject.FindGameObjectsWithTag("Player"); //populate array
 
-    }
+   }
 
    //=================================s=========================================
    // This updates the health and checks if she should be dead.
@@ -86,14 +86,14 @@ public class HealthPlayer : MonoBehaviour
             //move all the player objects into the camfire room
             foreach (GameObject unit in playerUnits)
             {
-                    unit.transform.position = campfireRespawn.transform.position;
+               unit.transform.position = campfireRespawn.transform.position;
             }
-                //Resets the health back to full, resets bar, updates health and resets poison and death status.
-                healthCurrent = healthMax;
-                this.healthBar.value = healthBar.maxValue;
-                updateHealthBar();
-                isDead = false;
-                isPoisoned = false;
+            //Resets the health back to full, resets bar, updates health and resets poison and death status.
+            healthCurrent = healthMax;
+            this.healthBar.value = healthBar.maxValue;
+            updateHealthBar();
+            isDead = false;
+            isPoisoned = false;
          }
          else
          {
@@ -123,9 +123,9 @@ public class HealthPlayer : MonoBehaviour
    {
       this.healthCurrent += value;
 
-      if (this.healthCurrent > this.healthMax) 
-      { 
-         this.healthCurrent = this.healthMax; 
+      if (this.healthCurrent > this.healthMax)
+      {
+         this.healthCurrent = this.healthMax;
       }
       else if (this.healthCurrent < 0)
       {

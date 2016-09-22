@@ -13,41 +13,35 @@ public class JaguarBoss : Enemy
 
    public int maxHits = 3;
    public int swipeAttackDamage = 10;
-   //public int fireDamage = 25;
-   //public int pounceDamage = 15;
-   //public int contactDamage = 10;
+   public int fireDamage = 25;
+   public int pounceDamage = 15;
+   public int contactDamage = 10;
 
    private jagAttack currentAttack;
 
    //--------------------------------------------------------------------------
    // Jaguar Boss States
-   //private bool cutsceneHasPlayed;
-   //private bool hasAttacked;
-   //private bool isInCenterOfRoom;
+   private bool hasAttacked;
+   private bool isInCenterOfRoom;
+   private bool isStunned;
 
-   //private float trackingTimer;
-   //private float chargeTimer;
-   //private float fireTimer;
-   //private float swipreTimer;
-
-   //private GameObject[] waterfallArr;
+   private float trackingTimer;
+   private float attackLengthTimer;
+   private float attackingTimer;
+   private float stunTimer;
 
    //private GameObject thePlayer;
-   //private Random rand;
 
    //==========================================================================
    // Use this for initialization
    void Start()
    {
-      //this.rand = new Random();
       this.myHealth = this.maxHits;
       this.myDamage = swipeAttackDamage;
 
       this.myType = enType.JAGUAR;
       this.myState = enState.IDLE;
 
-      //this.waterfallArr = GameObject.FindGameObjectsWithTag("Waterfall");
-      
       //this.thePlayer = GameObject.Find("Kira");
       this.thePlayerHealth = GameObject.FindWithTag("HealthManager");
       
@@ -65,34 +59,54 @@ public class JaguarBoss : Enemy
    // Update is called once per frame
    void Update()
    {
-      /*
-      //do what jaguars do
-      if (!cutsceneHasPlayed)
+      //attack logic
+      if (isStunned)
       {
-         //play boss cutscene
+         stunTimer += Time.deltaTime;
+         if (stunTimer >= 5.0f)
+            isStunned = false;
       }
-
-      // attack logic
-      if (hasAttacked)
+      else if (hasAttacked)
       {
+         hasAttacked = false;
          chooseNewAttack();
       }
-      else // execute selected attack
+
+      if (attackLengthTimer >= this.attackingTimer)
       {
+         this.attackingTimer = 0.0f;
+         hasAttacked = true;
       }
-
-      */
-
    }
 
+   //==========================================================================
+   // Returns the current health of the jaguar in integer form
    public int currentHealth()
    {
       return this.myHealth;
    }
 
+   //==========================================================================
+   // Randomly select a new attack type from the designated attacks
    private void chooseNewAttack()
    {
-      //this.currentAttack = ((jagAttack)((int)Random.Range(0f, 2.99f)));
+      this.currentAttack = ((jagAttack)((int)Random.Range(0f, 2.99f)));
+      switch (this.currentAttack)
+      {
+         case jagAttack.FIRE:
+            this.attackLengthTimer = 10.0f;
+            break;
+         case jagAttack.POUNCE:
+            this.attackLengthTimer = 2.0f;
+            break;
+         case jagAttack.SWIPE:
+            this.attackLengthTimer = 1.0f;
+            break;
+         default:
+            this.attackLengthTimer = 0.0f;
+            Debug.LogError("");
+            break;
+      }
    }
 
    //==========================================================================

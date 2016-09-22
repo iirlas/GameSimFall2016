@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11407544}
   - 114: {fileID: 11411658}
   - 114: {fileID: 11410798}
+  - 114: {fileID: 11432206}
   m_Layer: 0
   m_Name: Director
   m_TagString: HealthManager
@@ -85,6 +86,24 @@ MonoBehaviour:
   healthMax: 100
   healthCurrent: 100
   campfireRespawn: {fileID: 0}
+--- !u!114 &11432206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb16b19cce8e9cd41b7677a7ecccd83f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fearBar: {fileID: 0}
+  fearBarFill: {fileID: 0}
+  fearText: {fileID: 0}
+  fearMax: 100
+  fearMin: 0
+  fearCurrent: 100
+  playerHealth: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
