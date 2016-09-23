@@ -15,7 +15,7 @@ public class FearManager : MonoBehaviour
 
    public HealthPlayer playerHealth;
 
-   private string prefix = "  ";
+   private string prefix = " ";
 
    //===========================================================================
    // Use this for initialization
@@ -23,6 +23,7 @@ public class FearManager : MonoBehaviour
    {
       this.fearCurrent = this.fearMin;
       this.fearBarFill.color = Color.white;
+      playerHealth = this.GetComponent<HealthPlayer>();
    }
 
    //==========================================================================
@@ -30,11 +31,19 @@ public class FearManager : MonoBehaviour
    void Update()
    {
       updateFearBar();
+      if (Input.GetKeyDown(KeyCode.Period))
+      {
+         increaseStress();
+      }
+      else if (Input.GetKeyDown(KeyCode.Comma))
+      {
+         decreaseStress();
+      }
    }
 
    void FixedUpdate()
    {
-      if (this.fearCurrent >= (this.fearMax - 10.0f))
+      if (this.fearCurrent >= 100.0f)
       {
          damagePlayer();
       }
@@ -45,7 +54,14 @@ public class FearManager : MonoBehaviour
    void updateFearBar()
    {
       this.fearBar.value = this.fearCurrent;
-      this.fearText.text = (prefix + ((int)this.fearCurrent).ToString());
+      if (this.fearBar.value < 100)
+      {
+         this.fearText.text = (prefix + ((int)this.fearCurrent).ToString());
+      }
+      else
+      {
+         this.fearText.text = (prefix + "Frightened");
+      }
    }
 
    //==========================================================================
@@ -57,7 +73,7 @@ public class FearManager : MonoBehaviour
 
    //==========================================================================
    // Adds fear to the player's fear bar
-   public void addFear(float value)
+   public void modifyFear(float value)
    {
       this.fearCurrent += value;
    }
@@ -66,6 +82,16 @@ public class FearManager : MonoBehaviour
    // 
    private void trickleDownFear()
    {
-      this.fearCurrent -= 0.1f;
+      this.fearCurrent -= 1.0f;
+   }
+
+   private void increaseStress()
+   {
+      this.fearCurrent += 1.0f;
+   }
+
+   private void decreaseStress()
+   {
+      this.fearCurrent -= 1.0f;
    }
 }

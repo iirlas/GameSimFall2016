@@ -3,7 +3,6 @@ using System.Collections;
 
 public class JaguarBoss : Enemy
 {
-
    public enum jagAttack
    {
       SWIPE = 0,
@@ -24,6 +23,7 @@ public class JaguarBoss : Enemy
    private bool hasAttacked;
    private bool isInCenterOfRoom;
    private bool isStunned;
+   private bool isAwake;
 
    private float trackingTimer;
    private float attackLengthTimer;
@@ -36,6 +36,7 @@ public class JaguarBoss : Enemy
    // Use this for initialization
    void Start()
    {
+      this.isAwake = false;
       this.myHealth = this.maxHits;
       this.myDamage = swipeAttackDamage;
 
@@ -59,7 +60,13 @@ public class JaguarBoss : Enemy
    // Update is called once per frame
    void Update()
    {
-      //attack logic
+      // if the player hasn't triggered the boss, do nothing
+      if (!isAwake)
+      {
+         return;
+      }
+
+      // if the boss has been trigger, do the things
       if (isStunned)
       {
          stunTimer += Time.deltaTime;
@@ -76,6 +83,11 @@ public class JaguarBoss : Enemy
       {
          this.attackingTimer = 0.0f;
          hasAttacked = true;
+      }
+
+      if (this.thePlayerHealth.GetComponent<HealthPlayer>().healthCurrent <= 0)
+      {
+         this.resetBoss();
       }
    }
 
@@ -116,5 +128,25 @@ public class JaguarBoss : Enemy
       this.myHealth--;
    }
 
+   //==========================================================================
+   // 
+   public void triggerBoss()
+   {
+      this.isAwake = true;
+   }
 
+   //==========================================================================
+   // If they player dies, we need to reset the boss state
+   public void resetBoss()
+   {
+      this.isAwake = false;
+      this.myHealth = this.maxHits;
+      this.myDamage = swipeAttackDamage;
+
+      this.myType = enType.JAGUAR;
+      this.myState = enState.IDLE;
+
+      this.mySpeed = 10.0f;
+      this.myRotationSpeed = 2.0f;
+   }
 }
