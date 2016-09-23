@@ -12,6 +12,9 @@ GameObject:
   - 199: {fileID: 19939374}
   - 198: {fileID: 19882810}
   - 135: {fileID: 13572152}
+  - 114: {fileID: 11401580}
+  - 114: {fileID: 11425120}
+  - 114: {fileID: 11430966}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -59,6 +62,36 @@ Transform:
   - {fileID: 449556}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11401580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c85c34974359f040ad3d406ebc0fca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRoomEnd: 0
+--- !u!114 &11425120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  effected: {fileID: 11401580}
+  type: 0
+  message: healFear
+  canRepeat: 1
 --- !u!114 &11430264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,6 +103,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686d47b64d235e6419ccf8a9f42750f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11430966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  effected: {fileID: 0}
+  type: 0
+  message: healFear
+  canRepeat: 1
 --- !u!135 &13572152
 SphereCollider:
   m_ObjectHideFlags: 1
