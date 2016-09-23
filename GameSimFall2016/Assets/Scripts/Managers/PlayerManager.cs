@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerManager : Singleton<PlayerManager> {
 
@@ -11,95 +12,53 @@ public class PlayerManager : Singleton<PlayerManager> {
     // Use this for initialization
     override protected void Init ()
     {
-        players = new Player[4];
-
-        players[0] = GameObject.FindObjectOfType<Girl>();
-        players[1] = GameObject.FindObjectOfType<Bird>();
-        players[2] = GameObject.FindObjectOfType<Rabbit>();
-        players[3] = GameObject.FindObjectOfType<Cat>();
-
-        foreach (Player player in players)
+        players = GameObject.FindObjectsOfType<Player>();
+        currentPlayer = players.First(player => { return (player as Girl) != null; });
+        if ( currentPlayer == null )
         {
-            if( player != null )
-            {
-                currentPlayer = player;
-                break;
-            }
+            currentPlayer = players.First(player => { return player != null; });
         }
-
-
-
-        StartCoroutine(activeSet());
     }
 
-    IEnumerator activeSet ()
+
+
+    void Update ()
     {
-        while (true)
+        if (Input.GetButtonDown("Toggle"))
         {
-            float h = Input.GetAxis("Switch_Horizontal");
-            float v = Input.GetAxis("Switch_Vertical");
+            int index = System.Array.IndexOf<Player>(players, currentPlayer);
+            index = (++index) % players.Length;
+            currentPlayer = players[index];
+        }
 
-            int switchIndex = (h > 0 ? 1 :
-                              (h < 0 ? 3 :
-                              (v > 0 ? 0 :
-                              (v < 0 ? 2 : -1))));
-
-
-            if (switchIndex != -1 && players[switchIndex])
+        if ((currentPlayer as Girl) != null)
+        {
+            for (int index = 0; index < players.Length; index++)
             {
-                currentPlayer = players[switchIndex];
-                yield return null;
-            }
-
-            if (Input.GetButtonDown("Toggle"))
-            {
-                for (int i = 0, next = 0; i < players.Length; i++)
+                Player player = players[index];
+                if (player != null && currentPlayer != player &&
+                    Vector3.Distance(player.transform.position, currentPlayer.transform.position) < 5.0f)
                 {
-                    if (currentPlayer == players[i])
+                    Player target = null;
+                    for (int j = index, breakCount = 0; target == null && breakCount < players.Length;
+                            j = (--j >= 0 ? j : j + players.Length), breakCount++)
                     {
-                        next = i;
-                        do
+                        if (players[j] != null && players[j] != player &&
+                            Vector3.Distance(players[j].transform.position, currentPlayer.transform.position) < 5.0f)
                         {
-                            next = (next + 1) % players.Length;
-                        } while (!players[next] && next != i);
+                            target = players[j];
+                        }
+                    }
 
-                        currentPlayer = players[next];
-                        yield return null;
-                        break;
+                    if (target != null)
+                    {
+                        player.smoothRotateTowards(target.transform.eulerAngles, Time.deltaTime * player.rotationSmoothSpeed);
+                        player.transform.position = Vector3.MoveTowards(player.transform.position,
+                                                                        target.transform.position - (player.transform.forward),
+                                                                        player.movementSpeed * Time.deltaTime);
                     }
                 }
             }
-
-            if (currentPlayer == players[0])
-            {
-                for (int index = 0; index < players.Length; index++)
-                {
-                    Player player = players[index];
-                    if (player != null && currentPlayer != player &&
-                        Vector3.Distance(player.transform.position, currentPlayer.transform.position) < 5.0f)
-                    {
-                        Player target = null;
-                        for (int j = index, breakCount = 0; target == null && breakCount < players.Length;
-                             j = (--j >= 0 ? j : j + players.Length), breakCount++)
-                        {
-                            if (players[j] != null && players[j] != player &&
-                                Vector3.Distance(players[j].transform.position, currentPlayer.transform.position) < 5.0f)
-                            {
-                                target = players[j];
-                            }
-                        }
-
-                        if (target != null)
-                        {
-                            player.smoothRotateTowards(target.transform.eulerAngles, Time.deltaTime * player.rotationSmoothSpeed);
-                            player.transform.position = Vector3.MoveTowards(player.transform.position,
-                                                                            target.transform.position - (player.transform.forward),
-                                                                            player.movementSpeed * Time.deltaTime);
-                        }
-                    }
-                }
-            }
-            yield return null;
         }
     }
 }

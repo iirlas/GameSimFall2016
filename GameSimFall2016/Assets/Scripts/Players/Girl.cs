@@ -6,8 +6,10 @@ public class Girl : Player {
 
     new public enum State
     {
-        SHOOT,
-    }
+        FALL,
+        ATTACK,
+        ACTION
+    };
 
     [HideInInspector]
     public Animator animator;
@@ -17,41 +19,103 @@ public class Girl : Player {
     public float shootingForce = 30.0f;
     public float jumpDistance = 2.5f;
 
+    [HideInInspector]
+    public Transform target
+    {
+        get { return myTarget; }
+    }
+
+    private int myTargetableLayerMask = 1 << 9;
+    private bool isTargeting = false;
+    private Collider[] myTargets;
+    private Transform myTarget;
+
     // Use this for initialization
     void Start()
     {
         animator = GetComponent<Animator>();
-        addRunnable(Player.State.ATTACK, runAttackState);
-        addRunnable(Player.State.ACTION, runActionState);
-        addRunnable(State.SHOOT, runShootingState);
+        addRunnable(Player.State.DEFAULT, runMoveState);
+        addRunnable(State.FALL, runFallingState);
+        addRunnable(State.ATTACK, runAttackState);
+        addRunnable(State.ACTION, runActionState);
         //myTargetableLayerMask = 1 << LayerMask.NameToLayer("Targetable"); 
     }
 
-    void runAttackState()
+    virtual protected void runMoveState()
     {
-        //myTarget = null;
-        playerState = State.SHOOT;
+        RaycastHit hit;
+        if (rigidbody.useGravity)
+        {
+            if (isGrounded(out hit))
+            {
+                setParent(hit, floorAngleLimit);
+                if (myTarget == null)
+                {
+                    movePlayer();
+                }
+                else
+                {
+                    strafe();
+                }
+            }
+            else
+            {
+                playerState = State.FALL;
+            }
+        }
+
+        if (!playerState.Equals(Player.State.DEFAULT))
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("Attack") && myStates.ContainsKey(State.ATTACK))
+        {
+            playerState = State.ATTACK;
+        }
+        else if (Input.GetButtonDown("Action") && myStates.ContainsKey(State.ACTION))
+        {
+            playerState = State.ACTION;
+        }
+        else if (Input.GetButtonDown("Center"))
+        {
+            isTargeting = !isTargeting;
+        }
+        if (isTargeting)
+        {
+            if (!findTargets())
+            {
+                isTargeting = false;
+            }
+        }
+        else
+        {
+            myTarget = null;
+        }
+    }
+
+    protected void runFallingState()
+    {
+        if (isGrounded())
+        {
+            playerState = Player.State.DEFAULT;
+        }
+        else
+        {
+            clearParent();
+        }
     }
 
     void runActionState()
     {
         playerState = Player.State.DEFAULT;
-
-        //Are we on an edge?
-        if (!Physics.Raycast(rigidbody.position + transform.forward, Vector3.down, collider.bounds.size.y))
-        {
-            //launches the player forward and up
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce((transform.up + transform.forward) * jumpDistance, ForceMode.Impulse);
-            playerState = Player.State.FALL;
-        }
     }
-	
-    void runShootingState()
+
+    void runAttackState()
     {
         if (!isGrounded())
         {
-            playerState = Player.State.FALL;
+            playerState = State.FALL;
             return;
         }
 
@@ -75,5 +139,43 @@ public class Girl : Player {
         //}
     }
 
+    void strafe ()
+    {
+        Vector3 cameraFoward = camera.transform.forward;
 
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        if (myTarget != null)
+        {
+            //rotate towards the shooting target
+            Vector3 direction = myTarget.position - rigidbody.position;
+            direction.y = 0;//aligns facing direction with the ground.
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
+            rigidbody.position += ((camera.transform.forward * v) +
+                                   (camera.transform.right * h)) *
+                                    movementSpeed * Time.deltaTime;
+        }
+    }
+
+    bool findTargets()
+    {
+        myTargets = Physics.OverlapSphere(rigidbody.position, targetRange, myTargetableLayerMask);
+
+        if (myTarget == null || Vector3.Distance(rigidbody.position, myTarget.position) > targetRange)
+        {
+            myTarget = (myTargets.Length != 0 ? myTargets[0].transform : null);
+
+            for (int index = 0; index < myTargets.Length; index++)
+            {
+                float currentAngle = Vector3.Angle(camera.transform.forward, myTarget.position - rigidbody.position);
+                float angle = Vector3.Angle(camera.transform.forward, myTargets[index].transform.position - rigidbody.position);
+                if (angle < currentAngle)
+                {
+                    myTarget = myTargets[index].transform;
+                }
+            }
+        }
+        return (myTarget != null);
+    }
 }

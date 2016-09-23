@@ -6,56 +6,50 @@ public class Bird : Player {
     new public enum State
     {
     }
-
-    public GameObject rockPrefab;
+ 
+    public float stamina = 100.0f;
+    private bool canFly = false;
 
     // Use this for initialization
     void Start()
     {
-        addRunnable(Player.State.ATTACK, runAttackState);
-        addRunnable(Player.State.ACTION, runActionState);
+        addRunnable(Player.State.DEFAULT, runFallingState);
+        //addRunnable(State.ATTACK, runAttackState);
+        //addRunnable(State.ACTION, runActionState);
     }
 
-    void runAttackState ()
-    {
-        playerState = Player.State.DEFAULT;
-        GameObject rock = Instantiate(rockPrefab, transform.position, transform.rotation) as GameObject;
-        Rigidbody rockBody = rock.GetComponent<Rigidbody>();
-        Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
-        rockBody.AddForce(-transform.up * movementSpeed, ForceMode.Impulse);
-    }
-
-    void runActionState ()
-    {
-        playerState = Player.State.FALL;
-
-        if (transform.parent != null)
-        {
-            transform.parent.parent = null;
-        }
-
-        rigidbody.AddForce(transform.up, ForceMode.Impulse);
-        rigidbody.useGravity = false;
-    }
-
-    override protected void runFallingState()
+    protected void runFallingState()
     {
         movePlayer();
-        if (Input.GetButton("Action"))
+        if (Input.GetButton("Action") && canFly)
         {
-            rigidbody.useGravity = false;
-            playerState = Player.State.FALL;
-            transform.position += transform.up * (movementSpeed * Time.deltaTime);
+            rigidbody.position += transform.up * (Time.deltaTime) * movementSpeed;
+            stamina -= Time.deltaTime * 20.0f;
+            if ( stamina <= 0 )
+            {
+                canFly = false;
+                stamina = 0;
+            }
         }
         else
         {
-            transform.position -= transform.up * (Time.deltaTime);// * 0.1f);
-            if (isGrounded())
+            RaycastHit hit;
+            rigidbody.position -= transform.up * (Time.deltaTime) * movementSpeed;
+            if (isGrounded(out hit))
             {
-                rigidbody.useGravity = true;
-                playerState = Player.State.DEFAULT;
+                setParent(hit);
+                stamina += stamina + Time.deltaTime * 10.0f;
+                if ( stamina >= 100.0f )
+                {
+                    canFly = true;
+                    stamina = 100.0f;
+                }
             }
-            rigidbody.velocity = Vector3.zero;
         }
+    }
+
+    void LateUpdate()
+    {
+        rigidbody.useGravity = (PlayerManager.getInstance().currentPlayer != this);
     }
 }

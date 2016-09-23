@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//not used
 public class Cat : Player {
 
     new public enum State 
     {
         CLIMB,
+        FALL,
+        ACTION
     }
 
     public float jumpDistance = 5.0f;
@@ -14,8 +17,13 @@ public class Cat : Player {
     // Use this for initialization
     protected void Start()
     {
-        addRunnable(Player.State.ACTION,runActionState);
+        addRunnable(State.ACTION,runActionState);
         addRunnable(State.CLIMB, runClimbState);
+    }
+
+    protected void runMoveState()
+    {
+
     }
 
     void runActionState()
@@ -38,7 +46,7 @@ public class Cat : Player {
             //launches the player forward and up
             rigidbody.velocity = Vector3.zero;
             rigidbody.AddForce((transform.up + transform.forward) * jumpDistance, ForceMode.Impulse);
-            playerState = Player.State.FALL;
+            playerState = State.FALL;
         }
     }
 

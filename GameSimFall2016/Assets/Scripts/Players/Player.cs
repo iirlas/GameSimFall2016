@@ -8,9 +8,6 @@ abstract public class Player : MonoBehaviour
     public enum State
     {
         DEFAULT,
-        FALL,
-        ATTACK,
-        ACTION
     };
 
     protected delegate void StateRunner();
@@ -19,16 +16,15 @@ abstract public class Player : MonoBehaviour
     private Transform myTransform;
     private Rigidbody myRigidbody;
     private Collider myCollider;
-    private Collider[] myTargets;
-    private Transform myTarget;
-    private int myTargetableLayerMask = 1 << 9;
-    private bool isTargeting = false;
 
-    [Range(5, 45)]
+    protected Dictionary<Enum, StateRunner> myStates { get; private set; }
+    
+    [Range(5, 90)]
     public float floorAngleLimit = 30;
     public float movementSpeed = 5.0f;
     public float rotationSmoothSpeed = 10.0f;
     public float targetRange = 10.0f;
+    public Enum playerState { get; protected set; }
 
     new public Camera camera { get { return PlayerManager.getInstance().camera; } }
 
@@ -71,27 +67,20 @@ abstract public class Player : MonoBehaviour
         }
     }
 
-    [HideInInspector]
-    public Transform target
-    {
-       get { return myTarget;  }
-    }
-
-    public Enum playerState { get; protected set; }
-
-    private Dictionary<Enum, StateRunner> myStates;
 
     //constructor
     public Player()
     {
         myStates = new Dictionary<Enum, StateRunner>();
-        addRunnable(State.DEFAULT, runMoveState);
-        addRunnable(State.FALL, runFallingState);
         playerState = State.DEFAULT;
     }
 
     // Update is called once per frame
     protected void Update()
+    {
+    }
+
+    public void FixedUpdate()
     {
         if (PlayerManager.getInstance().currentPlayer == this)
         {
@@ -104,10 +93,6 @@ abstract public class Player : MonoBehaviour
                 myStates[playerState]();
             }
         }
-    }
-
-    public void FixedUpdate()
-    {
         if (transform.parent != null && myPlatform != null)
         {
             transform.parent.position = Vector3.Lerp(transform.parent.position, myPlatform.position, float.PositiveInfinity);
@@ -122,64 +107,6 @@ abstract public class Player : MonoBehaviour
             myStates.Remove(state);
         }
         myStates.Add(state, stateRunner);
-    }
-    
-    virtual protected void runMoveState ()
-    {
-        RaycastHit hit;
-        if ( rigidbody.useGravity )
-        {
-            if ( isGrounded(out hit) )
-            {
-                setParent(hit, floorAngleLimit);
-                movePlayer();
-            }
-            else
-            {
-                playerState = State.FALL;
-            }
-        }
-
-        if ( !playerState.Equals(State.DEFAULT) )
-        {
-            return;
-        }
-
-        if (Input.GetButtonDown("Attack") && myStates.ContainsKey(State.ATTACK))
-        {
-            playerState = State.ATTACK;
-        }
-        else if (Input.GetButtonDown("Action") && myStates.ContainsKey(State.ACTION))
-        {
-            playerState = State.ACTION;
-        }
-        else if (Input.GetButtonDown("Center"))
-        {
-           isTargeting = !isTargeting;
-        }
-        if (isTargeting)
-        {
-           if (!findTargets())
-           {
-              isTargeting = false;
-           }
-        }
-        else
-        {
-           myTarget = null;
-        }
-    }
-
-    virtual protected void runFallingState()
-    {
-        if (isGrounded())
-        {
-            playerState = Player.State.DEFAULT;
-        }
-        else
-        {
-            clearParent();
-        }
     }
 
     protected void setParent ( RaycastHit hit, float angleLimit = float.PositiveInfinity )
@@ -199,7 +126,6 @@ abstract public class Player : MonoBehaviour
         if (Vector3.Angle(hit.normal, transform.up) < angleLimit )
         {
             parent.position = hit.transform.position;
-            parent.up = hit.normal;
             myPlatform = hit.transform;
         }
         transform.parent = parent;
@@ -222,37 +148,13 @@ abstract public class Player : MonoBehaviour
 
         if (h != 0 || v != 0)
         {
-            if ( myTarget != null )
-            {
-                //rotate towards the shooting target
-                Vector3 direction = myTarget.position - rigidbody.position;
-                direction.y = 0;//aligns facing direction with the ground.
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
-                rigidbody.position += ((camera.transform.forward * v) +
-                                       (camera.transform.right * h)) *
-                                        movementSpeed * Time.deltaTime;
-            }
-            else
-            {
-               //            angle of joystick  + angle of camera
-               float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
+            //            angle of joystick  + angle of camera
+            float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
 
-               // smooths the rotation transition
-               transform.position += transform.forward * movementSpeed * Time.deltaTime;
-               smoothRotateTowards(0, angle, 0, Time.deltaTime * rotationSmoothSpeed);
-            }
+            // smooths the rotation transition
+            rigidbody.position += transform.forward * movementSpeed * Time.deltaTime;
+            smoothRotateTowards(0, angle, 0, Time.deltaTime * rotationSmoothSpeed);
         }
-    }
-
-    void strafe()
-    {
-       float h = Input.GetAxis("Horizontal");
-       float v = Input.GetAxis("Vertical");
-
-       if (h != 0 || v != 0)
-       {
-       }
     }
 
     public void smoothRotateTowards(float x, float y, float z, float speed)
@@ -281,38 +183,19 @@ abstract public class Player : MonoBehaviour
 
     protected bool isGrounded(out RaycastHit hit, int steps = 10)
     {
-        float distance = collider.bounds.size.y * 0.75f;
-        Vector3 halfExtents = new Vector3(collider.bounds.size.x, 0.1f, collider.bounds.size.z);
-        
+        float distance = collider.bounds.size.y * 1.75f;
+        Vector3 halfExtents = new Vector3(collider.bounds.extents.x, 0.01f, collider.bounds.extents.z);
         hit = new RaycastHit();
 
+
         // Are we level with the ground?
-        if (Physics.BoxCast(transform.position, halfExtents, -transform.up, out hit, Quaternion.identity, distance))
+        if (Physics.BoxCast(transform.position, halfExtents, Vector3.down, out hit, transform.rotation, distance))
         {
-           Debug.DrawLine(transform.position, hit.point);
+           //Debug.DrawLine(transform.position, hit.point);
            return true;
         }
         return false;
     }
 
-    bool findTargets()
-    {
-       myTargets = Physics.OverlapSphere(rigidbody.position, targetRange, myTargetableLayerMask);
 
-       if (myTarget == null || Vector3.Distance(rigidbody.position, myTarget.position) > targetRange)
-       {
-          myTarget = (myTargets.Length != 0 ? myTargets[0].transform : null);
-
-          for (int index = 0; index < myTargets.Length; index++)
-          {
-             float currentAngle = Vector3.Angle(camera.transform.forward, myTarget.position - rigidbody.position);
-             float angle = Vector3.Angle(camera.transform.forward, myTargets[index].transform.position - rigidbody.position);
-             if (angle < currentAngle)
-             {
-                myTarget = myTargets[index].transform;
-             }
-          }
-       }
-       return (myTarget != null);
-    }
 }

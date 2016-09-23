@@ -33,7 +33,7 @@ public class ThirdPersonCamera : MonoBehaviour {
         float h = Input.GetAxis("Alt_Horizontal");
         //float v = Input.GetAxis("Alt_Vertical");
 
-        if (myPlayer.target != null)
+        if (myPlayer is Girl && (myPlayer as Girl).target != null)
         {
             myAngle = Mathf.LerpAngle(transform.eulerAngles.y, myPlayer.transform.eulerAngles.y, speed * Time.deltaTime);
         }
