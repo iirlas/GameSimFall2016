@@ -21,6 +21,11 @@ public class Inventory : Singleton<Inventory>
         }
     }
 
+    override protected void Init()
+    {
+        myItems = new Dictionary<Tag, int>();
+    }
+
     public void Add(Tag tag)
     {
         if (myItems.ContainsKey(tag))
@@ -53,8 +58,5 @@ public class Inventory : Singleton<Inventory>
         return myItems.ContainsKey(tag);
     }
 
-    override protected void Init()
-    {
-        myItems = new Dictionary<Tag, int>();
-    }
+
 }
