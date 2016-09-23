@@ -17,7 +17,6 @@ public class Girl : Player {
     public GameObject rockPrefab;
     public Transform rockSpawnNode;
     public float shootingForce = 30.0f;
-    public float jumpDistance = 2.5f;
 
     [HideInInspector]
     public Transform target
