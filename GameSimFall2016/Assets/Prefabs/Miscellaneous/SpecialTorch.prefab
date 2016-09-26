@@ -41,6 +41,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 497346}
   - 108: {fileID: 10867816}
+  - 114: {fileID: 11481220}
+  - 54: {fileID: 5442394}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -73,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138108}
   m_LocalRotation: {x: -0.19935131, y: -0.678424, z: -0.19935134, w: 0.6784239}
-  m_LocalPosition: {x: -13.7, y: -8.26, z: -6.0888214}
+  m_LocalPosition: {x: 20.291563, y: -2.4219997, z: -82.68596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441550}
@@ -150,6 +152,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191288}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &5442394
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185118}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!108 &10867816
 Light:
   m_ObjectHideFlags: 1
@@ -183,6 +200,20 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11481220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!136 &13601462
 CapsuleCollider:
   m_ObjectHideFlags: 1

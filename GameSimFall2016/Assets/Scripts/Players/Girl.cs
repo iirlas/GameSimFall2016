@@ -118,7 +118,14 @@ public class Girl : Player {
             return;
         }
 
-        movePlayer();
+        if ( myTarget == null )
+        {
+            movePlayer();
+        }
+        else
+        {
+            strafe();
+        }
 
         if ( Input.GetButtonUp("Attack") ) //fire a projectile towards the shooting target.
         {

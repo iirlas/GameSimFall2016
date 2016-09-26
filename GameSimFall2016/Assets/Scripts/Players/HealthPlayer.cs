@@ -149,30 +149,30 @@ public class HealthPlayer : MonoBehaviour
    // Deals automated damage to the player, hereby refered to as poison.
    public void applyPoisonDamage()
    {
-      if (this.poisonTicks <= 0)
-      {
-         this.isPoisoned = false;
+       if (this.poisonTicks <= 0)
+       {
+           this.isPoisoned = false;
 
-         this.poisonInterval = 0;
-         this.poisonDamage = 0;
-         this.poisonTicks = 0;
+           this.poisonInterval = 0;
+           this.poisonDamage = 0;
+           this.poisonTicks = 0;
 
-         healthBarFill.color = Color.green;
-      }
-      else
-      {
-         if (this.poisonTimer >= this.poisonInterval)
-         {
-            this.poisonTimer = 0.0f;
-            Debug.Log(this.poisonDamage);
-            modifyHealth(-(this.poisonDamage));
-            this.poisonTicks--;
-         }
-         else
-         {
-            this.poisonTimer += Time.deltaTime;
-         }
-      }
+           healthBarFill.color = Color.green;
+       }
+       else
+       {
+           if (this.poisonTimer >= this.poisonInterval)
+           {
+               this.poisonTimer = 0.0f;
+               Debug.Log(this.poisonDamage);
+               modifyHealth(-(this.poisonDamage));
+               this.poisonTicks--;
+           }
+           else
+           {
+               this.poisonTimer += Time.deltaTime;
+           }
+       }
    }
 
 }

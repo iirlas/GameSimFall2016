@@ -9,6 +9,8 @@ public class FearManager : MonoBehaviour
    public Image fearBarFill;
    public Text fearText;
 
+   
+
    public float fearMax = 110.0f;  // 10 over 100 to represent overflow
    public float fearMin = 0.0f;
    public float fearCurrent;
@@ -16,6 +18,7 @@ public class FearManager : MonoBehaviour
    public HealthPlayer playerHealth;
 
    private string prefix = " ";
+   private bool inDark = true;
 
    //===========================================================================
    // Use this for initialization
@@ -31,11 +34,11 @@ public class FearManager : MonoBehaviour
    void Update()
    {
       updateFearBar();
-      if (Input.GetKeyDown(KeyCode.Period))
+      if (inDark)
       {
-         increaseStress();
+          increaseStress();
       }
-      else if (Input.GetKeyDown(KeyCode.Comma))
+      else
       {
          decreaseStress();
       }
@@ -47,6 +50,12 @@ public class FearManager : MonoBehaviour
       {
          damagePlayer();
       }
+   }
+
+   void LateUpdate()
+   {
+       fearCurrent = Mathf.Max(Mathf.Min(110, fearCurrent), 0);
+       //inDark = true;
    }
 
    //==========================================================================
@@ -82,16 +91,30 @@ public class FearManager : MonoBehaviour
    // 
    private void trickleDownFear()
    {
-      this.fearCurrent -= 1.0f;
+      this.fearCurrent -= 1.0f * Time.deltaTime;
    }
 
    private void increaseStress()
    {
-      this.fearCurrent += 1.0f;
+      this.fearCurrent += 1.0f * Time.deltaTime;
    }
 
    private void decreaseStress()
    {
-      this.fearCurrent -= 1.0f;
+      this.fearCurrent -= 1.0f * Time.deltaTime;
+   }
+<<<<<<< .mine
+
+   public void OnEvent(BasicTrigger trigger)
+   {
+       inDark = !trigger.message.Equals("Light");
+   }
+
+   public void OnEventEnd(BasicTrigger trigger)
+   {
+       inDark = true;
    }
 }
+=======
+}
+>>>>>>> .r731
