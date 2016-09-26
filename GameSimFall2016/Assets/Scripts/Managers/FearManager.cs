@@ -103,7 +103,7 @@ public class FearManager : MonoBehaviour
    {
       this.fearCurrent -= 1.0f * Time.deltaTime;
    }
-<<<<<<< .mine
+//<<<<<<< .mine
 
    public void OnEvent(BasicTrigger trigger)
    {
@@ -115,6 +115,6 @@ public class FearManager : MonoBehaviour
        inDark = true;
    }
 }
-=======
-}
->>>>>>> .r731
+//=======
+//}
+//>>>>>>> .r731
