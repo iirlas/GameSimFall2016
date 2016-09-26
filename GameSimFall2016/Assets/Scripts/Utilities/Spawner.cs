@@ -38,7 +38,9 @@ public class Spawner : MonoBehaviour
    [Tooltip("The desired spawnpoint for this spawner.")]
    public GameObject spawnPoint;
 
-   private float dTime;               //How much time has elapsed?
+   private bool hasStartedSpawning;   //Have we started spawning?
+
+   private float dTime;         //How much time has elapsed?
 
    private State spawnState;    //Are we currently spawning enemies?
 
@@ -48,6 +50,7 @@ public class Spawner : MonoBehaviour
    // Use this for initialization
    void Start()
    {
+      this.hasStartedSpawning = false;
       this.spawnState = State.PAUSED;
       this.dTime = 0.0f;
    }
@@ -58,6 +61,7 @@ public class Spawner : MonoBehaviour
    {
       if (spawnState == State.ACTIVE)
       {
+         this.hasStartedSpawning = true;
          // If we have reached the time to spawn an enemy, and we are still allowed to spawn an enemy...
          if ( this.enemyList.Count < this.totalNumberOfEnemies )
          {
@@ -73,7 +77,7 @@ public class Spawner : MonoBehaviour
              }
             this.dTime += Time.deltaTime;  // Increment the timer
          }
-         else if (this.enemyList.FindAll(obj => { return obj.activeSelf; }).Count == 0) //we've finished spawning enemies
+         else if (this.enemyList.FindAll(obj => { return obj.activeSelf; }).Count == 0 && hasStartedSpawning) //we've finished spawning enemies
          {
             print("End");
             spawnState = State.DONE;
