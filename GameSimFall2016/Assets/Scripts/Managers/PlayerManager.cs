@@ -6,6 +6,7 @@ using System.Linq;
 public class PlayerManager : Singleton<PlayerManager> {
 
     new public Camera camera;
+    public float followDistance = 2.0f;
     public Player currentPlayer { get; private set; }
     public Player[] players { get; private set; }
 
@@ -20,8 +21,6 @@ public class PlayerManager : Singleton<PlayerManager> {
         }
     }
 
-
-
     void Update ()
     {
         if (Input.GetButtonDown("Toggle"))
@@ -31,7 +30,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             currentPlayer = players[index];
         }
 
-        if ((currentPlayer as Girl) != null)
+        if (currentPlayer is Girl)
         {
             for (int index = 0; index < players.Length; index++)
             {
@@ -52,10 +51,10 @@ public class PlayerManager : Singleton<PlayerManager> {
 
                     if (target != null)
                     {
-                        player.smoothRotateTowards(target.transform.eulerAngles, Time.deltaTime * player.rotationSmoothSpeed);
-                        player.transform.position = Vector3.MoveTowards(player.transform.position,
-                                                                        target.transform.position - (player.transform.forward),
-                                                                        player.movementSpeed * Time.deltaTime);
+                    player.smoothRotateTowards(target.transform.eulerAngles, Time.deltaTime * player.rotationSmoothSpeed);
+                    player.transform.position = Vector3.MoveTowards(player.transform.position,
+                                                                    target.transform.position - (player.transform.forward * followDistance),
+                                                                    currentPlayer.movementSpeed * Time.deltaTime);
                     }
                 }
             }
