@@ -22,29 +22,26 @@ public class Rabbit : Player {
     protected void runMoveState ()
     {
         RaycastHit hit;
-        if (rigidbody.useGravity)
+        if (isGrounded(out hit))
         {
-            if (isGrounded(out hit))
+            setParent(hit, floorAngleLimit);
+            movePlayer();
+            if (Input.GetButtonDown("Action"))
             {
-                setParent(hit, floorAngleLimit);
-                movePlayer();
-                if (!Physics.Raycast(transform.position + transform.forward, Vector3.down, collider.bounds.size.y))//Are we on an edge then?
-                {
-                    //launches the player forward and up
-                    rigidbody.velocity = Vector3.zero;
-                    rigidbody.AddForce((transform.up + transform.forward) * jumpDistance, ForceMode.Impulse);
-                    playerState = State.FALL;
-                }
-            }
-            else
-            {
+                //launches the player forward and up
+                rigidbody.AddForce((transform.up + transform.forward) * jumpDistance, ForceMode.Impulse);
                 playerState = State.FALL;
             }
+        }
+        else
+        {
+            playerState = State.FALL;
         }
     }
 
     void runActionState ()
     {
+
         playerState = Player.State.DEFAULT;
     }
 

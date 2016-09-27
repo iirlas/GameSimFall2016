@@ -175,26 +175,20 @@ abstract public class Player : MonoBehaviour
         transform.localEulerAngles = angle;
     }
 
-    protected bool isGrounded ( int steps = 10 )
+    protected bool isGrounded (int steps = 10)
     {
         RaycastHit hit;
         return isGrounded(out hit, steps);
     }
 
-    protected bool isGrounded(out RaycastHit hit, int steps = 10)
+    protected bool isGrounded (out RaycastHit hit, int steps = 10)
     {
-        float distance = collider.bounds.size.y * 1.75f;
-        Vector3 halfExtents = new Vector3(collider.bounds.extents.x, 0.01f, collider.bounds.extents.z);
+        float distance = collider.bounds.size.y / 2;
+        Vector3 box = new Vector3(collider.bounds.extents.x, 0.01f, collider.bounds.extents.z);
         hit = new RaycastHit();
 
-
-        // Are we level with the ground?
-        if (Physics.BoxCast(transform.position, halfExtents, Vector3.down, out hit, transform.rotation, distance))
-        {
-           //Debug.DrawLine(transform.position, hit.point);
-           return true;
-        }
-        return false;
+        Debug.DrawRay(collider.bounds.center, Vector3.down * distance);
+        return Physics.BoxCast(collider.bounds.center, box, Vector3.down, out hit, Quaternion.identity, distance);
     }
 
 
