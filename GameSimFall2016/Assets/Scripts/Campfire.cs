@@ -46,5 +46,6 @@ public class Campfire : MonoBehaviour
    void healPlayer()
    {
       GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().modifyHealth(1);
+      GameObject.FindGameObjectWithTag("HealthManager").GetComponent<FearManager>().modifyFear(-1);
    }
 }

@@ -5,116 +5,121 @@ using System.Collections;
 public class FearManager : MonoBehaviour
 {
 
-   public Slider fearBar;
-   public Image fearBarFill;
-   public Text fearText;
+    public Slider fearBar;
+    public Image fearBarFill;
+    public Text fearText;
 
-   
 
-   public float fearMax = 110.0f;  // 10 over 100 to represent overflow
-   public float fearMin = 0.0f;
-   public float fearCurrent;
 
-   public HealthPlayer playerHealth;
+    public float fearMax = 110.0f;  // 10 over 100 to represent overflow
+    public float fearMin = 0.0f;
+    public float fearCurrent;
 
-   private string prefix = " ";
-   private bool inDark = true;
+    public HealthPlayer playerHealth;
 
-   //===========================================================================
-   // Use this for initialization
-   void Start()
-   {
-      this.fearCurrent = this.fearMin;
-      this.fearBarFill.color = Color.white;
-      playerHealth = this.GetComponent<HealthPlayer>();
-   }
+    private string prefix = " ";
+    private bool inDark = true;
 
-   //==========================================================================
-   // Update is called once per frame
-   void Update()
-   {
-      updateFearBar();
-      if (inDark)
-      {
-          increaseStress();
-      }
-      else
-      {
-         decreaseStress();
-      }
-   }
+    //===========================================================================
+    // Use this for initialization
+    void Start()
+    {
+        this.fearCurrent = this.fearMin;
+        this.fearBarFill.color = Color.white;
+        playerHealth = this.GetComponent<HealthPlayer>();
+    }
 
-   void FixedUpdate()
-   {
-      if (this.fearCurrent >= 100.0f)
-      {
-         damagePlayer();
-      }
-   }
+    //==========================================================================
+    // Update is called once per frame
+    void Update()
+    {
+        updateFearBar();
+        if (inDark)
+        {
+            increaseStress();
+        }
+        else
+        {
+            decreaseStress();
+        }
+    }
 
-   void LateUpdate()
-   {
-       fearCurrent = Mathf.Max(Mathf.Min(110, fearCurrent), 0);
-       //inDark = true;
-   }
+    void FixedUpdate()
+    {
+        if (this.fearCurrent >= 100.0f)
+        {
+            damagePlayer();
+        }
+    }
 
-   //==========================================================================
-   // 
-   void updateFearBar()
-   {
-      this.fearBar.value = this.fearCurrent;
-      if (this.fearBar.value < 100)
-      {
-         this.fearText.text = (prefix + ((int)this.fearCurrent).ToString());
-      }
-      else
-      {
-         this.fearText.text = (prefix + "Frightened");
-      }
-   }
+    void LateUpdate()
+    {
+        fearCurrent = Mathf.Max(Mathf.Min(110, fearCurrent), 0);
+        //inDark = true;
+    }
 
-   //==========================================================================
-   // 
-   void damagePlayer()
-   {
-      this.playerHealth.modifyHealth(-1);
-   }
+    //==========================================================================
+    // 
+    void updateFearBar()
+    {
+        this.fearBar.value = this.fearCurrent;
 
-   //==========================================================================
-   // Adds fear to the player's fear bar
-   public void modifyFear(float value)
-   {
-      this.fearCurrent += value;
-   }
+        if (this.fearBar.value < 100)
+        {
+            this.fearText.text = (prefix + ((int)this.fearCurrent).ToString());
+        }
+        else
+        {
+            this.fearText.text = (prefix + "Frightened");
+        }
+    }
 
-   //==========================================================================
-   // 
-   private void trickleDownFear()
-   {
-      this.fearCurrent -= 1.0f * Time.deltaTime;
-   }
+    //==========================================================================
+    // 
+    void damagePlayer()
+    {
+        this.playerHealth.modifyHealth(-1);
+    }
 
-   private void increaseStress()
-   {
-      this.fearCurrent += 1.0f * Time.deltaTime;
-   }
+    //==========================================================================
+    // Adds fear to the player's fear bar
+    public void modifyFear(float value)
+    {
+        this.fearCurrent += value;
+        if (this.fearCurrent > this.fearMax)
+        {
+            this.fearCurrent = this.fearMax;
+        }
+        else if (this.fearCurrent < this.fearMin)
+        {
+            this.fearCurrent = this.fearMin;
+        }
+    }
 
-   private void decreaseStress()
-   {
-      this.fearCurrent -= 1.0f * Time.deltaTime;
-   }
-//<<<<<<< .mine
+    //==========================================================================
+    // 
+    private void trickleDownFear()
+    {
+        this.fearCurrent -= 1.0f * Time.deltaTime;
+    }
 
-   public void OnEvent(BasicTrigger trigger)
-   {
-       inDark = !trigger.message.Equals("Light");
-   }
+    private void increaseStress()
+    {
+        this.fearCurrent += 1.0f * Time.deltaTime;
+    }
 
-   public void OnEventEnd(BasicTrigger trigger)
-   {
-       inDark = true;
-   }
+    private void decreaseStress()
+    {
+        this.fearCurrent -= 1.0f * Time.deltaTime;
+    }
+
+    public void OnEvent(BasicTrigger trigger)
+    {
+        inDark = !trigger.message.Equals("Light");
+    }
+
+    public void OnEventEnd(BasicTrigger trigger)
+    {
+        inDark = true;
+    }
 }
-//=======
-//}
-//>>>>>>> .r731
