@@ -13,7 +13,7 @@ GameObject:
   - 54: {fileID: 5492434}
   m_Layer: 0
   m_Name: Rabbit
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.05, y: 6.16, z: -113.88}
+  m_LocalPosition: {x: 1.49, y: 2.87, z: -47.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 492888}
@@ -55,8 +55,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139956}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.28866908, y: 0.28866908, z: 0.28866908}
+  m_LocalPosition: {x: 0, y: -0.306, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 439302}
   m_RootOrder: 0
@@ -70,7 +70,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b6262150c168c6e49845c0a00508739d, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -92,7 +92,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139956}
-  m_Mesh: {fileID: 4300000, guid: bdcd92b7eb095234b89b1caf3f34a7b9, type: 3}
+  m_Mesh: {fileID: 4300000, guid: f5989a0455b3ddc4e90902a722834d98, type: 3}
 --- !u!54 &5492434
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -135,7 +135,7 @@ MonoBehaviour:
   movementSpeed: 5
   rotationSmoothSpeed: 10
   targetRange: 10
-  jumpDistance: 5
+  jumpDistance: 6.27
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
