@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3348192}
   - 65: {fileID: 6592638}
   - 23: {fileID: 2324580}
+  - 114: {fileID: 11423356}
   m_Layer: 0
   m_Name: rope
   m_TagString: Untagged
@@ -1018,6 +1019,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 405976}
+  - 95: {fileID: 9599892}
+  - 114: {fileID: 11491072}
   m_Layer: 0
   m_Name: Log
   m_TagString: Untagged
@@ -1318,7 +1321,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176758}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 6.439189, y: -10.74, z: -8.89}
+  m_LocalPosition: {x: 6.439189, y: -4.24, z: -8.89}
   m_LocalScale: {x: 1.6625, y: 1.1500003, z: 1}
   m_Children:
   - {fileID: 428566}
@@ -4744,7 +4747,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -4894,6 +4897,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &9599892
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176758}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d925a5d14fd14b1459d2ae810613e0fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11403680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4942,6 +4962,24 @@ MonoBehaviour:
   type: 0
   message: respawn
   canRepeat: 1
+--- !u!114 &11423356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  effected: {fileID: 11491072}
+  type: 0
+  message: playAnimationOnce
+  canRepeat: 0
 --- !u!114 &11423780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5039,6 +5077,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11491072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1e1f3192108ec4baa6c0d6985c00a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &100100000
