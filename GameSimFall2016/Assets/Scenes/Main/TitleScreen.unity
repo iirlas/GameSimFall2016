@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000001, guid: 0f5842ce0fd2919448982d4e669b1655,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -299,7 +300,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 279602427}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 900763293}
+        m_MethodName: pressInstructions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &279602427
@@ -365,7 +377,7 @@ RectTransform:
   m_Children:
   - {fileID: 63223136}
   m_Father: {fileID: 900763292}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.18460645, y: 0.40416306}
   m_AnchorMax: {x: 0.36313123, y: 0.47500002}
   m_AnchoredPosition: {x: -0.5, y: -159}
@@ -409,7 +421,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 403093567}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 900763293}
+        m_MethodName: pressQuit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &403093567
@@ -475,7 +498,7 @@ RectTransform:
   m_Children:
   - {fileID: 1730218854}
   m_Father: {fileID: 900763292}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.18460645, y: 0.23470218}
   m_AnchorMax: {x: 0.36313123, y: 0.307}
   m_AnchoredPosition: {x: 0.74002004, y: 0.5}
@@ -519,7 +542,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 419242210}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 900763293}
+        m_MethodName: pressCredits
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &419242210
@@ -706,6 +740,7 @@ GameObject:
   - 223: {fileID: 900763291}
   - 114: {fileID: 900763290}
   - 114: {fileID: 900763289}
+  - 114: {fileID: 900763293}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -783,8 +818,8 @@ RectTransform:
   - {fileID: 50334244}
   - {fileID: 1636724621}
   - {fileID: 279602425}
-  - {fileID: 419242208}
   - {fileID: 403093565}
+  - {fileID: 419242208}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
@@ -792,6 +827,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &900763293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900763288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e557693b1b04ac4a81600dc9a39bc57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoScene: 1
+  firstScene: 2
+  creditScene: 0
 --- !u!1 &1291660898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,7 +1062,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1636724623}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 900763293}
+        m_MethodName: pressPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1636724623
