@@ -3,14 +3,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+public delegate void StateRunner();
+
 abstract public class Player : MonoBehaviour
 {
     public enum State
     {
         DEFAULT,
+        FOREIGN,
     };
 
-    protected delegate void StateRunner();
 
     private Transform myPlatform;
     private Transform myTransform;
@@ -24,7 +26,7 @@ abstract public class Player : MonoBehaviour
     public float movementSpeed = 5.0f;
     public float rotationSmoothSpeed = 10.0f;
     public float targetRange = 10.0f;
-    public Enum playerState { get; protected set; }
+    public Enum playerState { get; set; }
 
     new public Camera camera { get { return PlayerManager.getInstance().camera; } }
 
@@ -96,6 +98,23 @@ abstract public class Player : MonoBehaviour
         if (transform.parent != null && myPlatform != null)
         {
             transform.parent.position = Vector3.Lerp(transform.parent.position, myPlatform.position, float.PositiveInfinity);
+        }
+    }
+
+    public void addForeignRunnable( StateRunner stateRunner )
+    {
+        if (myStates.ContainsKey(State.FOREIGN))
+        {
+            myStates.Remove(State.FOREIGN);
+        }
+        myStates.Add(State.FOREIGN, stateRunner);
+    }
+
+    public void clearForeignRunnable ()
+    {
+        if (myStates.ContainsKey(State.FOREIGN))
+        {
+            myStates.Remove(State.FOREIGN);
         }
     }
 

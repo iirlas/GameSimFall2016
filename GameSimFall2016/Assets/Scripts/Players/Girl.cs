@@ -8,7 +8,6 @@ public class Girl : Player {
     {
         FALL,
         ATTACK,
-        ACTION
     };
 
     [HideInInspector]
@@ -36,7 +35,6 @@ public class Girl : Player {
         addRunnable(Player.State.DEFAULT, runMoveState);
         addRunnable(State.FALL, runFallingState);
         addRunnable(State.ATTACK, runAttackState);
-        addRunnable(State.ACTION, runActionState);
         //myTargetableLayerMask = 1 << LayerMask.NameToLayer("Targetable"); 
     }
 
@@ -72,10 +70,6 @@ public class Girl : Player {
         {
             playerState = State.ATTACK;
         }
-        else if (Input.GetButtonDown("Action") && myStates.ContainsKey(State.ACTION))
-        {
-            playerState = State.ACTION;
-        }
         else if (Input.GetButtonDown("Center"))
         {
             isTargeting = !isTargeting;
@@ -103,11 +97,6 @@ public class Girl : Player {
         {
             clearParent();
         }
-    }
-
-    void runActionState()
-    {
-        playerState = Player.State.DEFAULT;
     }
 
     void runAttackState()
