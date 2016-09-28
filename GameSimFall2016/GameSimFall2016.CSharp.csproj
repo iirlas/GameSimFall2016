@@ -61,12 +61,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GameSimFall2016.CSharp.Plugins.csproj">
@@ -99,29 +93,21 @@
     <Compile Include="Assets\Scripts\Players\Player.cs" />
     <Compile Include="Assets\Scripts\Players\Rabbit.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\BasicTrigger.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\BossTrigger.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\BoxMove.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\CheckCombination.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\CheckLights.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\Door.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\FearShadow.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\KeyOpen.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\LeverPlaceAndRotateWheel.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\LightCollider.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\MatchWheel.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\MovePanel.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\MoveWall.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\MultiTrigger.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PillarMatch.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PillarRotate.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PlayAnimationOnEvent.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\PressurePlate.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\RespawnFloor.cs" />
+    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\RoomFearDamage.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\RotateWheel.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\Slant.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\TargetLightActivation.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\TransportTo.cs" />
-    <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\TurnChildLightOn.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\openWall.cs" />
     <Compile Include="Assets\Scripts\PuzzleMechanicsAndDoors\placeItem.cs" />
     <Compile Include="Assets\Scripts\Sounds\SnakeRattleLoop.cs" />
@@ -130,7 +116,6 @@
     <Compile Include="Assets\Scripts\Sounds\SoundLocation.cs" />
     <Compile Include="Assets\Scripts\Sounds\SoundTest.cs" />
     <Compile Include="Assets\Scripts\Sounds\WalkingLoopOnButtonPressed.cs" />
-    <Compile Include="Assets\Scripts\Utilities\CursorLock.cs" />
     <Compile Include="Assets\Scripts\Utilities\Decay.cs" />
     <Compile Include="Assets\Scripts\Utilities\Extension.cs" />
     <Compile Include="Assets\Scripts\Utilities\Item.cs" />
@@ -142,8 +127,6 @@
     <Compile Include="Assets\Scripts\Utilities\Spawner.cs" />
     <Compile Include="Assets\Scripts\Utilities\Tag.cs" />
     <Compile Include="Assets\Scripts\Utilities\Timer.cs" />
-    <Compile Include="Assets\Scripts\Utilities\TutorialPopups.cs" />
-    <Compile Include="Assets\Scripts\lightFocus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Audio\AmbientSounds\placeHolder.txt" />
@@ -156,8 +139,6 @@
     <None Include="Assets\Prefabs\Environment\JaguarRooms\PlaceHolder.txt" />
     <None Include="Assets\Prefabs\Environment\RoomPool\BirdRabbitLogBridge Description.txt" />
     <None Include="Assets\Prefabs\Environment\RoomPool\KiraMirrorDarkness description.txt" />
-    <None Include="Assets\Prefabs\Environment\RoomPool\KiraNumberTiles Description.txt" />
-    <None Include="Assets\Prefabs\Environment\RoomPool\KiraTargetRoom description.txt" />
     <None Include="Assets\Scenes\Main\PlaceHolder.txt" />
     <None Include="Assets\Scenes\Test\JaguarTemple\CatMirrorPuzzleDescription.txt" />
     <None Include="Assets\Scenes\Test\JaguarTemple\CatMovableWallsDescription.txt" />
@@ -179,5 +160,5 @@
     <None Include="Assets\Textures\Environment\PlaceHolder.txt" />
     <None Include="Assets\Textures\Miscellaneous\PlaceHolder.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
