@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class TransportTo : MonoBehaviour {
 
+    public string nameOfNext;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -19,7 +21,7 @@ public class TransportTo : MonoBehaviour {
     {
         if (trigger.message == "nextLevel")
         {
-            SceneManager.LoadScene("TestOverworld");
+            SceneManager.LoadScene(nameOfNext);
         }
     }
 }
