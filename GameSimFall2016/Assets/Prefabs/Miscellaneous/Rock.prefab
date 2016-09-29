@@ -12,7 +12,6 @@ GameObject:
   - 65: {fileID: 6516748}
   - 23: {fileID: 2391248}
   - 54: {fileID: 5419988}
-  - 114: {fileID: 11409228}
   m_Layer: 2
   m_Name: Rock
   m_TagString: Projectile
@@ -92,21 +91,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11409228
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 134040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b019d063a1a67ff41ac7c674296d86d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 1
-  decaySpeed: 1
-  destroyOnCollision: 1
-  destroyOnTrigger: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
