@@ -49,6 +49,22 @@ public class TutorialPopups : MonoBehaviour {
         {
             tutText.text = "How do I get across? \n Maybe bunny can get to the other side?";
         }
+        else if (trigger.message == "jagFront")
+        {
+            tutText.text = "What? \n Another temple? \n Mommy...are you here?";
+        }
+        else if (trigger.message == "jagFlood")
+        {
+            tutText.text = "Looks like the path flooded...";
+        }
+        else if (trigger.message == "birdIntro")
+        {
+            tutText.text = "Oh! A Quetzal! Maybe it will help me? \n Switch to between the bird, bunny, and Kira by pressing Q. \nPress SPACE to fly. Watch your stamina!";
+        }
+        else if (trigger.message == "targetTut")
+        {
+            tutText.text = "Hm. Looks like those targets control the lights...\nMaybe if they're all lit the door will open?";
+        }
         else if (trigger.message == "portal")
         {
             tutText.text = "There's no turning back now...";
