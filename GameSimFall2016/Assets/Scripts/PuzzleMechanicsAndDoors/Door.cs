@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//========================================================================================================
+//                                              Door
+// Opens the door when BASIC TRIGGER is setup with message "doorOpen"
+//========================================================================================================
+
 public class Door : MonoBehaviour
 {
+    [Tooltip("Currently not implemented")]
    public int numOfPuzzles;
    public static int puzzlesSolved;
 

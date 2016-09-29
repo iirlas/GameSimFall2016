@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CheckLights : MonoBehaviour {
+//========================================================================================================
+//                                              Check Lights
+// Checks if the number of lights on meets the designated number to finish the puzzle and opens the door.
+//========================================================================================================
 
+public class CheckLights : MonoBehaviour {
+    [Tooltip("Door to Exit from")]
     public GameObject exitDoor;
+    [Tooltip ("Lights to be counted")]
     public Light[] desiredLights; 
 
     private int count;
@@ -24,7 +30,7 @@ public class CheckLights : MonoBehaviour {
 
         if (count == desiredLights.Length)
         {
-            Debug.Log("countMet");
+            //Debug.Log("countMet");
             exitDoor.SetActive(false);
 
         }

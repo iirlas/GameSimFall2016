@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//========================================================================================================
+//                                       Play Animation on Event
+// This script uses a BASIC TRIGGER to Play the animation on the THIS object                                           
+//========================================================================================================
+
 public class PlayAnimationOnEvent : MonoBehaviour {
-    Animator anim;
+    private Animator anim;
 
 	// Use this for initialization
 	void Start () {

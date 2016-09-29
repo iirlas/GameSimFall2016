@@ -10,7 +10,7 @@ using System.Collections;
 
 public class RespawnFloor : MonoBehaviour {
 
-    //public GameObject player;
+    
     private GameObject[] playerUnits; //to collect the player units together
      
 

@@ -2,16 +2,18 @@
 using System.Collections;
 
 //========================================================================================================
-//                                              Basic On Trigger
-//  This script can be used as a holding ground for very basic on enter triggers.
-//  It's implementation takes a public object (the thing to be moved onto the trigger) and has the script
-//  applied to the trigger item.
-//  By calling seperate methods for seperate incidents, instead of coding for each trigger, we can cut down
-//  on script bulk. This script is easily expandable or editable for edition of tags or adding trigger exit and stay events.
+//                                              Basic Trigger
+// Can be used as a trigger, collision, or action
+// This script is to be placed on the object that causes a script to fire. It sends a message (String)
+// The inspector calls for the tag of the activator (what can set off the message)
+//                         *the Game Object with the attached script describing the action that needs to happen
+//                         the Type (trigger, collision, action)
+//                         the message
+//                         a boolean as to whether the action can be repeated
 //
-//  22/6: The current additional function, works to move pressure plates down when triggered, respawn does just that.
-// 
 //
+// *The item needs a script that looks for OnEvent(BasicTrigger trigger)
+//                                         { if (trigger.message == "chosenMessage") { do this} }
 //========================================================================================================
 
 public class BasicTrigger : MonoBehaviour

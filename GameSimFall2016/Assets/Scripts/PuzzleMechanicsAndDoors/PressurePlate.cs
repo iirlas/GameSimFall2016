@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//========================================================================================================
+//                                     Pressure Plate
+// Pushes the plate inwards on BASIC TRIGGER, pushes up on END BASIC TRIGGER                                         
+//========================================================================================================
+
 public class PressurePlate : MonoBehaviour
 {
     void OnEvent(BasicTrigger trigger)

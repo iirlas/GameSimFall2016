@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//========================================================================================================
+//                                               Place Item
+// MUST BE PLACED ON AN ITEM DEFINED AS ITEM/INVENTORY GOOD
+//Script is placed where item should be placed in its final iteration.                                              
+//========================================================================================================
+
 public class placeItem : MonoBehaviour {
 
-    //Script is placed where item should be placed in its final iteration.
-
+    [Tooltip("Has the item been placed?")]
     bool isPlaced;
+    [Tooltip("The gameObject with Item Script Attached.")]
     public Item itemThing;
 
 	// Use this for initialization

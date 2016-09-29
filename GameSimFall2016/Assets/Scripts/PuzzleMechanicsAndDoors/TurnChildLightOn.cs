@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//========================================================================================================
+//                             Turn Child Light On
+// Guess what folks. You wanna know what this script does?
+// Are you ready for this?
+// It turns on a light that is a component of the object.
+// Wow. well. I guess the name is wrong, since it's not technically a child, it's a component. But yeah.                          
+//========================================================================================================
+
 public class TurnChildLightOn : MonoBehaviour {
 
 	// Use this for initialization

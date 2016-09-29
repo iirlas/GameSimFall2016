@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//========================================================================================================
+//                                              Fear Shadow
+// This script is attached to anything that needs to apply fear damage (that misses the light collider)
+// 
+//========================================================================================================
+
 public class FearShadow : MonoBehaviour {
 
+    [Tooltip("damage to take")]
    public float fearDamage;
    FearManager myFearManager;
 

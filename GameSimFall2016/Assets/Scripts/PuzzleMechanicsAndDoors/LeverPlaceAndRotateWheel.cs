@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LeverPlaceAndRotateWheel : MonoBehaviour {
+//========================================================================================================
+//                                   Lever Place and Rotate Wheel  
+// This Script puts a lever down using a BASIC TRIGGER and rotates the wheel based on its place.   
+//========================================================================================================
 
+public class LeverPlaceAndRotateWheel : MonoBehaviour {
+    [Tooltip("the lever")]
     public GameObject lever;
+    [Tooltip("tag of the lever")]
     public Tag leverTag;
     
+    [Tooltip("the wheel to turn")]    
     public GameObject wheel;   //wheel to turn
 
-
+    [Tooltip("Number of sides/degrees")]
     public int sides;         // number of sides so as to rotate just one section
+    [Tooltip("currently unused")]
     public int tallness;      // height that needs to be pushed in
 
 

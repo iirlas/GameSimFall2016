@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+//========================================================================================================
+//                                              Match Wheel
+// This Script checks if the wkeels are matched (correct) and opens the door
+// This script uses BASIC TRIGGER to match the panel and then destroy the functionality of the lever to turn it
+//========================================================================================================
 public class MatchWheel : MonoBehaviour
 {
+    [Tooltip("where the lever script is placed")]
     public GameObject platform;
+    [Tooltip("The exit door")]
     public GameObject exitDoor;
+    [Tooltip("Number of wheels to match")]
     public int numOfWheels;
     public static int wheelsSolved;
     

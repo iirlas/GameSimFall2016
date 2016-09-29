@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RotateWheel : MonoBehaviour {
+//========================================================================================================
+//                                  Rotate Wheel
+// Rotates the wheel using BASIC TRIGGER
+//             
+//========================================================================================================
 
+public class RotateWheel : MonoBehaviour {
+    [Tooltip("The Wheel to Turn")]
     public GameObject wheel;   //wheel to turn
+    [Tooltip("Number of Sides (to figure out degrees)")]
     public int sides;         // number of sides so as to rotate just one section
+    [Tooltip("Currently Unused")]
     public int tallness;      // height that needs to be pushed in
     private bool turnWheel; // can the wheel be turned?
 

@@ -2,8 +2,16 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class TransportTo : MonoBehaviour {
 
+//========================================================================================================
+//                                              Transport To
+// This script uses BASIC TRIGGER
+// Upon hitting an item, this script causes transportation to the defined level
+// Name of level desired to be transported to is seen in the Inspector.
+//========================================================================================================
+
+public class TransportTo : MonoBehaviour {
+    [Tooltip("Name of Level to be Transported To")]
     public string nameOfNext;
 
 	// Use this for initialization

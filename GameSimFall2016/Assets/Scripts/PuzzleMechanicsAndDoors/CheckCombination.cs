@@ -1,11 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CheckCombination : MonoBehaviour {
+//========================================================================================================
+//                                              Check Combination
+// This script checks whether a combination has been succesfully cracked.
+// IT DOES NOT REQUIRE THE SOLUTION TO BE IN ORDER
+//
+// The script uses Lights turned on and off to check if the solution has been solved
+// See ToDo for creating a randomized combinitation each time.
+//========================================================================================================
 
+public class CheckCombination : MonoBehaviour {
+    [Tooltip("All parent objects to be interacted with")]
     public GameObject[] allLights;
     //public Light[] allLights;
+    [Tooltip("Number of elements in solution")]
     public int numOfSolution;
+    [Tooltip("Door to Exit from")]
     public GameObject exitDoor;
     private int[] comboNums;
 
