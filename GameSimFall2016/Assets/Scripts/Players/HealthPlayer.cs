@@ -31,6 +31,9 @@ public class HealthPlayer : MonoBehaviour
    public int healthMax;
    public int healthCurrent;
 
+   private float iFrameTimer;
+   private bool iFrameActive;
+
    [HideInInspector]
    public Transform campfireRespawn; // location of where to respawn
 
@@ -43,6 +46,7 @@ public class HealthPlayer : MonoBehaviour
    private bool isPoisoned;          // whether or not the player is poison
    private float poisonInterval;     // how often the player will take poison damage
    private float poisonTimer;        // the time elapsed since the player last took poison damage.
+
    private GameObject[] playerUnits; //to collect the player units together
 
    //==========================================================================
@@ -51,6 +55,8 @@ public class HealthPlayer : MonoBehaviour
    // sets minValue to 0
    void Start()
    {
+      this.iFrameActive = false;
+      this.iFrameTimer = 0.0f;
 
       //this.healthChange = 0;
       this.healthCurrent = healthMax;
@@ -104,6 +110,23 @@ public class HealthPlayer : MonoBehaviour
                applyPoisonDamage();
             }
          }
+
+         checkIFrames();
+      }
+   }
+
+   //==========================================================================
+   // 
+   void checkIFrames()
+   {
+      if (this.iFrameActive)
+      {
+         this.iFrameTimer += Time.deltaTime;
+         if (this.iFrameTimer >= 1.0f)
+         {
+            this.iFrameActive = false;
+            this.iFrameTimer = 0.0f;
+         }
       }
    }
 
@@ -121,15 +144,19 @@ public class HealthPlayer : MonoBehaviour
    // If the value is negative, the player loses health.
    public void modifyHealth(int value)
    {
-      this.healthCurrent += value;
+      if ( this.iFrameTimer == 0.0f )
+      {
+         this.iFrameActive = true;
+         this.healthCurrent += value;
 
-      if (this.healthCurrent > this.healthMax)
-      {
-         this.healthCurrent = this.healthMax;
-      }
-      else if (this.healthCurrent < 0)
-      {
-         this.healthCurrent = 0;
+         if (this.healthCurrent > this.healthMax)
+         {
+            this.healthCurrent = this.healthMax;
+         }
+         else if (this.healthCurrent < 0)
+         {
+            this.healthCurrent = 0;
+         }
       }
    }
 
