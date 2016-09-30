@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class spawnEnemyOnTouch : MonoBehaviour
+public class SpawnEnemyOnTouch : MonoBehaviour
 {
 
     public GameObject theEnemy;
