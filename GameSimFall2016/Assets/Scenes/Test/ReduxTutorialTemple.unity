@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.16176468, g: 0.16176468, b: 0.16176468, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000001, guid: bc170f7f1c30cb347a513f5e0cb9f4aa,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -253,6 +254,22 @@ Prefab:
     - target: {fileID: 160424, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422722, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 422722, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 28.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 422722, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422722, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.0000023245811
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
@@ -1356,28 +1373,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1819378969}
   m_Script: {fileID: 11500000, guid: 6dfc59789b7ae7145832069c1b42245a, type: 3}
---- !u!1 &762823747 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 160424, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
-  m_PrefabInternal: {fileID: 82995056}
---- !u!114 &762823753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 762823747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Fire
-  activator: {fileID: 0}
-  effected: {fileID: 1668658931}
-  type: 2
-  message: Light
-  canRepeat: 1
 --- !u!1 &805351928 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 188086, guid: 6b2e8d8b160d7ec4b866622ad758d5d2, type: 2}
@@ -1620,7 +1615,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &967958065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2366,12 +2361,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 463625900}
   m_Script: {fileID: 11500000, guid: 3f514a677e96c2c40b86c71b3f9ce2cc, type: 3}
---- !u!114 &1668658931 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11486948, guid: 68c0bebf66e47a547b0a83f615c826e7,
-    type: 2}
-  m_PrefabInternal: {fileID: 511632675}
-  m_Script: {fileID: 11500000, guid: bb16b19cce8e9cd41b7677a7ecccd83f, type: 3}
 --- !u!1 &1678312687
 GameObject:
   m_ObjectHideFlags: 0

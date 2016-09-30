@@ -12,6 +12,7 @@ public class MoveWall : MonoBehaviour {
     [Tooltip("Each Wall to begin Movement on BASIC TRIGGER")]
     public GameObject[] walls;
     private bool beginMove;
+    private bool endMove;
     private Animator myanim;
 
 
@@ -19,6 +20,7 @@ public class MoveWall : MonoBehaviour {
     void Start() {
 
         beginMove = false;
+        endMove = false;
 
 
     }
@@ -27,6 +29,7 @@ public class MoveWall : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (beginMove)
+        {
             if (Input.GetButtonDown("Action"))
             {
                 //wheel.transform.Rotate(0, 0, 360 / sides);
@@ -37,26 +40,17 @@ public class MoveWall : MonoBehaviour {
                     myanim.SetBool("wheelTurned", true);
                 }
             }
-            else
-            {
-                foreach (GameObject wall in walls)
-                {
-                    myanim = wall.GetComponent<Animator>();
-                    myanim.SetBool("wheelTurned", false);
-                }
- 
-            }
+
+        }
+
     }
 
     void OnEvent(BasicTrigger trigger)
     {
         if (trigger.message == "turn")
         {
-            beginMove = true;       
+             beginMove = true;       
         }
-        if (trigger.message == "stopWalls")
-        {
-            beginMove = false;
-        }
+
     }
 }

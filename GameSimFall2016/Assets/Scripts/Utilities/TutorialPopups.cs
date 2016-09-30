@@ -69,6 +69,10 @@ public class TutorialPopups : MonoBehaviour {
         {
             tutText.text = "There's no turning back now...";
         }
+        else if (trigger.message == "catTalk")
+        {
+            tutText.text = "Congratulations for completing the demo...\nUnfortunately Kira's parent's are in another Castle!\nI mean temple. Another temple.";
+        }
         else if (trigger.message == "empty")
             tutText.text = "";
     }
