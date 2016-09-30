@@ -37,6 +37,15 @@ public class MoveWall : MonoBehaviour {
                     myanim.SetBool("wheelTurned", true);
                 }
             }
+            else
+            {
+                foreach (GameObject wall in walls)
+                {
+                    myanim = wall.GetComponent<Animator>();
+                    myanim.SetBool("wheelTurned", false);
+                }
+ 
+            }
     }
 
     void OnEvent(BasicTrigger trigger)
@@ -44,6 +53,10 @@ public class MoveWall : MonoBehaviour {
         if (trigger.message == "turn")
         {
             beginMove = true;       
+        }
+        if (trigger.message == "stopWalls")
+        {
+            beginMove = false;
         }
     }
 }

@@ -383,6 +383,7 @@ GameObject:
   - 33: {fileID: 3369306}
   - 65: {fileID: 6591302}
   - 23: {fileID: 2329192}
+  - 114: {fileID: 11459694}
   m_Layer: 0
   m_Name: Entrance (1)
   m_TagString: Entrance
@@ -1886,7 +1887,6 @@ GameObject:
   - 114: {fileID: 11495472}
   - 114: {fileID: 11439066}
   - 114: {fileID: 11432952}
-  - 114: {fileID: 11410142}
   - 114: {fileID: 11417716}
   - 114: {fileID: 11445376}
   m_Layer: 0
@@ -7794,8 +7794,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.2566893, y: 2.8794098, z: 1.2606543}
-  m_Center: {x: -0.0004549131, y: 0.0002773797, z: 0.64682144}
+  m_Size: {x: 2.952835, y: 2.3844597, z: 1.2606543}
+  m_Center: {x: -0.01436615, y: 0.00979225, z: 0.6468212}
 --- !u!65 &6502398
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -8286,8 +8286,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.1015964, y: 4.5987015, z: 1.2606536}
-  m_Center: {x: 0.00018024445, y: 0.1357378, z: 0.64682144}
+  m_Size: {x: 5.4001236, y: 5.1546636, z: 1.2606536}
+  m_Center: {x: -0.149086, y: -0.1421929, z: 0.6468212}
 --- !u!65 &6561190
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -9240,20 +9240,6 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &11410142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9e951502b9d4243948bb18c4acc613, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walls:
-  - {fileID: 174256}
-  - {fileID: 169508}
 --- !u!114 &11416594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9284,7 +9270,7 @@ MonoBehaviour:
   activator: {fileID: 0}
   effected: {fileID: 11445376}
   type: 0
-  message: openWalls
+  message: stopWalls
   canRepeat: 0
 --- !u!114 &11419480
 MonoBehaviour:
@@ -9361,9 +9347,9 @@ MonoBehaviour:
   activatorTag:
     value: Player
   activator: {fileID: 0}
-  effected: {fileID: 11410142}
+  effected: {fileID: 11459694}
   type: 0
-  message: openWalls
+  message: doorOpen
   canRepeat: 0
 --- !u!114 &11438758
 MonoBehaviour:
@@ -9398,7 +9384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 177282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9e951502b9d4243948bb18c4acc613, type: 3}
+  m_Script: {fileID: 11500000, guid: cca7ce2f304c8724a87fc929068739f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walls:
@@ -9432,6 +9418,18 @@ MonoBehaviour:
   walls:
   - {fileID: 174256}
   - {fileID: 169508}
+--- !u!114 &11459694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfc59789b7ae7145832069c1b42245a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfPuzzles: 0
 --- !u!114 &11463932
 MonoBehaviour:
   m_ObjectHideFlags: 1
