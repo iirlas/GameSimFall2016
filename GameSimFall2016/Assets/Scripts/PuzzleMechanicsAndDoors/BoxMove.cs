@@ -30,8 +30,9 @@ public class BoxMove : MonoBehaviour {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Vector3 cameraFoward = PlayerManager.getInstance().camera.transform.forward;
+        float angle = (Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
+        Vector3 direction = Quaternion.AngleAxis(angle, Vector3.up) * new Vector3(h, 0, v);
 
-        Vector3 direction = Quaternion.Euler(cameraFoward) * new Vector3(h, 0, v);
         direction *= Time.deltaTime * kira.movementSpeed;
 
         rigidbody.position += direction;

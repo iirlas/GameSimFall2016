@@ -54,9 +54,18 @@ public class Girl : Player {
                 {
                     strafe();
                 }
+                if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+                {
+                    animator.SetInteger("state", 1);
+                }
+                else
+                {
+                    animator.SetInteger("state", 0);
+                }
             }
             else
             {
+                animator.SetInteger("state", 2);
                 playerState = State.FALL;
             }
         }
@@ -116,7 +125,7 @@ public class Girl : Player {
             strafe();
         }
 
-        if ( Input.GetButtonUp("Attack") ) //fire a projectile towards the shooting target.
+        if (Input.GetButtonUp("Attack")) //fire a projectile towards the shooting target.
         {
             GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
             Rigidbody rockBody = rock.GetComponent<Rigidbody>();

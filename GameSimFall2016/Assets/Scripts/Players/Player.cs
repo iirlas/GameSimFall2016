@@ -202,7 +202,7 @@ abstract public class Player : MonoBehaviour
 
     protected bool isGrounded (out RaycastHit hit, int steps = 10)
     {
-        float distance = collider.bounds.size.y / 2;
+        float distance = collider.bounds.size.y / 2 + 0.1f;
         Vector3 box = new Vector3(collider.bounds.extents.x, 0.01f, collider.bounds.extents.z);
         hit = new RaycastHit();
 
