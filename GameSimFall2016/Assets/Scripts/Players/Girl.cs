@@ -182,4 +182,12 @@ public class Girl : Player {
         }
         return (myTarget != null);
     }
+
+    void LateUpdate()
+    {
+        if (PlayerManager.getInstance().currentPlayer != this)
+        {
+            animator.SetInteger("state", 0);
+        }
+    }
 }

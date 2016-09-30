@@ -23,8 +23,11 @@ public class Bird : Player {
         movePlayer();
         if (Input.GetButton("Action") && canFly)
         {
-            rigidbody.position += transform.up * (Time.deltaTime) * movementSpeed;
+            rigidbody.useGravity = false;
+            rigidbody.velocity = Vector3.zero;
+            clearParent();
             stamina -= Time.deltaTime * 20.0f;
+            rigidbody.position += transform.up * (Time.deltaTime) * movementSpeed;
             if ( stamina <= 0 )
             {
                 canFly = false;
@@ -34,7 +37,6 @@ public class Bird : Player {
         else
         {
             RaycastHit hit;
-            rigidbody.position -= transform.up * (Time.deltaTime) * movementSpeed;
             if (isGrounded(out hit))
             {
                 setParent(hit);
@@ -45,6 +47,7 @@ public class Bird : Player {
                     stamina = 100.0f;
                 }
             }
+            rigidbody.useGravity = true;
         }
     }
 

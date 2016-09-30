@@ -20,7 +20,7 @@ public class LightCollider : MonoBehaviour {
         {
             foreach (var hit in myHits)
             {
-                if (!hits.Contains(hit))
+                if (hit != null && !hits.Contains(hit))
                 {
                     hit.transform.SendMessage("OnActionEnd", SendMessageOptions.DontRequireReceiver);
                 }

@@ -14,7 +14,7 @@ public class Decay : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         life -= decaySpeed * Time.deltaTime;
         if ( life < 0 )
         {

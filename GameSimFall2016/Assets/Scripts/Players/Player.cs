@@ -202,13 +202,11 @@ abstract public class Player : MonoBehaviour
 
     protected bool isGrounded (out RaycastHit hit, int steps = 10)
     {
-        float distance = collider.bounds.size.y / 2 + 0.1f;
-        Vector3 box = new Vector3(collider.bounds.extents.x, 0.01f, collider.bounds.extents.z);
+        float distance = collider.bounds.extents.y + 0.1f;
+        Vector3 box = new Vector3(collider.bounds.size.x, 0.01f, collider.bounds.size.z);
         hit = new RaycastHit();
-
+        
         Debug.DrawRay(collider.bounds.center, Vector3.down * distance);
         return Physics.BoxCast(collider.bounds.center, box, Vector3.down, out hit, Quaternion.identity, distance);
     }
-
-
 }
