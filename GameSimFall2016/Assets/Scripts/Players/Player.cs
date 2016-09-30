@@ -128,7 +128,7 @@ abstract public class Player : MonoBehaviour
         myStates.Add(state, stateRunner);
     }
 
-    protected void setParent ( RaycastHit hit, float angleLimit = float.PositiveInfinity )
+    protected void setParent ( RaycastHit hit )
     {
 
         Transform parent = transform.parent;
@@ -141,12 +141,8 @@ abstract public class Player : MonoBehaviour
             return;
 
         transform.parent = null;
-
-        if (Vector3.Angle(hit.normal, transform.up) < angleLimit )
-        {
-            parent.position = hit.transform.position;
-            myPlatform = hit.transform;
-        }
+        parent.position = hit.transform.position;
+        myPlatform = hit.transform;
         transform.parent = parent;
     }
 
@@ -207,6 +203,15 @@ abstract public class Player : MonoBehaviour
         hit = new RaycastHit();
         
         Debug.DrawRay(collider.bounds.center, Vector3.down * distance);
-        return Physics.BoxCast(collider.bounds.center, box, Vector3.down, out hit, Quaternion.identity, distance);
+        RaycastHit[] hits = Physics.BoxCastAll(collider.bounds.center, box, Vector3.down, Quaternion.identity, distance);
+        foreach (RaycastHit fHit in hits)
+        {
+            if (Vector3.Angle(fHit.normal, transform.up) < floorAngleLimit)
+            {
+                hit = fHit;
+                return true;
+            }
+        }
+        return false;
     }
 }

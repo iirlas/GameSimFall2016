@@ -24,7 +24,7 @@ public class Rabbit : Player {
         RaycastHit hit;
         if (isGrounded(out hit))
         {
-            setParent(hit, floorAngleLimit);
+            setParent(hit);
             movePlayer();
             if (Input.GetButtonDown("Action"))
             {

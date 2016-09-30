@@ -10,13 +10,27 @@ public class Girl : Player {
         ATTACK,
     };
 
+    public enum Status
+    {
+        NONE   = 0x00,  //0000
+        POISON = 0x01,  //0001
+        FIRE   = 0x02,  //0010
+        DARK   = 0x04   //0100
+    }
+
     [HideInInspector]
     public Animator animator;
     
     public GameObject rockPrefab;
     public Transform rockSpawnNode;
     public float shootingForce = 30.0f;
-
+    
+    public Status status = Status.DARK;
+    public GameObject posisonEffect;
+    public GameObject fireEffect;
+    public GameObject darkEffect;
+    public GameObject fearEffect;
+    
     [HideInInspector]
     public Transform target
     {
@@ -45,7 +59,7 @@ public class Girl : Player {
         {
             if (isGrounded(out hit))
             {
-                setParent(hit, floorAngleLimit);
+                setParent(hit);
                 if (myTarget == null)
                 {
                     movePlayer();
@@ -188,6 +202,17 @@ public class Girl : Player {
         if (PlayerManager.getInstance().currentPlayer != this)
         {
             animator.SetInteger("state", 0);
+        }
+        posisonEffect.SetActive((status & Status.POISON) == Status.POISON);
+        fireEffect.SetActive((status & Status.FIRE) == Status.FIRE);
+        darkEffect.SetActive((status & Status.DARK) == Status.DARK);
+        if (darkEffect.activeSelf && GameObject.FindObjectOfType<FearManager>().fearCurrent >= 100 )
+        {
+            fearEffect.SetActive(true);
+        }
+        else
+        {
+            fearEffect.SetActive(false);
         }
     }
 }

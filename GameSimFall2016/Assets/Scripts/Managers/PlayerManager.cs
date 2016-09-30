@@ -14,10 +14,16 @@ public class PlayerManager : Singleton<PlayerManager> {
     override protected void Init ()
     {
         players = GameObject.FindObjectsOfType<Player>();
-        currentPlayer = players.First(player => { return (player as Girl) != null; });
-        if ( currentPlayer == null )
+        if ( players.Length > 0 )
         {
-            currentPlayer = players.First(player => { return player != null; });
+            if ( players.Length > 1 )
+            {
+                currentPlayer = players.First(player => { return player != null && player is Girl; });
+            }
+            if (currentPlayer == null)
+            {
+                currentPlayer = players.First(player => { return player != null; });
+            }
         }
     }
 

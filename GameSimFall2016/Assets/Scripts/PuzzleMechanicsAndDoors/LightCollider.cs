@@ -4,7 +4,7 @@ using System.Linq;
 
 public class LightCollider : MonoBehaviour {
 
-    private Light light;
+    new private Light light;
     public LayerMask layer;
     private Collider[] myHits;
 
