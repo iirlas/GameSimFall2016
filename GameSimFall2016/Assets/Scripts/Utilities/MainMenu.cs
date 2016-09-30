@@ -5,9 +5,9 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
    public int mainMenuScene = 0;
-   public int infoScene;
+   public int infoScene = 1;
    public int firstScene = 2;
-   public int creditScene;
+   public int creditScene = 8;
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +24,12 @@ public class MainMenu : MonoBehaviour {
 
    public void pressInstructions()
    {
-      //SceneManager.LoadScene(infoScene);
+      SceneManager.LoadScene(infoScene);
    }
 
    public void pressCredits()
    {
-      //SceneManager.LoadScene(creditScene);
+      SceneManager.LoadScene(creditScene);
    }
 
    public void pressTitle()
