@@ -4,6 +4,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
+   public int mainMenuScene = 0;
    public int infoScene;
    public int firstScene = 2;
    public int creditScene;
@@ -29,6 +30,11 @@ public class MainMenu : MonoBehaviour {
    public void pressCredits()
    {
       //SceneManager.LoadScene(creditScene);
+   }
+
+   public void pressTitle()
+   {
+      SceneManager.LoadScene(mainMenuScene);
    }
 
    public void pressQuit()
