@@ -19,7 +19,7 @@ public class StaminaManager : MonoBehaviour
       if (theBird == null) { Debug.LogWarning("NRC:  A Bird was not found in the scene, be aware that this UI will only show up when the bird is in the scene."); }
 
       mySlider = this.inWorldCanvas.GetComponentInChildren<Slider>();
-      cameraToLookAt = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+      cameraToLookAt = Camera.main;
    }
 
    //==========================================================================
@@ -40,13 +40,17 @@ public class StaminaManager : MonoBehaviour
          Debug.Log("Updating bar");
          updateStaminaBar();
       }
-      mySlider.value = theBird.stamina;
+      
    }
 
    //==========================================================================
    // 
    void updateStaminaBar()
    {
+      mySlider.value = theBird.stamina;
+
+      transform.LookAt(transform.position + cameraToLookAt.transform.rotation * Vector3.forward,
+                       cameraToLookAt.transform.rotation * Vector3.up);
    }
 
 }
