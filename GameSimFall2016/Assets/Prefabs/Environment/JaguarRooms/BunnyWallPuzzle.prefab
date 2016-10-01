@@ -385,8 +385,8 @@ GameObject:
   - 23: {fileID: 2329192}
   - 114: {fileID: 11459694}
   m_Layer: 0
-  m_Name: Entrance (1)
-  m_TagString: Entrance
+  m_Name: Exit
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1888,7 +1888,7 @@ GameObject:
   - 114: {fileID: 11439066}
   - 114: {fileID: 11432952}
   - 114: {fileID: 11417716}
-  - 114: {fileID: 11445376}
+  - 114: {fileID: 11403592}
   m_Layer: 0
   m_Name: PlayerPressurePlate
   m_TagString: PushIn
@@ -3588,8 +3588,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.7, y: 4, z: -98.7}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.000002324581}
+  m_LocalPosition: {x: 8.8, y: 7, z: 166.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 469304}
@@ -5042,7 +5042,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188142}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -8667,7 +8667,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188142}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -9226,6 +9226,22 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11403592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da0fd70f188b864a97f95f3a5d8373d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchWheel: {fileID: 160248}
+  invisiWall: {fileID: 108160}
+  walls:
+  - {fileID: 174256}
+  - {fileID: 169508}
 --- !u!114 &11406894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9268,7 +9284,7 @@ MonoBehaviour:
   activatorTag:
     value: Player
   activator: {fileID: 0}
-  effected: {fileID: 11445376}
+  effected: {fileID: 11403592}
   type: 0
   message: stopWalls
   canRepeat: 0
@@ -9376,20 +9392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11445376
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca7ce2f304c8724a87fc929068739f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walls:
-  - {fileID: 174256}
-  - {fileID: 169508}
 --- !u!114 &11451000
 MonoBehaviour:
   m_ObjectHideFlags: 1
