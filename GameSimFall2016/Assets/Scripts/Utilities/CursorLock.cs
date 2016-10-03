@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 //========================================================================================================
@@ -21,8 +22,22 @@ public class CursorLock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (SceneManager.GetActiveScene().name.Equals("MainMenu") ||
+            SceneManager.GetActiveScene().name.Equals("ControlScene") ||
+            SceneManager.GetActiveScene().name.Equals("CreditsScene"))
         {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+
+            if (Input.GetKeyDown("escape"))
+        {
+            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             Application.Quit(); // Quits the game
         }
