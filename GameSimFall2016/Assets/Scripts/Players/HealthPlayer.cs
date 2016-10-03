@@ -24,7 +24,7 @@ using UnityEngine.UI;
 public class HealthPlayer : MonoBehaviour
 {
 
-   public bool killKeyEnabled;
+   public bool killKeyEnabled = true;
 
    public Slider healthBar; //hook the healthbar to this slider spot
    public Image healthBarFill;
