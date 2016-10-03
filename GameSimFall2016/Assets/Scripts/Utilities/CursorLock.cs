@@ -15,13 +15,6 @@ public class CursorLock : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         if (SceneManager.GetActiveScene().name.Equals("MainMenu") ||
             SceneManager.GetActiveScene().name.Equals("ControlScene") ||
             SceneManager.GetActiveScene().name.Equals("CreditsScene"))
@@ -34,12 +27,21 @@ public class CursorLock : MonoBehaviour
             Cursor.visible = false;
         }
 
+    }
 
-            if (Input.GetKeyDown("escape"))
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetKeyDown("escape"))
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            Application.Quit(); // Quits the game
+            //Application.Quit(); // Quits the game
         }
+        
+
+
+        
     }
 }
