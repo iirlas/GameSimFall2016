@@ -130,8 +130,9 @@ abstract public class Player : MonoBehaviour
 
     protected void setParent ( RaycastHit hit )
     {
-
         Transform parent = transform.parent;
+        transform.parent = null;
+
         if ( parent == null )
         {
             parent = new GameObject("Parent").transform;
@@ -140,7 +141,15 @@ abstract public class Player : MonoBehaviour
         if (parent.parent == hit.transform)
             return;
 
-        transform.parent = null;
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        {
+            RaycastHit fHit = new RaycastHit();
+            Physics.Raycast(collider.bounds.center + transform.forward / 2, Vector3.down, out fHit);
+            if (fHit.point.y < collider.bounds.min.y)
+            {
+                rigidbody.position = new Vector3(rigidbody.position.x, hit.point.y + collider.bounds.extents.y, rigidbody.position.z);
+            }
+        }
         parent.position = hit.transform.position;
         myPlatform = hit.transform;
         transform.parent = parent;
@@ -198,18 +207,24 @@ abstract public class Player : MonoBehaviour
 
     protected bool isGrounded (out RaycastHit hit, int steps = 10)
     {
-        float distance = collider.bounds.extents.y + 0.1f;
-        Vector3 box = new Vector3(collider.bounds.size.x, 0.01f, collider.bounds.size.z);
         hit = new RaycastHit();
-        
-        Debug.DrawRay(collider.bounds.center, Vector3.down * distance);
-        RaycastHit[] hits = Physics.BoxCastAll(collider.bounds.center, box, Vector3.down, Quaternion.identity, distance);
-        foreach (RaycastHit fHit in hits)
+        float distance = collider.bounds.extents.y + 0.1f;
+        float width = collider.bounds.size.x;
+        float depth = collider.bounds.size.z;
+        Ray ray = new Ray(Vector3.zero, Vector3.down);
+
+        float x = collider.bounds.min.x;
+        for (int xStep = 0; xStep <= steps; xStep++, x += width / steps)
         {
-            if (Vector3.Angle(fHit.normal, transform.up) < floorAngleLimit)
+            float z = collider.bounds.min.z;
+            for (int zStep = 0; zStep <= steps; zStep++, z += depth / steps)
             {
-                hit = fHit;
-                return true;
+                ray.origin = new Vector3(x, collider.bounds.center.y, z);
+                Debug.DrawRay(ray.origin, ray.direction * distance);
+                if (Physics.Raycast(ray, out hit, distance) && Vector3.Angle(hit.normal, transform.up) < floorAngleLimit)
+                {
+                    return true;
+                }
             }
         }
         return false;
