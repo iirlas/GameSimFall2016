@@ -24,6 +24,8 @@ using UnityEngine.UI;
 public class HealthPlayer : MonoBehaviour
 {
 
+   public bool killKeyEnabled;
+
    public Slider healthBar; //hook the healthbar to this slider spot
    public Image healthBarFill;
    public Text healthText;
@@ -55,6 +57,12 @@ public class HealthPlayer : MonoBehaviour
    // sets minValue to 0
    void Start()
    {
+      if (killKeyEnabled)
+      {
+          Debug.LogWarning("NRC: A happy sunshine rainbow button is in use, press the \"End\" key to bring forth the \n" +
+                           "Second coming of our lord and saviour!  " + this.name + ".cs.");
+      }
+
       this.iFrameActive = false;
       this.iFrameTimer = 0.0f;
 
@@ -80,6 +88,11 @@ public class HealthPlayer : MonoBehaviour
    // if dead, debug log tells you she's dead.
    void Update()
    {
+      if (Input.GetKeyDown(KeyCode.End) && killKeyEnabled)
+      {
+         this.healthCurrent = 0;
+      }
+        
       if (!isDead)
       {
          if (this.healthCurrent < 1)
