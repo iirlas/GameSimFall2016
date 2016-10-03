@@ -29,6 +29,7 @@ public class Rabbit : Player {
             if (Input.GetButtonDown("Action"))
             {
                 //launches the player forward and up
+                rigidbody.velocity = Vector3.zero;
                 rigidbody.AddForce((transform.up + transform.forward) * jumpDistance, ForceMode.Impulse);
                 playerState = State.FALL;
             }
