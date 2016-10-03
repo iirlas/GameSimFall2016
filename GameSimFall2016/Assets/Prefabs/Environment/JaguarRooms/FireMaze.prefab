@@ -200,6 +200,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &114296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 496038}
+  - 33: {fileID: 3316750}
+  - 65: {fileID: 6537732}
+  - 23: {fileID: 2344744}
+  - 114: {fileID: 11468586}
+  m_Layer: 0
+  m_Name: PlayerPressurePlate
+  m_TagString: PushIn
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &115050
 GameObject:
   m_ObjectHideFlags: 1
@@ -675,6 +694,7 @@ GameObject:
   - 4: {fileID: 467118}
   - 33: {fileID: 3346582}
   - 23: {fileID: 2354148}
+  - 65: {fileID: 6582370}
   m_Layer: 0
   m_Name: MazeFloor
   m_TagString: Untagged
@@ -1199,7 +1219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &176968
 GameObject:
   m_ObjectHideFlags: 1
@@ -1975,7 +1995,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 432242}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &427064
 Transform:
   m_ObjectHideFlags: 1
@@ -2069,16 +2089,17 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.6, y: 7.7517567, z: 240.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.645, y: 3.26, z: 236.36}
+  m_LocalScale: {x: 1.5099998, y: 1.5099995, z: 1.5099995}
   m_Children:
+  - {fileID: 496038}
   - {fileID: 442712}
   - {fileID: 425840}
   - {fileID: 467118}
-  - {fileID: 490718}
   - {fileID: 401586}
-  - {fileID: 483216}
   - {fileID: 475912}
+  - {fileID: 483216}
+  - {fileID: 490718}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &432260
@@ -2205,7 +2226,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 432242}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &442816
 Transform:
   m_ObjectHideFlags: 1
@@ -2455,7 +2476,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 432242}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &468326
 Transform:
   m_ObjectHideFlags: 1
@@ -2554,7 +2575,7 @@ Transform:
   m_LocalScale: {x: 1.5374982, y: 1, z: 1.4624946}
   m_Children: []
   m_Father: {fileID: 432242}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!4 &476130
 Transform:
   m_ObjectHideFlags: 1
@@ -2690,7 +2711,7 @@ Transform:
   - {fileID: 499892}
   - {fileID: 443934}
   m_Father: {fileID: 432242}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!4 &485086
 Transform:
   m_ObjectHideFlags: 1
@@ -2790,7 +2811,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 2.1204047}
   m_Children: []
   m_Father: {fileID: 432242}
-  m_RootOrder: 3
+  m_RootOrder: 7
 --- !u!4 &491778
 Transform:
   m_ObjectHideFlags: 1
@@ -2802,6 +2823,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 466370}
+  m_RootOrder: 0
+--- !u!4 &496038
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.9680004, y: 0.21600008, z: 5.998993}
+  m_LocalScale: {x: 1.2671536, y: 0.17500025, z: 2.5608983}
+  m_Children: []
+  m_Father: {fileID: 432242}
   m_RootOrder: 0
 --- !u!4 &496338
 Transform:
@@ -2888,7 +2921,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: cc0fd9f7d4ee3e34a8d7d547280ce86d, type: 2}
+  - {fileID: 2100000, guid: f55fae006c1c23d468cce88c4557a6f2, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -3104,6 +3137,32 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!23 &2344744
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114296}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: cc0fd9f7d4ee3e34a8d7d547280ce86d, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
@@ -3360,6 +3419,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111618}
   m_Mesh: {fileID: 4300000, guid: 61c99f3a06b678a4097fe8bc463e057c, type: 3}
+--- !u!33 &3316750
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114296}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3320756
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -3611,6 +3677,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 4.9999995, z: 0.1}
   m_Center: {x: 0, y: 2.5000002, z: 0.049999807}
+--- !u!65 &6537732
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114296}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6539344
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3659,6 +3737,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 4.9999995, z: 0.1}
   m_Center: {x: 0, y: 2.5000002, z: 0.049999807}
+--- !u!65 &6582370
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.000002, y: 15.000006, z: 0.100000024}
+  m_Center: {x: 0, y: 0, z: 0.050000012}
 --- !u!65 &6599384
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4899,6 +4989,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfPuzzles: 0
+--- !u!114 &11468586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  effected: {fileID: 11459156}
+  type: 0
+  message: doorOpen
+  canRepeat: 0
 --- !u!198 &19805166
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4953,7 +5061,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6452,7 +6560,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7951,7 +8059,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9450,7 +9558,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10949,7 +11057,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -12448,7 +12556,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -13947,7 +14055,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15446,7 +15554,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -16945,7 +17053,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -18444,7 +18552,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19943,7 +20051,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -21442,7 +21550,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -22941,7 +23049,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -24440,7 +24548,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -25939,7 +26047,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -27438,7 +27546,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -28937,7 +29045,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -30436,7 +30544,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -31935,7 +32043,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -33434,7 +33542,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -34933,7 +35041,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -36432,7 +36540,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -37931,7 +38039,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -39430,7 +39538,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -40929,7 +41037,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -42428,7 +42536,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -43927,7 +44035,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -45426,7 +45534,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -46925,7 +47033,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -48424,7 +48532,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -49923,7 +50031,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -51422,7 +51530,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -52921,7 +53029,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -54420,7 +54528,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -55919,7 +56027,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -57418,7 +57526,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 4.57
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
