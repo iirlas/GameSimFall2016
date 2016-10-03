@@ -45,6 +45,10 @@ public class Ant : Enemy
    private const float ANTROTATIONSPEEDDEFAULT = 1;
    private const float ATTACKINTERVAL = 1.0f;        // How often the Ant will attack
 
+	public AudioSource antWalking;
+	//public AudioSource antAttack;
+   
+
    //-----------------------------------------------------------------------------
    // Private member variable data.
    private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
@@ -249,6 +253,7 @@ public class Ant : Enemy
       if (isDefeated())
       {
          this.myState = enState.DEAD;
+		 this.antWalking.Stop ();
       }
    }
 
@@ -259,6 +264,10 @@ public class Ant : Enemy
       this.transform.LookAt(new Vector3(thePlayer.transform.position.x,
                                         this.transform.position.y,
                                         thePlayer.transform.position.z));
+		if(this.antWalking.isPlaying == false)
+		{
+			this.antWalking.Play ();
+		}
 
       if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
       {
@@ -305,6 +314,7 @@ public class Ant : Enemy
             //do damage to player.
             Debug.Log(this.name + " has damaged the player.");
             thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
+			//this.antAttack.Play ();
          }
 
          timeSinceLastAttack += Time.deltaTime;
