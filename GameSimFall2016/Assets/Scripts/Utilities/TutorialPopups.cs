@@ -49,6 +49,8 @@ public class TutorialPopups : MonoBehaviour {
         {
             tutText.text = "How do I get across? \n Maybe bunny can get to the other side?";
         }
+
+        //JAGUAR TEMPLE TEXTS
         else if (trigger.message == "jagFront")
         {
             tutText.text = "What? \n Another temple? \n Mommy...are you here?";
@@ -64,6 +66,30 @@ public class TutorialPopups : MonoBehaviour {
         else if (trigger.message == "targetTut")
         {
             tutText.text = "Hm. Looks like those targets control the lights...\nMaybe if they're all lit the door will open?";
+        }
+        else if (trigger.message == "turnWheel")
+        {
+            tutText.text = "Looks like I can't get through there...\n Maybe if I turn the wheel? \n Press space to turn the wheel";
+        }
+        else if (trigger.message == "bunnyWalls")
+        {
+            tutText.text = "Doesn't look I can get through here...maybe bunny can?";
+        }
+        else if (trigger.message == "stopWheel")
+        {
+            tutText.text = "I bet that pressure plate will stop the walls for Kira to get through!";
+        }
+        else if (trigger.message == "strangeWriting")
+        {
+            tutText.text = "I wonder who could have left that writing...";
+        }
+        else if (trigger.message == "colorSequence")
+        {
+            tutText.text = "That looks like a sequence on the wall.\n Maybe if I pick the next block in the sequence the door will open";
+        }
+        else if (trigger.message == "portalNew")
+        {
+            tutText.text = "Another one of these? \n Guess there's only one way to find out where it goes...";
         }
         else if (trigger.message == "portal")
         {
