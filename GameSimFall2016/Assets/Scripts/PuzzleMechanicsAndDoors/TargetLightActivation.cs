@@ -15,11 +15,10 @@ public class TargetLightActivation : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnEvent(BasicTrigger trigger)
     {
-        if (other.tag =="Projectile" || other.tag == "Player")
+        if (trigger.message == "Light")
         {
-
             Debug.Log("hitPanel");
             foreach (Light boxLight in puzzleBoxes)
             {

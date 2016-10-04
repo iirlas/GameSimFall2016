@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 //========================================================================================================
 //                                              Basic Trigger
@@ -40,6 +41,7 @@ public class BasicTrigger : MonoBehaviour
     public Type type;
     public string message;
     public bool canRepeat = false;
+    public UnityEvent OnTouch = new UnityEvent();
 
     private State myNextState;
 
@@ -73,6 +75,7 @@ public class BasicTrigger : MonoBehaviour
             myNextState = State.EXIT;
             activator = collision.gameObject;
             effected.SendMessage("OnEvent", this);
+            OnTouch.Invoke();
         }
     }
 

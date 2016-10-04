@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public delegate void StateRunner();
 
+[RequireComponent(typeof(BoxCollider))]
 abstract public class Player : MonoBehaviour
 {
     public enum State
@@ -12,12 +13,11 @@ abstract public class Player : MonoBehaviour
         DEFAULT,
         FOREIGN,
     };
-
-
     private Transform myPlatform;
     private Transform myTransform;
     private Rigidbody myRigidbody;
     private Collider myCollider;
+    private Transform myTarget;
 
     protected Dictionary<Enum, StateRunner> myStates { get; private set; }
     
@@ -31,7 +31,7 @@ abstract public class Player : MonoBehaviour
     new public Camera camera { get { return PlayerManager.getInstance().camera; } }
 
     [HideInInspector]
-    public new Transform transform
+    public Transform transform
     {
         get
         {
@@ -77,9 +77,10 @@ abstract public class Player : MonoBehaviour
         playerState = State.DEFAULT;
     }
 
-    // Update is called once per frame
-    protected void Update()
+    [HideInInspector]
+    public void AssignTarget( Transform targetTo = null )
     {
+        myTarget = targetTo;
     }
 
     public void FixedUpdate()
@@ -95,9 +96,18 @@ abstract public class Player : MonoBehaviour
                 myStates[playerState]();
             }
         }
+        else
+        {
+            if( myTarget != null )
+            {
+                rigidbody.MovePosition( Vector3.Lerp( rigidbody.position, myTarget.position - (myTarget.forward), 
+                                        movementSpeed * Time.deltaTime) );
+            }
+        }
         if (transform.parent != null && myPlatform != null)
         {
-            transform.parent.position = Vector3.Lerp(transform.parent.position, myPlatform.position, float.PositiveInfinity);
+            transform.parent.position = myPlatform.position;
+            //transform.parent.position = Vector3.Lerp(transform.parent.position, myPlatform.position, float.PositiveInfinity);
         }
     }
 

@@ -12,7 +12,8 @@ public class ThirdPersonCamera : MonoBehaviour {
     public new Transform transform;
 
     private Player myPlayer;
-    private float  myAngle = 0;
+    private Vector3 myAngle = Vector3.zero;
+    //private float  myAngle = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -31,23 +32,22 @@ public class ThirdPersonCamera : MonoBehaviour {
             return;
 
         float h = Input.GetAxis("Alt_Horizontal");
-        //float v = Input.GetAxis("Alt_Vertical");
-
+        float v = Input.GetAxis("Alt_Vertical");
+        
         if (myPlayer is Girl && (myPlayer as Girl).target != null)
         {
-            myAngle = Mathf.LerpAngle(transform.eulerAngles.y, myPlayer.transform.eulerAngles.y, speed * Time.deltaTime);
+            myAngle.y = Mathf.LerpAngle(transform.eulerAngles.y, myPlayer.transform.eulerAngles.y, speed * Time.deltaTime);
         }
         else if (Input.GetButtonDown("Center"))
         {
-            myAngle = myPlayer.transform.eulerAngles.y;
+            myAngle.y = myPlayer.transform.eulerAngles.y;
         }
         else if (h != 0)
         {
-            h = (h > 0 ? 1 : -1); // unify speed between mouse and joystick
-            myAngle += h * speed;
+            myAngle.y += h * speed;
         }
         Vector3 targetPosition = myPlayer.transform.position + pivotPoint;
-        Vector3 viewPosition = targetPosition + Quaternion.Euler(0, myAngle, 0) * offset;
+        Vector3 viewPosition = targetPosition + Quaternion.Euler(0, myAngle.y, 0) * offset;
 
         RaycastHit hit;
         if (Physics.Linecast(targetPosition, viewPosition, out hit))
