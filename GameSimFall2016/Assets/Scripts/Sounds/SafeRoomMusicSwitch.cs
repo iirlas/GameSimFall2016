@@ -9,7 +9,7 @@ public class SafeRoomMusicSwitch : MonoBehaviour {
 	int safeRoomNumber = 0;
 	float volumeOfSafeRoom;
 	float volumeOfLevelMusic;
-	bool hasEntered = false;
+	//bool hasEntered = false;
 
 	void Start()
 	{
@@ -18,31 +18,22 @@ public class SafeRoomMusicSwitch : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		if (col.transform.tag == "Player" && !safeRoom.isPlaying && !hasEntered)
+		//if (col.transform.tag == "Player" && !safeRoom.isPlaying && !hasEntered)
+		if(col.gameObject.name == GameObject.Find("Kira").name)
 		{
-			hasEntered = true;
-			levelMusic.Stop();
-			this.levelMusic.volume = this.volumeOfLevelMusic;
+			safeRoomNumber = 1;
+			this.safeRoom.volume = this.volumeOfSafeRoom;
 			safeRoom.Play ();
 		}
 	}
 
-//	void OnTriggerEnter(Collider col){
-//		if (col.gameObject.GetComponent<Girl> () != null) 
-//		{
-//			this.safeRoom.volume = this.volumeOfSafeRoom;
-//			if ( safeRoom.isPlaying
-//			this.safeRoomNumber = 1;
-//		}
-//
-//	}
-//
+
 	void OnTriggerExit(Collider col){
-		if (col.transform.tag == "Player" && hasEntered) {
-			hasEntered = false;
-			safeRoom.Stop();
-			volumeOfLevelMusic = this.levelMusic.volume;
-			levelMusic.Play();
+		if (col.gameObject.name == GameObject.Find("Kira").name) {
+			safeRoomNumber = 2;
+			this.levelMusic.volume = this.volumeOfLevelMusic;
+			Debug.Log ("volume of Level music is: " + levelMusic.volume);
+			levelMusic.Play ();
 		}
 	}
 
@@ -61,6 +52,7 @@ public class SafeRoomMusicSwitch : MonoBehaviour {
 		if (music.volume == 0) {
 			music.Stop ();
 			this.safeRoomNumber = 0;
+
 		}
 	}
 }
