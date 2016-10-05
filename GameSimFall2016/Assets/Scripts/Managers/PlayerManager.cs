@@ -53,16 +53,19 @@ public class PlayerManager : Singleton<PlayerManager> {
                     if (players[j] == currentPlayer)
                         continue;
 
-                    float minDist = Mathf.Infinity;
+                    float minDist = switchDistance;
                     float distcheck = Vector3.Distance(players[j].transform.position, currentPlayer.transform.position);
                     if (distcheck < minDist)
                     {
                         minDist = distcheck;
+                        if ( target != null )
+                        {
+                            target.AssignTarget(players[j].transform);
+                        }
                         target = players[j];
-
+                        target.AssignTarget(currentPlayer.transform);
                     }
                 }
-                currentPlayer.AssignTarget(target.transform);
 
         //            // distance check between other playrs
  
@@ -102,7 +105,7 @@ public class PlayerManager : Singleton<PlayerManager> {
 
             index = (++index) % players.Length;
             dist = Vector3.Distance(players[index].transform.position, currentPlayer.transform.position);
-            if (dist < switchDistance) //|| players[index] is Girl
+            if (dist < switchDistance || players[index] is Girl)
             {
                 currentPlayer = players[index];
                 ignoreCollision();
