@@ -11,7 +11,7 @@ public class StaminaManager : MonoBehaviour
    
    //==========================================================================
    // Use this for initialization
-   void Start()
+   void Awake()
    {
       inWorldCanvas = GameObject.FindGameObjectWithTag("InWorldUI");
       if (inWorldCanvas == null) { Debug.LogError("NRC_ERR:  Couldn't find inWorldUI canvas, was the prefab dragged in?  Was the UI tagged \"InWorldUI\""); }

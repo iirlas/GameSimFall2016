@@ -48,7 +48,7 @@ public class Spawner : MonoBehaviour
 
    //========================================================================================================
    // Use this for initialization
-   void Start()
+   void Awake()
    {
       this.hasStartedSpawning = false;
       this.spawnState = State.PAUSED;

@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
 
    //==========================================================================
    // Use this for initialization
-   void Start()
+   void Awake()
    {
       if (killKeyEnabled)
       {

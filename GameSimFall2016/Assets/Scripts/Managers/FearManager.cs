@@ -4,12 +4,9 @@ using System.Collections;
 
 public class FearManager : MonoBehaviour
 {
-
     public Slider fearBar;
     public Image fearBarFill;
     public Text fearText;
-
-
 
     public float fearMax = 110.0f;  // 10 over 100 to represent overflow
     public float fearMin = 0.0f;
@@ -22,7 +19,7 @@ public class FearManager : MonoBehaviour
 
     //===========================================================================
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         this.fearCurrent = this.fearMin;
         this.fearBarFill.color = Color.white;

@@ -8,7 +8,7 @@ public class Campfire : MonoBehaviour
 
    //==========================================================================
    // Use this for initialization
-   void Start()
+   void Awake()
    {
       respawnPoint = this.GetComponentInChildren<Transform>();
    }

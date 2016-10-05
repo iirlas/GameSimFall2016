@@ -75,7 +75,7 @@ public class Scorpion : Enemy
 
    //=============================================================================
    // Initialize things here
-   void Start()
+   void Awake()
    {
       if (overrideValues)  // If custom values are provided, assign them to this Scorpion.
       {
