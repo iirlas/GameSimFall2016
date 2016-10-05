@@ -12,7 +12,6 @@ public class MoveWall : MonoBehaviour {
     [Tooltip("Each Wall to begin Movement on BASIC TRIGGER")]
     public GameObject[] walls;
     private bool beginMove;
-    private bool endMove;
     private Animator myanim;
 
 
@@ -20,7 +19,7 @@ public class MoveWall : MonoBehaviour {
     void Start() {
 
         beginMove = false;
-        endMove = false;
+       
 
 
     }
