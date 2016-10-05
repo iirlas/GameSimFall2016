@@ -45,6 +45,8 @@ public class Ant : Enemy
    private const float ANTROTATIONSPEEDDEFAULT = 1;
    private const float ATTACKINTERVAL = 1.0f;        // How often the Ant will attack
 
+
+	// Ants AuidioSource.
 	public AudioSource antWalking;
 	//public AudioSource antAttack;
    
@@ -264,6 +266,8 @@ public class Ant : Enemy
       this.transform.LookAt(new Vector3(thePlayer.transform.position.x,
                                         this.transform.position.y,
                                         thePlayer.transform.position.z));
+
+		//Plays ant walking sound if it is not player already.
 		if(this.antWalking.isPlaying == false)
 		{
 			this.antWalking.Play ();
