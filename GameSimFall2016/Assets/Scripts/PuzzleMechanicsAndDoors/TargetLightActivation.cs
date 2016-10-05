@@ -17,7 +17,7 @@ public class TargetLightActivation : MonoBehaviour {
 
     void OnEvent(BasicTrigger trigger)
     {
-        if (trigger.message == "Light")
+        //if (trigger.message == "Light")
         {
             Debug.Log("hitPanel");
             foreach (Light boxLight in puzzleBoxes)

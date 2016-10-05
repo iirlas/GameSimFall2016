@@ -47,7 +47,7 @@ public class MoveWall : MonoBehaviour {
 
     void OnEvent(BasicTrigger trigger)
     {
-        if (trigger.message == "turn")
+        //if (trigger.message == "turn")
         {
              beginMove = true;       
         }

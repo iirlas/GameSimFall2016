@@ -27,7 +27,7 @@ public class placeItem : MonoBehaviour {
 
     void OnEvent(BasicTrigger trigger)
     {
-        if (trigger.message == "placeItem")
+        //if (trigger.message == "placeItem")
         {
             if (!isPlaced)
             {

@@ -32,7 +32,7 @@ public class StopWall : MonoBehaviour {
     void OnEvent(BasicTrigger trigger)
     {
 
-        if (trigger.message == "stopWalls")
+        //if (trigger.message == "stopWalls")
         {
             endMove = true;
             Destroy(switchWheel.GetComponent<MoveWall>());

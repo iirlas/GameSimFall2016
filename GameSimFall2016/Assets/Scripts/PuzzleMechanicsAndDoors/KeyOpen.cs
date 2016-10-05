@@ -21,7 +21,7 @@ public class KeyOpen : MonoBehaviour {
 
     void OnEvent(BasicTrigger trigger)
     {
-        if (trigger.message == "grabKey")
+        //if (trigger.message == "grabKey")
         {
             Destroy(this.gameObject);
         }

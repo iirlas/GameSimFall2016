@@ -115,7 +115,7 @@ public class FearManager : MonoBehaviour
 
     public void OnEvent(BasicTrigger trigger)
     {
-        inDark = !trigger.message.Equals("Light");
+        inDark = false;
         GameObject.FindObjectOfType<Girl>().status &= ~Girl.Status.DARK;
     }
 

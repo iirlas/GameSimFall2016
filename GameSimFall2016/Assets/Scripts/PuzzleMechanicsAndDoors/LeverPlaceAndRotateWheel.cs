@@ -47,7 +47,7 @@ public class LeverPlaceAndRotateWheel : MonoBehaviour {
 
     void OnEvent(BasicTrigger trigger)
     {
-        if (trigger.message == "placeLever")
+        //if (trigger.message == "placeLever")
         {
             if (!leverDropped)
             {

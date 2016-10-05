@@ -20,9 +20,9 @@ public class Door : MonoBehaviour
    }
 
    // Update is called once per frame
-   void OnEvent(BasicTrigger trigger)
+   public void OnEvent(BasicTrigger trigger)
    {
-      if (trigger.message == "doorOpen")
+      //if (trigger.message == "doorOpen")
       {
          gameObject.SetActive(false);
       }

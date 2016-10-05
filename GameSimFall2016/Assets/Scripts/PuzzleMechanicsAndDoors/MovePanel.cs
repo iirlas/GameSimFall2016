@@ -25,9 +25,9 @@ public class MovePanel : MonoBehaviour
    }
 
 
-   void OnEvent(BasicTrigger trigger)
+   public void OnEvent(BasicTrigger trigger)
    {
-      if (trigger.message == "movePanel")
+      //if (trigger.message == "movePanel")
       {
          this.gameObject.transform.position = endPoint.transform.position;
 

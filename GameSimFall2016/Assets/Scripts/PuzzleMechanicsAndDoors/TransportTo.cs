@@ -25,9 +25,9 @@ public class TransportTo : MonoBehaviour {
 	}
 
 
-    void OnEvent(BasicTrigger trigger)
+    public void OnEvent(BasicTrigger trigger)
     {
-        if (trigger.message == "nextLevel")
+        //if (trigger.message == "nextLevel")
         {
             SceneManager.LoadScene(nameOfNext);
         }

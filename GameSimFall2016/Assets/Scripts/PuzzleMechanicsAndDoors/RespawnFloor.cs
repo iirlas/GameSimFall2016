@@ -25,10 +25,10 @@ public class RespawnFloor : MonoBehaviour {
 	
 	}
 
-    void OnEvent(BasicTrigger trigger) //Basic Trigger script
+    public void OnEvent(BasicTrigger trigger) //Basic Trigger script
     {
         
-        if (trigger.message == "respawn")
+        //if (trigger.message == "respawn")
         {
             
 

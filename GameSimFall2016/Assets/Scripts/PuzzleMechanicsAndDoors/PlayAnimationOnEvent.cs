@@ -22,7 +22,7 @@ public class PlayAnimationOnEvent : MonoBehaviour {
 
     void OnEvent(BasicTrigger trigger)
     {
-        if (trigger.message == "playAnimationOnce")
+        //if (trigger.message == "playAnimationOnce")
         {
             anim.SetBool("playAnimation", true);
         }

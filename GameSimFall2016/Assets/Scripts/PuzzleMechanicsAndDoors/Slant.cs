@@ -3,17 +3,13 @@ using System.Collections;
 
 public class Slant : MonoBehaviour {
 
-	// Update is called once per frame
-	void OnEvent (BasicTrigger instigator) 
+    public void moveUp ()
     {
-        switch(instigator.message)
-        {
-        case "UP":
-            transform.position += Vector3.up;
-            break;
-        case "DOWN":
-            transform.position += Vector3.down;
-            break;
-        }
-	}
+        transform.position += Vector3.up;
+    }
+
+    public void moveDown ()
+    {
+        transform.position += Vector3.down;
+    }
 }

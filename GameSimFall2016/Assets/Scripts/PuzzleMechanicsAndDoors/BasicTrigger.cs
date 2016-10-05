@@ -16,6 +16,10 @@ using UnityEngine.Events;
 // *The item needs a script that looks for OnEvent(BasicTrigger trigger)
 //                                         { if (trigger.message == "chosenMessage") { do this} }
 //========================================================================================================
+[System.Serializable]
+public class TriggerEvent : UnityEvent<BasicTrigger>
+{
+}
 
 public class BasicTrigger : MonoBehaviour
 {
@@ -37,11 +41,10 @@ public class BasicTrigger : MonoBehaviour
     public Tag activatorTag = "Untagged";
     [HideInInspector]
     public GameObject activator;
-    public MonoBehaviour effected;
     public Type type;
-    public string message;
     public bool canRepeat = false;
-    public UnityEvent OnTouch = new UnityEvent();
+    public TriggerEvent onEvent = new TriggerEvent();
+    public TriggerEvent onEventEnd = new TriggerEvent();
 
     private State myNextState;
 
@@ -55,7 +58,7 @@ public class BasicTrigger : MonoBehaviour
        if (myNextState == State.ENTER && type == Type.ACTION)
        {
           myNextState = State.EXIT;
-          effected.SendMessage("OnEvent", this);
+          onEvent.Invoke(this);
        }
     }
 
@@ -64,7 +67,7 @@ public class BasicTrigger : MonoBehaviour
        if (myNextState == State.EXIT && type == Type.ACTION)
        {
           myNextState = (canRepeat ? State.ENTER : State.DONE);
-          effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
+          onEventEnd.Invoke(this);
        }
     }
 
@@ -74,8 +77,7 @@ public class BasicTrigger : MonoBehaviour
         {
             myNextState = State.EXIT;
             activator = collision.gameObject;
-            effected.SendMessage("OnEvent", this);
-            OnTouch.Invoke();
+            onEvent.Invoke(this);
         }
     }
 
@@ -85,7 +87,7 @@ public class BasicTrigger : MonoBehaviour
             collision.transform.tag == activatorTag && collision.gameObject.Equals(activator))
         {
             myNextState = (canRepeat ? State.ENTER : State.DONE);
-            effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
+            onEventEnd.Invoke(this);
         }
     }
 
@@ -95,7 +97,7 @@ public class BasicTrigger : MonoBehaviour
         {
             myNextState = State.EXIT;
             activator = other.gameObject;
-            effected.SendMessage("OnEvent", this);
+            onEvent.Invoke(this);
         }
     }
 
@@ -105,7 +107,7 @@ public class BasicTrigger : MonoBehaviour
             other.transform.tag == activatorTag && other.gameObject.Equals(activator))
         {
             myNextState = (canRepeat ? State.ENTER : State.DONE);
-            effected.SendMessage("OnEventEnd", this, SendMessageOptions.DontRequireReceiver);
+            onEventEnd.Invoke(this);
         }
     }
 }

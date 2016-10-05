@@ -33,7 +33,7 @@ public class MatchWheel : MonoBehaviour
 
     void OnEvent(BasicTrigger trigger)
     {
-        if (trigger.message == "matchedPanel")
+        //if (trigger.message == "matchedPanel")
         {
             Debug.Log("Matched!");
             LeverPlaceAndRotateWheel script = platform.GetComponent<LeverPlaceAndRotateWheel>();
