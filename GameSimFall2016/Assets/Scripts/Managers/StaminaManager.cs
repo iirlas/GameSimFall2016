@@ -28,14 +28,14 @@ public class StaminaManager : MonoBehaviour
    {
       if (this.theBird.stamina >= 100.0f)
       {
-         this.mySlider.gameObject.active = false;
+         this.mySlider.gameObject.SetActive(false);
       }
       else
       {
-         this.mySlider.gameObject.active = true;
+         this.mySlider.gameObject.SetActive(true);
       }
 
-      if (this.mySlider.gameObject.active == true)
+      if (this.mySlider.gameObject.activeInHierarchy == true)
       {
          Debug.Log("Updating bar");
          updateStaminaBar();
