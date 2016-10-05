@@ -23,7 +23,7 @@ using UnityEngine.UI;
 
 public class HealthPlayer : MonoBehaviour
 {
-
+   private bool isSpoopActive;
    public bool killKeyEnabled = true;
 
    public Slider healthBar; //hook the healthbar to this slider spot
@@ -55,12 +55,12 @@ public class HealthPlayer : MonoBehaviour
    // initialises health change, healthCurrent
    // sets maxValue of slider to healthMax
    // sets minValue to 0
-   void Start()
+   void Awake()
    {
       if (killKeyEnabled)
       {
-          Debug.LogWarning("NRC: A happy sunshine rainbow button is in use, press the \"End\" key to bring forth the \n" +
-                           "Second coming of our lord and saviour!  " + this.name + ".cs.");
+         Debug.LogWarning("NRC: A happy sunshine rainbow button is in use, press the \"End\" key to bring forth the \n" +
+                          "Second coming of our lord and saviour!  " + this.name + ".cs.");
       }
 
       this.iFrameActive = false;
@@ -70,6 +70,8 @@ public class HealthPlayer : MonoBehaviour
       this.healthCurrent = healthMax;
       this.healthBar.maxValue = healthMax;
       this.healthBar.minValue = 0;
+
+      this.isSpoopActive = false;
 
       healthBarFill.color = Color.green;
 
@@ -92,7 +94,7 @@ public class HealthPlayer : MonoBehaviour
       {
          this.healthCurrent = 0;
       }
-        
+
       if (!isDead)
       {
          if (this.healthCurrent < 1)
@@ -144,11 +146,35 @@ public class HealthPlayer : MonoBehaviour
    }
 
    //==========================================================================
+   // Lets the HealthPlayer know whether or not the Spoop is active, and if we
+   // should prevent the player from healing.
+   public void setSpoopActive(bool isActive)
+   {
+      this.isSpoopActive = isActive;
+   }
+
+   //==========================================================================
    // Update the health bar value, color, text, etc...
    void updateHealthBar()
    {
-      this.healthBar.value = this.healthCurrent;
-      this.healthText.text = this.healthCurrent.ToString();
+      if (isSpoopActive)
+      {
+         this.healthBar.value = this.healthCurrent;
+         this.healthText.text = this.healthCurrent.ToString();
+      }
+      else
+      {
+         if (this.healthCurrent > this.healthBar.value)
+         {
+            this.healthCurrent = (int)this.healthBar.value;
+            this.healthText.text = this.healthCurrent.ToString();
+         }
+         else
+         {
+            this.healthBar.value = this.healthCurrent;
+            this.healthText.text = this.healthCurrent.ToString();
+         }
+      }
    }
 
    //==========================================================================
@@ -157,7 +183,7 @@ public class HealthPlayer : MonoBehaviour
    // If the value is negative, the player loses health.
    public void modifyHealth(int value)
    {
-      if ( this.iFrameTimer == 0.0f )
+      if (this.iFrameTimer == 0.0f)
       {
          this.iFrameActive = true;
          this.healthCurrent += value;
@@ -189,30 +215,30 @@ public class HealthPlayer : MonoBehaviour
    // Deals automated damage to the player, hereby refered to as poison.
    public void applyPoisonDamage()
    {
-       if (this.poisonTicks <= 0)
-       {
-           this.isPoisoned = false;
+      if (this.poisonTicks <= 0)
+      {
+         this.isPoisoned = false;
 
-           this.poisonInterval = 0;
-           this.poisonDamage = 0;
-           this.poisonTicks = 0;
+         this.poisonInterval = 0;
+         this.poisonDamage = 0;
+         this.poisonTicks = 0;
 
-           healthBarFill.color = Color.green;
-       }
-       else
-       {
-           if (this.poisonTimer >= this.poisonInterval)
-           {
-               this.poisonTimer = 0.0f;
-               Debug.Log(this.poisonDamage);
-               modifyHealth(-(this.poisonDamage));
-               this.poisonTicks--;
-           }
-           else
-           {
-               this.poisonTimer += Time.deltaTime;
-           }
-       }
+         healthBarFill.color = Color.green;
+      }
+      else
+      {
+         if (this.poisonTimer >= this.poisonInterval)
+         {
+            this.poisonTimer = 0.0f;
+            Debug.Log(this.poisonDamage);
+            modifyHealth(-(this.poisonDamage));
+            this.poisonTicks--;
+         }
+         else
+         {
+            this.poisonTimer += Time.deltaTime;
+         }
+      }
    }
 
 }
