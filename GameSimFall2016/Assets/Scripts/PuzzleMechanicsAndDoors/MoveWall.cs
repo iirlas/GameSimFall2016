@@ -16,7 +16,7 @@ public class MoveWall : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start() {
+    void Awake() {
 
         beginMove = false;
        

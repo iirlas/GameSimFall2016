@@ -17,7 +17,7 @@ public class RotateWheel : MonoBehaviour {
     private bool turnWheel; // can the wheel be turned?
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         turnWheel = false;
 	
 	}

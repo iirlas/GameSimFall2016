@@ -15,7 +15,7 @@ public class RespawnFloor : MonoBehaviour {
      
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         playerUnits = GameObject.FindGameObjectsWithTag("Player"); //populate array
 
     }

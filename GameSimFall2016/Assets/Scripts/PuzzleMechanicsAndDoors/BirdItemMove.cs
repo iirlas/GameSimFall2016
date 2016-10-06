@@ -6,8 +6,9 @@ public class BirdItemMove : MonoBehaviour {
     Bird kira;
     new public Rigidbody rigidbody;
 
+
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         kira = GameObject.FindObjectOfType<Bird>();
         rigidbody = GetComponent<Rigidbody>();

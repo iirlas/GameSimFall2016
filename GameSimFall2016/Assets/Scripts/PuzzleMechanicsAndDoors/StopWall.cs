@@ -9,7 +9,7 @@ public class StopWall : MonoBehaviour {
     [Tooltip("Each Wall to begin Movement on BASIC TRIGGER")]
     public GameObject[] walls;
 	// Use this for initialization
-	void Start () {
+	void Awake() {
         endMove = false;
 	
 	}

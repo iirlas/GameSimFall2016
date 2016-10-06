@@ -7,7 +7,7 @@ public class TutorialPopups : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
         tutText = GetComponent<Text>();
 	

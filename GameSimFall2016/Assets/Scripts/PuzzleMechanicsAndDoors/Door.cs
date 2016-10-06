@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
    public static int puzzlesSolved;
 
    // Use this for initialization
-   void Start()
+   void Awake()
    {
       puzzlesSolved = 0;
 

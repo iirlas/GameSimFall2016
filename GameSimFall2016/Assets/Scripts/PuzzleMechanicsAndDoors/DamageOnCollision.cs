@@ -4,7 +4,7 @@ using System.Collections;
 public class DamageOnCollision : MonoBehaviour {
     private bool takeDamage;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         takeDamage = false;
 	
 	}

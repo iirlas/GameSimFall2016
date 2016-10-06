@@ -15,7 +15,7 @@ public class placeItem : MonoBehaviour {
     public Item itemThing;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         isPlaced = false;
 	}
 	
