@@ -24,11 +24,17 @@ public class Campfire : MonoBehaviour
    // When the player enters the trigger zone, set to current spawn point
    void OnTriggerEnter(Collider other)
    {
-      if (other.gameObject.name.Equals("Kira"))
-      {
-         GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().campfireRespawn = this.respawnPoint;
-         Debug.Log("Respawn point changed");
-      }
+       if (other.gameObject.name.Equals("Kira"))
+       {
+        GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().campfireRespawn = this.respawnPoint;
+        if (StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
+        {
+            Debug.Log("ping");
+            StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
+        }
+        //GameObject.FindGameObjectWithTag("FearManager").GetComponent<StatusManager>().ToggleStatus();
+        Debug.Log("Respawn point changed");
+       }
    }
 
    //==========================================================================
@@ -39,6 +45,17 @@ public class Campfire : MonoBehaviour
       {
          healPlayer();
       }
+   }
+
+   void OnTriggerExit(Collider other)
+   {
+       if (other.gameObject.name.Equals("Kira"))
+       {
+           if (!StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
+           {
+               StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
+           }
+       }
    }
 
    //==========================================================================

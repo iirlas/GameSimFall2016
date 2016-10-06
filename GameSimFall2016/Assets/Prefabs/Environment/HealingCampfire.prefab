@@ -27,9 +27,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 466036}
   - 135: {fileID: 13542126}
-  - 114: {fileID: 11405782}
   - 114: {fileID: 11400432}
-  - 114: {fileID: 11470494}
   - 114: {fileID: 11436644}
   - 82: {fileID: 8280874}
   - 108: {fileID: 10807642}
@@ -102,6 +100,7 @@ GameObject:
   - 108: {fileID: 10876644}
   - 114: {fileID: 11440716}
   - 114: {fileID: 11484188}
+  - 135: {fileID: 13558902}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -140,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.138985, y: -3.2756302, z: -86.46349}
+  m_LocalPosition: {x: 2.0530186, y: 0.221, z: 15.401887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414970}
@@ -437,20 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &11405782
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a208132988d3b84fa6e4f471385c5b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  sphereCollider: {fileID: 0}
 --- !u!114 &11436644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -473,20 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &11470494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a208132988d3b84fa6e4f471385c5b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  sphereCollider: {fileID: 0}
 --- !u!114 &11484188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -498,9 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11495144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -523,6 +494,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13558902
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19832824
 ParticleSystem:

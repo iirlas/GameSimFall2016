@@ -2,34 +2,42 @@
 using System.Collections;
 using System.Linq;
 
+[RequireComponent(typeof(SphereCollider))]
 public class LightCollider : MonoBehaviour {
 
     new private Light light;
-    public LayerMask layer;
+    [HideInInspector]
+    public SphereCollider sphereCollider;
     private Collider[] myHits;
+    private Girl kira;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         light = GetComponent<Light>();
+        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.radius = light.range;
+        kira = GameObject.FindObjectOfType<Girl>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        Collider[] hits = Physics.OverlapSphere(transform.position, light.range, layer);
-        if (myHits != null)
+    void Update()
+    {
+    }
+
+    void OnTriggerStay (Collider other)
+    {
+        if (kira.transform == other.transform && StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
         {
-            foreach (var hit in myHits)
-            {
-                if (hit != null && !hits.Contains(hit))
-                {
-                    hit.transform.SendMessage("OnActionEnd", SendMessageOptions.DontRequireReceiver);
-                }
-            }
+            StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
         }
-        foreach (var hit in hits)
+    }
+
+    void OnTriggerExit (Collider other)
+    {
+        if (kira.transform == other.transform)
         {
-            hit.transform.SendMessage("OnAction", SendMessageOptions.DontRequireReceiver);
+            StatusManager.getInstance().playerStatus = StatusManager.Status.FEAR;
         }
-        myHits = hits;
-	}
+    }
+
 }

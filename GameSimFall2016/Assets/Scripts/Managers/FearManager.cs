@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class FearManager : MonoBehaviour
+public class FearManager : Singleton<FearManager>
 {
     public Slider fearBar;
     public Image fearBarFill;
@@ -11,15 +11,15 @@ public class FearManager : MonoBehaviour
     public float fearMax = 110.0f;  // 10 over 100 to represent overflow
     public float fearMin = 0.0f;
     public float fearCurrent;
+    public bool inDark = true;
 
     public HealthPlayer playerHealth;
 
     private string prefix = " ";
-    private bool inDark = true;
 
     //===========================================================================
     // Use this for initialization
-    void Awake()
+    override protected void Init()
     {
         this.fearCurrent = this.fearMin;
         this.fearBarFill.color = Color.white;
@@ -83,14 +83,15 @@ public class FearManager : MonoBehaviour
     public void modifyFear(float value)
     {
         this.fearCurrent += value;
-        if (this.fearCurrent > this.fearMax)
-        {
-            this.fearCurrent = this.fearMax;
-        }
-        else if (this.fearCurrent < this.fearMin)
-        {
-            this.fearCurrent = this.fearMin;
-        }
+        this.fearCurrent = Mathf.Clamp( this.fearCurrent, this.fearMin, this.fearMax);
+        //if (this.fearCurrent > this.fearMax)
+        //{
+        //    this.fearCurrent = this.fearMax;
+        //}
+        //else if (this.fearCurrent < this.fearMin)
+        //{
+        //    this.fearCurrent = this.fearMin;
+        //}
     }
 
     //==========================================================================
@@ -113,12 +114,12 @@ public class FearManager : MonoBehaviour
     public void OnEvent(BasicTrigger trigger)
     {
         inDark = false;
-        GameObject.FindObjectOfType<Girl>().status &= ~Girl.Status.DARK;
+        //GameObject.FindObjectOfType<Girl>().status &= ~Girl.Status.DARK;
     }
 
     public void OnEventEnd(BasicTrigger trigger)
     {
         inDark = true;
-        GameObject.FindObjectOfType<Girl>().status |= Girl.Status.DARK;
+        //GameObject.FindObjectOfType<Girl>().status |= Girl.Status.DARK;
     }
 }

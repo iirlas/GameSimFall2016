@@ -17,7 +17,7 @@ abstract public class Player : MonoBehaviour
     private Transform myTransform;
     private Rigidbody myRigidbody;
     private Collider myCollider;
-    private Transform myTarget;
+    private Transform myFollowTarget;
 
     protected Dictionary<Enum, StateRunner> myStates { get; private set; }
     
@@ -80,7 +80,7 @@ abstract public class Player : MonoBehaviour
     [HideInInspector]
     public void AssignTarget( Transform targetTo = null )
     {
-        myTarget = targetTo;
+        myFollowTarget = targetTo;
     }
 
     public void FixedUpdate()
@@ -98,9 +98,9 @@ abstract public class Player : MonoBehaviour
         }
         else
         {
-            if( myTarget != null )
+            if( myFollowTarget != null )
             {
-                rigidbody.MovePosition( Vector3.Lerp( rigidbody.position, myTarget.position - (myTarget.forward), 
+                rigidbody.MovePosition( Vector3.Lerp( rigidbody.position, myFollowTarget.position - (myFollowTarget.forward), 
                                         movementSpeed * Time.deltaTime) );
             }
         }
