@@ -3287,7 +3287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f8765e3e0cba848a09dee61af60054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPoisoned: 0
+  fearDamage: 0
+  poisonDamage: 0
+  fireDamage: 0
+  spookDamage: 0
   fearEffect: {fileID: 1139237847}
   highFearEffect: {fileID: 1840600962}
   poisonEffect: {fileID: 273646146}
@@ -38075,7 +38078,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 189354, guid: 1e534452ab79b3043b8dd24f79dc2441, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 175758, guid: 1e534452ab79b3043b8dd24f79dc2441, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -38212,6 +38215,14 @@ Prefab:
     - target: {fileID: 11408456, guid: 1e534452ab79b3043b8dd24f79dc2441, type: 2}
       propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 189354, guid: 1e534452ab79b3043b8dd24f79dc2441, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11485234, guid: 1e534452ab79b3043b8dd24f79dc2441, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11420166, guid: 1e534452ab79b3043b8dd24f79dc2441, type: 2}
