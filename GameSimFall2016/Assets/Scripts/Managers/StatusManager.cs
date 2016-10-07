@@ -9,35 +9,113 @@ public class StatusManager : Singleton<StatusManager> {
         FEAR =   0x01,  //0001
         POISON = 0x02,  //0010
         FIRE =   0x04,  //0100
-        SPOOF =  0x08   //1000
-    }
-
-    public float isPoisoned;
-
-    private float myHealth = 100;
-    public float health {
-        get { return myHealth; }
-        set { myFear = Mathf.Clamp(value, 0, 100); }
+        SPOOK =  0x08   //1000
     }
 
     private float myFear = 0;
     public float fear
     {
         get { return myFear; }
-        set { myFear = Mathf.Clamp(value, 0, 120); }
+        set
+        {
+            myFear = Mathf.Clamp(value, 0, 120);
+            if (myFear > 0)
+            {
+                playerStatus |= Status.FEAR;
+            }
+            else
+            {
+                playerStatus &= ~Status.FEAR;
+            }
+            updateEffects();
+        }
+    }
+
+    [HideInInspector]
+    public bool isPoisoned
+    {
+        get { return hasStatus(Status.POISON); }
+        set
+        {
+            if (value)
+            {
+                playerStatus |= Status.POISON;
+            }
+            else
+            {
+                playerStatus &= ~Status.POISON;
+            }
+            updateEffects();
+        }
+    }
+
+    [HideInInspector]
+    public bool onFire
+    {
+        get { return hasStatus(Status.FIRE); }
+        set 
+        {
+            if ( value )
+            {
+                playerStatus |= Status.FIRE;
+            }
+            else
+            {
+                playerStatus &= ~Status.FIRE;
+            }
+            updateEffects();
+        }
+    }
+
+    [HideInInspector]
+    public bool isSpooked
+    {
+        get { return hasStatus(Status.SPOOK); }
+        set
+        {
+            if (value)
+            {
+                playerStatus |= Status.SPOOK;
+            }
+            else
+            {
+                playerStatus &= ~Status.SPOOK;
+            }
+            updateEffects();
+        }
+    }
+
+    private float myHealth = 100;
+    public float health {
+        get { return myHealth; }
+        set { myFear = Mathf.Clamp(value, 0, 100); }
     } 
 
     private Status myPlayerStatus = Status.NONE;
     public Status playerStatus
     {
         get { return myPlayerStatus; }
-        set { SetStatus(value); }
+        set { SetStatus(value); updateEffects(); }
     }
+
+    [Range(0.0f, 1.0f)]
+    public float fearDamage;
+
+    [Range(0.0f, 1.0f)]
+    public float poisonDamage;
+
+    [Range(0.0f, 1.0f)]
+    public float fireDamage;
+
+    [Range(0.0f, 1.0f)]
+    public float spookDamage;
+
 
     public GameObject fearEffect;
     public GameObject highFearEffect;
     public GameObject poisonEffect;
     public GameObject fireEffect;
+
 
     //public GameObject 
 
@@ -62,6 +140,10 @@ public class StatusManager : Singleton<StatusManager> {
         updateEffects();
     }
 
+    /// <summary>
+    /// this is a function to set state., Use this to sets the player's particle effects
+    /// </summary>
+    /// <param name="s"></param>
     public void SetStatus(Status status)
     {
         if (status == Status.NONE)
@@ -80,6 +162,7 @@ public class StatusManager : Singleton<StatusManager> {
         fearEffect.SetActive(hasStatus(Status.FEAR));
         poisonEffect.SetActive(hasStatus(Status.POISON));
         fireEffect.SetActive(hasStatus(Status.FIRE));
+        highFearEffect.SetActive(fear >= 100 && !highFearEffect.activeSelf);
     }
 
     public bool hasStatus(Status status)
@@ -90,19 +173,19 @@ public class StatusManager : Singleton<StatusManager> {
 	// Update is called once per frame
     void Update()
     {
-        if (fear > 0 && !hasStatus(Status.FEAR))
-        {
-            ToggleStatus(Status.FEAR);
-        }
+        //fear accumulation
+        fear += (hasStatus(Status.FEAR) ? fearDamage : -fearDamage) * Time.deltaTime;
 
-        if (fear >= 100 && !highFearEffect.activeSelf)
-        {
-            highFearEffect.SetActive(true);
-        }
-    }	
+        //fear damage
+        health -= (fear >= 100 ? fearDamage : 0.0f) * Time.deltaTime;
 
-    void LateUpdate()
-    {
+        //poison damage
+        health -= (isPoisoned ? poisonDamage : 0.0f) * Time.deltaTime;
 
+        //fire damage
+        health -= (onFire ? fireDamage : 0.0f) * Time.deltaTime;
+
+        //spook damage
+        health -= (isSpooked ? spookDamage : 0) * Time.deltaTime;
     }
 }
