@@ -61,6 +61,7 @@ GameObject:
   - 108: {fileID: 10825842}
   - 114: {fileID: 11453470}
   - 54: {fileID: 5445864}
+  - 135: {fileID: 13599476}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -339,6 +340,7 @@ GameObject:
   - 108: {fileID: 10865780}
   - 114: {fileID: 11403144}
   - 54: {fileID: 5468564}
+  - 135: {fileID: 13542504}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -689,6 +691,7 @@ GameObject:
   - 108: {fileID: 10898806}
   - 114: {fileID: 11497196}
   - 54: {fileID: 5459144}
+  - 135: {fileID: 13579026}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -919,6 +922,7 @@ GameObject:
   - 108: {fileID: 10885262}
   - 114: {fileID: 11405184}
   - 54: {fileID: 5487352}
+  - 135: {fileID: 13523750}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -1148,6 +1152,7 @@ GameObject:
   - 108: {fileID: 10886050}
   - 114: {fileID: 11493734}
   - 54: {fileID: 5444444}
+  - 135: {fileID: 13559708}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -1255,6 +1260,7 @@ GameObject:
   - 108: {fileID: 10877000}
   - 114: {fileID: 11427496}
   - 54: {fileID: 5446960}
+  - 135: {fileID: 13541618}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -1792,8 +1798,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119562}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -2.75, y: -3.9, z: 37.38}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 127.28183, y: 0.69, z: -62.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 436894}
@@ -4605,10 +4611,16 @@ MonoBehaviour:
   activatorTag:
     value: Player
   activator: {fileID: 0}
-  effected: {fileID: 11460062}
   type: 0
-  message: doorOpen
   canRepeat: 0
+  onEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11403144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4620,9 +4632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11405184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4634,9 +4644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11407272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4651,10 +4659,16 @@ MonoBehaviour:
   activatorTag:
     value: Untagged
   activator: {fileID: 0}
-  effected: {fileID: 0}
   type: 2
-  message: doorOpen
   canRepeat: 0
+  onEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11416896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4678,9 +4692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11437348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4695,10 +4707,16 @@ MonoBehaviour:
   activatorTag:
     value: Player
   activator: {fileID: 0}
-  effected: {fileID: 11487106}
   type: 0
-  message: pushIn
   canRepeat: 1
+  onEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11453470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4710,9 +4728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11460062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4763,9 +4779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11497196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4777,9 +4791,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
+--- !u!135 &13523750
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13541618
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199986}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13542504
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13559708
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13579026
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13599476
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13606326
 CapsuleCollider:
   m_ObjectHideFlags: 1
