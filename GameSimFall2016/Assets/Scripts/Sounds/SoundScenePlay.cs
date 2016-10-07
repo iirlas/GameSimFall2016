@@ -10,6 +10,7 @@ public class SoundScenePlay : MonoBehaviour {
 	public static AudioClip[] gameMusic = new AudioClip[2];
 	public AudioClip outsideMusic;
 	public AudioClip insideCave;
+	public AudioClip outsideLevel;
 	string nameTest = "";
 	bool OnlyOnce = false;
 
@@ -33,13 +34,18 @@ public class SoundScenePlay : MonoBehaviour {
 			Debug.Log ("The name of the Scene -" + nameTest + "-");
 			OnlyOnce = false;
 		}
-
+		// For change of songs only
 		// changes the song of the player to play another one based on the name of the scene.
+		if (this.nameTest.Equals ("TestStartingArea") && this.OnlyOnce == false) {
+			this.levelMusic.Stop ();
+			this.levelMusic.clip = this.outsideLevel;
+			this.levelMusic.Play ();
+			OnlyOnce = true;
+		}
 		if (this.nameTest.Equals("TestOverworld") && OnlyOnce == false) {
 			this.levelMusic.Stop ();
 			this.levelMusic.clip = outsideMusic;
 			this.levelMusic.Play ();
-			Debug.Log ("made it into the switch method");
 			OnlyOnce = true;
 		}
 
