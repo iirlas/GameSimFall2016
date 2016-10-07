@@ -23,7 +23,7 @@ public class TutorialPopups : MonoBehaviour {
     {
         if (message == "Tut1")
         {
-            tutText.text = "It looks much safer in the light. I should head to a torch.";
+            tutText.text = "It looks much safer in the light. I should head towards the fire.";
         }
         else if (message == "TutFearMeter")
         {

@@ -2991,7 +2991,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Tut2
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -3131,7 +3131,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: TutFearMeter
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -3193,7 +3193,7 @@ Transform:
   m_LocalScale: {x: 20.95, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 592978813}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!1 &118994108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5741,7 +5741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &226507859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5760,7 +5760,18 @@ MonoBehaviour:
   canRepeat: 0
   onEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1766538994}
+        m_MethodName: OnEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: empty
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -7087,7 +7098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &337218680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7106,7 +7117,18 @@ MonoBehaviour:
   canRepeat: 0
   onEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1766538994}
+        m_MethodName: OnEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: empty
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -7168,7 +7190,7 @@ Transform:
   m_LocalScale: {x: 20.95, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 592978813}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!1 &343781861
 GameObject:
   m_ObjectHideFlags: 0
@@ -13298,7 +13320,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Tut1
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -17003,7 +17025,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Tut5
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -17618,112 +17640,11 @@ Transform:
   - {fileID: 226507863}
   - {fileID: 535708944}
   - {fileID: 1519925156}
-  - {fileID: 599934259}
   - {fileID: 1534575866}
   - {fileID: 337218684}
   - {fileID: 117504124}
   m_Father: {fileID: 0}
   m_RootOrder: 12
---- !u!1 &599934254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 599934259}
-  - 33: {fileID: 599934258}
-  - 65: {fileID: 599934257}
-  - 23: {fileID: 599934256}
-  - 114: {fileID: 599934255}
-  m_Layer: 0
-  m_Name: Tut5 (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &599934255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 599934254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Player
-  activator: {fileID: 0}
-  type: 0
-  canRepeat: 0
-  onEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  onEventEnd:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!23 &599934256
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 599934254}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!65 &599934257
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 599934254}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &599934258
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 599934254}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &599934259
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 599934254}
-  m_LocalRotation: {x: 6.5225603e-15, y: -0.7105116, z: -0.000000084699565, w: 0.70368546}
-  m_LocalPosition: {x: 68.427376, y: -1.35, z: -116.17}
-  m_LocalScale: {x: 20.950003, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 592978813}
-  m_RootOrder: 10
 --- !u!1 &608954820
 GameObject:
   m_ObjectHideFlags: 0
@@ -18646,7 +18567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &669323043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18665,7 +18586,18 @@ MonoBehaviour:
   canRepeat: 0
   onEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1766538994}
+        m_MethodName: OnEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: empty
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -32997,7 +32929,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Tut4
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -37659,7 +37591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1176508288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37678,7 +37610,18 @@ MonoBehaviour:
   canRepeat: 0
   onEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1766538994}
+        m_MethodName: OnEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: empty
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -40407,7 +40350,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Tut3
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -48041,12 +47984,12 @@ GameObject:
   - 23: {fileID: 1519925153}
   - 114: {fileID: 1519925152}
   m_Layer: 0
-  m_Name: Tut5 (1)
+  m_Name: empty6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1519925152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48065,7 +48008,18 @@ MonoBehaviour:
   canRepeat: 0
   onEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1766538994}
+        m_MethodName: OnEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: empty
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -48447,7 +48401,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: TutPanelUp
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -48509,7 +48463,7 @@ Transform:
   m_LocalScale: {x: 20.95, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 592978813}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &1538021703 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116206, guid: 8bc1485857511b04894a2bf526515998, type: 2}
@@ -51311,7 +51265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1678312688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51330,7 +51284,18 @@ MonoBehaviour:
   canRepeat: 0
   onEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1766538994}
+        m_MethodName: OnEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: empty
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -62618,7 +62583,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 181588, guid: d073689050b8ba24abbeca7c51f0bf0b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 452648, guid: d073689050b8ba24abbeca7c51f0bf0b, type: 2}
       propertyPath: m_LocalPosition.y
