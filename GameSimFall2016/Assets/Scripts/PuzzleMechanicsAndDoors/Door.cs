@@ -22,10 +22,10 @@ public class Door : MonoBehaviour
       puzzlesSolved = 0;
         openDoor = false;
         speed = 2f;
-        destination = new Vector3(this.transform.position.x, 
-                                  (this.gameObject.GetComponent<Collider>().bounds.size.y + this.transform.position.y), 
-                                    this.transform.position.z);
-   }
+        destination = new Vector3(this.transform.position.x,
+                                (this.gameObject.GetComponent<Collider>().bounds.size.y + this.transform.position.y),
+                                  this.transform.position.z);
+    }
 
     void Update()
     {

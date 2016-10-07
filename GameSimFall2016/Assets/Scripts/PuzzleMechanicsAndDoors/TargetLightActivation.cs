@@ -15,7 +15,7 @@ public class TargetLightActivation : MonoBehaviour {
 	
 	}
 
-    void OnEvent(BasicTrigger trigger)
+    public void OnEvent(BasicTrigger trigger)
     {
         //if (trigger.message == "Light")
         {

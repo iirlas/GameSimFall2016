@@ -20,7 +20,7 @@ public class TurnChildLightOn : MonoBehaviour {
 	void Update () {
 	
 	}
-    void OnEvent(BasicTrigger trigger)
+    public void OnEvent(BasicTrigger trigger)
     {
         //if (trigger.message == "turnOn")
             GetComponent<Light>().intensity = 8f;

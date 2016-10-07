@@ -40,7 +40,7 @@ public class RespawnFloor : MonoBehaviour {
                 }
             }
             //TODO: change HealthPlayer to singleton
-            GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().modifyHealth(-10);
+            //GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().modifyHealth(-10);
             //player.transform.position = transform.position;
         }
     }

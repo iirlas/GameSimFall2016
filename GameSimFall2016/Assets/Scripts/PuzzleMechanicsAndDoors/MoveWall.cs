@@ -32,7 +32,7 @@ public class MoveWall : MonoBehaviour {
         {
             if (Input.GetButtonDown("Action"))
             {
-                wheel.transform.Rotate(0, 0, 360 / 10);
+                
 
                 foreach (GameObject wall in walls)
                 {
@@ -45,11 +45,12 @@ public class MoveWall : MonoBehaviour {
 
     }
 
-    void OnEvent(BasicTrigger trigger)
+    public void OnEvent(BasicTrigger trigger)
     {
         //if (trigger.message == "turn")
         {
-             beginMove = true;       
+             beginMove = true;
+            wheel.transform.Rotate(0, 0, 360 / 36);
         }
 
     }

@@ -10,7 +10,10 @@ public class CheckLights : MonoBehaviour {
     [Tooltip("Door to Exit from")]
     public GameObject exitDoor;
     [Tooltip ("Lights to be counted")]
-    public Light[] desiredLights; 
+    public Light[] desiredLights;
+    private Vector3 destination;
+    private bool openDoor;
+    private float speed;
 
     private int count;
     
@@ -18,9 +21,14 @@ public class CheckLights : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         count = 0;
-	}
-	
-	// Update is called once per frame
+        speed = 2f;
+        destination = new Vector3(exitDoor.transform.position.x,
+                                (exitDoor.gameObject.GetComponent<Collider>().bounds.size.y + exitDoor.transform.position.y),
+                                  exitDoor.transform.position.z);
+        openDoor = false;
+    }
+
+    // Update is called once per frame
 	void Update () {
         foreach (Light myLight in desiredLights)
         {
@@ -31,13 +39,29 @@ public class CheckLights : MonoBehaviour {
         if (count == desiredLights.Length)
         {
             //Debug.Log("countMet");
-            exitDoor.SetActive(false);
+            openDoor = true;
+            
 
         }
         else
         {
             count = 0;
         }
-	
+
+        if (openDoor)
+        {
+            if (exitDoor.transform.position.y < destination.y)
+            {
+                exitDoor.transform.position = Vector3.Lerp(exitDoor.transform.position,
+                                          destination,
+                                          speed * 3.0f * Time.deltaTime);
+
+            }
+        }
+
+        if (exitDoor.transform.position.y >= destination.y)
+        {
+            Destroy(exitDoor);
+        }	
 	}
 }
