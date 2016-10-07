@@ -26,7 +26,7 @@ public class StaminaManager : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      if (this.theBird.stamina >= 100.0f)
+       if (StatusManager.getInstance().stamina >= 100.0f)
       {
          this.mySlider.gameObject.SetActive(false);
       }
@@ -47,7 +47,7 @@ public class StaminaManager : MonoBehaviour
    // 
    void updateStaminaBar()
    {
-      mySlider.value = theBird.stamina;
+       mySlider.value = StatusManager.getInstance().stamina;
 
       transform.LookAt(transform.position + cameraToLookAt.transform.rotation * Vector3.forward,
                        cameraToLookAt.transform.rotation * Vector3.up);

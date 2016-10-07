@@ -7,15 +7,12 @@ public class Bird : Player {
     {
     }
  
-    public float stamina = 100.0f;
     private bool canFly = false;
 
     // Use this for initialization
     void Start()
     {
         addRunnable(Player.State.DEFAULT, runFallingState);
-        //addRunnable(State.ATTACK, runAttackState);
-        //addRunnable(State.ACTION, runActionState);
     }
 
     protected void runFallingState()
@@ -26,12 +23,12 @@ public class Bird : Player {
             rigidbody.useGravity = false;
             rigidbody.velocity = Vector3.zero;
             clearParent();
-            stamina -= Time.deltaTime * 20.0f;
+            StatusManager.getInstance().stamina -= Time.deltaTime * 20.0f;
             rigidbody.position += transform.up * (Time.deltaTime) * movementSpeed;
-            if ( stamina <= 0 )
+            if (StatusManager.getInstance().stamina <= 0)
             {
                 canFly = false;
-                stamina = 0;
+                StatusManager.getInstance().stamina = 0;
             }
         }
         else
@@ -40,11 +37,11 @@ public class Bird : Player {
             if (isGrounded(out hit))
             {
                 setParent(hit);
-                stamina += stamina + Time.deltaTime * 10.0f;
-                if ( stamina >= 100.0f )
+                StatusManager.getInstance().stamina = StatusManager.getInstance().stamina + Time.deltaTime * 10.0f;
+                if (StatusManager.getInstance().stamina >= 100.0f)
                 {
                     canFly = true;
-                    stamina = 100.0f;
+                    StatusManager.getInstance().stamina = 100.0f;
                 }
             }
             rigidbody.useGravity = true;

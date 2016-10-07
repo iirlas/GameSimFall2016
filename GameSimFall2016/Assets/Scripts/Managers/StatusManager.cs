@@ -12,13 +12,13 @@ public class StatusManager : Singleton<StatusManager> {
         SPOOK =  0x08   //1000
     }
 
-    private float myFear = 0;
+    private float myFear = 0.0f;
     public float fear
     {
         get { return myFear; }
         set
         {
-            myFear = Mathf.Clamp(value, 0, 120);
+            myFear = Mathf.Clamp(value, 0, 120.0f);
             if (myFear > 0)
             {
                 playerStatus |= Status.FEAR;
@@ -85,11 +85,18 @@ public class StatusManager : Singleton<StatusManager> {
         }
     }
 
-    private float myHealth = 100;
+    private float myHealth = 100.0f;
     public float health {
         get { return myHealth; }
-        set { myFear = Mathf.Clamp(value, 0, 100); }
-    } 
+        set { myFear = Mathf.Clamp(value, 0, 100.0f); }
+    }
+
+    private float myStamina;
+    public float stamina
+    {
+        get { return myStamina; }
+        set { myStamina = Mathf.Clamp(value, 0, 100.0f); }
+    }
 
     private Status myPlayerStatus = Status.NONE;
     public Status playerStatus
