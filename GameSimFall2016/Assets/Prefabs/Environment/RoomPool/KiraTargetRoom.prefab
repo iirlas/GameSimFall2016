@@ -153,6 +153,7 @@ GameObject:
   - 108: {fileID: 10847866}
   - 114: {fileID: 11460800}
   - 54: {fileID: 5461088}
+  - 135: {fileID: 13561930}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -466,6 +467,7 @@ GameObject:
   - 108: {fileID: 10892492}
   - 114: {fileID: 11408172}
   - 54: {fileID: 5411978}
+  - 135: {fileID: 13538700}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -484,6 +486,7 @@ GameObject:
   - 108: {fileID: 10804754}
   - 114: {fileID: 11451932}
   - 54: {fileID: 5464748}
+  - 135: {fileID: 13500992}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -502,6 +505,7 @@ GameObject:
   - 108: {fileID: 10879300}
   - 114: {fileID: 11457742}
   - 54: {fileID: 5495632}
+  - 135: {fileID: 13564772}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -520,6 +524,7 @@ GameObject:
   - 108: {fileID: 10815256}
   - 114: {fileID: 11420922}
   - 54: {fileID: 5434038}
+  - 135: {fileID: 13507772}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -538,6 +543,7 @@ GameObject:
   - 108: {fileID: 10863422}
   - 114: {fileID: 11465020}
   - 54: {fileID: 5455704}
+  - 135: {fileID: 13553606}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -917,6 +923,7 @@ GameObject:
   - 108: {fileID: 10860926}
   - 114: {fileID: 11477162}
   - 54: {fileID: 5455426}
+  - 135: {fileID: 13539632}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -1762,6 +1769,7 @@ GameObject:
   - 108: {fileID: 10843924}
   - 114: {fileID: 11436524}
   - 54: {fileID: 5474184}
+  - 135: {fileID: 13573292}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -1813,6 +1821,7 @@ GameObject:
   - 108: {fileID: 10867862}
   - 114: {fileID: 11405370}
   - 54: {fileID: 5492238}
+  - 135: {fileID: 13586426}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -2102,7 +2111,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138632}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -6.547927, y: 58.109253, z: -234.08504}
+  m_LocalPosition: {x: 173.72469, y: 31.33159, z: -131.84077}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 491530}
@@ -3764,7 +3773,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: fc44726ec7cbbb94985f0ca046a34944, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -4778,7 +4787,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: fc44726ec7cbbb94985f0ca046a34944, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -5090,7 +5099,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: fc44726ec7cbbb94985f0ca046a34944, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -5402,7 +5411,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: fc44726ec7cbbb94985f0ca046a34944, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -5428,7 +5437,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: fc44726ec7cbbb94985f0ca046a34944, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -7532,9 +7541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11408172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7546,9 +7553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11420922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7560,9 +7565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11426704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7588,9 +7591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11438532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7630,9 +7631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11457742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7644,9 +7643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11458608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7661,10 +7658,16 @@ MonoBehaviour:
   activatorTag:
     value: Player
   activator: {fileID: 0}
-  effected: {fileID: 11495244}
   type: 0
-  message: respawn
   canRepeat: 1
+  onEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11460800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7676,9 +7679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11465020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7690,9 +7691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11469448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7721,9 +7720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086fdf98ad02b7046861e694bbf3ab9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  sphereCollider: {fileID: 0}
 --- !u!114 &11480122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7763,6 +7760,114 @@ MonoBehaviour:
   puzzleBoxes:
   - {fileID: 10832860}
   - {fileID: 10814824}
+--- !u!135 &13500992
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13507772
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127188}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13538700
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13539632
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152142}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13553606
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127868}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13561930
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108564}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13564772
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13573292
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13586426
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13610288
 CapsuleCollider:
   m_ObjectHideFlags: 1
