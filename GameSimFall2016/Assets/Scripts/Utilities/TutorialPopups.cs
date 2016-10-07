@@ -61,7 +61,7 @@ public class TutorialPopups : MonoBehaviour {
         }
         else if (message == "birdIntro")
         {
-            tutText.text = "Oh! A Quetzal! Maybe it will help me? \n Switch to between the bird, bunny, and Kira by pressing Q. \nPress SPACE to fly. Watch your stamina!";
+            tutText.text = "Oh! A Quetzal! Maybe it can cut that log down? \n Switch to between the bird, bunny, and Kira by pressing Q. \nPress SPACE to fly. Watch your stamina!";
         }
         else if (message == "targetTut")
         {

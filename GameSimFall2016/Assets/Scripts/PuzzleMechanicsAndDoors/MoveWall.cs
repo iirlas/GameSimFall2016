@@ -11,6 +11,7 @@ using System.Collections;
 public class MoveWall : MonoBehaviour {
     [Tooltip("Each Wall to begin Movement on BASIC TRIGGER")]
     public GameObject[] walls;
+    public GameObject wheel;
     private bool beginMove;
     private Animator myanim;
 
@@ -31,7 +32,7 @@ public class MoveWall : MonoBehaviour {
         {
             if (Input.GetButtonDown("Action"))
             {
-                //wheel.transform.Rotate(0, 0, 360 / sides);
+                wheel.transform.Rotate(0, 0, 360 / 10);
 
                 foreach (GameObject wall in walls)
                 {
