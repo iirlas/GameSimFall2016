@@ -15,17 +15,12 @@ public class CursorLock : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (SceneManager.GetActiveScene().name.Equals("MainMenu") ||
-            SceneManager.GetActiveScene().name.Equals("ControlScene") ||
-            SceneManager.GetActiveScene().name.Equals("CreditsScene"))
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-        }
-        else
-        {
+
+        
+        
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
+        
 
     }
 
