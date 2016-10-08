@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SceneManagement;
 
 public class SoundScenePlay : MonoBehaviour {
 
-	public AudioSource levelMusic;
+	/*public AudioSource levelMusic;
 
 
 	public AudioClip outsideMusic;
@@ -68,4 +68,5 @@ public class SoundScenePlay : MonoBehaviour {
 		DontDestroyOnLoad (levelMusic);
 
 	}
+     */
 }
