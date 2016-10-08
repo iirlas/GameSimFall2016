@@ -107,7 +107,7 @@ public class HealthPlayer : MonoBehaviour
             //move all the player objects into the camfire room
             foreach (GameObject unit in playerUnits)
             {
-               unit.transform.position = campfireRespawn.transform.position;
+               unit.transform.position = StatusManager.getInstance().myRespawn;
             }
             //Resets the health back to full, resets bar, updates health and resets poison and death status.
             //healthCurrent = healthMax;
@@ -157,7 +157,7 @@ public class HealthPlayer : MonoBehaviour
    // Update the health bar value, color, text, etc...
    void updateHealthBar()
    {
-      StatusManager.getInstance().health = this.healthCurrent;
+      //StatusManager.getInstance().health = this.healthCurrent;
       //if (isSpoopActive)
       //{
       //   this.healthBar.value = this.healthCurrent;

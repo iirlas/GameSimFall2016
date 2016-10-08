@@ -24,17 +24,18 @@ public class Campfire : MonoBehaviour
    // When the player enters the trigger zone, set to current spawn point
    void OnTriggerEnter(Collider other)
    {
-       if (other.gameObject.name.Equals("Kira"))
-       {
-        GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().campfireRespawn = this.respawnPoint;
-        if (StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
-        {
+      if (other.gameObject.name.Equals("Kira"))
+      {
+         StatusManager.getInstance().myRespawn = this.respawnPoint.position;
+         //GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().campfireRespawn = this.respawnPoint;
+         if (StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
+         {
             Debug.Log("ping");
             StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
-        }
-        //GameObject.FindGameObjectWithTag("FearManager").GetComponent<StatusManager>().ToggleStatus();
-        Debug.Log("Respawn point changed");
-       }
+         }
+         //GameObject.FindGameObjectWithTag("FearManager").GetComponent<StatusManager>().ToggleStatus();
+         Debug.Log("Respawn point changed");
+      }
    }
 
    //==========================================================================
@@ -49,20 +50,20 @@ public class Campfire : MonoBehaviour
 
    void OnTriggerExit(Collider other)
    {
-       if (other.gameObject.name.Equals("Kira"))
-       {
-           if (!StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
-           {
-               StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
-           }
-       }
+      if (other.gameObject.name.Equals("Kira"))
+      {
+         if (!StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
+         {
+            StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
+         }
+      }
    }
 
    //==========================================================================
    // heals the player
    void healPlayer()
    {
-      GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().modifyHealth(1);
-      GameObject.FindGameObjectWithTag("HealthManager").GetComponent<FearManager>().modifyFear(-1);
+      StatusManager.getInstance().health += 2;
+      StatusManager.getInstance().fear += 2;
    }
 }
