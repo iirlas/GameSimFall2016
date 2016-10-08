@@ -26,9 +26,9 @@ public class HealthPlayer : MonoBehaviour
    private bool isSpoopActive;
    public bool killKeyEnabled = true;
 
-   public Slider healthBar; //hook the healthbar to this slider spot
-   public Image healthBarFill;
-   public Text healthText;
+   //public Slider healthBar; //hook the healthbar to this slider spot
+   //public Image healthBarFill;
+   //public Text healthText;
 
    public int healthMax;
    public int healthCurrent;
@@ -66,14 +66,13 @@ public class HealthPlayer : MonoBehaviour
       this.iFrameActive = false;
       this.iFrameTimer = 0.0f;
 
-      //this.healthChange = 0;
-      this.healthCurrent = healthMax;
-      this.healthBar.maxValue = healthMax;
-      this.healthBar.minValue = 0;
+      //this.healthCurrent = healthMax;
+      //this.healthBar.maxValue = healthMax;
+      //this.healthBar.minValue = 0;
 
       this.isSpoopActive = false;
 
-      healthBarFill.color = Color.green;
+      //healthBarFill.color = Color.green;
 
       this.isPoisoned = false;
       this.poisonDamage = 0;
@@ -92,17 +91,18 @@ public class HealthPlayer : MonoBehaviour
    {
       if (Input.GetKeyDown(KeyCode.End) && killKeyEnabled)
       {
-         this.healthCurrent = 0;
+         //this.healthCurrent = 0;
+         StatusManager.getInstance().health = 0;
       }
 
       if (!isDead)
       {
-         if (this.healthCurrent < 1)
+         if (StatusManager.getInstance().health < 1)
          {
-            this.healthBar.value = healthBar.minValue;
+            //this.healthBar.value = healthBar.minValue;
             Debug.Log("Player is Dead.");
             isDead = true;
-            this.healthText.text = "DEAD";
+            //this.healthText.text = "DEAD";
 
             //move all the player objects into the camfire room
             foreach (GameObject unit in playerUnits)
@@ -110,9 +110,9 @@ public class HealthPlayer : MonoBehaviour
                unit.transform.position = campfireRespawn.transform.position;
             }
             //Resets the health back to full, resets bar, updates health and resets poison and death status.
-            healthCurrent = healthMax;
-            this.healthBar.value = healthBar.maxValue;
-            updateHealthBar();
+            //healthCurrent = healthMax;
+            //this.healthBar.value = healthBar.maxValue;
+            //updateHealthBar();
             isDead = false;
             isPoisoned = false;
          }
@@ -121,7 +121,7 @@ public class HealthPlayer : MonoBehaviour
             updateHealthBar();
             if (isPoisoned)
             {
-               healthBarFill.color = Color.yellow;
+               //healthBarFill.color = Color.yellow;
                applyPoisonDamage();
             }
          }
@@ -157,24 +157,25 @@ public class HealthPlayer : MonoBehaviour
    // Update the health bar value, color, text, etc...
    void updateHealthBar()
    {
-      if (isSpoopActive)
-      {
-         this.healthBar.value = this.healthCurrent;
-         this.healthText.text = this.healthCurrent.ToString();
-      }
-      else
-      {
-         if (this.healthCurrent > this.healthBar.value)
-         {
-            this.healthCurrent = (int)this.healthBar.value;
-            this.healthText.text = this.healthCurrent.ToString();
-         }
-         else
-         {
-            this.healthBar.value = this.healthCurrent;
-            this.healthText.text = this.healthCurrent.ToString();
-         }
-      }
+      StatusManager.getInstance().health = this.healthCurrent;
+      //if (isSpoopActive)
+      //{
+      //   this.healthBar.value = this.healthCurrent;
+      //   this.healthText.text = this.healthCurrent.ToString();
+      //}
+      //else
+      //{
+      //   if (this.healthCurrent > this.healthBar.value)
+      //   {
+      //      this.healthCurrent = (int)this.healthBar.value;
+      //      this.healthText.text = this.healthCurrent.ToString();
+      //   }
+      //   else
+      //   {
+      //      this.healthBar.value = this.healthCurrent;
+      //      this.healthText.text = this.healthCurrent.ToString();
+      //   }
+      //}
    }
 
    //==========================================================================
@@ -183,20 +184,26 @@ public class HealthPlayer : MonoBehaviour
    // If the value is negative, the player loses health.
    public void modifyHealth(int value)
    {
-      if (this.iFrameTimer == 0.0f)
-      {
-         this.iFrameActive = true;
-         this.healthCurrent += value;
+      this.healthCurrent += value;
 
-         if (this.healthCurrent > this.healthMax)
-         {
-            this.healthCurrent = this.healthMax;
-         }
-         else if (this.healthCurrent < 0)
-         {
-            this.healthCurrent = 0;
-         }
-      }
+      if (value < 0)
+         this.healthCurrent = 0;
+      else if (value > 100)
+         this.healthCurrent = 100;
+      //if (this.iFrameTimer == 0.0f)
+      //{
+      //   this.iFrameActive = true;
+      //   this.healthCurrent += value;
+
+      //   if (this.healthCurrent > this.healthMax)
+      //   {
+      //      this.healthCurrent = this.healthMax;
+      //   }
+      //   else if (this.healthCurrent < 0)
+      //   {
+      //      this.healthCurrent = 0;
+      //   }
+      //}
    }
 
    //==========================================================================
@@ -223,7 +230,7 @@ public class HealthPlayer : MonoBehaviour
          this.poisonDamage = 0;
          this.poisonTicks = 0;
 
-         healthBarFill.color = Color.green;
+         //healthBarFill.color = Color.green;
       }
       else
       {

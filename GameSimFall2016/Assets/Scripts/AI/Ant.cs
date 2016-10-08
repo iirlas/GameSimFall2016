@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 //=============================================================================
 // Ant.cs
@@ -45,11 +46,7 @@ public class Ant : Enemy
    private const float ANTROTATIONSPEEDDEFAULT = 1;
    private const float ATTACKINTERVAL = 1.0f;        // How often the Ant will attack
 
-
-	// Ants AuidioSource.
 	public AudioSource antWalking;
-	//public AudioSource antAttack;
-   
 
    //-----------------------------------------------------------------------------
    // Private member variable data.
@@ -58,11 +55,7 @@ public class Ant : Enemy
 
    //-----------------------------------------------------------------------------
    // A reference to the player.
-   protected GameObject thePlayer;
-
-   ////!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!~!
-   //bool hasStatedWarning = false;
-   ////!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
+   protected Player thePlayer;
 
    //=============================================================================
    // Initialize things here
@@ -85,31 +78,18 @@ public class Ant : Enemy
 
       this.detectionRadius = 40;
       this.myType = enType.ANT;
-      findThePlayer();
-      findThePlayerHealth();
+
+   }
+
+   void Start()
+   {
+      thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
    }
 
    //=============================================================================
    // Update is called once per frames
    void Update()
    {
-      ////!~!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!
-      ////!~!~!~ Testing DEATH state transitions ~!~!~!
-      ////!~!~!~!~!~DELETE BEFORE FINAL BUILD~!~!~!~!~!
-      //if (!hasStatedWarning)
-      //{
-      //   hasStatedWarning = true;
-      //   Debug.LogWarning("A debug key is in use, if this is the final build, remove it!\n" +
-      //                    this.name + ".cs.  Be sure to also remove the variable \"hasStatedWarning\".  Click for more details.\n" +
-      //                    "Ctrl+F and search for \"TODO\" to find statements in question.");
-      //}
-      //if (Input.GetKeyDown(KeyCode.Delete))
-      //{
-      //   this.myState = enState.DEAD;
-      //}
-      ////!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
-
-
       switch (this.myState)
       {
          //-----------------------------------------------------------------------------
@@ -213,39 +193,40 @@ public class Ant : Enemy
    void OnTriggerExit(Collider other)
    {
       if (other.tag.Equals("Player"))
+   
       {
          this.myState = enState.TRACK;
       }
    }
 
-   //=============================================================================
-   // Looks for the player and stores a refernce to it, so it may be used later.
-   void findThePlayer()
-   {
-      if (thePlayer == null)
-      {
-         thePlayer = GameObject.Find("Kira");
-         if (thePlayer == null)
-         {
-            Debug.LogError("The player could not be found for " + this.name + ".  " + this.name + " requires there/n" +
-                           "to be a player in the scene in order to function.");
-         }
-      }
-   }
+   ////=============================================================================
+   //// Looks for the player and stores a refernce to it, so it may be used later.
+   //void findThePlayer()
+   //{
+   //   if (thePlayer == null)
+   //   {
+   //      thePlayer = GameObject.Find("Kira");
+   //      if (thePlayer == null)
+   //      {
+   //         Debug.LogError("The player could not be found for " + this.name + ".  " + this.name + " requires there/n" +
+   //                        "to be a player in the scene in order to function.");
+   //      }
+   //   }
+   //}
 
-   //=============================================================================
-   // Looks for the PlayerHealth and stores a refernce to it, so it may be used later.
-   void findThePlayerHealth()
-   {
-      if (thePlayerHealth == null)
-      {
-         thePlayerHealth = GameObject.FindGameObjectWithTag("HealthManager");
-         if (this.thePlayerHealth == null)
-         {
-            Debug.LogError("The PlayerHealth was not defined in the inspector for " + this.name + ".");
-         }
-      }
-   }
+   ////=============================================================================
+   //// Looks for the PlayerHealth and stores a refernce to it, so it may be used later.
+   //void findThePlayerHealth()
+   //{
+   //   if (thePlayerHealth == null)
+   //   {
+   //      thePlayerHealth = GameObject.FindGameObjectWithTag("HealthManager");
+   //      if (this.thePlayerHealth == null)
+   //      {
+   //         Debug.LogError("The PlayerHealth was not defined in the inspector for " + this.name + ".");
+   //      }
+   //   }
+   //}
 
    //=============================================================================
    // Check to see if the health of this Ant is 0, if so, change the state of this
@@ -255,7 +236,7 @@ public class Ant : Enemy
       if (isDefeated())
       {
          this.myState = enState.DEAD;
-		 this.antWalking.Stop ();
+         //this.antWalking.Stop ();
       }
    }
 
@@ -268,10 +249,10 @@ public class Ant : Enemy
                                         thePlayer.transform.position.z));
 
 		//Plays ant walking sound if it is not player already.
-		if(this.antWalking.isPlaying == false)
-		{
-			this.antWalking.Play ();
-		}
+      //if(this.antWalking.isPlaying == false)
+      //{
+      //   this.antWalking.Play ();
+      //}
 
       if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
       {
@@ -309,15 +290,17 @@ public class Ant : Enemy
    {
       if (timeSinceLastAttack == 0.0f)
       {
-         if (thePlayerHealth.GetComponent<HealthPlayer>().healthCurrent <= 1)
+         if (StatusManager.getInstance().health < 1)
          {
             //do nothing
+            Debug.Log("We are at line 296");
          }
          else
          {
             //do damage to player.
             Debug.Log(this.name + " has damaged the player.");
-            thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
+            //thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
+            StatusManager.getInstance().health -= 3;
 			//this.antAttack.Play ();
          }
 
