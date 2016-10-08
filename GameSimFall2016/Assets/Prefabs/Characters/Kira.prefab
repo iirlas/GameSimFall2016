@@ -301,7 +301,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 421332}
   - 82: {fileID: 8267652}
-  - 114: {fileID: 11477786}
+  - 114: {fileID: 11467658}
   m_Layer: 0
   m_Name: Bip001 R Toe0
   m_TagString: Untagged
@@ -991,8 +991,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110548}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.0000023245811}
-  m_LocalPosition: {x: 2.3, y: 2.08, z: 28.45}
+  m_LocalRotation: {x: 0, y: -0.0000045597553, z: 0, w: -1}
+  m_LocalPosition: {x: -2.29, y: 4.1, z: -5.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 443658}
@@ -1427,7 +1427,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bb7cb3539a8d8dd4fb3a9ab42ef03cf4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9cdde78d653891149becc2ec325208f9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.45
   m_Pitch: 1
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb442aba408620b4cb728eaa99db30d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorAngleLimit: 30
+  floorAngleLimit: 60
   movementSpeed: 5
   rotationSmoothSpeed: 10
   targetRange: 15
@@ -1552,12 +1552,11 @@ MonoBehaviour:
   rockPrefab: {fileID: 134040, guid: 8f0a52665faa95f4fa0f21a0f2fdfc9d, type: 2}
   rockSpawnNode: {fileID: 401716}
   shootingForce: 2
-  status: 4
   posisonEffect: {fileID: 142360}
   fireEffect: {fileID: 157938}
   darkEffect: {fileID: 120466}
   fearEffect: {fileID: 136622}
---- !u!114 &11477786
+--- !u!114 &11467658
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1565,7 +1564,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 130622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 468f4079ce1eda144a547356b76f9c2f, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!137 &13742342
@@ -1578,7 +1577,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 246d56291366513428cb55f70a15244e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
