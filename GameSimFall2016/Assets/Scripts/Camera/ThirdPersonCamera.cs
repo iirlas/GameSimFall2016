@@ -3,10 +3,12 @@ using System.Collections;
 
 public class ThirdPersonCamera : MonoBehaviour {
 
-    public float speed = 2.5f;
+    public float speed = 10f;
 
     public Vector3 pivotPoint = new Vector3( 0, 0, 0 );
     public Vector3 offset = new Vector3( 0, 1, -5 );
+
+    public LayerMask layerMask = 0x1; //default layer
 
     [HideInInspector]
     public new Transform transform;
@@ -44,35 +46,56 @@ public class ThirdPersonCamera : MonoBehaviour {
         //calculate pivot point
         //based on edge of the player's collider.
 
-
-        if (myPlayer is Girl && (myPlayer as Girl).target != null)
+        Girl kira = (myPlayer as Girl);
+        if (kira != null && kira.target != null)
         {
-            myAngle = Vector3.Lerp(transform.eulerAngles, myPlayer.transform.eulerAngles, speed * Time.deltaTime);
-            myAngle.z = 0;
-        }
-        else if (Input.GetButtonDown("Center"))
-        {
-            myAngle = new Vector3(0, myPlayer.transform.eulerAngles.y, 0);
-        }
-        else if (horizontal != 0 || vertical != 0)
-        {
-            myAngle += new Vector3(-vertical, horizontal, 0) * (speed * Time.deltaTime);
-        }
+            Quaternion rotation = myPlayer.transform.rotation;
+            transform.position = kira.transform.position + rotation * (pivotPoint);
 
-        myAngle.x = Mathf.Clamp(myAngle.x, -45, 45);
-
-        Quaternion rotation = Quaternion.Euler(myAngle);
-        Vector3 targetPosition = myPlayer.transform.position + rotation * pivotPoint;
-        Vector3 viewPosition = targetPosition + rotation * offset;
-        Vector3 collisionOffset = rotation * (myPlayer.collider.bounds.extents / 2);
-        
-        RaycastHit hit;
-        if (Physics.Linecast(myPlayer.transform.position, viewPosition - collisionOffset, out hit))
-        {
-            viewPosition = hit.point + collisionOffset;
+            transform.LookAt(kira.target.position, Vector3.up);
+            //myAngle.y = Mathf.LerpAngle(transform.eulerAngles.y, myPlayer.transform.eulerAngles.y,speed * Time.deltaTime );
+            //myAngle = Vector3.Lerp(transform.eulerAngles, myPlayer.transform.eulerAngles, );
+            //myAngle.x = 0;
+            //myAngle.z = 0;
         }
-        transform.position = viewPosition;
+        else
+        {
+            if (Input.GetButtonDown("Center"))
+            {
+                myAngle = new Vector3(0, myPlayer.transform.eulerAngles.y, 0);
+            }
+            else if (horizontal != 0 || vertical != 0)
+            {
+                myAngle += new Vector3(-vertical, horizontal, 0) * (speed * Time.deltaTime);
+            }
+            //limit pitch rotation
+            myAngle.x = Mathf.Clamp(myAngle.x, -45, 45);
 
-        transform.LookAt(myPlayer.transform.position, Vector3.up);
+            //rotation around the player
+            Quaternion rotation = Quaternion.Euler(myAngle);
+
+            //player position + pivotPoint
+            Vector3 targetPosition = myPlayer.transform.position + pivotPoint;
+            Vector3 viewPosition = targetPosition + rotation * (offset);
+            Vector3 lineCastStartPosition = Quaternion.LookRotation( myPlayer.collider.bounds.max ) * Vector3.up;
+
+            RaycastHit hit;
+            if (Physics.Linecast(targetPosition, viewPosition, out hit, layerMask))
+            {
+                viewPosition = targetPosition + rotation * (offset.normalized * (hit.distance - 0.1f));
+            }
+
+            //smooth erratic camera movement
+            if ( Vector3.Distance(transform.position, viewPosition) > 1.0f )
+            {
+                transform.position = Vector3.Lerp(transform.position, viewPosition, speed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = viewPosition;
+            }
+
+            transform.LookAt(targetPosition, Vector3.up);
+        }
     }
 }
