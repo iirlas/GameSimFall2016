@@ -11,23 +11,12 @@ public class FearShadow : MonoBehaviour {
 
     [Tooltip("damage to take")]
    public float fearDamage;
-   FearManager myFearManager;
-
-	// Use this for initialization
-	void Start () {
-      this.myFearManager = GameObject.FindGameObjectWithTag("HealthManager").GetComponent<FearManager>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
    void OnTriggerStay(Collider other)
    {
-      if (other.name.Equals("Kira"))
+      if (other.transform.tag == "Player" && other.gameObject.GetComponent<Girl>() != null)
       {
-         this.myFearManager.modifyFear(this.fearDamage);
+          StatusManager.getInstance().fear += fearDamage;
       }
    }
 }

@@ -17,11 +17,6 @@ public class Girl : Player {
     public Transform rockSpawnNode;
     public float shootingForce = 30.0f;
     
-    public GameObject posisonEffect;
-    public GameObject fireEffect;
-    public GameObject darkEffect;
-    public GameObject fearEffect;
-    
     [HideInInspector]
     public Transform target
     {
@@ -131,15 +126,15 @@ public class Girl : Player {
             strafe();
         }
 
-        if (!Input.GetButton("Attack")) //fire a projectile towards the shooting target.
-        {
-            GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
-            Rigidbody rockBody = rock.GetComponent<Rigidbody>();
-            Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
-            Vector3 force = (target != null ? (target.position - rigidbody.position).normalized : transform.forward) * shootingForce;
-            rockBody.AddForce(force, ForceMode.Impulse);
-            playerState = Player.State.DEFAULT;
-        }
+        //if (Input.GetButton("Attack")) //fire a projectile towards the shooting target.
+        //{
+        GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
+        Rigidbody rockBody = rock.GetComponent<Rigidbody>();
+        Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
+        Vector3 force = (target != null ? (target.position - rigidbody.position).normalized : transform.forward) * shootingForce;
+        rockBody.AddForce(force, ForceMode.Impulse);
+        playerState = Player.State.DEFAULT;
+        //}
 
         ////toggle our shooting target
         //if (Input.GetButtonDown("Action") && myTargets.Length != 0)

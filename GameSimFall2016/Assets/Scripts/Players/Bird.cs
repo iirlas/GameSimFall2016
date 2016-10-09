@@ -6,7 +6,9 @@ public class Bird : Player {
     new public enum State
     {
     }
- 
+
+    float staminaSpeed = 10.0f;
+
     private bool canFly = false;
 
     // Use this for initialization
@@ -37,7 +39,7 @@ public class Bird : Player {
             if (isGrounded(out hit))
             {
                 setParent(hit);
-                StatusManager.getInstance().stamina = StatusManager.getInstance().stamina + Time.deltaTime * 10.0f;
+                StatusManager.getInstance().stamina += Time.deltaTime * staminaSpeed;
                 if (StatusManager.getInstance().stamina >= 100.0f)
                 {
                     canFly = true;
@@ -50,6 +52,11 @@ public class Bird : Player {
 
     void LateUpdate()
     {
-        rigidbody.useGravity = (PlayerManager.getInstance().currentPlayer != this);
+        bool isPlayer = (PlayerManager.getInstance().currentPlayer == this);
+        rigidbody.useGravity = !isPlayer;
+        if ( !isPlayer )
+        {
+            StatusManager.getInstance().stamina = StatusManager.getInstance().stamina += Time.deltaTime * staminaSpeed;
+        }
     }
 }

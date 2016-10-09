@@ -95,7 +95,7 @@ public class StatusManager : Singleton<StatusManager>
         set { myHealth = Mathf.Clamp(value, 0, 100.0f); }
     }
 
-    private float myStamina;
+    private float myStamina = 100.0f;
     public float stamina
     {
         get { return myStamina; }

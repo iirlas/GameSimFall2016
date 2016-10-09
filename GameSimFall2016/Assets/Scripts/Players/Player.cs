@@ -107,7 +107,6 @@ abstract public class Player : MonoBehaviour
         if (transform.parent != null && myPlatform != null)
         {
             transform.parent.position = myPlatform.position;
-            //transform.parent.position = Vector3.Lerp(transform.parent.position, myPlatform.position, float.PositiveInfinity);
         }
     }
 
@@ -151,15 +150,16 @@ abstract public class Player : MonoBehaviour
         if (parent.parent == hit.transform)
             return;
 
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
-        {
-            RaycastHit fHit = new RaycastHit();
-            Physics.Raycast(collider.bounds.center + transform.forward / 2, Vector3.down, out fHit);
-            if (fHit.point.y < collider.bounds.min.y)
-            {
-                rigidbody.position = new Vector3(rigidbody.position.x, hit.point.y + collider.bounds.extents.y, rigidbody.position.z);
-            }
-        }
+        //align the player to a slope
+        //if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        //{
+        //    RaycastHit fHit = new RaycastHit();
+        //    Physics.Raycast(collider.bounds.center + transform.forward / 2, Vector3.down, out fHit);
+        //    if ((fHit.point.y - collider.bounds.min.y) > 0.1f )
+        //    {
+        //        rigidbody.position = new Vector3(rigidbody.position.x, fHit.point.y + collider.bounds.extents.y, rigidbody.position.z);
+        //    }
+        //}
         parent.position = hit.transform.position;
         myPlatform = hit.transform;
         transform.parent = parent;
