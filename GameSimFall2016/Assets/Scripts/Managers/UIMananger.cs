@@ -93,6 +93,16 @@ public class UIMananger : Singleton<UIMananger>
 
    //==========================================================================
    // 
+   // void updateStaminaBar()
+   // {
+   //     myHealth.value = StatusManager.getInstance().health;
+   //     Debug.Log("HealthBar value: " + myHealth.value + ".  StatusManager Health: " + StatusManager.getInstance().health);
+   //     myFear.value = StatusManager.getInstance().fear;
+   //     //Debug.Log("FearBar value: " + myFear.value + ".  StatusManager Fear: " + StatusManager.getInstance().fear);
+   // }
+
+   //==========================================================================
+   // 
    void updateCharacterIndicator()
    {
       if (PlayerManager.getInstance().currentPlayer is Girl)

@@ -507,7 +507,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -709,7 +709,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -2733,7 +2733,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -2743,7 +2743,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: empty
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
@@ -2922,7 +2922,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -3045,7 +3045,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -3115,7 +3115,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22421150, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_LocalPosition.x
@@ -3191,11 +3191,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472788, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
@@ -3369,7 +3373,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -3544,7 +3548,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -3732,8 +3736,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.01
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -3773,9 +3777,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b870fa8823b17234b85dabe9ecabba62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 10
   pivotPoint: {x: 0, y: 1, z: 0}
   offset: {x: 0, y: 1, z: -5}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
   transform: {fileID: 0}
 --- !u!1 &978103129 stripped
 GameObject:
@@ -4279,7 +4286,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -4584,7 +4591,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -4757,7 +4764,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -5088,7 +5095,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -5209,7 +5216,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -5485,6 +5492,12 @@ Prefab:
     - {fileID: 11407272, guid: f79aa9080fe8cf84489d733694bbb32b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f79aa9080fe8cf84489d733694bbb32b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1460627866 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11443116, guid: 5d9d2323de4f093408f70cc3ab0677b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 629622536}
+  m_Script: {fileID: 11500000, guid: ffe82982a23520143a77c1da83ca94f7, type: 3}
 --- !u!1 &1470397713
 GameObject:
   m_ObjectHideFlags: 0
@@ -5523,7 +5536,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -5692,7 +5705,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -6179,7 +6192,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -6444,7 +6457,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
@@ -6630,7 +6643,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1460627866}
         m_MethodName: OnEvent
         m_Mode: 5
         m_Arguments:
