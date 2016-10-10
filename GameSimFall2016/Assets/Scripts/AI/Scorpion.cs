@@ -8,6 +8,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 //=============================================================================
 // Scorpion.cs
@@ -67,11 +68,7 @@ public class Scorpion : Enemy
 
    //-----------------------------------------------------------------------------
    // A reference to the player.
-   protected GameObject thePlayer;
-
-   ////!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!~!
-   //bool hasStatedWarning = false;
-   ////!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
+   protected Player thePlayer;
 
    //=============================================================================
    // Initialize things here
@@ -97,30 +94,16 @@ public class Scorpion : Enemy
       }
 
       this.myType = enType.SCORPION;
-      findThePlayer();
-      findThePlayerHealth();
    }
 
+   void Start()
+   {
+      thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
+   }
    //=============================================================================
    // Update is called once per frames
    void Update()
    {
-      ////!~!~!~!~!~!~!~!~!~!~TODO!~!~!~!~!~!~!~!~!~!~!
-      ////!~!~!~ Testing DEATH state transitions ~!~!~!
-      ////!~!~!~!~!~DELETE BEFORE FINAL BUILD~!~!~!~!~!
-      //if (!hasStatedWarning)
-      //{
-      //   hasStatedWarning = true;
-      //   Debug.LogWarning("A debug key is in use, if this is the final build, remove it!\n" +
-      //                    this.name + ".cs.  Be sure to also remove the variable \"hasStatedWarning\".  Click for more details.\n" +
-      //                    "Ctrl+F and search for \"TODO\" to find statements in question.");
-      //}
-      //if (Input.GetKeyDown(KeyCode.Delete))
-      //{
-      //   this.myState = enState.DEAD;
-      //}
-      ////!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!~!
-
       switch (this.myState)
       {
          //-----------------------------------------------------------------------------
@@ -230,35 +213,6 @@ public class Scorpion : Enemy
    }
 
    //=============================================================================
-   // Looks for the player and stores a refernce to it, so it may be used later.
-   void findThePlayer()
-   {
-      if (thePlayer == null)
-      {
-         thePlayer = GameObject.Find("Kira");
-         if (thePlayer == null)
-         {
-            Debug.LogError("The player could not be found for " + this.name + ".  " + this.name + " requires there/n" +
-                           "to be a player in the scene in order to function.");
-         }
-      }
-   }
-
-   //=============================================================================
-   // Looks for the PlayerHealth and stores a refernce to it, so it may be used later.
-   void findThePlayerHealth()
-   {
-      if (thePlayerHealth == null)
-      {
-         thePlayerHealth = GameObject.FindGameObjectWithTag("HealthManager");
-         if (this.thePlayerHealth == null)
-         {
-            Debug.LogError("The PlayerHealth was not defined in the inspector for " + this.name + ".");
-         }
-      }
-   }
-
-   //=============================================================================
    // Check to see if the health of this Scorpion is 0, if so, change the state of this
    // Scorpion to enState.DEAD
    void checkScorpionHealth()
@@ -313,7 +267,7 @@ public class Scorpion : Enemy
    {
       if (timeSinceLastAttack == 0.0f)
       {
-         if (thePlayerHealth.GetComponent<HealthPlayer>().healthCurrent <= 0)
+         if (StatusManager.getInstance().health <= 0)
          {
             //do nothing
          }
@@ -321,11 +275,9 @@ public class Scorpion : Enemy
          {
             //do damage to player.
             Debug.Log(this.name + " has damaged the player.");
-            thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
-            Debug.Log(this.scorpionPoisonDamageCustom);
-            thePlayerHealth.GetComponent<HealthPlayer>().poisonPlayer(this.scorpionPoisonDamageCustom,
-                                                                      this.scorpionPoisonIntervalCustom,
-                                                                      this.scorpionPoisonInstancesCustom);
+            StatusManager.getInstance().health -= 5.0f;
+            StatusManager.getInstance().fear += 20.0f;
+            StatusManager.getInstance().isPoisoned = true;
          }
 
          timeSinceLastAttack += Time.deltaTime;

@@ -199,35 +199,6 @@ public class Ant : Enemy
       }
    }
 
-   ////=============================================================================
-   //// Looks for the player and stores a refernce to it, so it may be used later.
-   //void findThePlayer()
-   //{
-   //   if (thePlayer == null)
-   //   {
-   //      thePlayer = GameObject.Find("Kira");
-   //      if (thePlayer == null)
-   //      {
-   //         Debug.LogError("The player could not be found for " + this.name + ".  " + this.name + " requires there/n" +
-   //                        "to be a player in the scene in order to function.");
-   //      }
-   //   }
-   //}
-
-   ////=============================================================================
-   //// Looks for the PlayerHealth and stores a refernce to it, so it may be used later.
-   //void findThePlayerHealth()
-   //{
-   //   if (thePlayerHealth == null)
-   //   {
-   //      thePlayerHealth = GameObject.FindGameObjectWithTag("HealthManager");
-   //      if (this.thePlayerHealth == null)
-   //      {
-   //         Debug.LogError("The PlayerHealth was not defined in the inspector for " + this.name + ".");
-   //      }
-   //   }
-   //}
-
    //=============================================================================
    // Check to see if the health of this Ant is 0, if so, change the state of this
    // Ant to enState.DEAD
@@ -292,15 +263,14 @@ public class Ant : Enemy
       {
          if (StatusManager.getInstance().health < 1)
          {
-            //do nothing
-            Debug.Log("We are at line 296");
          }
          else
          {
             //do damage to player.
             Debug.Log(this.name + " has damaged the player.");
             //thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
-            StatusManager.getInstance().health -= 3;
+            StatusManager.getInstance().health -= 5;
+            StatusManager.getInstance().fear += 10;
 			//this.antAttack.Play ();
          }
 

@@ -6,16 +6,16 @@ public class UIMananger : Singleton<UIMananger>
 {
    // the Health bar 
    public Slider myHealth;
-   
+
    // the Fear bar
    public Slider myFear;
 
    // the Player icon
    public Image myKiraIcon;
-   
+
    // the Bunny icon
    public Image myBunnyIcon;
-   
+
    // the Bird icon
    public Image myBirdIcon;
 
@@ -36,13 +36,13 @@ public class UIMananger : Singleton<UIMananger>
    override protected void Init()
    {
       if (myHealth == null || myFear == null || myKiraIcon == null ||
-          myBunnyIcon == null || myBirdIcon == null || myIndicator == null )
+          myBunnyIcon == null || myBirdIcon == null || myIndicator == null)
       {
          Debug.LogError("A reference was not set in the inspector for the UIManager, please check it out.");
       }
 
-      myKiraIcon.enabled  = false;
-      myBirdIcon.enabled  = false;
+      myKiraIcon.enabled = false;
+      myBirdIcon.enabled = false;
       myBunnyIcon.enabled = false;
    }
 
@@ -110,7 +110,7 @@ public class UIMananger : Singleton<UIMananger>
          myKiraIcon.enabled = true;
          myBirdIcon.enabled = false;
          myBunnyIcon.enabled = false;
-         myIndicator.transform.rotation = Quaternion.Euler(0,0, PLAYERROTVAL);
+         myIndicator.transform.rotation = Quaternion.Euler(0, 0, PLAYERROTVAL);
       }
       else if (PlayerManager.getInstance().currentPlayer is Bird)
       {

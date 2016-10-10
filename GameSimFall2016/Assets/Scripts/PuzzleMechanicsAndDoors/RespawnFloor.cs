@@ -8,40 +8,35 @@ using System.Collections;
 //It is placed on the empty object to be respawned to.
 //Death floor must have the basic trigger script send the message "respawn" and be repeatable.
 
-public class RespawnFloor : MonoBehaviour {
+public class RespawnFloor : MonoBehaviour
+{
 
-    
-    private GameObject[] playerUnits; //to collect the player units together
-     
 
-	// Use this for initialization
-	void Awake () {
-        playerUnits = GameObject.FindGameObjectsWithTag("Player"); //populate array
+   private GameObject[] playerUnits; //to collect the player units together
 
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-    public void OnEvent(BasicTrigger trigger) //Basic Trigger script
-    {
-        
-        //if (trigger.message == "respawn")
-        {
-            
+   // Use this for initialization
+   void Awake()
+   {
+      playerUnits = GameObject.FindGameObjectsWithTag("Player"); //populate array
+   }
 
-            foreach (GameObject unit in playerUnits)
+   // Update is called once per frame
+   void Update()
+   {
+
+   }
+
+   public void OnEvent(BasicTrigger trigger) //Basic Trigger script
+   {
+      {
+         foreach (GameObject unit in playerUnits)
+         {
+            if (trigger.activator.Equals(unit))
             {
-                if (trigger.activator.Equals(unit))
-                {
-                    unit.transform.position = transform.position; //respawn to designated respawn block
-                }
+               unit.transform.position = transform.position; //respawn to designated respawn block
             }
-            //TODO: change HealthPlayer to singleton
-            //GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().modifyHealth(-10);
-            //player.transform.position = transform.position;
-        }
-    }
+         }
+      }
+   }
 }
