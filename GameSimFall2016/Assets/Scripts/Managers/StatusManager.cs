@@ -196,5 +196,16 @@ public class StatusManager : Singleton<StatusManager>
 
         //spook damage
         health -= (isSpooked ? spookDamage : 0.0f) * Time.deltaTime;
+
+        if (health <= 0)
+        {
+            Player[] players = PlayerManager.getInstance().players;
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].transform.position = respawnPoint;
+            }
+            health = 100.0f;
+            fear = 0.0f;
+        }
     }
 }
