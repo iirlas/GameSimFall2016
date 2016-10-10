@@ -4,6 +4,7 @@ using System.Collections;
 public class DamageOnCollision : MonoBehaviour
 {
    private bool takeDamage;
+   public int damageToTake;
 
    // Use this for initialization
    void Awake()
@@ -37,6 +38,6 @@ public class DamageOnCollision : MonoBehaviour
 
    void takeFireDamage()
    {
-      StatusManager.getInstance().health -= 5; 
+      StatusManager.getInstance().health -= damageToTake; 
    }
 }
