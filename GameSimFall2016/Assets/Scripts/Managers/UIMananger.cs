@@ -50,24 +50,6 @@ public class UIMananger : Singleton<UIMananger>
    // Update is called once per frame
    void Update()
    {
-      //if (Input.GetKey(KeyCode.Semicolon))
-      //{
-      //   StatusManager.getInstance().health -= 2;
-      //}
-      //else if (Input.GetKey(KeyCode.Quote))
-      //{
-      //   StatusManager.getInstance().health += 2;
-      //}
-
-      //if (Input.GetKey(KeyCode.Comma))
-      //{
-      //   StatusManager.getInstance().fear -= 2;
-      //}
-      //else if (Input.GetKey(KeyCode.Period))
-      //{
-      //   StatusManager.getInstance().fear += 2;
-      //}
-
       if (StatusManager.getInstance().health > 0.0f)
       {
          updateHealthFearBars();
@@ -77,7 +59,7 @@ public class UIMananger : Singleton<UIMananger>
       {
          myHealth.value = 0.0f;
          myFear.value = 0.0f;
-         myIndicator.transform.rotation = Quaternion.Euler(0, 0, PLAYERROTVAL);
+         //myIndicator.transform.rotation = Quaternion.Euler(0, 0, PLAYERROTVAL);
       }
    }
 
