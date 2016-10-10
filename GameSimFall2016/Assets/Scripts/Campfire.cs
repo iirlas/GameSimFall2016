@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Campfire : MonoBehaviour
 {
+   public float healSpeed = 15f;
    private Transform respawnPoint;
 
    //==========================================================================
@@ -63,7 +64,7 @@ public class Campfire : MonoBehaviour
    // heals the player
    void healPlayer()
    {
-      StatusManager.getInstance().health += 2;
-      StatusManager.getInstance().fear += 2;
+      StatusManager.getInstance().health += healSpeed * Time.deltaTime;
+      StatusManager.getInstance().fear -= healSpeed * Time.deltaTime;
    }
 }
