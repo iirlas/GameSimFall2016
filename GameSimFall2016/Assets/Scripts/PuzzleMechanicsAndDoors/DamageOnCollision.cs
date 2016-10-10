@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//========================================================================================================
+//                                              Damage on Collision
+// This script should be applied to an item that gives damage ON CONTACT
+// It then applies the public damage num to health and checks if the player is still colliding
+// Damage continues until the collider is exited.
+//========================================================================================================
+
+
+
 public class DamageOnCollision : MonoBehaviour
 {
    private bool takeDamage;
