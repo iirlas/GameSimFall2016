@@ -31,7 +31,7 @@ public class TutorialPopups : MonoBehaviour {
         }
         else if (message == "TutFearMeter")
         {
-            tutText.text = "If I stay in the light I feel less afraid...\n Watch your Fear Meter. If it hits 100, you start taking physical damage.";
+            tutText.text = "If I stay in the light I feel less afraid...\n Watch your Fear Meter. \nIf it hits 100, you start taking physical damage.";
             textBack.enabled = true;
         }
         else if (message == "Tut2")

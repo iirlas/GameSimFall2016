@@ -660,7 +660,7 @@ GameObject:
   - 23: {fileID: 2352690}
   - 64: {fileID: 6454742}
   - 114: {fileID: 11443122}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MazeWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1234,6 +1234,7 @@ GameObject:
   - 23: {fileID: 2305488}
   - 114: {fileID: 11459156}
   - 65: {fileID: 6565144}
+  - 65: {fileID: 6523556}
   m_Layer: 0
   m_Name: ExitDoor
   m_TagString: Untagged
@@ -3696,6 +3697,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 4.9999995, z: 0.1}
   m_Center: {x: 0, y: 2.5000002, z: 0.049999807}
+--- !u!65 &6523556
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3146621, y: 0.20099245, z: 2.5785723}
+  m_Center: {x: 0, y: -0.10049602, z: -0.00000023841858}
 --- !u!65 &6528130
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5115,6 +5128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ced933d81ded2b43b4aa80d8caf1105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageToTake: 5
 --- !u!114 &11459156
 MonoBehaviour:
   m_ObjectHideFlags: 1

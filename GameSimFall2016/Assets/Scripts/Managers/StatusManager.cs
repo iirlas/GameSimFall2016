@@ -166,6 +166,7 @@ public class StatusManager : Singleton<StatusManager>
         updateEffects();
     }
 
+    //updates effect based on playerStatus.
     public void updateEffects()
     {
         fearEffect.SetActive(hasStatus(Status.FEAR));
@@ -197,6 +198,7 @@ public class StatusManager : Singleton<StatusManager>
         //spook damage
         health -= (isSpooked ? spookDamage : 0.0f) * Time.deltaTime;
 
+        //respawn players when kira dies.
         if (health <= 0)
         {
             Player[] players = PlayerManager.getInstance().players;
