@@ -22,12 +22,6 @@ public class Enemy : MonoBehaviour
    protected readonly Vector3 OUTOFBOUNDS = new Vector3(-1000, -1000, -1000);
 
    //-----------------------------------------------------------------------------
-   // A reference to the "PlayerHealth", which manages scripts such as PlayerManager,
-   // and HealthPlayer.
-   [HideInInspector]
-   public GameObject thePlayerHealth;
-
-   //-----------------------------------------------------------------------------
    // Common states that most enemies, if not all, share.
    public enum enState
    {
@@ -103,11 +97,7 @@ public class Enemy : MonoBehaviour
       {
          return true;
       }
-
       return false;
    }
-
-
-
 }
 
