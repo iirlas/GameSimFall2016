@@ -107,7 +107,7 @@ public class HealthPlayer : MonoBehaviour
             //move all the player objects into the camfire room
             foreach (GameObject unit in playerUnits)
             {
-               unit.transform.position = StatusManager.getInstance().myRespawn;
+               unit.transform.position = StatusManager.getInstance().respawnPoint;
             }
             //Resets the health back to full, resets bar, updates health and resets poison and death status.
             //healthCurrent = healthMax;

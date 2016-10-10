@@ -3,7 +3,6 @@ using System.Collections;
 
 public class StatusManager : Singleton<StatusManager>
 {
-
     public enum Status
     {
         NONE = 0x00,    //0000
@@ -13,7 +12,8 @@ public class StatusManager : Singleton<StatusManager>
         SPOOK = 0x08    //1000
     }
 
-    public Vector3 myRespawn;
+    [HideInInspector]
+    public Vector3 respawnPoint;
 
     private float myFear = 0.0f;
     public float fear
@@ -34,7 +34,6 @@ public class StatusManager : Singleton<StatusManager>
         }
     }
 
-    [HideInInspector]
     public bool isPoisoned
     {
         get { return hasStatus(Status.POISON); }
@@ -52,7 +51,6 @@ public class StatusManager : Singleton<StatusManager>
         }
     }
 
-    [HideInInspector]
     public bool onFire
     {
         get { return hasStatus(Status.FIRE); }
@@ -70,7 +68,6 @@ public class StatusManager : Singleton<StatusManager>
         }
     }
 
-    [HideInInspector]
     public bool isSpooked
     {
         get { return hasStatus(Status.SPOOK); }
