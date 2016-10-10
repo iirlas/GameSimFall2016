@@ -27,12 +27,12 @@ public class SpoopManager : MonoBehaviour
 
       if (idleTime >= 10.0f)
       {
-         GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().setSpoopActive(true);
+         //GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().setSpoopActive(true);
          myAudio.Play();
       }
       else if (myAudio.isPlaying)
       {
-         GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().setSpoopActive(false);
+         //GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().setSpoopActive(false);
          myAudio.Stop();
       }
    }

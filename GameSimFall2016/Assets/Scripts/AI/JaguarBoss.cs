@@ -43,15 +43,6 @@ public class JaguarBoss : Enemy
       this.myType = enType.JAGUAR;
       this.myState = enState.IDLE;
 
-      //this.thePlayer = GameObject.Find("Kira");
-      this.thePlayerHealth = GameObject.FindWithTag("HealthManager");
-      
-      if (thePlayerHealth == null)
-      {
-         Debug.LogError("The HealthManager could not be found for " + this.name + ".  " + this.name + " requires there\n" +
-                        "to be a player in the scene in order to function.");
-      }
-
       this.mySpeed = 10.0f;
       this.myRotationSpeed = 2.0f;
    }
@@ -85,7 +76,7 @@ public class JaguarBoss : Enemy
          hasAttacked = true;
       }
 
-      if (this.thePlayerHealth.GetComponent<HealthPlayer>().healthCurrent <= 0)
+      if ( StatusManager.getInstance().health <= 0)
       {
          this.resetBoss();
       }
