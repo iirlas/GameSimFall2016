@@ -83,7 +83,7 @@ abstract public class Player : MonoBehaviour
         myFollowTarget = targetTo;
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         if (PlayerManager.getInstance().currentPlayer == this)
         {
