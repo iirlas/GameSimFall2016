@@ -25,6 +25,8 @@ public class Game : Singleton<Game>
 	override protected void Init () 
     {
         Application.targetFrameRate = 60;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
