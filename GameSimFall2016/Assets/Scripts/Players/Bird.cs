@@ -22,7 +22,6 @@ public class Bird : Player {
         movePlayer();
         if (Input.GetButton("Action") && canFly)
         {
-            rigidbody.useGravity = false;
             rigidbody.velocity = Vector3.zero;
             clearParent();
             StatusManager.getInstance().stamina -= Time.deltaTime * 20.0f;
@@ -46,14 +45,12 @@ public class Bird : Player {
                     StatusManager.getInstance().stamina = 100.0f;
                 }
             }
-            rigidbody.useGravity = true;
         }
     }
 
     void LateUpdate()
     {
         bool isPlayer = (PlayerManager.getInstance().currentPlayer == this);
-        rigidbody.useGravity = !isPlayer;
         if ( !isPlayer )
         {
             StatusManager.getInstance().stamina = StatusManager.getInstance().stamina += Time.deltaTime * staminaSpeed;

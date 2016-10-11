@@ -104,6 +104,10 @@ abstract public class Player : MonoBehaviour
                                         movementSpeed * Time.deltaTime) );
             }
         }
+    }
+
+    public void FixedUpdate ()
+    {
         if (transform.parent != null && myPlatform != null)
         {
             transform.parent.position = myPlatform.position;
