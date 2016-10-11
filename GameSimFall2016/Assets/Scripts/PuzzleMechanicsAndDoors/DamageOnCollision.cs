@@ -26,7 +26,7 @@ public class DamageOnCollision : MonoBehaviour
    {
       if (takeDamage)
       {
-         Invoke("takeFireDamage", 1f);
+         Invoke("takeFireDamage", 10f);
       }
    }
 

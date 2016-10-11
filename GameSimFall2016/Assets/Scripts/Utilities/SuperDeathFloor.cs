@@ -22,9 +22,9 @@ public class SuperDeathFloor : MonoBehaviour
       {
          StatusManager.getInstance().health -= 10000;
       }
-      else if (other.gameObject.tag.Equals("Player"))
-      {
-         other.transform.position = StatusManager.getInstance().respawnPoint;
-      }
+      //else if (other.gameObject.tag.Equals("Player"))
+      //{
+      //   other.transform.position = StatusManager.getInstance().respawnPoint;
+      //}
    }
 }

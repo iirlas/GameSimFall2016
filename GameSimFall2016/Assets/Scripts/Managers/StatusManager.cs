@@ -106,16 +106,16 @@ public class StatusManager : Singleton<StatusManager>
         set { SetStatus(value); updateEffects(); }
     }
 
-    [Range(0.0f, 1.0f)]
+    [Range(1.0f, 10.0f)]
     public float fearDamage;
 
-    [Range(0.0f, 1.0f)]
+    [Range(1.0f, 10.0f)]
     public float poisonDamage;
 
-    [Range(0.0f, 1.0f)]
+    [Range(1.0f, 10.0f)]
     public float fireDamage;
 
-    [Range(0.0f, 1.0f)]
+    [Range(1.0f, 10.0f)]
     public float spookDamage;
 
 

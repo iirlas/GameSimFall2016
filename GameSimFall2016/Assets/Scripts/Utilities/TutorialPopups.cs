@@ -46,7 +46,7 @@ public class TutorialPopups : MonoBehaviour {
         }
         else if (message == "Tut3")
         {
-            tutText.text = "There are two plates. \nI wonder if I step on one and send bunny to the other if the door will open?";
+            tutText.text = "There are two plates. \nI wonder if I step on one \nand send bunny to the other if the door will open?";
             textBack.enabled = true;
         }
         else if (message == "Tut4")
