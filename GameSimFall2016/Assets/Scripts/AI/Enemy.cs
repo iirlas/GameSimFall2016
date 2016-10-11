@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
    //  it's remaining health is 0.
    protected bool isDefeated()
    {
-      if (this.myHealth == 0)
+      if (this.myHealth <= 0)
       {
          return true;
       }
