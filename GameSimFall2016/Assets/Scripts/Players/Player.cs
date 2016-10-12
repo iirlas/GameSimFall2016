@@ -21,6 +21,12 @@ abstract public class Player : MonoBehaviour
 
     protected Dictionary<Enum, StateRunner> myStates { get; private set; }
     
+    public Transform followTarget
+    {
+        get { return myFollowTarget; }
+        set { AssignTarget(value); }
+    }
+
     [Range(5, 90)]
     public float floorAngleLimit = 30;
     public float movementSpeed = 5.0f;

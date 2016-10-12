@@ -38,7 +38,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             //if ( currentPlayer != player &&
             //    Vector3.Distance(player.transform.position, currentPlayer.transform.position) < 5.0f)
             //{
-                Player target = null;
+                //Player target = null;
                 for (int j = 0; j < players.Length; j++ )
                 {
 
@@ -54,17 +54,18 @@ public class PlayerManager : Singleton<PlayerManager> {
                         continue;
 
                     float minDist = switchDistance;
-                    float distcheck = Vector3.Distance(players[j].transform.position, currentPlayer.transform.position);
-                    if (distcheck < minDist)
-                    {
-                        minDist = distcheck;
-                        if ( target != null )
+                    //bad practice probably
+                    //triangle problem
+                    players[j].AssignTarget(players.First((target) =>
                         {
-                            target.AssignTarget(players[j].transform);
+                            float distcheck = Vector3.Distance(players[j].transform.position, target.transform.position);
+                            if (distcheck < minDist && target.followTarget != players[j].transform)
+                            {
+                                return true;
+                            }
+                            return false;
                         }
-                        target = players[j];
-                        target.AssignTarget(currentPlayer.transform);
-                    }
+                    ).transform);
                 }
 
         //            // distance check between other playrs
@@ -102,15 +103,14 @@ public class PlayerManager : Singleton<PlayerManager> {
         {
             int index = System.Array.IndexOf<Player>(players, currentPlayer);
             float dist = 0;
-
-            index = (++index) % players.Length;
-            dist = Vector3.Distance(players[index].transform.position, currentPlayer.transform.position);
-            if (dist < switchDistance || players[index] is Girl)
+            do
             {
-                currentPlayer = players[index];
-                ignoreCollision();
+                index = (++index) % players.Length;
+                dist = Vector3.Distance(players[index].transform.position, currentPlayer.transform.position);
             }
-            
+            while (dist >= switchDistance && !(players[index] is Girl));
+            currentPlayer = players[index];
+            ignoreCollision();
             //while (Vector3.Distance(players[index].transform.position, currentPlayer.transform.position) > switchDistance);
             //currentPlayer = players[index];
             //ignoreCollision();
