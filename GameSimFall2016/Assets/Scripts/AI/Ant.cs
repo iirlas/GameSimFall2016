@@ -46,7 +46,11 @@ public class Ant : Enemy
    private const float ANTROTATIONSPEEDDEFAULT = 1;
    private const float ATTACKINTERVAL = 1.0f;        // How often the Ant will attack
 
+	// Ant Sounds 
 	public AudioSource antWalking;
+	public AudioSource antSplat;
+	public AudioSource antAttack;
+
 
    //-----------------------------------------------------------------------------
    // Private member variable data.
@@ -84,6 +88,7 @@ public class Ant : Enemy
    void Start()
    {
       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
+
    }
 
    //=============================================================================
@@ -109,13 +114,14 @@ public class Ant : Enemy
             //do some patroling, maybe?
             break;
          //-----------------------------------------------------------------------------
-         case enState.DEAD:
-            killAnt();
+		case enState.DEAD:
+
+			killAnt ();
             break;
          //-----------------------------------------------------------------------------
          default:
             break;
-      }
+      } 
 
       checkAntHealth();
       stateUpdate();
@@ -161,8 +167,9 @@ public class Ant : Enemy
             //if the Ant will patrol, patrol the ant around.
             break;
          //-----------------------------------------------------------------------------
-         case enState.DEAD:
+		case enState.DEAD:
             //Ant is dead, object should be destroyed, if not already.
+
             killAnt();
             break;
       }
@@ -175,6 +182,7 @@ public class Ant : Enemy
       if(other.tag.Equals("Projectile"))
       {
          damageAnt();
+
       }
    }
 
@@ -185,6 +193,9 @@ public class Ant : Enemy
       if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
       {
          this.myState = enState.ATTACK;
+			if (this.antAttack.isPlaying == false) {
+				this.antAttack.Play ();
+			}
       }
    }
 
@@ -206,9 +217,13 @@ public class Ant : Enemy
    {
       if (isDefeated())
       {
+		if (this.antSplat.isPlaying == false) {
+			this.antSplat.Play ();
+		}
          this.myState = enState.DEAD;
-         //this.antWalking.Stop ();
-      }
+         this.antWalking.Stop ();
+		
+		}
    }
 
    //=============================================================================
@@ -220,10 +235,10 @@ public class Ant : Enemy
                                         thePlayer.transform.position.z));
 
 		//Plays ant walking sound if it is not player already.
-      //if(this.antWalking.isPlaying == false)
-      //{
-      //   this.antWalking.Play ();
-      //}
+      if(this.antWalking.isPlaying == false)
+      {
+         this.antWalking.Play ();
+      }
 
       if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
       {
@@ -271,7 +286,6 @@ public class Ant : Enemy
             //thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
             StatusManager.getInstance().health -= 5;
             StatusManager.getInstance().fear += 10;
-			//this.antAttack.Play ();
          }
 
          timeSinceLastAttack += Time.deltaTime;
@@ -292,10 +306,11 @@ public class Ant : Enemy
    // ALL enemies will be moved to a magic value, where they will be deactivated.
    void killAnt()
    {
-      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
-                                                          // from clipping back onto the platform after being "killed".
-      this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
-      this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.
+		
+        this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
+                                                            // from clipping back onto the platform after being "killed".
+        this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
+        this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.
    }
 
    //=============================================================================
@@ -303,6 +318,7 @@ public class Ant : Enemy
    void damageAnt()
    {
       this.myHealth -= 1;
+
    }
 
    //=============================================================================
@@ -312,4 +328,5 @@ public class Ant : Enemy
    {
       this.myHealth -= damage;
    }
+		
 }
