@@ -4,7 +4,7 @@ using System.Collections;
 public class SafeRoomMusicSwitch : MonoBehaviour {
 
 	public AudioSource safeRoom;
-	public AudioSource levelMusic;
+	AudioSource levelMusic;
 	public float fadeTime = .9f;
 	int safeRoomNumber = 0;
 	float volumeOfSafeRoom;
@@ -13,6 +13,7 @@ public class SafeRoomMusicSwitch : MonoBehaviour {
 
 	void Start()
 	{
+		this.levelMusic = GameObject.Find ("GameMusic").GetComponent<AudioSource> ();
 		volumeOfSafeRoom = this.safeRoom.volume;
 		volumeOfLevelMusic = this.levelMusic.volume;
 	}
