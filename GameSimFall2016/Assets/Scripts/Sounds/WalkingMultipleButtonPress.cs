@@ -79,6 +79,8 @@ public class WalkingMultipleButtonPress : MonoBehaviour {
 
 			} else if (Input.GetKeyUp (KeyCode.W) || Input.GetKeyUp (KeyCode.D) || Input.GetKeyUp (KeyCode.A) || Input.GetKeyUp (KeyCode.S)) {
 				walkingAudio.Stop ();
+			} else {
+				walkingAudio.Stop ();
 			}
 		}
 	}
