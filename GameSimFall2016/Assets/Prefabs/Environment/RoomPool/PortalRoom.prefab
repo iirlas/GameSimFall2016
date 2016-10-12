@@ -204,6 +204,7 @@ GameObject:
   - 108: {fileID: 10851666}
   - 114: {fileID: 11491722}
   - 135: {fileID: 13590680}
+  - 135: {fileID: 13552660}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -344,6 +345,7 @@ GameObject:
   - 108: {fileID: 10800466}
   - 114: {fileID: 11495376}
   - 135: {fileID: 13528604}
+  - 135: {fileID: 13516396}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -435,6 +437,7 @@ GameObject:
   - 108: {fileID: 10871620}
   - 114: {fileID: 11437654}
   - 135: {fileID: 13588664}
+  - 135: {fileID: 13559308}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -487,6 +490,7 @@ GameObject:
   - 108: {fileID: 10866328}
   - 114: {fileID: 11466348}
   - 135: {fileID: 13580668}
+  - 135: {fileID: 13549490}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -1014,6 +1018,7 @@ GameObject:
   - 108: {fileID: 10855944}
   - 114: {fileID: 11460396}
   - 135: {fileID: 13573106}
+  - 135: {fileID: 13559486}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -1423,6 +1428,7 @@ GameObject:
   - 108: {fileID: 10898196}
   - 114: {fileID: 11458080}
   - 135: {fileID: 13551854}
+  - 135: {fileID: 13581230}
   m_Layer: 0
   m_Name: FireParticleLight
   m_TagString: Untagged
@@ -5902,7 +5908,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 00e80ce730ee5fd40bb406e69e662d69, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fb53cf2fa46ca594aad6cda88eaa3e5d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
@@ -6331,6 +6337,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 0}
+--- !u!135 &13516396
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13528604
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -6343,12 +6361,60 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13549490
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13551854
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13552660
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13559308
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13559486
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169516}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -6373,6 +6439,18 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13581230
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190146}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
