@@ -16,6 +16,7 @@ public class Girl : Player {
     public GameObject rockPrefab;
     public Transform rockSpawnNode;
     public float shootingForce = 30.0f;
+	public AudioSource slingShot;
     
     [HideInInspector]
     public Transform target
@@ -27,6 +28,8 @@ public class Girl : Player {
     private bool isTargeting = false;
     private Collider[] myTargets;
     private Transform myTarget;
+
+
 
     // Use this for initialization
     void Start()
@@ -78,6 +81,7 @@ public class Girl : Player {
         if (Input.GetButtonDown("Attack") && myStates.ContainsKey(State.ATTACK))
         {
             playerState = State.ATTACK;
+			this.slingShot.Play ();
         }
         else if (Input.GetButtonDown("Center"))
         {
