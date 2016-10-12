@@ -23,13 +23,13 @@ public class UIMananger : Singleton<UIMananger>
    public Image myIndicator;
 
    // the rotational location of the player on the character indicator
-   private const float PLAYERROTVAL = 42;
+   private const float PLAYERROTVAL = 45;
 
    // the rotational location of the bunny on the character indicator
-   private const float BUNNYROTVAL = 0;
+   private const float BUNNYROTVAL = 90;
 
    // the rotational location of the bird on the character indicator
-   private const float BIRDROTVAL = -42;
+   private const float BIRDROTVAL = 0;
 
    //==========================================================================
    // Use this for initialization
