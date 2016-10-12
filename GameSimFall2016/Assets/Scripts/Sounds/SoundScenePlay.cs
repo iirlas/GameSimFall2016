@@ -1,30 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using UnityEditor.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class SoundScenePlay : MonoBehaviour {
 
-	/*public AudioSource levelMusic;
+	public AudioSource levelMusic;
 
 
-	public AudioClip outsideMusic;
-	public AudioClip TitleScreenMusic;
-	public AudioClip insideCave;
-	public AudioClip theLoneCampsite;
+	public AudioClip testStartingArea;
+	public AudioClip titleScreenMusic;
+	public AudioClip reduxTutorialTemple;
+	public AudioClip testOverworld;
+	public AudioClip creditMusic;
+
 
 
 	string nameTest = "";
 	bool OnlyOnce = false;
 
 
+	//destroys the game object if there is two.
+	void Awake(){
+		if (FindObjectsOfType (GetType ()).Length > 1 && this.levelMusic.isPlaying == false) {
+			Destroy (this.gameObject);
+			this.gameObject.GetComponentInParent<SoundScenePlay> ().enabled = false;
+			Debug.Log ("Destroyed something");
+		}
 
-	void Awake () 
-	{
-		this.levelMusic.Stop ();
-		this.levelMusic.clip = insideCave;
-		this.levelMusic.Play ();
 	}
-	
+		
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -36,37 +41,57 @@ public class SoundScenePlay : MonoBehaviour {
 		// For change of songs only
 		// changes the song of the player to play another one based on the name of the scene.
 		if (this.nameTest.Equals ("TestStartingArea") && this.OnlyOnce == false) {
-			this.levelMusic.Stop ();
-			this.levelMusic.volume = .4f;
-			this.levelMusic.clip = this.outsideMusic;
-			this.levelMusic.Play ();
+			levelMusic.Stop ();
+			levelMusic.volume = 1f;
+			levelMusic.clip = this.testStartingArea;
+			levelMusic.Play ();
 			OnlyOnce = true;
+
 		}
 		if (this.nameTest.Equals("TestOverworld") && OnlyOnce == false) {
-			this.levelMusic.Stop ();
-			this.levelMusic.volume = 1f;
-			this.levelMusic.clip = theLoneCampsite;
-			this.levelMusic.Play ();
+			levelMusic.Stop ();
+			levelMusic.volume = 1f;
+			levelMusic.clip = this.testOverworld;
+			levelMusic.Play ();
 			OnlyOnce = true;
+
 		}
 		if (this.nameTest.Equals("ReduxTutorialTemple") && OnlyOnce == false) {
-			this.levelMusic.Stop ();
-			this.levelMusic.volume = 1f;
-			this.levelMusic.clip = this.insideCave;
-			this.levelMusic.Play ();
+			levelMusic.Stop ();
+			levelMusic.volume = .4f;
+			levelMusic.clip = this.reduxTutorialTemple;
+			levelMusic.Play ();
 			OnlyOnce = true;
+
 		}
+		if (this.nameTest.Equals("JaguarSetup") && OnlyOnce == false) {
+			levelMusic.Stop ();
+			levelMusic.volume = .4f;
+			levelMusic.clip = this.reduxTutorialTemple;
+			levelMusic.Play ();
+			OnlyOnce = true;
+
+		}
+			
 		if (this.nameTest.Equals ("TitleScreen") && this.OnlyOnce == false) {
-			this.levelMusic.Stop ();
-			this.levelMusic.volume = 1f;
-			this.levelMusic.clip = this.TitleScreenMusic;
-			this.levelMusic.Play ();
+			if (this.levelMusic.clip != this.titleScreenMusic) {
+				levelMusic.Stop ();
+				levelMusic.volume = 1f;
+				levelMusic.clip = this.titleScreenMusic;
+				levelMusic.Play ();
+				OnlyOnce = true;
+			}
+
+		}
+		if (this.nameTest.Equals ("CreditScene") && this.OnlyOnce == false) {
+			levelMusic.Stop ();
+			levelMusic.volume = 1f;
+			levelMusic.clip = this.creditMusic;
+			levelMusic.Play ();
 			OnlyOnce = true;
 		}
-
-
-		DontDestroyOnLoad (levelMusic);
-
+			
+		DontDestroyOnLoad (this.levelMusic);
+			
 	}
-     */
 }
