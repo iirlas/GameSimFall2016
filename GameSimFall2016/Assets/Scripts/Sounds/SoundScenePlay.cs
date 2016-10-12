@@ -50,7 +50,7 @@ public class SoundScenePlay : MonoBehaviour {
 		}
 		if (this.nameTest.Equals("TestOverworld") && OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = 1f;
+			levelMusic.volume = .5f;
 			levelMusic.clip = this.testOverworld;
 			levelMusic.Play ();
 			OnlyOnce = true;
@@ -76,7 +76,7 @@ public class SoundScenePlay : MonoBehaviour {
 		if (this.nameTest.Equals ("TitleScreen") && this.OnlyOnce == false) {
 			if (this.levelMusic.clip != this.titleScreenMusic) {
 				levelMusic.Stop ();
-				levelMusic.volume = 1f;
+				levelMusic.volume = .7f;
 				levelMusic.clip = this.titleScreenMusic;
 				levelMusic.Play ();
 				OnlyOnce = true;
