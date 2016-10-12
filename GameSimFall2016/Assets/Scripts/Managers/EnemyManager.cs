@@ -1,36 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : Singleton<EnemyManager>
 {
-   [Tooltip("Enable if you wish to kill all enemies using the delete key")]
-   public bool killKeyEnabled = true;
 
    //==========================================================================
    // Use this for initialization
-   void Awake()
+   override protected void Init()
    {
-      if (killKeyEnabled)
-      {
-         Debug.LogWarning("NRC: A debug \"KILL\" key is in use, if this is the final build, remove it!  " + this.name + ".cs.");
-      }
    }
 
    //==========================================================================
    // Update is called once per frame
    void Update()
    {
-      if (Input.GetKeyDown(KeyCode.Delete) && killKeyEnabled)
-      {
-         killAllEnemies();
-      }
    }
 
    //==========================================================================
    // Kills all the enemies, what did ya think this did?
    // In reality this sets all enemies to be in the dead state, and the enemies
    // will move themselves to the "dead" zone.
-   void killAllEnemies()
+   public void killAllEnemies()
    {
       GameObject[] enArr = GameObject.FindGameObjectsWithTag("Enemy");
 
