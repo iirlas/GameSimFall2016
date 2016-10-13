@@ -136,7 +136,7 @@ public class Girl : Player {
         Rigidbody rockBody = rock.GetComponent<Rigidbody>();
         Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
         Vector3 force = (target != null ? (target.position - rigidbody.position).normalized : transform.forward) * shootingForce;
-        rockBody.AddForce(force, ForceMode.Impulse);
+        rockBody.AddForce(force, ForceMode.Impulse);  // should use velocity
         playerState = Player.State.DEFAULT;
         //}
 

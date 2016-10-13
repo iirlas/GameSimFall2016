@@ -27,7 +27,9 @@ public class Campfire : MonoBehaviour
    {
       if (other.gameObject.name.Equals("Kira"))
       {
-         StatusManager.getInstance().respawnPoint = this.respawnPoint.position;
+         StatusManager.getInstance().respawnPoint = new Vector3( this.respawnPoint.position.x,
+                                                                 this.respawnPoint.position.y+2,
+                                                                 this.respawnPoint.position.z);
          //GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().campfireRespawn = this.respawnPoint;
          if (StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
          {

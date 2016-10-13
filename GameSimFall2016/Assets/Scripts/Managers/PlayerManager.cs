@@ -50,22 +50,23 @@ public class PlayerManager : Singleton<PlayerManager> {
                     //        target = players[j];
                     //    }
                     //}
-                    if (players[j] == currentPlayer)
-                        continue;
 
                     float minDist = switchDistance;
                     //bad practice probably
                     //triangle problem
-                    players[j].AssignTarget(players.First((target) =>
+                    players[j].AssignFollower(players.FirstOrDefault((possibleFollower) =>
                         {
-                            float distcheck = Vector3.Distance(players[j].transform.position, target.transform.position);
-                            if (distcheck < minDist && target.followTarget != players[j].transform)
-                            {
-                                return true;
-                            }
-                            return false;
+                           float distcheck = Vector3.Distance(players[j].transform.position, possibleFollower.transform.position);
+                           if (distcheck < minDist && //in range
+                              possibleFollower != players[j] && //not us
+                              //possibleFollower != currentPlayer && //the the current player
+                              possibleFollower.follower != players[j])//we are not their follower
+                           {
+                              return true;
+                           }
+                           return false;
                         }
-                    ).transform);
+                    ));
                 }
 
         //            // distance check between other playrs
@@ -119,9 +120,10 @@ public class PlayerManager : Singleton<PlayerManager> {
         //{
         //    case SelectedPLayer.Girl: break;
         //}
+
         if (currentPlayer is Girl)
         {
-            FollowPlayer();
+           FollowPlayer();
             //for (int index = 0; index < players.Length; index++)
             //{
             //    Player player = players[index];

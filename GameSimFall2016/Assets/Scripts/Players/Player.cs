@@ -17,14 +17,15 @@ abstract public class Player : MonoBehaviour
     private Transform myTransform;
     private Rigidbody myRigidbody;
     private Collider myCollider;
-    private Transform myFollowTarget;
+    private Player myFollower;
+    private PhysicMaterial[] myPhysicMaterials;
 
     protected Dictionary<Enum, StateRunner> myStates { get; private set; }
     
-    public Transform followTarget
+    public Player follower
     {
-        get { return myFollowTarget; }
-        set { AssignTarget(value); }
+        get { return myFollower; }
+        set { AssignFollower(value); }
     }
 
     [Range(5, 90)]
@@ -83,10 +84,21 @@ abstract public class Player : MonoBehaviour
         playerState = State.DEFAULT;
     }
 
-    [HideInInspector]
-    public void AssignTarget( Transform targetTo = null )
+    void Awake ()
     {
-        myFollowTarget = targetTo;
+       myPhysicMaterials = new PhysicMaterial[2];
+       myPhysicMaterials[0] = new PhysicMaterial("Friction Full");
+       myPhysicMaterials[0].dynamicFriction = 2;
+       myPhysicMaterials[0].staticFriction = 2;
+       myPhysicMaterials[1] = new PhysicMaterial("Frictionless");
+       myPhysicMaterials[1].dynamicFriction = 0;
+       myPhysicMaterials[1].staticFriction = 0;
+    }
+
+    [HideInInspector]
+    public void AssignFollower( Player follower = null )
+    {
+        myFollower = follower;
     }
 
     public void Update()
@@ -104,10 +116,10 @@ abstract public class Player : MonoBehaviour
         }
         else
         {
-            if( myFollowTarget != null )
+            if( myFollower != null )
             {
-                rigidbody.MovePosition( Vector3.Lerp( rigidbody.position, myFollowTarget.position - (myFollowTarget.forward), 
-                                        movementSpeed * Time.deltaTime) );
+                myFollower.rigidbody.MovePosition( Vector3.Lerp( myFollower.rigidbody.position, rigidbody.position - (transform.forward), 
+                                                   movementSpeed * Time.deltaTime) );
             }
         }
     }
@@ -161,10 +173,15 @@ abstract public class Player : MonoBehaviour
             return;
 
         //align the player to a slope
+        //RaycastHit fHit = new RaycastHit();
+        //if (Physics.Raycast(collider.bounds.center + transform.forward / 2, Vector3.down, out fHit) &&
+        //    fHit.point.y > hit.point.y)
+        //{
+        //   rigidbody.
+        //}
         //if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         //{
-        //    RaycastHit fHit = new RaycastHit();
-        //    Physics.Raycast(collider.bounds.center + transform.forward / 2, Vector3.down, out fHit);
+        //    
         //    if ((fHit.point.y - collider.bounds.min.y) > 0.1f )
         //    {
         //        rigidbody.position = new Vector3(rigidbody.position.x, fHit.point.y + collider.bounds.extents.y, rigidbody.position.z);
@@ -193,11 +210,21 @@ abstract public class Player : MonoBehaviour
         if (h != 0 || v != 0)
         {
             //            angle of joystick  + angle of camera
-            float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
+           float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
+
+           Vector3 moveTo = transform.forward * movementSpeed; //* Time.deltaTime;
+           moveTo.y = rigidbody.velocity.y;
+           rigidbody.velocity = moveTo;
+
 
             // smooths the rotation transition
-            rigidbody.position += transform.forward * movementSpeed * Time.deltaTime;
+            //rigidbody.position += transform.forward * movementSpeed * Time.deltaTime;
             smoothRotateTowards(0, angle, 0, Time.deltaTime * rotationSmoothSpeed);
+            collider.material = myPhysicMaterials[1];
+        }
+        else
+        {
+           collider.material = myPhysicMaterials[0];
         }
     }
 

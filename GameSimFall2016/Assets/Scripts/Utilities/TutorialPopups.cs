@@ -28,6 +28,7 @@ public class TutorialPopups : MonoBehaviour {
         {
             tutText.text = "It looks much safer in the light. I should head towards the fire.";
             textBack.enabled = true;
+            Debug.Log("PRINTSHIT");
         }
         else if (message == "TutFearMeter")
         {

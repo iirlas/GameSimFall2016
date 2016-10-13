@@ -11,14 +11,17 @@ public class DebugKeys : MonoBehaviour {
 
    // Use this for initialization
    void Awake () {
-
-      thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
-      worldSpawn = thePlayer.transform.position;
-
       if ( debugKeysEnabled )
         Debug.Log("DebugKeys is in use, look for the DebugKeys script under the Director is you wish to disable these!");
 	}
-	
+
+
+   void Start()
+   {
+       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
+       worldSpawn = thePlayer.transform.position;
+   }
+
    //==========================================================================
 	// Update is called once per frame
 	void Update () {

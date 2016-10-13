@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 using UnityEditor.SceneManagement;
 
@@ -93,5 +93,5 @@ public class SoundScenePlay : MonoBehaviour {
 			
 		DontDestroyOnLoad (this.levelMusic);
 			
-	}
-}
+	}*/
+//}
