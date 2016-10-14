@@ -81,7 +81,8 @@ public class Girl : Player {
         if (Input.GetButtonDown("Attack") && myStates.ContainsKey(State.ATTACK))
         {
             playerState = State.ATTACK;
-			this.slingShot.Play ();
+            this.slingShot.volume = .05f;
+			   this.slingShot.Play ();
         }
         else if (Input.GetButtonDown("Center"))
         {
