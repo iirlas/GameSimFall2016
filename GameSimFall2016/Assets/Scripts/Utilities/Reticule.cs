@@ -8,7 +8,7 @@ public class Reticule : MonoBehaviour {
    private Camera cameraToLookAt;
    private Player thePlayer;
 
-   private readonly Vector3 cameraOutOfBounds = new Vector3(-1000, -1000, -1000);
+   private readonly Vector3 cameraOutOfBounds = new Vector3(-1000f, -1000f, -1000f);
 
    void Awake()
    {
