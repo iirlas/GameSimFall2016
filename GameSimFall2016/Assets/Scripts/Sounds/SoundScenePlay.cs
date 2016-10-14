@@ -1,4 +1,4 @@
-﻿/*using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEditor.SceneManagement;
 
@@ -83,7 +83,7 @@ public class SoundScenePlay : MonoBehaviour {
 			}
 
 		}
-		if (this.nameTest.Equals ("CreditScene") && this.OnlyOnce == false) {
+		if (this.nameTest.Equals ("CreditsScene") && this.OnlyOnce == false) {
 			levelMusic.Stop ();
 			levelMusic.volume = 1f;
 			levelMusic.clip = this.creditMusic;
@@ -91,7 +91,7 @@ public class SoundScenePlay : MonoBehaviour {
 			OnlyOnce = true;
 		}
 			
-		DontDestroyOnLoad (this.levelMusic);
+		//DontDestroyOnLoad (this);
 			
-	}*/
-//}
+	}
+}
