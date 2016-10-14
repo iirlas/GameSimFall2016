@@ -29,9 +29,14 @@ public class EndlessMaze : MonoBehaviour
    {
       if (other.gameObject.name.Equals("Kira"))
       {
+         float ix = 0;
+
          foreach (Player unit in PlayerManager.getInstance().players)
          {
-            unit.gameObject.transform.position = warpPos.transform.position;
+            ix+= 1.5f;
+            unit.gameObject.transform.position = new Vector3(warpPos.transform.position.x + ix,
+                                                             warpPos.transform.position.y,
+                                                             warpPos.transform.position.z); 
          }
       }
    }
