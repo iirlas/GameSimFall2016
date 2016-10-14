@@ -13,15 +13,13 @@ abstract public class Player : MonoBehaviour
         DEFAULT,
         FOREIGN,
     };
+
     private Transform myPlatform;
-    private Transform myTransform;
-    private Rigidbody myRigidbody;
-    private Collider myCollider;
-    private Player myFollower;
     private PhysicMaterial[] myPhysicMaterials;
 
     protected Dictionary<Enum, StateRunner> myStates { get; private set; }
     
+    private Player myFollower;
     public Player follower
     {
         get { return myFollower; }
@@ -37,8 +35,8 @@ abstract public class Player : MonoBehaviour
 
     new public Camera camera { get { return PlayerManager.getInstance().camera; } }
 
-    [HideInInspector]
-    public Transform transform
+    private Transform myTransform;
+    public new Transform transform
     {
         get
         {
@@ -50,7 +48,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
-    [HideInInspector]
+    private Rigidbody myRigidbody;
     public new Rigidbody rigidbody
     {
         get
@@ -63,7 +61,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
-    [HideInInspector]
+    private Collider myCollider;
     public new Collider collider
     {
         get
@@ -76,6 +74,19 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //[HideInInspector]
+    //private NavMeshAgent myNavMeshAgent;
+    //public NavMeshAgent navMeshAgent
+    //{
+    //    get
+    //    {
+    //        if (myNavMeshAgent == null)
+    //        {
+    //            myNavMeshAgent = GetComponent<NavMeshAgent>();
+    //        }
+    //        return myNavMeshAgent;
+    //    }
+    //}
 
     //constructor
     public Player()
@@ -87,12 +98,14 @@ abstract public class Player : MonoBehaviour
     void Awake ()
     {
        myPhysicMaterials = new PhysicMaterial[2];
+       
        myPhysicMaterials[0] = new PhysicMaterial("Friction Full");
-       myPhysicMaterials[0].dynamicFriction = 2;
-       myPhysicMaterials[0].staticFriction = 2;
+       myPhysicMaterials[0].dynamicFriction = 1;
+       myPhysicMaterials[0].staticFriction = 1;
+
        myPhysicMaterials[1] = new PhysicMaterial("Frictionless");
-       myPhysicMaterials[1].dynamicFriction = 0;
-       myPhysicMaterials[1].staticFriction = 0;
+       myPhysicMaterials[1].dynamicFriction = 0.2f;
+       myPhysicMaterials[1].staticFriction = 0.2f;
     }
 
     [HideInInspector]
@@ -114,13 +127,13 @@ abstract public class Player : MonoBehaviour
                 myStates[playerState]();
             }
         }
-        else
+        if (myFollower != null && myFollower != PlayerManager.getInstance().currentPlayer)
         {
-            if( myFollower != null )
-            {
-                myFollower.rigidbody.MovePosition( Vector3.Lerp( myFollower.rigidbody.position, rigidbody.position - (transform.forward), 
-                                                   movementSpeed * Time.deltaTime) );
-            }
+            Vector3 target = rigidbody.position - (transform.forward);
+            target.y = myFollower.transform.position.y;
+            myFollower.rigidbody.MovePosition(Vector3.Lerp(myFollower.rigidbody.position, target, movementSpeed * Time.deltaTime));
+            //myFollower.navMeshAgent.destination = target;
+            myFollower.smoothRotateTowards((rigidbody.position - myFollower.transform.position).normalized, rotationSmoothSpeed);
         }
     }
 
@@ -230,20 +243,17 @@ abstract public class Player : MonoBehaviour
 
     public void smoothRotateTowards(float x, float y, float z, float speed)
     {
-        Vector3 angle = transform.localEulerAngles;
-        angle.x = Mathf.LerpAngle(angle.x, x, speed);
-        angle.y = Mathf.LerpAngle(angle.y, y, speed);
-        angle.z = Mathf.LerpAngle(angle.z, z, speed);
-        transform.localEulerAngles = angle;
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(x, y, z), speed);
     }
 
-    public void smoothRotateTowards(Vector3 target, float speed)
+    public void smoothRotateTowards(Vector3 forward, float speed)
     {
-        Vector3 angle = transform.localEulerAngles;
-        angle.x = Mathf.LerpAngle(angle.x, target.x, speed);
-        angle.y = Mathf.LerpAngle(angle.y, target.y, speed);
-        angle.z = Mathf.LerpAngle(angle.z, target.z, speed);
-        transform.localEulerAngles = angle;
+        //;
+        //Vector3 angle = transform.localEulerAngles;
+        //angle.x = Mathf.LerpAngle(angle.x, target.x, speed);
+        //angle.y = Mathf.LerpAngle(angle.y, target.y, speed);
+        //angle.z = Mathf.LerpAngle(angle.z, target.z, speed);
+        transform.rotation = Quaternion.LookRotation(forward);
     }
 
     protected bool isGrounded (int steps = 10)

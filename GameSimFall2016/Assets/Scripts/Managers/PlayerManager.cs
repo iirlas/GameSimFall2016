@@ -50,6 +50,11 @@ public class PlayerManager : Singleton<PlayerManager> {
                     //        target = players[j];
                     //    }
                     //}
+                    if (!(currentPlayer is Girl))
+                    {
+                        players[j].AssignFollower();
+                        continue;
+                    }
 
                     float minDist = switchDistance;
                     //bad practice probably
@@ -59,6 +64,7 @@ public class PlayerManager : Singleton<PlayerManager> {
                            float distcheck = Vector3.Distance(players[j].transform.position, possibleFollower.transform.position);
                            if (distcheck < minDist && //in range
                               possibleFollower != players[j] && //not us
+                              !(possibleFollower is Girl) &&
                               //possibleFollower != currentPlayer && //the the current player
                               possibleFollower.follower != players[j])//we are not their follower
                            {
@@ -111,7 +117,7 @@ public class PlayerManager : Singleton<PlayerManager> {
             }
             while (dist >= switchDistance && !(players[index] is Girl));
             currentPlayer = players[index];
-            ignoreCollision();
+            
             //while (Vector3.Distance(players[index].transform.position, currentPlayer.transform.position) > switchDistance);
             //currentPlayer = players[index];
             //ignoreCollision();
@@ -121,9 +127,9 @@ public class PlayerManager : Singleton<PlayerManager> {
         //    case SelectedPLayer.Girl: break;
         //}
 
+        FollowPlayer();
         if (currentPlayer is Girl)
         {
-           FollowPlayer();
             //for (int index = 0; index < players.Length; index++)
             //{
             //    Player player = players[index];
@@ -155,11 +161,14 @@ public class PlayerManager : Singleton<PlayerManager> {
 
     void ignoreCollision ()
     {
-        foreach ( var player in players )
+        for (int i = 0; i < players.Length; i++)
         {
-            if ( player != currentPlayer )
+            for (int j = 0; j < players.Length; j++)
             {
-                Physics.IgnoreCollision(currentPlayer.collider, player.collider);
+                if ( players[i] != players[j] )
+                {
+                    Physics.IgnoreCollision(players[i].collider, players[j].collider);
+                }
             }
         }
     }

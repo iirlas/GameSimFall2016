@@ -22,10 +22,11 @@ public class Bird : Player {
         movePlayer();
         if (Input.GetButton("Action") && canFly)
         {
-            rigidbody.velocity = Vector3.zero;
+            //rigidbody.velocity = Vector3.zero;
             clearParent();
             StatusManager.getInstance().stamina -= Time.deltaTime * 20.0f;
-            rigidbody.position += transform.up * (Time.deltaTime) * movementSpeed;
+            rigidbody.velocity = new Vector3(rigidbody.velocity.x, movementSpeed, rigidbody.velocity.z);
+            //rigidbody.position += ;
             if (StatusManager.getInstance().stamina <= 0)
             {
                 canFly = false;
