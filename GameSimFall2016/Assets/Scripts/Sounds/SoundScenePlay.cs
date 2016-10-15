@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class SoundScenePlay : MonoBehaviour {
 
@@ -10,7 +10,10 @@ public class SoundScenePlay : MonoBehaviour {
 	public AudioClip testStartingArea;
 	public AudioClip titleScreenMusic;
 	public AudioClip reduxTutorialTemple;
+   public AudioClip jaguarTemple;
+   public AudioClip rabbitTemple;
 	public AudioClip testOverworld;
+   public AudioClip otherOverworld;
 	public AudioClip creditMusic;
 
 
@@ -33,8 +36,9 @@ public class SoundScenePlay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (nameTest != EditorSceneManager.GetActiveScene ().name) {
-			nameTest = EditorSceneManager.GetActiveScene ().name;
+      if (nameTest != SceneManager.GetActiveScene().name)
+      {
+			nameTest = SceneManager.GetActiveScene().name;
 			Debug.Log ("The name of the Scene -" + nameTest + "-");
 			OnlyOnce = false;
 		}
@@ -42,7 +46,7 @@ public class SoundScenePlay : MonoBehaviour {
 		// changes the song of the player to play another one based on the name of the scene.
 		if (this.nameTest.Equals ("TestStartingArea") && this.OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = 1f;
+			levelMusic.volume = .1f;
 			levelMusic.clip = this.testStartingArea;
 			levelMusic.Play ();
 			OnlyOnce = true;
@@ -56,9 +60,18 @@ public class SoundScenePlay : MonoBehaviour {
 			OnlyOnce = true;
 
 		}
+      if (this.nameTest.Equals("OverWorldToEnd") && OnlyOnce == false)
+      {
+         levelMusic.Stop();
+         levelMusic.volume = .5f;
+         levelMusic.clip = this.testOverworld;
+         levelMusic.Play();
+         OnlyOnce = true;
+
+      }
 		if (this.nameTest.Equals("ReduxTutorialTemple") && OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = .4f;
+			levelMusic.volume = .1f;
 			levelMusic.clip = this.reduxTutorialTemple;
 			levelMusic.Play ();
 			OnlyOnce = true;
@@ -66,17 +79,26 @@ public class SoundScenePlay : MonoBehaviour {
 		}
 		if (this.nameTest.Equals("JaguarSetup") && OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = .4f;
-			levelMusic.clip = this.reduxTutorialTemple;
+			levelMusic.volume = .1f;
+			levelMusic.clip = this.jaguarTemple;
 			levelMusic.Play ();
 			OnlyOnce = true;
 
 		}
+      if (this.nameTest.Equals("RabbitTemple") && OnlyOnce == false)
+      {
+         levelMusic.Stop();
+         levelMusic.volume = .1f;
+         levelMusic.clip = this.rabbitTemple;
+         levelMusic.Play();
+         OnlyOnce = true;
+
+      }
 			
 		if (this.nameTest.Equals ("TitleScreen") && this.OnlyOnce == false) {
 			if (this.levelMusic.clip != this.titleScreenMusic) {
 				levelMusic.Stop ();
-				levelMusic.volume = .7f;
+				levelMusic.volume = .3f;
 				levelMusic.clip = this.titleScreenMusic;
 				levelMusic.Play ();
 				OnlyOnce = true;
@@ -85,11 +107,23 @@ public class SoundScenePlay : MonoBehaviour {
 		}
 		if (this.nameTest.Equals ("CreditsScene") && this.OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = 1f;
+			levelMusic.volume = .05f;
 			levelMusic.clip = this.creditMusic;
 			levelMusic.Play ();
 			OnlyOnce = true;
 		}
+      if (this.nameTest.Equals("ControlScene") && this.OnlyOnce == false)
+      {
+         if (this.levelMusic.clip != this.titleScreenMusic)
+         {
+            levelMusic.Stop();
+            levelMusic.volume = .3f;
+            levelMusic.clip = this.titleScreenMusic;
+            levelMusic.Play();
+            OnlyOnce = true;
+         }
+
+      }
 			
 		//DontDestroyOnLoad (this);
 			

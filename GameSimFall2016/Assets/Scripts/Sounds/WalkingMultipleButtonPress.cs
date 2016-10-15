@@ -20,6 +20,8 @@ public class WalkingMultipleButtonPress : MonoBehaviour {
 				if (walkingAudio.isPlaying == false) {
 
 					walkingAudio.Play ();
+               Debug.Log("PLAYSOUNDSHIT" + this.walkingAudio.isPlaying);
+
 				}
 
 

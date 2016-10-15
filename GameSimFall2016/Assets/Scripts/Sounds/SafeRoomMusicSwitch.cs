@@ -32,7 +32,7 @@ public class SafeRoomMusicSwitch : MonoBehaviour {
 	void OnTriggerExit(Collider col){
 		if (col.gameObject.name == GameObject.Find("Kira").name) {
 			safeRoomNumber = 2;
-			this.levelMusic.volume = .4F;
+			this.levelMusic.volume = .02F;
 			Debug.Log ("volume of Level music is: " + levelMusic.volume);
 			levelMusic.Play ();
 		}
