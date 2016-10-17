@@ -13,7 +13,7 @@ public class CursorLock : MonoBehaviour
 {
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
 
         
@@ -30,8 +30,18 @@ public class CursorLock : MonoBehaviour
 
         if (Input.GetKeyDown("escape"))
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+	    if (SceneManager.GetActiveScene().name.Equals("Name_Of_Your_Scene"))
+            {
+                Application.Quit();
+            }
+            else
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene("TitleScreen");
+            }
+            //Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
             //Application.Quit(); // Quits the game
         }
         

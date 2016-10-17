@@ -4,7 +4,7 @@ using System.Collections;
 public class CursorConfine : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Cursor.lockState = CursorLockMode.Confined;
 
     }
