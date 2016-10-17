@@ -8,50 +8,45 @@ using System.Collections;
 //calls the animator with a "wheelTurned" transition boolean to begin animation.       
 //========================================================================================================
 
-public class MoveWall : MonoBehaviour {
-    [Tooltip("Each Wall to begin Movement on BASIC TRIGGER")]
-    public GameObject[] walls;
-    public GameObject wheel;
-    private bool beginMove;
-    private Animator myanim;
+public class MoveWall : MonoBehaviour
+{
+
+   [Tooltip("Each Wall to begin Movement on BASIC TRIGGER")]
+   public GameObject[] walls;
+   public GameObject wheel;
+   private bool beginMove;
+   private Animator myanim;
 
 
-    // Use this for initialization
-    void Awake() {
-
-        beginMove = false;
-       
-
-
-    }
+   // Use this for initialization
+   void Awake()
+   {  
+      beginMove = false;
+   }
 
 
-    // Update is called once per frame
-    void Update() {
-        if (beginMove)
-        {
-            if (Input.GetButtonDown("Action"))
+   // Update is called once per frame
+   void Update()
+   {
+      if (beginMove)
+      {
+         if (Input.GetButtonDown("Action"))
+         {         
+            foreach (GameObject wall in walls)
             {
-                
-
-                foreach (GameObject wall in walls)
-                {
-                    myanim = wall.GetComponent<Animator>();
-                    myanim.SetBool("wheelTurned", true);
-                }
+               myanim = wall.GetComponent<Animator>();
+               myanim.SetBool("wheelTurned", true);
             }
+         }
+      }
+   }
 
-        }
-
-    }
-
-    public void OnEvent(BasicTrigger trigger)
-    {
-        //if (trigger.message == "turn")
-        {
-             beginMove = true;
-            wheel.transform.Rotate(0, 0, 360 / 36);
-        }
-
-    }
+   public void OnEvent(BasicTrigger trigger)
+   {
+      //if (trigger.message == "turn")
+      {
+         beginMove = true;
+         wheel.transform.Rotate(0, 0, 360 / 36);
+      }
+   }
 }
