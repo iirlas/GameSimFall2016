@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Linq;
 
@@ -8,11 +9,12 @@ public class Reticule : MonoBehaviour {
    private Camera cameraToLookAt;
    private Player thePlayer;
 
+   public Image theReticule;
+
    private readonly Vector3 cameraOutOfBounds = new Vector3(-1000f, -1000f, -1000f);
 
    void Awake()
    {
-
    }
 
    // Use this for initialization
@@ -28,12 +30,13 @@ public class Reticule : MonoBehaviour {
 
       if (isTargeting)
       {
-         this.transform.position = this.thePlayer.gameObject.GetComponent<Girl>().target.position;
+         //this.transform.position = Camera.main.WorldToScreenPoint(this.thePlayer.gameObject.GetComponent<Girl>().target.position);
+         theReticule.transform.position = Camera.main.WorldToScreenPoint(this.thePlayer.gameObject.GetComponent<Girl>().target.position);
          lookAtPlayer();
       }
       else
       {
-         this.transform.position = cameraOutOfBounds;
+         theReticule.transform.position = cameraOutOfBounds;
       }
    }
 
@@ -51,7 +54,7 @@ public class Reticule : MonoBehaviour {
 
    void lookAtPlayer()
    {
-      transform.LookAt(transform.position + cameraToLookAt.transform.rotation * Vector3.forward,
-                       cameraToLookAt.transform.rotation * Vector3.up);
+      //transform.LookAt(transform.position + cameraToLookAt.transform.rotation * Vector3.forward,
+      //                 cameraToLookAt.transform.rotation * Vector3.up);
    }
 }
