@@ -20,7 +20,7 @@ public class SafeRoomMusicSwitch : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 		//if (col.transform.tag == "Player" && !safeRoom.isPlaying && !hasEntered)
-		if(col.gameObject.name == GameObject.Find("Kira").name)
+      if (col.gameObject.tag == "Player")
 		{
 			safeRoomNumber = 1;
 			this.safeRoom.volume = this.volumeOfSafeRoom;
@@ -29,11 +29,14 @@ public class SafeRoomMusicSwitch : MonoBehaviour {
 	}
 
 
-	void OnTriggerExit(Collider col){
-		if (col.gameObject.name == GameObject.Find("Kira").name) {
+   void OnTriggerExit(Collider col) {
+      if (col.gameObject.GetComponent<Decay>() != null) return;
+      if (col.gameObject.tag == "Player")
+      {
 			safeRoomNumber = 2;
 			this.levelMusic.volume = .02F;
-			Debug.Log ("volume of Level music is: " + levelMusic.volume);
+         Debug.Log(col.gameObject.tag + " : " + col.gameObject.name);
+         //Debug.Log ("volume of Level music is: " + levelMusic.volume);
 			levelMusic.Play ();
 		}
 	}

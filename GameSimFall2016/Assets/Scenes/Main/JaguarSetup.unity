@@ -346,7 +346,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 181588, guid: d073689050b8ba24abbeca7c51f0bf0b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 149214, guid: d073689050b8ba24abbeca7c51f0bf0b, type: 2}
       propertyPath: m_IsActive
@@ -690,6 +690,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68c0bebf66e47a547b0a83f615c826e7, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &176947296 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11444784, guid: 68c0bebf66e47a547b0a83f615c826e7,
+    type: 2}
+  m_PrefabInternal: {fileID: 176947295}
+  m_Script: {fileID: 11500000, guid: d0f8765e3e0cba848a09dee61af60054, type: 3}
 --- !u!1001 &236858935
 Prefab:
   m_ObjectHideFlags: 0
@@ -773,11 +779,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22454900, guid: 207d3ca1d0a4a0d4eb5bb12d9113bfcb, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22454900, guid: 207d3ca1d0a4a0d4eb5bb12d9113bfcb, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 207d3ca1d0a4a0d4eb5bb12d9113bfcb, type: 2}
@@ -2000,14 +2006,22 @@ Prefab:
     - target: {fileID: 11492644, guid: a8992e4cebd0f3541b2496f5dccb0f95, type: 2}
       propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 176947296}
     - target: {fileID: 11492644, guid: a8992e4cebd0f3541b2496f5dccb0f95, type: 2}
       propertyPath: onEventEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 176947296}
     - target: {fileID: 174706, guid: a8992e4cebd0f3541b2496f5dccb0f95, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11492644, guid: a8992e4cebd0f3541b2496f5dccb0f95, type: 2}
+      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_onFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 11492644, guid: a8992e4cebd0f3541b2496f5dccb0f95, type: 2}
+      propertyPath: onEventEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_onFire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8992e4cebd0f3541b2496f5dccb0f95, type: 2}
