@@ -312,7 +312,6 @@ GameObject:
   - 65: {fileID: 6559446}
   - 23: {fileID: 2310536}
   - 114: {fileID: 11451222}
-  - 114: {fileID: 11438974}
   m_Layer: 0
   m_Name: respawnBox
   m_TagString: Untagged
@@ -1039,7 +1038,7 @@ GameObject:
   - 33: {fileID: 3324516}
   - 65: {fileID: 6517402}
   - 23: {fileID: 2351208}
-  - 114: {fileID: 11413280}
+  - 114: {fileID: 11419244}
   m_Layer: 0
   m_Name: DeathCube
   m_TagString: Untagged
@@ -1824,7 +1823,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35.2, y: 0, z: -60.6}
+  m_LocalPosition: {x: -24.978022, y: 11.936307, z: -45.724697}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 497554}
@@ -4361,18 +4360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 0}
---- !u!114 &11413280
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686d47b64d235e6419ccf8a9f42750f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 15
 --- !u!114 &11416942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4385,34 +4372,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 0}
---- !u!114 &11422048
+--- !u!114 &11419244
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 140624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11422916
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdc71b79d99f968439f308d0477eab87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11438974
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126604}
+  m_GameObject: {fileID: 193158}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
@@ -4442,6 +4407,28 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11422048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11422916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc71b79d99f968439f308d0477eab87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11439924
 MonoBehaviour:
   m_ObjectHideFlags: 1
