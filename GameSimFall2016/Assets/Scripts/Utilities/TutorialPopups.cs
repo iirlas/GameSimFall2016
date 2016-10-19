@@ -126,7 +126,26 @@ public class TutorialPopups : MonoBehaviour {
         {
             tutText.text = "";
             textBack.enabled = false;
-
+        }
+        else if (message == "startTut")
+        {
+            tutText.text = "Mommy? Daddy? \n Where are you?";
+            textBack.enabled = true;
+        }
+        else if (message == "whatThat")
+        {
+            tutText.text = "Wha--\nWhat is that?";
+            textBack.enabled = true;
+        }
+        else if (message == "follow")
+        {
+            tutText.text = "Am I supposed to follow it?";
+            textBack.enabled = true;
+        }
+        else if (message == "inTemp")
+        {
+            tutText.text = "Mommy...Daddy...Are you hiding in there?";
+            textBack.enabled = true;
         }
     }
 }
