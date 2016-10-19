@@ -14,6 +14,11 @@ public class DamageOnCollision : MonoBehaviour
 {
    private bool takeDamage;
    public int damageToTake;
+   public bool isTrigger = false;
+   
+   [Tooltip("How often to deal damage, interval in seconds.")]
+   public float intervalTime = 0.0f;
+   private float timer = 0.0f;
 
    // Use this for initialization
    void Awake()
@@ -26,13 +31,19 @@ public class DamageOnCollision : MonoBehaviour
    {
       if (takeDamage)
       {
-         Invoke("takeFireDamage", 10f);
+         if (timer > intervalTime)
+         {
+            dealDamage();
+            timer = 0.0f;
+         }
       }
+
+      timer += Time.deltaTime;
    }
 
    void OnCollisionEnter(Collision other)
    {
-      if (other.collider.name.Equals("Kira"))
+      if (!this.isTrigger && other.collider.name.Equals("Kira"))
       {
          takeDamage = true;
       }
@@ -41,11 +52,30 @@ public class DamageOnCollision : MonoBehaviour
 
    void OnCollisionExit(Collision other)
    {
-      takeDamage = false;
+      if (!this.isTrigger)
+      {
+         takeDamage = false;
+      }
    }
 
+   void OnTriggerEnter(Collider other)
+   {
+      if (this.isTrigger && other.name.Equals("Kira"))
+      {
+         takeDamage = true;
+      }
 
-   void takeFireDamage()
+   }
+
+   void OnTriggerExit(Collider other)
+   {
+      if (this.isTrigger)
+      {
+         takeDamage = false;
+      }
+   }
+
+   void dealDamage()
    {
       StatusManager.getInstance().health -= damageToTake; 
    }

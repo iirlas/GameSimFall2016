@@ -6,8 +6,11 @@ public class SpikeTrapMove : MonoBehaviour
    [Tooltip("The time in seconds to wait before beginning the animations of the spike trap.")]
    public float timeToStart = 0.0f;
 
-   [Tooltip("Thee time in seconds to wait in between spike cycles.")]
+   [Tooltip("The time in seconds to wait in between spike cycles.")]
    public float spikeInterval = 0.0f;
+
+   [Tooltip("The trigger that this script willl trigger int he animator component.")]
+   public string animTriggerName = "HolyHellChangeThis";
 
    private float timer = 0.0f;
    private Animator myAnim;
@@ -35,7 +38,7 @@ public class SpikeTrapMove : MonoBehaviour
 
       if ( this.hasActivated )
       {
-         this.myAnim.SetTrigger("beginPlay");
+         this.myAnim.SetTrigger(animTriggerName);
          
          this.hasActivated = false;
          timeToStart = spikeInterval + 2.0f;
