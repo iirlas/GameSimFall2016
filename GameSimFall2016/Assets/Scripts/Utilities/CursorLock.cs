@@ -30,7 +30,7 @@ public class CursorLock : MonoBehaviour
 
         if (Input.GetKeyDown("escape"))
         {
-	    if (SceneManager.GetActiveScene().name.Equals("Name_Of_Your_Scene"))
+	    if (SceneManager.GetActiveScene().name.Equals("TitleScreen"))
             {
                 Application.Quit();
             }
