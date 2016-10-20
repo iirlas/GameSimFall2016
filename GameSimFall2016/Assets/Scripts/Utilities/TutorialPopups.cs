@@ -147,5 +147,20 @@ public class TutorialPopups : MonoBehaviour {
             tutText.text = "Mommy...Daddy...Are you hiding in there?";
             textBack.enabled = true;
         }
+        else if (message == "BossHeard")
+        {
+           tutText.text = "Bunny? \nQuetzal? \nWhere are you...and what's that noise?";
+           textBack.enabled = true;
+        }
+        else if (message == "BunnyAttack")
+        {
+           tutText.text = "Bunny!? \n No! Why are you attacking me? \n Please don't make me hurt you...";
+           textBack.enabled = true;
+        }
+        else if (message == "MadeIt")
+        {
+           tutText.text = "I...made it, but where is this? \n Mommy? Daddy? \n ...Did you make it this far or am I alone?";
+           textBack.enabled = true;
+        }
     }
 }

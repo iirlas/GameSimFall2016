@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11429112}
   - 65: {fileID: 6503854}
   - 54: {fileID: 5492434}
+  - 195: {fileID: 19579906}
   m_Layer: 10
   m_Name: Rabbit
   m_TagString: Player
@@ -42,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.505265, y: 2.7, z: -47.178387}
+  m_LocalPosition: {x: 0.21444908, y: 0.765, z: -11.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 492888}
@@ -107,7 +108,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &6503854
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -118,7 +119,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.68864083, y: 0.5341611, z: 0.5737519}
+  m_Size: {x: 0.45, y: 0.5341611, z: 0.5737519}
   m_Center: {x: -0.0042077303, y: -0.23291999, z: 0.002858162}
 --- !u!114 &11429112
 MonoBehaviour:
@@ -136,6 +137,26 @@ MonoBehaviour:
   rotationSmoothSpeed: 10
   targetRange: 10
   jumpDistance: 6
+--- !u!195 &19579906
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122406}
+  m_Enabled: 1
+  m_Radius: 0.22
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.68
+  m_BaseOffset: 0.55
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

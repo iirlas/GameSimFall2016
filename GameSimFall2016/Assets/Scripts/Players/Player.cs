@@ -74,19 +74,19 @@ abstract public class Player : MonoBehaviour
         }
     }
 
-    //[HideInInspector]
-    //private NavMeshAgent myNavMeshAgent;
-    //public NavMeshAgent navMeshAgent
-    //{
-    //    get
-    //    {
-    //        if (myNavMeshAgent == null)
-    //        {
-    //            myNavMeshAgent = GetComponent<NavMeshAgent>();
-    //        }
-    //        return myNavMeshAgent;
-    //    }
-    //}
+    [HideInInspector]
+    private NavMeshAgent myAgent;
+    public NavMeshAgent agent
+    {
+        get
+        {
+            if (myAgent == null)
+            {
+                myAgent = GetComponent<NavMeshAgent>();
+            }
+            return myAgent;
+        }
+    }
 
     //constructor
     public Player()
@@ -116,6 +116,7 @@ abstract public class Player : MonoBehaviour
 
     public void Update()
     {
+        agent.enabled = PlayerManager.getInstance().currentPlayer != this;
         if (PlayerManager.getInstance().currentPlayer == this)
         {
             if ( !myStates.ContainsKey(playerState) )
@@ -127,13 +128,13 @@ abstract public class Player : MonoBehaviour
                 myStates[playerState]();
             }
         }
-        if (myFollower != null && myFollower != PlayerManager.getInstance().currentPlayer)
+        if (myFollower != null && myFollower != PlayerManager.getInstance().currentPlayer && follower.agent.enabled)
         {
-            Vector3 target = rigidbody.position - (transform.forward);
-            target.y = myFollower.transform.position.y;
-            myFollower.rigidbody.MovePosition(Vector3.Lerp(myFollower.rigidbody.position, target, movementSpeed * Time.deltaTime));
-            //myFollower.navMeshAgent.destination = target;
-            myFollower.smoothRotateTowards((rigidbody.position - myFollower.transform.position).normalized, rotationSmoothSpeed);
+            Vector3 target = rigidbody.position - (transform.forward * 2);
+            //target.y = myFollower.transform.position.y;
+            //myFollower.rigidbody.MovePosition(Vector3.Lerp(myFollower.rigidbody.position, target, movementSpeed * Time.deltaTime));
+            myFollower.agent.destination = target;
+            //myFollower.smoothRotateTowards((rigidbody.position - myFollower.transform.position).normalized, rotationSmoothSpeed);
         }
     }
 
@@ -141,7 +142,7 @@ abstract public class Player : MonoBehaviour
     {
         if (transform.parent != null && myPlatform != null)
         {
-            transform.parent.position = myPlatform.position;
+            //transform.parent.position = myPlatform.position;
         }
     }
 
