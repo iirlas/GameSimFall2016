@@ -45,6 +45,8 @@ GameObject:
   - 23: {fileID: 2345884}
   - 95: {fileID: 9563108}
   - 114: {fileID: 11470102}
+  - 114: {fileID: 11427268}
+  - 65: {fileID: 6582070}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -156,6 +158,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187246}
   m_Mesh: {fileID: 4300002, guid: 3d7d1e8e0fbe1f0408ef5bd73e99faa0, type: 3}
+--- !u!65 &6582070
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6858034, y: 1.6858039, z: 1.5}
+  m_Center: {x: 0.79999983, y: -0.80000055, z: 0.8890003}
 --- !u!95 &9557038
 Animator:
   serializedVersion: 3
@@ -190,6 +204,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11427268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ced933d81ded2b43b4aa80d8caf1105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToTake: 10
+  isTrigger: 1
+  intervalTime: 1
 --- !u!114 &11470102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,7 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2715f1a7a8ffc684bb3fc645cf075c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToWait: 0
+  timeToStart: 0
+  spikeInterval: 0
+  animTriggerName: HolyHellChangeThis
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
