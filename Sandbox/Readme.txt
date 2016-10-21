@@ -1,1 +1,0 @@
-Sandbox is a temporary folder to be used to help new users get accustomed to the SVN tools.
