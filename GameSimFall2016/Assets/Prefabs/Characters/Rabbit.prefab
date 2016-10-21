@@ -12,6 +12,7 @@ GameObject:
   - 65: {fileID: 6503854}
   - 54: {fileID: 5492434}
   - 195: {fileID: 19579906}
+  - 95: {fileID: 9562834}
   m_Layer: 10
   m_Name: Rabbit
   m_TagString: Player
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21444908, y: 0.765, z: -11.01}
+  m_LocalPosition: {x: 1.505265, y: 2.7, z: -47.178387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 492888}
@@ -121,6 +122,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.45, y: 0.5341611, z: 0.5737519}
   m_Center: {x: -0.0042077303, y: -0.23291999, z: 0.002858162}
+--- !u!95 &9562834
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122406}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 502134c38aaa9664b92a7f3cf694042e, type: 3}
+  m_Controller: {fileID: 9100000, guid: 648bfff18a7f78d4fb1e499f9c45ec96, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11429112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,6 +154,7 @@ MonoBehaviour:
   movementSpeed: 5
   rotationSmoothSpeed: 10
   targetRange: 10
+  animator: {fileID: 0}
   jumpDistance: 6
 --- !u!195 &19579906
 NavMeshAgent:
