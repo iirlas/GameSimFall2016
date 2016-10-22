@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Rigidbody))]
 public class BunnyBoss : MonoBehaviour {
 
-    private float health = 100.0f;
+    public  float health = 100.0f;
     private float time = 0;
 
     private Transform target;
