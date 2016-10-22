@@ -74,4 +74,19 @@ public class Rabbit : Player {
         }
     }
 
+    void LateUpdate()
+    {
+       if (PlayerManager.getInstance().currentPlayer != this)
+       {
+          if (agent.velocity != Vector3.zero)
+          {
+             animator.SetInteger("State", 2);
+          }
+          else
+          {
+             animator.SetInteger("State", 1);
+          }
+       }
+    }
+
 }

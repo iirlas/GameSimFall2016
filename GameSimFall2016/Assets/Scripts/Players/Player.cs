@@ -128,7 +128,7 @@ abstract public class Player : MonoBehaviour
                 myStates[playerState]();
             }
         }
-        if (myFollower != null && myFollower != PlayerManager.getInstance().currentPlayer && follower.agent.enabled)
+        if (myFollower != null && myFollower != PlayerManager.getInstance().currentPlayer && follower.agent.isOnNavMesh)
         {
             Vector3 target = rigidbody.position - (transform.forward * 2);
             //target.y = myFollower.transform.position.y;
