@@ -130,8 +130,12 @@ public class StatusManager : Singleton<StatusManager>
    // Use this for initialization
    override protected void Init()
    {
-      this.respawnPoint = PlayerManager.getInstance().currentPlayer.transform.position;
       playerStatus = Status.FEAR;
+   }
+
+   void Start ()
+   {
+      this.respawnPoint = PlayerManager.getInstance().currentPlayer.transform.position;
    }
    /// <summary>
    /// this is a function to switch state., Use this to toggle player's particle effects
