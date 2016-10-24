@@ -14,6 +14,7 @@ public class DamageOnCollision : MonoBehaviour
 {
    private bool takeDamage;
    public int damageToTake;
+   public int fearDamageToTake;
    public bool isTrigger = false;
    [Tooltip("Tick this box if you wish to deal fire damage instead of normal damage.")]
    public bool dealFireDamage;
@@ -26,6 +27,11 @@ public class DamageOnCollision : MonoBehaviour
    void Awake()
    {
       takeDamage = false;
+   }
+
+   void Start()
+   {
+      StatusManager.getInstance().fireDamage = this.damageToTake;
    }
 
    // Update is called once per frame
@@ -106,13 +112,14 @@ public class DamageOnCollision : MonoBehaviour
    // Do damage to the player
    void dealDamage()
    {
-      StatusManager.getInstance().fireDamage = this.damageToTake;
-      StatusManager.getInstance().health -= damageToTake; 
+      StatusManager.getInstance().health -= damageToTake;
+      StatusManager.getInstance().fear += fearDamageToTake;
    }
 
    // Activate or Deactivate the fire damage effect.
    void fireDamage(bool state)
    {
       StatusManager.getInstance().onFire = state;
+      StatusManager.getInstance().fear += fearDamageToTake;
    }
 }
