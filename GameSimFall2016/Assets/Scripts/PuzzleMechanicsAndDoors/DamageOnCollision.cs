@@ -15,8 +15,10 @@ public class DamageOnCollision : MonoBehaviour
    private bool takeDamage;
    public int damageToTake;
    public bool isTrigger = false;
+   [Tooltip("Tick this box if you wish to deal fire damage instead of normal damage.")]
+   public bool dealFireDamage;
    
-   [Tooltip("How often to deal damage, interval in seconds.")]
+   [Tooltip("How often to deal damage, interval in seconds.  Does nothing is dealFireDamage is active.")]
    public float intervalTime = 0.0f;
    private float timer = 0.0f;
 
@@ -41,42 +43,76 @@ public class DamageOnCollision : MonoBehaviour
       timer += Time.deltaTime;
    }
 
+   // Called when another collider collides with this collider
    void OnCollisionEnter(Collision other)
    {
       if (!this.isTrigger && other.collider.name.Equals("Kira"))
       {
-         takeDamage = true;
+         if (this.dealFireDamage)
+         {
+            this.fireDamage(true);
+         }
+         else
+         {
+            takeDamage = true;
+         }
       }
 
    }
 
+   // Called when another collider stops colliding with this collider.
    void OnCollisionExit(Collision other)
    {
       if (!this.isTrigger)
       {
          takeDamage = false;
       }
+      if (this.dealFireDamage)
+      {
+         this.fireDamage(false);
+      }
    }
 
+   // Called when another collider enters this collision zone.
    void OnTriggerEnter(Collider other)
    {
       if (this.isTrigger && other.name.Equals("Kira"))
       {
-         takeDamage = true;
+         if ( this.dealFireDamage )
+         {
+            this.fireDamage(true);
+         }
+         else
+         {
+            takeDamage = true;
+         }
       }
-
    }
 
+   // Called when another collider exits this collision zone.
    void OnTriggerExit(Collider other)
    {
       if (this.isTrigger)
       {
          takeDamage = false;
       }
+
+      if (this.dealFireDamage)
+      {
+         this.fireDamage(false);
+      }
    }
 
+   // Do damage to the player
    void dealDamage()
    {
+      StatusManager.getInstance().fireDamage = this.damageToTake;
       StatusManager.getInstance().health -= damageToTake; 
+   }
+
+   // Activate or Deactivate the fire damage effect.
+   void fireDamage(bool state)
+   {
+      StatusManager.getInstance().onFire = state;
    }
 }

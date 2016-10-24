@@ -709,7 +709,7 @@ GameObject:
   - 33: {fileID: 3366758}
   - 23: {fileID: 2352690}
   - 64: {fileID: 6454742}
-  - 114: {fileID: 11492644}
+  - 114: {fileID: 11470000}
   m_Layer: 2
   m_Name: MazeWalls
   m_TagString: Untagged
@@ -3419,7 +3419,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146506}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -5684,6 +5684,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 0}
+--- !u!114 &11470000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ced933d81ded2b43b4aa80d8caf1105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToTake: 2
+  isTrigger: 0
+  dealFireDamage: 1
+  intervalTime: 0
 --- !u!114 &11472990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5744,52 +5759,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 0}
---- !u!114 &11492644
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Player
-  activator: {fileID: 0}
-  type: 1
-  canRepeat: 1
-  onEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_onFire
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  onEventEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_onFire
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!135 &13501652
 SphereCollider:
   m_ObjectHideFlags: 1
