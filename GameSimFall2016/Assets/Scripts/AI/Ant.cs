@@ -42,7 +42,7 @@ public class Ant : Enemy
    // Default values for an Ant, provided by juan.
    private const int ANTHEALTHDEFAULT = 2;
    private const int ANTDAMAGEDEFAULT = 5;
-   private const float ANTSPEEDDEFAULT = 1;
+   private const float ANTSPEEDDEFAULT = 2;
    private const float ANTROTATIONSPEEDDEFAULT = 1;
    private const float ATTACKINTERVAL = 1.0f;        // How often the Ant will attack
 
@@ -80,6 +80,7 @@ public class Ant : Enemy
          this.myRotationSpeed = ANTROTATIONSPEEDDEFAULT;
       }
 
+      this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
       this.detectionRadius = 40;
       this.myType = enType.ANT;
 
@@ -88,7 +89,6 @@ public class Ant : Enemy
    void Start()
    {
       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
-
    }
 
    //=============================================================================
@@ -169,7 +169,6 @@ public class Ant : Enemy
          //-----------------------------------------------------------------------------
 		case enState.DEAD:
             //Ant is dead, object should be destroyed, if not already.
-
             killAnt();
             break;
       }
@@ -221,8 +220,7 @@ public class Ant : Enemy
 			this.antSplat.Play ();
 		}
          this.myState = enState.DEAD;
-         this.antWalking.Stop ();
-		
+         this.antWalking.Stop ();	
 		}
    }
 
@@ -242,7 +240,8 @@ public class Ant : Enemy
 
       if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
       {
-         this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
+         //this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
+         this.GetComponent<NavMeshAgent>().SetDestination(thePlayer.transform.position);
       }
    }
 
@@ -285,7 +284,7 @@ public class Ant : Enemy
             Debug.Log(this.name + " has damaged the player.");
             //thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
             StatusManager.getInstance().health -= 5;
-            StatusManager.getInstance().fear += 10;
+            StatusManager.getInstance().fear += 5;
          }
 
          timeSinceLastAttack += Time.deltaTime;
