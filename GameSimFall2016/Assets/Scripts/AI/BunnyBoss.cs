@@ -41,7 +41,7 @@ public class BunnyBoss : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
     {
-        //bloodEffects = GetComponentsInChildren<ParticleSystem>();
+        bloodEffects = GetComponentsInChildren<ParticleSystem>();
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         orbSpawner = transform.FindChild("OrbSpawner");
@@ -101,10 +101,10 @@ public class BunnyBoss : MonoBehaviour {
         bunnys.RemoveAll(bunny => { 
             if ( !bunny.gameObject.activeSelf )
             {
-                //foreach ( ParticleSystem effect in bloodEffects )
-                //{
-                //    effect.Play();
-                //}
+                foreach (ParticleSystem effect in bloodEffects)
+                {
+                    effect.Play();
+                }
                 Destroy(bunny.gameObject);
                 health -= 5.0f;
                 return true;
