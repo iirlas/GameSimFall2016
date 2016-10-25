@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 //Add phases
 [RequireComponent(typeof(Rigidbody))]
 public class BunnyBoss : MonoBehaviour {
@@ -14,13 +14,16 @@ public class BunnyBoss : MonoBehaviour {
     private Transform orbSpawner;
     private Transform bunnySpawner;
 
-    private List<GameObject> bunnys = new List<GameObject>();
+    private List<Bunny> bunnys = new List<Bunny>();
 
     [HideInInspector]
     public Rigidbody rigidbody;
 
     [HideInInspector]
     public Collider collider;
+
+    [HideInInspector]
+    public ParticleSystem[] bloodEffects;
 
     public BasicTrigger trigger;
 
@@ -38,6 +41,7 @@ public class BunnyBoss : MonoBehaviour {
 	// Use this for initialization
 	void Awake () 
     {
+        //bloodEffects = GetComponentsInChildren<ParticleSystem>();
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         orbSpawner = transform.FindChild("OrbSpawner");
@@ -59,19 +63,18 @@ public class BunnyBoss : MonoBehaviour {
             {
                 NewTarget();
                 time = 0.0f;
-                switch ((int)(Random.value * 3))
+                switch ((int)(Random.value * 2))
                 {
                 case 0:
-                    Jump(15.0f);
+                    Shoot(2.0f);
                     break;
 
                 case 1:
-                    Shoot(2.0f);
-                    break;
-                case 2:
                     Summon();
                     break;
+
                 }
+                Jump(15.0f);
             }
             direction = (PlayerManager.getInstance().currentPlayer.transform.position - transform.position);
             direction.y = 0;
@@ -96,9 +99,13 @@ public class BunnyBoss : MonoBehaviour {
         }
 
         bunnys.RemoveAll(bunny => { 
-            if ( !bunny.activeSelf )
+            if ( !bunny.gameObject.activeSelf )
             {
-                Destroy(bunny);
+                //foreach ( ParticleSystem effect in bloodEffects )
+                //{
+                //    effect.Play();
+                //}
+                Destroy(bunny.gameObject);
                 health -= 5.0f;
                 return true;
             }
@@ -126,17 +133,17 @@ public class BunnyBoss : MonoBehaviour {
 
     void Summon ()
     {
-        bunnys.Add(Instantiate(bunnyPrefab, bunnySpawner.position, Quaternion.identity) as GameObject);
+        GameObject bunnyObj = Instantiate(bunnyPrefab, bunnySpawner.position, Quaternion.identity) as GameObject;
+        bunnys.Add(bunnyObj.GetComponent<Bunny>());
     }
 
     void NewTarget ()
     {
-        Transform nextTarget = null;
-        do
+        int seed = Random.Range(0, nodes.Length - 1);
+        while (target != null && nodes[seed] == target)
         {
-            nextTarget = nodes[(int)(Random.value * nodes.Length)];
+            seed = Random.Range(0, nodes.Length - 1);
         }
-        while (nextTarget == target);
-        target = nextTarget;
+        target = nodes[seed];
     }
 }

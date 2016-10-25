@@ -1381,7 +1381,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167726}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -4.4709744, y: -0.67, z: 5.5778303}
+  m_LocalPosition: {x: 0, y: 9.51, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 476624}
@@ -1620,6 +1620,7 @@ MonoBehaviour:
   health: 100
   rigidbody: {fileID: 0}
   collider: {fileID: 0}
+  bloodEffects: []
   trigger: {fileID: 0}
   nodes:
   - {fileID: 0}
@@ -1629,8 +1630,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  darkOrbPrefab: {fileID: 0}
-  bunnyPrefab: {fileID: 0}
+  darkOrbPrefab: {fileID: 135018, guid: 0fe8d7bb47e9ed24b874f5d374521ed5, type: 2}
+  bunnyPrefab: {fileID: 116036, guid: ee9584956af0fcf4cbaffc443caf11d5, type: 2}
   xCurve:
     serializedVersion: 2
     m_Curve:
@@ -1839,7 +1840,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 33e9660a8439ad943878f77b4f9b73cf, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1858,7 +1859,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300000, guid: e8315338862f7fe4999e08eef412f53f, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 37ff73480a5c72246b3c4335f593ef0c, type: 3}
   m_Bones:
   - {fileID: 465984}
   - {fileID: 469874}
@@ -12709,7 +12710,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -41
   m_TargetDisplay: 0
 --- !u!224 &22418432
 RectTransform:
