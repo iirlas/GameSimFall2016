@@ -4,7 +4,9 @@ using System.Collections;
 
 public class TextPopUps : MonoBehaviour {
     [Tooltip("This is the string you wish to print, new lines should be denoted with \\n")]
-    public string printThis;
+    public string printLineOne;
+    public string printLineTwo;
+    public string printLineThree;
     [Tooltip("This is the image (paper) behind the text. The text box")]
     public Image textBack;
     [Tooltip("This is the the Text item to put the string to")]
@@ -27,8 +29,19 @@ public class TextPopUps : MonoBehaviour {
     {
         if (other.name.Equals("Kira"))
         {
-            printHere.text = printThis;
-            textBack.enabled = printTextBack;
+           if (printLineThree != "")
+           {
+              printHere.text = printLineOne + "\n" + printLineTwo + "\n" + printLineThree;
+           }
+           else if (printLineTwo != "")
+           {
+              printHere.text = printLineOne + "\n" + printLineTwo;
+           }
+           else
+           {
+              printHere.text = printLineOne;
+           }
+              textBack.enabled = printTextBack;
         }
     }
 }
