@@ -303,6 +303,7 @@ GameObject:
   - 4: {fileID: 421332}
   - 82: {fileID: 8267652}
   - 114: {fileID: 11471804}
+  - 114: {fileID: 11498218}
   m_Layer: 2
   m_Name: Bip001 R Toe0
   m_TagString: Untagged
@@ -992,8 +993,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110548}
-  m_LocalRotation: {x: 0, y: -0.0000045597553, z: 0, w: -1}
-  m_LocalPosition: {x: -0, y: 1.286, z: -7}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.000004529953}
+  m_LocalPosition: {x: 1.79, y: 3.344, z: 48.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 443658}
@@ -1615,6 +1616,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468f4079ce1eda144a547356b76f9c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11498218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3a1b7a31d4f6c43b8d4822f0401de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingSound: {fileID: 8267652}
+  walkingOnGrass: {fileID: 8300000, guid: fa1135715958b494db9fa99d63107a19, type: 3}
+  walkingOnTile: {fileID: 8300000, guid: bb7cb3539a8d8dd4fb3a9ab42ef03cf4, type: 3}
 --- !u!137 &13742342
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
