@@ -41,6 +41,7 @@ public class CheckCombination : MonoBehaviour {
             if (checkLightsOn())
             {
                 exitDoor.SetActive(false);
+				Debug.Log ("Door Opens");
             }
             else
             {
