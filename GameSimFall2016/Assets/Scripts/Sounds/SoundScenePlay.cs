@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class SoundScenePlay : MonoBehaviour {
 
@@ -10,10 +10,7 @@ public class SoundScenePlay : MonoBehaviour {
 	public AudioClip testStartingArea;
 	public AudioClip titleScreenMusic;
 	public AudioClip reduxTutorialTemple;
-   public AudioClip jaguarTemple;
-   public AudioClip rabbitTemple;
 	public AudioClip testOverworld;
-   public AudioClip otherOverworld;
 	public AudioClip creditMusic;
 
 
@@ -24,30 +21,31 @@ public class SoundScenePlay : MonoBehaviour {
 
 	//destroys the game object if there is two.
 	void Awake(){
-		if (FindObjectsOfType (GetType ()).Length > 1 && this.levelMusic.isPlaying == false) {
+
+		nameTest = EditorSceneManager.GetActiveScene ().name;
+		/*if (FindObjectsOfType (GetType ()).Length > 1 && this.levelMusic.isPlaying == false) {
 			Destroy (this.gameObject);
 			this.gameObject.GetComponentInParent<SoundScenePlay> ().enabled = false;
 			Debug.Log ("Destroyed something");
-		}
-
+		}*/
 	}
 		
 
 	// Update is called once per frame
 	void Update () 
 	{
-      if (nameTest != SceneManager.GetActiveScene().name)
-      {
-			nameTest = SceneManager.GetActiveScene().name;
+		/*if (nameTest != EditorSceneManager.GetActiveScene ().name) {
+			nameTest = EditorSceneManager.GetActiveScene ().name;
 			Debug.Log ("The name of the Scene -" + nameTest + "-");
-			OnlyOnce = false;
-		}
+		}*/
 		// For change of songs only
 		// changes the song of the player to play another one based on the name of the scene.
-		if (this.nameTest.Equals ("TestStartingArea") && this.OnlyOnce == false) {
+		if (this.nameTest.Equals ("TestStartingArea") && OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = .1f;
+			levelMusic.volume = .8f;
+			Debug.Log ("The name of the Scene -" + nameTest + "-");
 			levelMusic.clip = this.testStartingArea;
+			Debug.Log("Birds " + this.levelMusic.isPlaying);
 			levelMusic.Play ();
 			OnlyOnce = true;
 
@@ -55,23 +53,18 @@ public class SoundScenePlay : MonoBehaviour {
 		if (this.nameTest.Equals("TestOverworld") && OnlyOnce == false) {
 			levelMusic.Stop ();
 			levelMusic.volume = .5f;
+			Debug.Log ("The name of the Scene -" + nameTest + "-");
+			Debug.Log("TestOverworld " + this.levelMusic.isPlaying);
 			levelMusic.clip = this.testOverworld;
 			levelMusic.Play ();
 			OnlyOnce = true;
 
 		}
-      if (this.nameTest.Equals("OverWorldToEnd") && OnlyOnce == false)
-      {
-         levelMusic.Stop();
-         levelMusic.volume = .5f;
-         levelMusic.clip = this.testOverworld;
-         levelMusic.Play();
-         OnlyOnce = true;
-
-      }
-		if (this.nameTest.Equals("ReduxTutorialTemple") && OnlyOnce == false) {
+		if (this.nameTest.Equals("ReduxTutorialTemple")  && OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = .1f;
+			levelMusic.volume = .2f;
+			Debug.Log ("The name of the Scene -" + nameTest + "-");
+			Debug.Log("Redux " + this.levelMusic.isPlaying);
 			levelMusic.clip = this.reduxTutorialTemple;
 			levelMusic.Play ();
 			OnlyOnce = true;
@@ -79,51 +72,37 @@ public class SoundScenePlay : MonoBehaviour {
 		}
 		if (this.nameTest.Equals("JaguarSetup") && OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = .1f;
-			levelMusic.clip = this.jaguarTemple;
+			levelMusic.volume = .4f;
+			Debug.Log ("The name of the Scene -" + nameTest + "-");
+			Debug.Log("Jaguar " + this.levelMusic.isPlaying);
+			levelMusic.clip = this.reduxTutorialTemple;
 			levelMusic.Play ();
 			OnlyOnce = true;
 
 		}
-      if (this.nameTest.Equals("RabbitTemple") && OnlyOnce == false)
-      {
-         levelMusic.Stop();
-         levelMusic.volume = .1f;
-         levelMusic.clip = this.rabbitTemple;
-         levelMusic.Play();
-         OnlyOnce = true;
-
-      }
 			
-		if (this.nameTest.Equals ("TitleScreen") && this.OnlyOnce == false) {
+		if (this.nameTest.Equals ("TitleScreen")  && OnlyOnce == false) {
 			if (this.levelMusic.clip != this.titleScreenMusic) {
 				levelMusic.Stop ();
-				levelMusic.volume = .3f;
+				levelMusic.volume = .7f;
+				Debug.Log ("The name of the Scene -" + nameTest + "-");
+				Debug.Log("Title " + this.levelMusic.isPlaying);
 				levelMusic.clip = this.titleScreenMusic;
 				levelMusic.Play ();
 				OnlyOnce = true;
+
 			}
 
 		}
-		if (this.nameTest.Equals ("CreditsScene") && this.OnlyOnce == false) {
+		if (this.nameTest.Equals ("CreditsScene")  && OnlyOnce == false) {
 			levelMusic.Stop ();
-			levelMusic.volume = .05f;
+			levelMusic.volume = .5f;
+			Debug.Log ("The name of the Scene -" + nameTest + "-");
+			Debug.Log("credits " + this.levelMusic.isPlaying);
 			levelMusic.clip = this.creditMusic;
 			levelMusic.Play ();
 			OnlyOnce = true;
 		}
-      if (this.nameTest.Equals("ControlScene") && this.OnlyOnce == false)
-      {
-         if (this.levelMusic.clip != this.titleScreenMusic)
-         {
-            levelMusic.Stop();
-            levelMusic.volume = .3f;
-            levelMusic.clip = this.titleScreenMusic;
-            levelMusic.Play();
-            OnlyOnce = true;
-         }
-
-      }
 			
 		//DontDestroyOnLoad (this);
 			
