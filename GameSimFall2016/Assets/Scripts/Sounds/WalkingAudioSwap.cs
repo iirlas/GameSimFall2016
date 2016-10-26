@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class WalkingAudioSwap : MonoBehaviour {
 
@@ -12,12 +12,12 @@ public class WalkingAudioSwap : MonoBehaviour {
 	string SceneName = "";
 
 	void Awake () {
-		SceneName = EditorSceneManager.GetActiveScene ().name;
-		if (SceneName.Equals ("TestStartingArea")) {
-			walkingSound.clip = walkingOnGrass;
-		} else {
-			walkingSound.clip = walkingOnTile;
-		}
+      //SceneName = EditorSceneManager.GetActiveScene ().name;
+      //if (SceneName.Equals ("TestStartingArea")) {
+      //   walkingSound.clip = walkingOnGrass;
+      //} else {
+      //   walkingSound.clip = walkingOnTile;
+      //}
 
 	}
 }
