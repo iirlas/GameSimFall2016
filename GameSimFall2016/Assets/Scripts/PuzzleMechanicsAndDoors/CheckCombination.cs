@@ -20,6 +20,9 @@ public class CheckCombination : MonoBehaviour {
     public GameObject exitDoor;
     private int[] comboNums;
 
+	public AudioSource stoneDoorOpenSoundEffect;
+	bool playOnlyOnce = false;
+
 	// Use this for initialization
 	void Start () {
         comboNums = new int[numOfSolution];
@@ -41,7 +44,13 @@ public class CheckCombination : MonoBehaviour {
             if (checkLightsOn())
             {
                 exitDoor.SetActive(false);
-				Debug.Log ("Door Opens");
+
+				if (this.playOnlyOnce == false && this.stoneDoorOpenSoundEffect != null){
+
+					this.stoneDoorOpenSoundEffect.Play ();
+					Debug.Log ("Door Opens");
+					this.playOnlyOnce = true;
+				}
             }
             else
             {
