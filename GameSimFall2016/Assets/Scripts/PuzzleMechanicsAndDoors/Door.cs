@@ -16,6 +16,9 @@ public class Door : MonoBehaviour
     private float speed;
     private Vector3 destination; 
 
+	public AudioSource OpenStoneDoorSoundEffect;
+	bool playDoorOpenSoundOnce = false;
+
    // Use this for initialization
    void Awake()
    {
@@ -36,6 +39,10 @@ public class Door : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position,
                                           destination,
                                           speed * 3.0f * Time.deltaTime);
+				if (this.playDoorOpenSoundOnce == false && this.OpenStoneDoorSoundEffect != null) {
+					this.OpenStoneDoorSoundEffect.Play ();
+					this.playDoorOpenSoundOnce = true;
+				}
 
             }
         }
