@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: cornColor
+  m_Name: ColumnStone
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _DETAIL_MULX2 _NORMALMAP
+  m_ShaderKeywords: _DETAIL_MULX2 _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -19,28 +19,28 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: c9675cd1e8a99fd49a1fe62d351dcd6b, type: 3}
+          m_Texture: {fileID: 2800000, guid: 3d7df35ccebe80e4380b80eb5590b732, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: 845bcdb48b983724aa7f83f41b86e5d8, type: 3}
+          m_Texture: {fileID: 2800000, guid: c11662cc85b44574e87c7f098f0a3b9d, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _DetailNormalMap
         second:
-          m_Texture: {fileID: 2800000, guid: 956cceca2e8aac940999b0a807dd268e, type: 3}
+          m_Texture: {fileID: 2800000, guid: f6b15a741a219c9459e8b2a60e7f9928, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _ParallaxMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: ade6c25e127a6d449bb305dbfacdeeea, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -94,7 +94,7 @@ Material:
       data:
         first:
           name: _Parallax
-        second: 0.005
+        second: 0.0515
       data:
         first:
           name: _ZWrite
@@ -106,7 +106,7 @@ Material:
       data:
         first:
           name: _BumpScale
-        second: 28.11
+        second: 6.27
       data:
         first:
           name: _OcclusionStrength
@@ -114,7 +114,7 @@ Material:
       data:
         first:
           name: _DetailNormalMapScale
-        second: -0.15
+        second: 1.14
       data:
         first:
           name: _UVSec
@@ -135,4 +135,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.89705884, g: 0.8613948, b: 0.7123703, a: 1}
+        second: {r: 0.7941176, g: 0.76311, b: 0.5897491, a: 1}
