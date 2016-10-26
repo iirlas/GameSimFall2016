@@ -12,12 +12,12 @@ public class WalkingAudioSwap : MonoBehaviour {
 	string SceneName = "";
 
 	void Awake () {
-      //SceneName = EditorSceneManager.GetActiveScene ().name;
-      //if (SceneName.Equals ("TestStartingArea")) {
-      //   walkingSound.clip = walkingOnGrass;
-      //} else {
-      //   walkingSound.clip = walkingOnTile;
-      //}
+		SceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+		if (SceneName.Equals ("TestStartingArea")) {
+			walkingSound.clip = walkingOnGrass;
+		} else {
+			walkingSound.clip = walkingOnTile;
+		}
 
 	}
 }
