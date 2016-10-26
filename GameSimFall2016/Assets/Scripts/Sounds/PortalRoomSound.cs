@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PortalRoomSound : MonoBehaviour {
 
-	/*public float time = 3f;
+	public float time = 3f;
 	AudioSource gameLevelMusic;
 	//float musicLevelVolume;
 	int fadeType = 0;
@@ -54,5 +54,4 @@ public class PortalRoomSound : MonoBehaviour {
 				this.fadeType = 0;
 				}
 		}
-    */
 }
