@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class SoundScenePlay : MonoBehaviour {
 
@@ -22,7 +22,7 @@ public class SoundScenePlay : MonoBehaviour {
 	//destroys the game object if there is two.
 	void Awake(){
 
-		nameTest = EditorSceneManager.GetActiveScene ().name;
+		nameTest = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 		/*if (FindObjectsOfType (GetType ()).Length > 1 && this.levelMusic.isPlaying == false) {
 			Destroy (this.gameObject);
 			this.gameObject.GetComponentInParent<SoundScenePlay> ().enabled = false;
