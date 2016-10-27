@@ -15,7 +15,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     private Player myPlayer;
     private Vector3 myAngle = Vector3.zero;
-    //private float  myAngle = 0;
 
 	// Use this for initialization
 	void Awake () {
@@ -85,15 +84,22 @@ public class ThirdPersonCamera : MonoBehaviour {
                 viewPosition = targetPosition + rotation * (offset.normalized * (hit.distance - 0.1f));
             }
 
+
             //smooth erratic camera movement
-            if ( Vector3.Distance(transform.position, viewPosition) > 1.0f )
-            {
-                transform.position = Vector3.Lerp(transform.position, viewPosition, speed * Time.deltaTime);
-            }
-            else
-            {
-                transform.position = viewPosition;
-            }
+            Vector3 velocity = Vector3.zero;
+            transform.position = Vector3.SmoothDamp(transform.position, viewPosition, ref velocity, Time.deltaTime / speed);
+
+            //if (Vector3.Distance(transform.position, viewPosition) > 0.5f)
+            //{
+            //   time += Time.fixedDeltaTime;
+            //   transform.position = Vector3.Lerp(transform.position, viewPosition, speed * time);
+            //}
+            //else
+            //{
+            //   time = 0;
+            //   transform.position = viewPosition;
+            //}
+
 
             transform.LookAt(targetPosition, Vector3.up);
         }
