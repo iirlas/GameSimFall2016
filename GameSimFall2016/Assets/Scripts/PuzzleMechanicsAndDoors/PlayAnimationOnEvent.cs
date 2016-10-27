@@ -6,25 +6,28 @@ using System.Collections;
 // This script uses a BASIC TRIGGER to Play the animation on the THIS object                                           
 //========================================================================================================
 
-public class PlayAnimationOnEvent : MonoBehaviour {
-    private Animator anim;
+public class PlayAnimationOnEvent : MonoBehaviour
+{
+   private Animator anim;
 
-	// Use this for initialization
-	void Awake () {
-        anim = GetComponent<Animator>();
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+   // Use this for initialization
+   void Awake()
+   {
+      anim = GetComponent<Animator>();
 
-    public void OnEvent(BasicTrigger trigger)
-    {
-        //if (trigger.message == "playAnimationOnce")
-        {
-            anim.SetBool("playAnimation", true);
-        }
-    }
+   }
+
+   // Update is called once per frame
+   void Update()
+   {
+
+   }
+
+   public void OnEvent(BasicTrigger trigger)
+   {
+      //if (trigger.message == "playAnimationOnce")
+      {
+         anim.SetBool("playAnimation", true);
+      }
+   }
 }
