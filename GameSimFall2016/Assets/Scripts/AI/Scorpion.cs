@@ -274,7 +274,6 @@ public class Scorpion : Enemy
          else
          {
             //do damage to player.
-            Debug.Log(this.name + " has damaged the player.");
             StatusManager.getInstance().health -= 5.0f;
             StatusManager.getInstance().fear += 20.0f;
             StatusManager.getInstance().isPoisoned = true;

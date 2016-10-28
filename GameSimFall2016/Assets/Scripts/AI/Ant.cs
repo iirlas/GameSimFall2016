@@ -281,7 +281,6 @@ public class Ant : Enemy
          else
          {
             //do damage to player.
-            Debug.Log(this.name + " has damaged the player.");
             //thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
             StatusManager.getInstance().health -= 5;
             StatusManager.getInstance().fear += 5;

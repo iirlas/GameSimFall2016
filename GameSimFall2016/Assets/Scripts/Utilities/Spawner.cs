@@ -70,9 +70,7 @@ public class Spawner : MonoBehaviour
                  this.dTime = 0.0f;             // reset the timer
                  if (this.enemyList.FindAll(obj => { return obj.activeSelf; }).Count < 5)  // If there are fewer than 5 enemies on screen...
                  {
-                    Debug.Log("Spawning enemy");
                     spawnEnemy();               // Spawn a new enemy
-                    Debug.Log(this.enemyList.Count);
                  }
              }
             this.dTime += Time.deltaTime;  // Increment the timer
