@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 //========================================================================================================
 //                                              Damage on Collision
@@ -63,7 +64,10 @@ public class DamageOnCollision : MonoBehaviour
             takeDamage = true;
          }
       }
-
+      else if (this.isTrigger && other.gameObject.tag.Equals("Player"))
+      {
+         damageFollowers(other.gameObject.name);
+      }
    }
 
    // Called when another collider stops colliding with this collider.
@@ -93,6 +97,10 @@ public class DamageOnCollision : MonoBehaviour
             takeDamage = true;
          }
       }
+      else if (this.isTrigger && other.tag.Equals("Player"))
+      {
+         damageFollowers(other.name);
+      }
    }
 
    // Called when another collider exits this collision zone.
@@ -106,6 +114,21 @@ public class DamageOnCollision : MonoBehaviour
       if (this.dealFireDamage)
       {
          this.fireDamage(false);
+      }
+   }
+
+   // Do "damage" to the followers, teleporting them to the player
+   void damageFollowers(string name)
+   {
+      Player[] playerUnits = PlayerManager.getInstance().players;
+
+      for (int ix = 0; ix < playerUnits.Length; ix++)
+      {
+         if (playerUnits[ix].name == name)
+         {
+            //playerUnits[ix].transform.position = thePlayer.transform.position;
+            playerUnits[ix].transform.position = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; }).transform.position;
+         }
       }
    }
 
