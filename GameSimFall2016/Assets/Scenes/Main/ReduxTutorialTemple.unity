@@ -49,7 +49,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
-    m_EnvironmentLightingMode: 0
+    m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
@@ -60,13 +60,13 @@ LightmapSettings:
     m_TextureHeight: 1024
     m_AOMaxDistance: 1
     m_Padding: 2
-    m_CompAOExponent: 0
+    m_CompAOExponent: 0.5
     m_LightmapParameters: {fileID: 0}
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 112000115, guid: 87506d0bf3716c64f91da8fa629514d4,
+  m_LightingDataAsset: {fileID: 112000233, guid: 87506d0bf3716c64f91da8fa629514d4,
     type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
@@ -946,6 +946,18 @@ Prefab:
       propertyPath: OpenStoneDoorSoundEffect
       value: 
       objectReference: {fileID: 1241437983}
+    - target: {fileID: 10883338, guid: 05669a19d06e2384e9fe78695b5d337c, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10886078, guid: 05669a19d06e2384e9fe78695b5d337c, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10850870, guid: 05669a19d06e2384e9fe78695b5d337c, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05669a19d06e2384e9fe78695b5d337c, type: 2}
   m_IsPrefabParent: 0
@@ -1174,19 +1186,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
@@ -1822,6 +1834,46 @@ Prefab:
       propertyPath: OpenStoneDoorSoundEffect
       value: 
       objectReference: {fileID: 1697169978}
+    - target: {fileID: 10813342, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10830330, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10802110, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10802636, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10851870, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10879914, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10871050, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10835492, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10823146, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10870658, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
   m_IsPrefabParent: 0
@@ -2660,6 +2712,38 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10860636, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10899502, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10813588, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10824748, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10887204, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10812764, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10865812, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10827940, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
   m_IsPrefabParent: 0
@@ -2898,6 +2982,66 @@ Prefab:
       propertyPath: stoneDoorOpenSoundEffect
       value: 
       objectReference: {fileID: 318046005}
+    - target: {fileID: 157770, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 10897368, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10836578, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10806860, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10858220, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10863790, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10898620, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10801702, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10807346, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10818656, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10833980, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10845202, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10898452, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10854720, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10837116, guid: a8917b00289503940a800b3d189111c8, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8917b00289503940a800b3d189111c8, type: 2}
   m_IsPrefabParent: 0
@@ -3991,6 +4135,34 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 10800466, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10866328, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10898196, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10871620, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10851666, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10855944, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10803450, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8bc1485857511b04894a2bf526515998, type: 2}
   m_IsPrefabParent: 0
@@ -4839,6 +5011,14 @@ Prefab:
       propertyPath: m_Shadows.m_Type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 10821838, guid: 6b2e8d8b160d7ec4b866622ad758d5d2, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876644, guid: 6b2e8d8b160d7ec4b866622ad758d5d2, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b2e8d8b160d7ec4b866622ad758d5d2, type: 2}
   m_IsPrefabParent: 0
@@ -5018,6 +5198,30 @@ Prefab:
     - target: {fileID: 11400692, guid: 39005622935746e48bb44ac730c229fc, type: 2}
       propertyPath: printLineThree
       value: Right click the mouse to lock-on. Left click to shoot.
+      objectReference: {fileID: 0}
+    - target: {fileID: 10878670, guid: 39005622935746e48bb44ac730c229fc, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10844870, guid: 39005622935746e48bb44ac730c229fc, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10884240, guid: 39005622935746e48bb44ac730c229fc, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10896486, guid: 39005622935746e48bb44ac730c229fc, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10870676, guid: 39005622935746e48bb44ac730c229fc, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10827482, guid: 39005622935746e48bb44ac730c229fc, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39005622935746e48bb44ac730c229fc, type: 2}
@@ -6217,6 +6421,18 @@ Prefab:
       propertyPath: OpenStoneDoorSoundEffect
       value: 
       objectReference: {fileID: 105829982}
+    - target: {fileID: 10811770, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10804282, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10824164, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
   m_IsPrefabParent: 0
@@ -6294,6 +6510,30 @@ Prefab:
     - target: {fileID: 146944, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10857298, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10870422, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10869140, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10853792, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10823508, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10842226, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
