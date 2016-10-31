@@ -123,7 +123,8 @@ public class StatusManager : Singleton<StatusManager>
    public GameObject highFearEffect;
    public GameObject poisonEffect;
    public GameObject fireEffect;
-
+   public UnityStandardAssets.ImageEffects.Fisheye fisheye;
+   public UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration vignette;
 
    //public GameObject 
 
@@ -190,6 +191,12 @@ public class StatusManager : Singleton<StatusManager>
    {
       //fear accumulation
       fear += (hasStatus(Status.FEAR) ? fearDamage : -fearDamage) * Time.deltaTime;
+
+      //set fisheye strength
+      fisheye.strengthX = fisheye.strengthY = (fear / 100) * 0.8f;
+
+      //set vignette strength
+      vignette.intensity = (fear / 100) * 0.28f + 0.32f;
 
       //fear damage
       health -= (fear >= 100 ? fearDamage : 0.0f) * Time.deltaTime;
