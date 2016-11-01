@@ -44,6 +44,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 449676}
   - 65: {fileID: 6564924}
+  - 114: {fileID: 11403376}
   m_Layer: 0
   m_Name: PoisonDart
   m_TagString: Untagged
@@ -82,8 +83,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.679, y: 1.615, z: -0.607}
+  m_LocalScale: {x: 2, y: 2, z: 1.5}
   m_Children:
   - {fileID: 446452}
   - {fileID: 418780}
@@ -99,7 +100,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3593a85df4aa2ad46a0a267bd30c4624, type: 2}
+  - {fileID: 2100000, guid: de424b8705833b1468d51b44b8ca0d18, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -134,6 +135,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 0.7}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11403376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ced933d81ded2b43b4aa80d8caf1105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToTake: 5
+  fearDamageToTake: 0
+  isTrigger: 1
+  dealFireDamage: 0
+  intervalTime: 1
 --- !u!114 &11418656
 MonoBehaviour:
   m_ObjectHideFlags: 1
