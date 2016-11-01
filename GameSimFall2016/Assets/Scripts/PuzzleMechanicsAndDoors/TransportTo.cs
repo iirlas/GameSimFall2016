@@ -29,7 +29,13 @@ public class TransportTo : MonoBehaviour {
     {
         //if (trigger.message == "nextLevel")
         {
-            SceneManager.LoadScene(nameOfNext);
+            StartCoroutine(Utility.fadeScreen(Color.clear, Color.black, 1, 0.0f, onFadeEnd));
+
         }
+    }
+
+    void onFadeEnd ()
+    {
+        SceneManager.LoadScene(nameOfNext);
     }
 }

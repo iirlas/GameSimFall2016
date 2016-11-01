@@ -18,6 +18,24 @@ public static class Extension
         return default(Type);
     }
 
+    public static bool isCloseTo(this Color color, Color other, float epsilon)
+    {
+        float c1 = ((Vector4)color).magnitude,
+              c2 = ((Vector4)other).magnitude;
+
+        return Mathf.Abs(c1 - c2) < epsilon;
+    }
+
+    public static int bitvalue(this Color color)
+    {
+        int r = (int)(color[0] * 256),
+            g = (int)(color[1] * 256),
+            b = (int)(color[2] * 256),
+            a = (int)(color[3] * 256);
+
+        return (r << 24) | (g << 16) | (b << 8) | (a);
+    }
+
     public static Vector3 Inverse ( this Vector3 vector )
     {
         return new Vector3( 1.0f / vector.x, 1.0f / vector.y, 1.0f / vector.z );
