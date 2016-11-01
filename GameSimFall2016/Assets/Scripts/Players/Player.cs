@@ -133,7 +133,10 @@ abstract public class Player : MonoBehaviour
             Vector3 target = rigidbody.position - (transform.forward * 2);
             //target.y = myFollower.transform.position.y;
             //myFollower.rigidbody.MovePosition(Vector3.Lerp(myFollower.rigidbody.position, target, movementSpeed * Time.deltaTime));
-            myFollower.agent.destination = target;
+            if (Vector3.Distance(target, transform.position) > 2.0f)
+            {
+                myFollower.agent.destination = target;
+            }
             //myFollower.smoothRotateTowards((rigidbody.position - myFollower.transform.position).normalized, rotationSmoothSpeed);
         }
     }
