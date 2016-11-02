@@ -39,19 +39,21 @@ public class SwitchUpAndDown : MonoBehaviour {
                 platform1.transform.position = start1.transform.position;
             }
 
-
+         if (platform2 != null)
+         {
             if (platform2.transform.position == start2.transform.position)
             {
-                SwitchControl.counter++;
-                platform2.transform.position = end2.transform.position;
-                movePlatform = false;
+               SwitchControl.counter++;
+               platform2.transform.position = end2.transform.position;
+               movePlatform = false;
             }
             else
             {
-                SwitchControl.counter--;
-                platform2.transform.position = start2.transform.position;
-                movePlatform = false;
+               SwitchControl.counter--;
+               platform2.transform.position = start2.transform.position;
+               movePlatform = false;
             }
+         }
         }
                 
 	
