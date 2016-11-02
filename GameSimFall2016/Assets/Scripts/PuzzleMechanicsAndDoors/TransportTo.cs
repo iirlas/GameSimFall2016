@@ -12,9 +12,14 @@ using UnityEngine.SceneManagement;
 
 public class TransportTo : MonoBehaviour {
     [Tooltip("Name of Level to be Transported To")]
+    
     public string nameOfNext;
 
-	// Use this for initialization
+    private AsyncOperation asyncOperation;
+
+    private bool isRunning = false;
+	
+    // Use this for initialization
 	void Start () {
 	
 	}
@@ -27,15 +32,30 @@ public class TransportTo : MonoBehaviour {
 
     public void OnEvent(BasicTrigger trigger)
     {
-        //if (trigger.message == "nextLevel")
+        if (!isRunning)
         {
-            StartCoroutine(Utility.fadeScreen(Color.clear, Color.black, 1, 0.0f, onFadeEnd));
-
+            StartCoroutine(Utility.fadeScreen(Color.clear, Color.black, 0.1f, 0.0f));
+            StartCoroutine(loadAsync());
         }
     }
 
-    void onFadeEnd ()
+    IEnumerator loadAsync ()
     {
-        SceneManager.LoadScene(nameOfNext);
+        isRunning = true;
+        
+        asyncOperation = SceneManager.LoadSceneAsync(nameOfNext);
+        asyncOperation.allowSceneActivation = false;
+        
+        while (Utility.isFading)
+        {
+            //print("prog: " + asyncOperation.progress);
+            yield return new WaitForEndOfFrame();
+        }
+
+        asyncOperation.allowSceneActivation = true;
+
+        isRunning = false;
+        yield return null;
+
     }
 }

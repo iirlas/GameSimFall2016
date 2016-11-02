@@ -4,10 +4,9 @@ using System.Collections;
 
 public class Utility  {
 
-    private static bool isFading = false;
-    public delegate void OnFadeEnd();
+    public static bool isFading { private set; get; }
 
-    public static IEnumerator fadeScreen (Color start, Color end, float speed, float delay, OnFadeEnd proc)
+    public static IEnumerator fadeScreen (Color start, Color end, float speed, float delay)
     {
         if ( isFading )
         {
@@ -15,6 +14,7 @@ public class Utility  {
         }
         Canvas canvas = GameObject.FindObjectOfType<Canvas>();
         Image fadeImage = canvas.gameObject.AddComponent<Image>();
+
         isFading = true;
 
         fadeImage.color = start;
@@ -28,12 +28,11 @@ public class Utility  {
             if (doneFading)
                 continue;
 
-            fadeImage.color = Color.Lerp(fadeImage.color, end, speed * Time.deltaTime);
-            Debug.Log(fadeImage.color + " " + end);
+            fadeImage.color = Color.Lerp(fadeImage.color, end, speed);
+            //Debug.Log(fadeImage.color + " " + end);
         }
 
-        GameObject.Destroy(fadeImage);
-        proc();
+        //GameObject.Destroy(fadeImage);
         isFading = false;
         yield return null;
     }
