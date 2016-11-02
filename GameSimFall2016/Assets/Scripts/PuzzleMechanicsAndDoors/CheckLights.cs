@@ -23,7 +23,7 @@ public class CheckLights : MonoBehaviour {
         count = 0;
         speed = 2f;
         destination = new Vector3(exitDoor.transform.position.x,
-                                (exitDoor.gameObject.GetComponent<Collider>().bounds.size.y + exitDoor.transform.position.y),
+                                (exitDoor.gameObject.GetComponent<Collider>().bounds.size.y + exitDoor.transform.position.y * 2),
                                   exitDoor.transform.position.z);
         openDoor = false;
     }
