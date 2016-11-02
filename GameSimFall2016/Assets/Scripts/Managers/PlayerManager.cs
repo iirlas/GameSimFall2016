@@ -62,9 +62,9 @@ public class PlayerManager : Singleton<PlayerManager> {
                     players[j].AssignFollower(players.FirstOrDefault((possibleFollower) =>
                         {
                            float distcheck = Vector3.Distance(players[j].transform.position, possibleFollower.transform.position);
-                           if (distcheck < minDist && //in range
+                           if (//distcheck < minDist && //in range
                               possibleFollower != players[j] && //not us
-                              !(possibleFollower is Girl) &&
+                              !(possibleFollower is Girl) && //is not the girl
                               //possibleFollower != currentPlayer && //the the current player
                               possibleFollower.follower != players[j])//we are not their follower
                            {
