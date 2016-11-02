@@ -32,7 +32,10 @@ public class DamageOnCollision : MonoBehaviour
 
    void Start()
    {
-      StatusManager.getInstance().fireDamage = this.damageToTake;
+      if (dealFireDamage)
+      {
+         StatusManager.getInstance().fireDamage = this.damageToTake;
+      }
    }
 
    // Update is called once per frame
