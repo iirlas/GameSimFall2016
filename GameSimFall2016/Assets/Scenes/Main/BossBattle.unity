@@ -2726,34 +2726,10 @@ Prefab:
       propertyPath: nodes.Array.data[6]
       value: 
       objectReference: {fileID: 1563006332}
-    - target: {fileID: 22449882, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22449882, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 167726, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 13779426, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
-      propertyPath: m_Mesh
+    - target: {fileID: 11410540, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
+      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4300000, guid: 85383e733f8c240458831f3f93b85929, type: 3}
-    - target: {fileID: 13779426, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2a1fda62e09f4c54aa4f502cb99375a0, type: 2}
-    - target: {fileID: 11400718, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
-      propertyPath: trigger
-      value: 
-      objectReference: {fileID: 1229776627}
-    - target: {fileID: 22379992, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1782305552}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
   m_IsPrefabParent: 0
@@ -2838,19 +2814,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
@@ -9226,33 +9202,6 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
---- !u!1 &949497920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 949497921}
-  m_Layer: 0
-  m_Name: OrbSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &949497921
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 949497920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1229776626}
-  m_RootOrder: 7
 --- !u!4 &949892504 stripped
 Transform:
   m_PrefabParentObject: {fileID: 439222, guid: 2bea0fc7cbfc3a945b3ed0326e01c6c9, type: 2}
@@ -10216,45 +10165,6 @@ MeshFilter:
 GameObject:
   m_PrefabParentObject: {fileID: 167726, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
   m_PrefabInternal: {fileID: 335071500}
---- !u!4 &1229776626 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 480854, guid: d94f9504ea68e1b48aeafe069a6ccb26, type: 2}
-  m_PrefabInternal: {fileID: 335071500}
---- !u!114 &1229776627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1229776621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Player
-  activator: {fileID: 0}
-  type: 2
-  canRepeat: 0
-  onEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1782305552}
-        m_MethodName: OnEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  onEventEnd:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!4 &1243290169 stripped
 Transform:
   m_PrefabParentObject: {fileID: 417970, guid: 2bea0fc7cbfc3a945b3ed0326e01c6c9, type: 2}
