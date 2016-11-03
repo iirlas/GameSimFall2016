@@ -6,7 +6,11 @@ public class SoundManager : Singleton<SoundManager>
 {
    public AudioSource audioSource;
    public List<AudioClip> audioClips;
-   
+
+   private AudioClip getAudioClip(string name)
+   {
+       return audioClips.Find(audioClip => { return (audioClip.name.Equals(name)); });
+   }
    
    // Use this for initialization
    override protected void Init()
@@ -16,14 +20,20 @@ public class SoundManager : Singleton<SoundManager>
    // 
    public void playEffect(string name)
    {
-       
-       AudioClip localAudioClip = audioClips.Find(audioClip => { return (audioClip.name.Equals(name)); });
-       audioSource.PlayOneShot(localAudioClip);
+
+       AudioClip audioClip = getAudioClip(name);
+       audioSource.PlayOneShot(audioClip);
+   }
+
+   public void playAtPosition(string name, Vector3 position)
+   {
+       AudioClip audioClip = getAudioClip(name);
+       AudioSource.PlayClipAtPoint(audioClip, position);
    }
 
    public void playMusic(string name)
    {
-       audioSource.clip = audioClips.Find(audioClip => { return (audioClip.name.Equals(name)); });
+       audioSource.clip = getAudioClip(name);
        audioSource.Play();
    }
 
