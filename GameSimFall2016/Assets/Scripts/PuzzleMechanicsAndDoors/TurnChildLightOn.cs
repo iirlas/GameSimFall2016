@@ -10,9 +10,11 @@ using System.Collections;
 //========================================================================================================
 
 public class TurnChildLightOn : MonoBehaviour {
+	public AudioSource lightSound;
 
 	// Use this for initialization
 	void Start () {
+		
 	
 	}
 	
@@ -24,5 +26,7 @@ public class TurnChildLightOn : MonoBehaviour {
     {
         //if (trigger.message == "turnOn")
             GetComponent<Light>().intensity = 8f;
+		this.lightSound.Play ();
+			
     }
 }

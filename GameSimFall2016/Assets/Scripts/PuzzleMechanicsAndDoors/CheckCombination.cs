@@ -57,6 +57,7 @@ public class CheckCombination : MonoBehaviour {
                 foreach (GameObject indLight in allLights)
                 {
                     indLight.GetComponent<Light>().intensity = 0;
+					indLight.GetComponent<AudioSource> ().Stop ();
                 }
             }
         }
