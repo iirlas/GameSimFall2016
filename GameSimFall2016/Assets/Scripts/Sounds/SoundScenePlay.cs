@@ -13,6 +13,8 @@ public class SoundScenePlay : MonoBehaviour {
 	public AudioClip testOverworld;
 	public AudioClip creditMusic;
 
+	bool meetRequirements = false;
+
 
 
 	string nameTest = "";
@@ -21,6 +23,11 @@ public class SoundScenePlay : MonoBehaviour {
 
 	//destroys the game object if there is two.
 	void Awake(){
+
+
+		if (this.testStartingArea != null && this.titleScreenMusic != null && this.reduxTutorialTemple != null && testOverworld != null && creditMusic != null) {
+			this.meetRequirements = true;
+		}
 
 		nameTest = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 		/*if (FindObjectsOfType (GetType ()).Length > 1 && this.levelMusic.isPlaying == false) {
@@ -40,68 +47,70 @@ public class SoundScenePlay : MonoBehaviour {
 		}*/
 		// For change of songs only
 		// changes the song of the player to play another one based on the name of the scene.
-		if (this.nameTest.Equals ("TestStartingArea") && OnlyOnce == false) {
-			levelMusic.Stop ();
-			levelMusic.volume = .8f;
-			Debug.Log ("The name of the Scene -" + nameTest + "-");
-			levelMusic.clip = this.testStartingArea;
-			Debug.Log("Birds " + this.levelMusic.isPlaying);
-			levelMusic.Play ();
-			OnlyOnce = true;
-
-		}
-		if (this.nameTest.Equals("TestOverworld") && OnlyOnce == false) {
-			levelMusic.Stop ();
-			levelMusic.volume = .5f;
-			Debug.Log ("The name of the Scene -" + nameTest + "-");
-			Debug.Log("TestOverworld " + this.levelMusic.isPlaying);
-			levelMusic.clip = this.testOverworld;
-			levelMusic.Play ();
-			OnlyOnce = true;
-
-		}
-		if (this.nameTest.Equals("ReduxTutorialTemple")  && OnlyOnce == false) {
-			levelMusic.Stop ();
-			levelMusic.volume = .2f;
-			Debug.Log ("The name of the Scene -" + nameTest + "-");
-			Debug.Log("Redux " + this.levelMusic.isPlaying);
-			levelMusic.clip = this.reduxTutorialTemple;
-			levelMusic.Play ();
-			OnlyOnce = true;
-
-		}
-		if (this.nameTest.Equals("JaguarSetup") && OnlyOnce == false) {
-			levelMusic.Stop ();
-			levelMusic.volume = .4f;
-			Debug.Log ("The name of the Scene -" + nameTest + "-");
-			Debug.Log("Jaguar " + this.levelMusic.isPlaying);
-			levelMusic.clip = this.reduxTutorialTemple;
-			levelMusic.Play ();
-			OnlyOnce = true;
-
-		}
-			
-		if (this.nameTest.Equals ("TitleScreen")  && OnlyOnce == false) {
-			if (this.levelMusic.clip != this.titleScreenMusic) {
+		if (this.meetRequirements == true) {
+			if (this.nameTest.Equals ("TestStartingArea") && OnlyOnce == false) {
 				levelMusic.Stop ();
-				levelMusic.volume = .7f;
+				levelMusic.volume = .8f;
 				Debug.Log ("The name of the Scene -" + nameTest + "-");
-				Debug.Log("Title " + this.levelMusic.isPlaying);
-				levelMusic.clip = this.titleScreenMusic;
+				levelMusic.clip = this.testStartingArea;
+				Debug.Log ("Birds " + this.levelMusic.isPlaying);
 				levelMusic.Play ();
 				OnlyOnce = true;
 
 			}
+			if (this.nameTest.Equals ("TestOverworld") && OnlyOnce == false) {
+				levelMusic.Stop ();
+				levelMusic.volume = .5f;
+				Debug.Log ("The name of the Scene -" + nameTest + "-");
+				Debug.Log ("TestOverworld " + this.levelMusic.isPlaying);
+				levelMusic.clip = this.testOverworld;
+				levelMusic.Play ();
+				OnlyOnce = true;
 
-		}
-		if (this.nameTest.Equals ("CreditsScene")  && OnlyOnce == false) {
-			levelMusic.Stop ();
-			levelMusic.volume = .5f;
-			Debug.Log ("The name of the Scene -" + nameTest + "-");
-			Debug.Log("credits " + this.levelMusic.isPlaying);
-			levelMusic.clip = this.creditMusic;
-			levelMusic.Play ();
-			OnlyOnce = true;
+			}
+			if (this.nameTest.Equals ("ReduxTutorialTemple") && OnlyOnce == false) {
+				levelMusic.Stop ();
+				levelMusic.volume = .2f;
+				Debug.Log ("The name of the Scene -" + nameTest + "-");
+				Debug.Log ("Redux " + this.levelMusic.isPlaying);
+				levelMusic.clip = this.reduxTutorialTemple;
+				levelMusic.Play ();
+				OnlyOnce = true;
+
+			}
+			if (this.nameTest.Equals ("JaguarSetup") && OnlyOnce == false) {
+				levelMusic.Stop ();
+				levelMusic.volume = .4f;
+				Debug.Log ("The name of the Scene -" + nameTest + "-");
+				Debug.Log ("Jaguar " + this.levelMusic.isPlaying);
+				levelMusic.clip = this.reduxTutorialTemple;
+				levelMusic.Play ();
+				OnlyOnce = true;
+
+			}
+			
+			if (this.nameTest.Equals ("TitleScreen") && OnlyOnce == false) {
+				if (this.levelMusic.clip != this.titleScreenMusic) {
+					levelMusic.Stop ();
+					levelMusic.volume = .7f;
+					Debug.Log ("The name of the Scene -" + nameTest + "-");
+					Debug.Log ("Title " + this.levelMusic.isPlaying);
+					levelMusic.clip = this.titleScreenMusic;
+					levelMusic.Play ();
+					OnlyOnce = true;
+
+				}
+
+			}
+			if (this.nameTest.Equals ("CreditsScene") && OnlyOnce == false) {
+				levelMusic.Stop ();
+				levelMusic.volume = .5f;
+				Debug.Log ("The name of the Scene -" + nameTest + "-");
+				Debug.Log ("credits " + this.levelMusic.isPlaying);
+				levelMusic.clip = this.creditMusic;
+				levelMusic.Play ();
+				OnlyOnce = true;
+			}
 		}
 			
 		//DontDestroyOnLoad (this);

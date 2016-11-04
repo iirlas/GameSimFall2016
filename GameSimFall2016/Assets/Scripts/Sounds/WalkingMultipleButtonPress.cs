@@ -20,7 +20,7 @@ public class WalkingMultipleButtonPress : MonoBehaviour {
 				if (walkingAudio.isPlaying == false) {
 
 					walkingAudio.Play ();
-               Debug.Log("PLAYSOUNDSHIT" + this.walkingAudio.isPlaying);
+					Debug.Log ("PLAYSOUNDSHIT " + this.walkingAudio.isPlaying);
 
 				}
 
@@ -33,10 +33,15 @@ public class WalkingMultipleButtonPress : MonoBehaviour {
 
 			} else if (Input.GetKey (KeyCode.W) == true && Input.GetKey (KeyCode.D) == true && Input.GetKey (KeyCode.A) == true && Input.GetKey (KeyCode.S) == false) {
 				if (walkingAudio.isPlaying == false) {
-
 					walkingAudio.Play ();
 				}
 
+
+			}else if (Input.GetKey (KeyCode.W) == true && Input.GetKey (KeyCode.D) == false && Input.GetKey (KeyCode.A) == true && Input.GetKey (KeyCode.S) == false) {
+					if (walkingAudio.isPlaying == false) {
+
+						walkingAudio.Play ();
+					}
 			} else if (Input.GetKey (KeyCode.W) == true && Input.GetKey (KeyCode.D) == true && Input.GetKey (KeyCode.A) == true && Input.GetKey (KeyCode.S) == true) {
 				if (walkingAudio.isPlaying == false) {
 

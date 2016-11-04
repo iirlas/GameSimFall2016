@@ -11,12 +11,16 @@ public class WalkingAudioSwap : MonoBehaviour {
 
 	string SceneName = "";
 
+
+	//Switches the walking audio when in different scenes.
 	void Awake () {
 		SceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-		if (SceneName.Equals ("TestStartingArea")) {
+		if (SceneName.Equals ("TestStartingArea") && this.walkingOnGrass != null) {
 			walkingSound.clip = walkingOnGrass;
 		} else {
-			walkingSound.clip = walkingOnTile;
+			if (walkingOnTile != null) {
+				walkingSound.clip = walkingOnTile;
+			}
 		}
 
 	}
