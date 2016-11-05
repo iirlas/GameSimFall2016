@@ -21,7 +21,7 @@ public class Ant : Enemy
    //-----------------------------------------------------------------------------
    // Public Inspector-editable variables
    [Tooltip("Changing this value will change the detection radius of the Ant.")]
-   private float detectionRadius; // How far out the Ant will search for the player.
+   public float detectionRadius = 5; // How far out the Ant will search for the player.
 
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
    public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
@@ -81,7 +81,6 @@ public class Ant : Enemy
       }
 
       this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
-      this.detectionRadius = 40;
       this.myType = enType.ANT;
 
    }
@@ -125,6 +124,13 @@ public class Ant : Enemy
 
       checkAntHealth();
       stateUpdate();
+   }
+
+   //=============================================================================
+   // Sets the detection radius of this ant to the passed value.
+   public void setDetectionRadius(float radius)
+   {
+      this.detectionRadius = radius;
    }
 
    //=============================================================================

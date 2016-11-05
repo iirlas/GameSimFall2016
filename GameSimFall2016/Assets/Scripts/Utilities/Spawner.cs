@@ -23,6 +23,10 @@ public class Spawner : MonoBehaviour
       PAUSED,
       DONE
    }
+
+   [Tooltip("The distance that the spawned enemy will recognized the player")]
+   public float detectionRadius;
+
    [Tooltip("The total number of enemies you want this spawner to spawn.")]
    public int totalNumberOfEnemies;
 
@@ -104,7 +108,10 @@ public class Spawner : MonoBehaviour
    void spawnEnemy()
    {
       Vector3 startPos = this.spawnPoint.transform.position;
-      this.enemyList.Add(Instantiate(enemy, startPos, Quaternion.identity) as GameObject);
+      GameObject ant = Instantiate(enemy, startPos, Quaternion.identity) as GameObject;
+      ant.GetComponent<Ant>().setDetectionRadius(this.detectionRadius);
+      this.enemyList.Add(ant);
+
    }
 
    //========================================================================================================
