@@ -49,7 +49,8 @@ public class ThirdPersonCamera : MonoBehaviour {
         if (kira != null && kira.target != null)
         {
             Quaternion rotation = myPlayer.transform.rotation;
-            transform.position = kira.transform.position + rotation * (pivotPoint);
+            transform.position = kira.transform.position + rotation * (pivotPoint) - 
+                                 (transform.forward * 2);
 
             transform.LookAt(kira.target.position, Vector3.up);
             //myAngle.y = Mathf.LerpAngle(transform.eulerAngles.y, myPlayer.transform.eulerAngles.y,speed * Time.deltaTime );

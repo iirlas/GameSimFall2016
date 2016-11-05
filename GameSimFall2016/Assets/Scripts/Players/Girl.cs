@@ -48,15 +48,10 @@ public class Girl : Player {
         {
             if (isGrounded(out hit))
             {
+                animator.applyRootMotion = true;
                 setParent(hit);
-                if (myTarget == null)
-                {
-                    movePlayer();
-                }
-                else
-                {
-                    strafe();
-                }
+                movePlayer();
+
                 if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
                 {
                     animator.SetInteger("state", 1);
@@ -68,6 +63,7 @@ public class Girl : Player {
             }
             else
             {
+                animator.applyRootMotion = false;
                 animator.SetInteger("state", 2);
                 playerState = State.FALL;
             }
@@ -80,6 +76,8 @@ public class Girl : Player {
 
         if (Input.GetButtonDown("Attack") && myStates.ContainsKey(State.ATTACK))
         {
+            animator.SetInteger("state", 3);
+            animator.SetInteger("substate", 2);
             playerState = State.ATTACK;
             this.slingShot.volume = .05f;
 			   this.slingShot.Play ();
@@ -115,31 +113,52 @@ public class Girl : Player {
 
     void runAttackState()
     {
-        animator.SetInteger("state", 0);
+
         if (!isGrounded())
         {
+            animator.SetInteger("state", 2);
             playerState = State.FALL;
             return;
         }
-
-        if ( myTarget == null )
+        
+        if (Input.GetButtonDown("Vertical"))
         {
-            movePlayer();
+            animator.SetInteger("state", 0);
+            playerState = Player.State.DEFAULT;
+        }
+
+        strafe();
+
+
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shoot") && animator.GetInteger("substate") != 0)
+        {
+            animator.SetInteger("substate", 0);
+            fire();
+        }
+        else if (Input.GetButtonDown("Attack") && animator.GetCurrentAnimatorStateInfo(0).IsName("Posing"))//
+        {
+            animator.SetInteger("substate", 1);
+            //animator.SetInteger("state", 1);
+            //animator.SetInteger("substate", 0);
+            //playerState = Player.State.DEFAULT;
+        }
+        else if (Input.GetButtonDown("Center"))
+        {
+            isTargeting = !isTargeting;
+        }
+
+        if (isTargeting)
+        {
+            if (!findTargets())
+            {
+                isTargeting = false;
+            }
         }
         else
         {
-            strafe();
+            myTarget = null;
         }
-
-        //if (Input.GetButton("Attack")) //fire a projectile towards the shooting target.
-        //{
-        GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
-        Rigidbody rockBody = rock.GetComponent<Rigidbody>();
-        //Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
-        Vector3 force = (target != null ? (target.position - rigidbody.position).normalized : transform.forward) * shootingForce;
-        rockBody.AddForce(force, ForceMode.Impulse);  // should use velocity
-        playerState = Player.State.DEFAULT;
-        //}
 
         ////toggle our shooting target
         //if (Input.GetButtonDown("Action") && myTargets.Length != 0)
@@ -149,23 +168,37 @@ public class Girl : Player {
         //}
     }
 
+    void fire ()
+    {
+        GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
+        Rigidbody rockBody = rock.GetComponent<Rigidbody>();
+        //Physics.IgnoreCollision(rockBody.GetComponent<Collider>(), rigidbody.GetComponent<Collider>());
+        Vector3 force = (target != null ? (target.position - rigidbody.position).normalized : transform.forward) * shootingForce;
+        rockBody.AddForce(force, ForceMode.Impulse);  // should use velocity
+    }
+
     void strafe ()
     {
         Vector3 cameraFoward = camera.transform.forward;
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        if (myTarget != null)
-        {
-            //rotate towards the shooting target
-            Vector3 direction = myTarget.position - rigidbody.position;
-            direction.y = 0;//aligns facing direction with the ground.
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
-            rigidbody.position += ((camera.transform.forward * v) +
-                                   (camera.transform.right * h)) *
-                                    movementSpeed * Time.deltaTime;
-        }
+
+        Vector3 direction = camera.transform.forward;
+        direction.y = 0;//aligns facing direction with the ground.
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
+
+        animator.SetFloat("Horizontal", h);
+
+        //if (myTarget != null)
+        //{
+        //    //rotate towards the shooting target
+        //    rigidbody.position += ((camera.transform.forward * v) +
+        //                           (camera.transform.right * h)) *
+        //                            movementSpeed * Time.deltaTime;
+        //}
     }
 
     bool findTargets()
@@ -195,6 +228,7 @@ public class Girl : Player {
         {
             animator.SetInteger("state", 0);
         }
+        animator.SetFloat("Fear", StatusManager.getInstance().fear);
         //posisonEffect.SetActive((status & Status.POISON) == Status.POISON);
         //fireEffect.SetActive((status & Status.FIRE) == Status.FIRE);
         //darkEffect.SetActive((status & Status.DARK) == Status.DARK);
