@@ -46,6 +46,9 @@ public class BasicTrigger : MonoBehaviour
     public TriggerEvent onEvent = new TriggerEvent();
     public TriggerEvent onEventEnd = new TriggerEvent();
 
+	public AudioSource rightSound;
+	public bool musicPlayOnce = false;
+
     private State myNextState;
 
     public BasicTrigger()
@@ -75,6 +78,11 @@ public class BasicTrigger : MonoBehaviour
     {
         if (myNextState == State.ENTER && type == Type.COLLISION && collision.transform.tag == activatorTag)
         {
+			Debug.Log ("Inside the coillision where the player collides with the player");
+			if (this.musicPlayOnce == false && this.rightSound != null) {
+				this.rightSound.Play ();
+				this.musicPlayOnce = true;
+			}
             myNextState = State.EXIT;
             activator = collision.gameObject;
             onEvent.Invoke(this);
