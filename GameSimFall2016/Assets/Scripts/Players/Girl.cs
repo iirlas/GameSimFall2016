@@ -120,8 +120,8 @@ public class Girl : Player {
             playerState = State.FALL;
             return;
         }
-        
-        if (Input.GetButtonDown("Vertical"))
+
+        if (Input.GetButton("Vertical") && animator.GetCurrentAnimatorStateInfo(0).IsName("Posing"))
         {
             animator.SetInteger("state", 0);
             playerState = Player.State.DEFAULT;
