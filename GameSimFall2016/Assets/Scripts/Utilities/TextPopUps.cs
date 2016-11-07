@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class TextPopUps : MonoBehaviour {
+
+    [TextArea]
+    public string text;
     [Tooltip("This is the string you wish to print, new lines should be denoted with \\n")]
     public string printLineOne;
     public string printLineTwo;
@@ -13,7 +16,6 @@ public class TextPopUps : MonoBehaviour {
     public Text printHere;
     [Tooltip("Should the text backer/text box show?")]
     public bool printTextBack;
-
 
 	// Use this for initialization
 	void Start () {
@@ -29,18 +31,21 @@ public class TextPopUps : MonoBehaviour {
     {
         if (other.name.Equals("Kira"))
         {
-           if (printLineThree != "")
-           {
-              printHere.text = printLineOne + "\n" + printLineTwo + "\n" + printLineThree;
-           }
-           else if (printLineTwo != "")
-           {
-              printHere.text = printLineOne + "\n" + printLineTwo;
-           }
-           else
-           {
-              printHere.text = printLineOne;
-           }
+           printHere.text = text;
+
+
+           //if (printLineThree != "")
+           //{
+           //   printHere.text = printLineOne + "\n" + printLineTwo + "\n" + printLineThree;
+           //}
+           //else if (printLineTwo != "")
+           //{
+           //   printHere.text = printLineOne + "\n" + printLineTwo;
+           //}
+           //else
+           //{
+           //   printHere.text = printLineOne;
+           //}
               textBack.enabled = printTextBack;
         }
     }
