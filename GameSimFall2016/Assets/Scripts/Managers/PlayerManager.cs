@@ -15,19 +15,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     // Use this for initialization
     override protected void Init ()
     {
-        players = GameObject.FindObjectsOfType<Player>();
-        if ( players.Length > 0 )
-        {
-            if ( players.Length > 1 )
-            {
-                currentPlayer = players.First(player => { return player != null && player is Girl; });
-            }
-            if (currentPlayer == null)
-            {
-                currentPlayer = players.First(player => { return player != null; });
-            }
-            ignoreCollision();
-        }
+        findPlayers();
     }
 
     private void FollowPlayer()
@@ -96,6 +84,23 @@ public class PlayerManager : Singleton<PlayerManager> {
         //        }
         //    //}
         ////}
+    }
+
+    public void findPlayers()
+    {
+        players = GameObject.FindObjectsOfType<Player>();
+        if (players.Length > 0)
+        {
+            if (players.Length > 1)
+            {
+                currentPlayer = players.First(player => { return player != null && player is Girl; });
+            }
+            if (currentPlayer == null)
+            {
+                currentPlayer = players.First(player => { return player != null; });
+            }
+            ignoreCollision();
+        }
     }
 
     void OnDrawGizmosSelected()
