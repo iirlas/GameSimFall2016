@@ -854,7 +854,7 @@ GameObject:
   - 33: {fileID: 3398012}
   - 65: {fileID: 6509392}
   - 23: {fileID: 2321630}
-  - 114: {fileID: 11412550}
+  - 114: {fileID: 11456036}
   m_Layer: 0
   m_Name: jagFlood
   m_TagString: Untagged
@@ -873,7 +873,7 @@ GameObject:
   - 33: {fileID: 3315254}
   - 65: {fileID: 6579664}
   - 23: {fileID: 2352354}
-  - 114: {fileID: 11424680}
+  - 114: {fileID: 11499452}
   m_Layer: 0
   m_Name: empty1 (1)
   m_TagString: Untagged
@@ -4954,76 +4954,6 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11412550
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Player
-  activator: {fileID: 0}
-  type: 0
-  canRepeat: 0
-  onEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: jagFlood
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  onEventEnd:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &11424680
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Player
-  activator: {fileID: 0}
-  type: 0
-  canRepeat: 0
-  onEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: empty
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  onEventEnd:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11425566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5060,6 +4990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonOnClick: {fileID: 0}
+  buttonOffClick: {fileID: 0}
 --- !u!114 &11452200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5129,6 +5061,26 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11456036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66939cc46a849e4b97ae0edd8cfd59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 'Looks like the path is flooded...
+
+    Maybe I can make out the edges of the path?'
+  printLineOne: 
+  printLineTwo: 
+  printLineThree: 
+  textBack: {fileID: 0}
+  printHere: {fileID: 0}
+  printTextBack: 1
 --- !u!114 &11471660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5200,6 +5152,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 0}
+--- !u!114 &11499452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66939cc46a849e4b97ae0edd8cfd59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 
+  printLineOne: 
+  printLineTwo: 
+  printLineThree: 
+  textBack: {fileID: 0}
+  printHere: {fileID: 0}
+  printTextBack: 0
 --- !u!135 &13521570
 SphereCollider:
   m_ObjectHideFlags: 1
