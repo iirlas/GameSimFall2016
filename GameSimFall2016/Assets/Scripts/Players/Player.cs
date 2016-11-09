@@ -229,13 +229,16 @@ abstract public class Player : MonoBehaviour
             //            angle of joystick  + angle of camera
            float angle = (Mathf.Atan2(h, v) + Mathf.Atan2(cameraFoward.x, cameraFoward.z)) * Mathf.Rad2Deg;
 
-           //Vector3 moveTo = transform.forward * movementSpeed; //* Time.deltaTime;
-           //moveTo.y = rigidbody.velocity.y;
-           //rigidbody.velocity = moveTo;
 
 
+            if ( !GetComponent<Animator>().hasRootMotion )
+            {
+               Vector3 moveTo = transform.forward * movementSpeed; //* Time.deltaTime;
+               moveTo.y = rigidbody.velocity.y;
+               rigidbody.velocity = moveTo;
+               //rigidbody.position += transform.forward * movementSpeed * Time.deltaTime;
+            }
             // smooths the rotation transition
-            //rigidbody.position += transform.forward * movementSpeed * Time.deltaTime;
             smoothRotateTowards(0, angle, 0, Time.deltaTime * rotationSmoothSpeed);
             collider.material = myPhysicMaterials[1];
         }
