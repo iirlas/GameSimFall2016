@@ -8577,6 +8577,7 @@ GameObject:
   - 23: {fileID: 781232838}
   - 114: {fileID: 781232836}
   - 114: {fileID: 781232837}
+  - 114: {fileID: 781232842}
   m_Layer: 0
   m_Name: whatThat (2)
   m_TagString: Untagged
@@ -8592,9 +8593,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 781232835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e822851bbb10044f87b1607e6b64d44, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d08b530f91865a4b946541285aa4ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  darkness: {fileID: 1252524401}
 --- !u!114 &781232837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8670,6 +8672,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 19
+--- !u!114 &781232842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 781232835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  type: 0
+  canRepeat: 0
+  onEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1537989740}
+        m_MethodName: playEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: startTut
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!4 &782381878 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e58bcf4fb9f7d4b4c8d7fa8109ac0eca, type: 3}
@@ -8787,6 +8824,7 @@ GameObject:
   - 23: {fileID: 866307621}
   - 114: {fileID: 866307619}
   - 114: {fileID: 866307620}
+  - 114: {fileID: 866307625}
   m_Layer: 0
   m_Name: whatThat (1)
   m_TagString: Untagged
@@ -8802,9 +8840,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 866307618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e822851bbb10044f87b1607e6b64d44, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d08b530f91865a4b946541285aa4ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  darkness: {fileID: 866307618}
 --- !u!114 &866307620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8880,6 +8919,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
+--- !u!114 &866307625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 866307618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  type: 0
+  canRepeat: 0
+  onEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1537989740}
+        m_MethodName: playEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: follow
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1001 &870403897
 Prefab:
   m_ObjectHideFlags: 0
@@ -9066,8 +9140,9 @@ GameObject:
   - 33: {fileID: 911334062}
   - 65: {fileID: 911334061}
   - 23: {fileID: 911334060}
-  - 114: {fileID: 911334064}
   - 114: {fileID: 911334059}
+  - 114: {fileID: 911334064}
+  - 114: {fileID: 911334065}
   m_Layer: 0
   m_Name: whatThat
   m_TagString: Untagged
@@ -9160,9 +9235,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 911334058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e822851bbb10044f87b1607e6b64d44, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d08b530f91865a4b946541285aa4ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  darkness: {fileID: 522175360}
+--- !u!114 &911334065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911334058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  type: 0
+  canRepeat: 0
+  onEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1537989740}
+        m_MethodName: playEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: whatThat
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1001 &911521670
 Prefab:
   m_ObjectHideFlags: 0
@@ -12560,7 +12671,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
 --- !u!1 &1536275199
 GameObject:
   m_ObjectHideFlags: 0
@@ -12655,6 +12766,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
+--- !u!114 &1537989740 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11458398, guid: 68c0bebf66e47a547b0a83f615c826e7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1073176329}
+  m_Script: {fileID: 11500000, guid: f9a56fa29d4f58c4199577e83b70f9d3, type: 3}
 --- !u!1001 &1541201278
 Prefab:
   m_ObjectHideFlags: 0
@@ -13513,6 +13630,7 @@ GameObject:
   - 65: {fileID: 1933529283}
   - 23: {fileID: 1933529282}
   - 114: {fileID: 1933529281}
+  - 114: {fileID: 1933529286}
   m_Layer: 0
   m_Name: startTut
   m_TagString: Untagged
@@ -13597,6 +13715,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!114 &1933529286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933529280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  type: 0
+  canRepeat: 0
+  onEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1537989740}
+        m_MethodName: playEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: startTut
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!4 &1941335709 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e58bcf4fb9f7d4b4c8d7fa8109ac0eca, type: 3}

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RockScript : MonoBehaviour {
 
+   // Hehehe
 	public AudioSource rockSlideSound;
 	public string animationName = "SpikeWall05";
 	Vector3 transformCheck;

@@ -22,6 +22,11 @@ public class delayedLoad : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
+      if (Input.anyKeyDown)
+      {
+         loadScene();
+      }
+
       if (start)
       {
          dTime += Time.deltaTime;

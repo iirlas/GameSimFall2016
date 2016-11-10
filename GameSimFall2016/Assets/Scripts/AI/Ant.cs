@@ -76,7 +76,7 @@ public class Ant : Enemy
       {
          this.myHealth = ANTHEALTHDEFAULT;
          this.myDamage = ANTDAMAGEDEFAULT;
-         this.mySpeed = ANTSPEEDDEFAULT;
+         //this.mySpeed = ANTSPEEDDEFAULT;
          this.myRotationSpeed = ANTROTATIONSPEEDDEFAULT;
       }
 

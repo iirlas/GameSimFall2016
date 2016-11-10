@@ -2383,6 +2383,7 @@ GameObject:
   - 65: {fileID: 6516930}
   - 23: {fileID: 2367666}
   - 114: {fileID: 11490112}
+  - 114: {fileID: 11459422}
   m_Layer: 0
   m_Name: TutFearMeter
   m_TagString: Untagged
@@ -4677,6 +4678,7 @@ GameObject:
   - 65: {fileID: 6525490}
   - 23: {fileID: 2374864}
   - 114: {fileID: 11447756}
+  - 114: {fileID: 11415540}
   m_Layer: 5
   m_Name: Tut1
   m_TagString: Untagged
@@ -15078,6 +15080,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonOnClick: {fileID: 0}
   buttonOffClick: {fileID: 0}
+--- !u!114 &11415540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  type: 0
+  canRepeat: 0
+  onEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: playEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Tut1
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11416172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15178,6 +15215,41 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11459422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  type: 0
+  canRepeat: 0
+  onEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: playEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TutFearMeter
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11463380
 MonoBehaviour:

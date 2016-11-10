@@ -30,7 +30,7 @@ public class DebugKeys : MonoBehaviour {
       // Load next scene or previous scene
       if ( Input.GetKeyDown(KeyCode.PageUp) )             
       {
-         if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+         if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings)
          {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
          }
