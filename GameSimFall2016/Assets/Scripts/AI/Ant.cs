@@ -95,7 +95,6 @@ public class Ant : Enemy
    // Update is called once per frames
    void Update()
    {
-      Debug.Log(this.myState);
       switch (this.myState)
       {
          //-----------------------------------------------------------------------------
@@ -146,6 +145,8 @@ public class Ant : Enemy
             //check to see if the player has entered the aggression radius
             if (isPlayerNearby())
             {
+               this.targetIsPlayer = true;
+               this.targetDestination = thePlayer.transform.position;
                this.myState = enState.TRACK;
             }
             break;
@@ -198,6 +199,7 @@ public class Ant : Enemy
       if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
       {
          this.myState = enState.ATTACK;
+         this.targetIsPlayer = false;
          this.targetDestination = startPos;
 
       }
@@ -233,18 +235,18 @@ public class Ant : Enemy
                                         this.transform.position.y,
                                         targetDestination.z));
 
-		//Plays ant walking sound if it is not player already.
-
-
-      //this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
-      //this.GetComponent<NavMeshAgent>().SetDestination(thePlayer.transform.position - this.transform.forward * 1.5f);
-      //if ( this.targetDestination != thePlayer.transform.position )
-      if ( this.targetIsPlayer == false )
+      if (this.targetIsPlayer == false)
       {
-         if ( Vector3.Distance(this.targetDestination, this.transform.position) <= 0.2f )
+         if (Vector3.Distance(this.targetDestination, this.transform.position) <= 0.2f)
          {
+            Debug.Log("Targeting Player");
             this.targetDestination = thePlayer.transform.position;
+            this.targetIsPlayer = true;
          }
+      }
+      else
+      {
+         this.targetDestination = thePlayer.transform.position;
       }
 
       this.GetComponent<NavMeshAgent>().SetDestination(targetDestination);
