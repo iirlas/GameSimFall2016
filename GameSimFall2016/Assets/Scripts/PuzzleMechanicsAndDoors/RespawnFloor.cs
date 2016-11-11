@@ -11,14 +11,14 @@ using System.Collections;
 public class RespawnFloor : MonoBehaviour
 {
 
-   private Player[] playerUnits; //to collect the player units together
+   
    public float damage = 15.0f;
 
 
    // Use this for initialization
    void Awake()
    {
-      playerUnits = GameObject.FindObjectsOfType<Player>(); //populate array
+
    }
 
    // Update is called once per frame
@@ -30,7 +30,7 @@ public class RespawnFloor : MonoBehaviour
    public void OnEvent(BasicTrigger trigger) //Basic Trigger script
    {
       {
-         foreach (Player unit in playerUnits)
+         foreach (Player unit in PlayerManager.getInstance().players)
          {
              if (trigger.activator.Equals(unit.gameObject))
             {

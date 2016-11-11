@@ -26,7 +26,7 @@ public class LightCollider : MonoBehaviour {
 
     void OnTriggerStay (Collider other)
     {
-        if (kira.transform == other.transform && StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
+        if (kira != null &&  kira.transform == other.transform && StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
         {
             StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
         }
@@ -34,7 +34,7 @@ public class LightCollider : MonoBehaviour {
 
     void OnTriggerExit (Collider other)
     {
-        if (kira.transform == other.transform)
+        if (kira != null && kira.transform == other.transform)
         {
             StatusManager.getInstance().playerStatus = StatusManager.Status.FEAR;
         }

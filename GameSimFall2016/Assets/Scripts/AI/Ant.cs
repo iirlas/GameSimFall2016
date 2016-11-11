@@ -247,7 +247,7 @@ public class Ant : Enemy
       if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
       {
          //this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
-         this.GetComponent<NavMeshAgent>().SetDestination(thePlayer.transform.position);
+         this.GetComponent<NavMeshAgent>().SetDestination(thePlayer.transform.position - this.transform.forward * 1.5f);
       }
    }
 

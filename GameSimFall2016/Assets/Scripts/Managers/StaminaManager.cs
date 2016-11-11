@@ -37,7 +37,7 @@ public class StaminaManager : MonoBehaviour
 
       if (this.mySlider.gameObject.activeInHierarchy == true)
       {
-         Debug.Log("Updating bar");
+         //Debug.Log("Updating bar");
          updateStaminaBar();
       }
       

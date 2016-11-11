@@ -236,7 +236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.953, y: 1.55, z: 0.052}
+  m_LocalPosition: {x: -4.95, y: 1.55, z: 4.89}
   m_LocalScale: {x: 0.1, y: 3, z: 2}
   m_Children: []
   m_Father: {fileID: 438892}
@@ -272,7 +272,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112422}
   m_LocalRotation: {x: 0.00000005760122, y: 0.7071062, z: -0.000000057601117, w: 0.7071075}
-  m_LocalPosition: {x: -0.003, y: 0, z: 0.065}
+  m_LocalPosition: {x: 0, y: -0, z: 0.06}
   m_LocalScale: {x: 1, y: 1, z: 1.75}
   m_Children: []
   m_Father: {fileID: 443074}
@@ -295,8 +295,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191098}
-  m_LocalRotation: {x: 0, y: -0.7071089, z: 0, w: -0.70710474}
-  m_LocalPosition: {x: -0.057, y: 0.113, z: 17.514}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.000003233552}
+  m_LocalPosition: {x: 7.38, y: 1.599, z: 121.882}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 491006}
@@ -953,7 +953,7 @@ MonoBehaviour:
   onEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11447838}
+      - m_Target: {fileID: 0}
         m_MethodName: OnEvent
         m_Mode: 0
         m_Arguments:
@@ -965,15 +965,26 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: OnEvent
-        m_Mode: 0
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: findPlayers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
@@ -1002,6 +1013,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonOnClick: {fileID: 0}
+  buttonOffClick: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

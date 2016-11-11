@@ -18,7 +18,7 @@ public class DebugKeys : MonoBehaviour {
 
    void Start()
    {
-       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
+       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null || player is Girl; });
        worldSpawn = thePlayer.transform.position;
    }
 
