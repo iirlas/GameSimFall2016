@@ -223,7 +223,7 @@ public class Ant : Enemy
    {
       if (isDefeated())
       {
-
+         this.myState = enState.DEAD;
 		}
    }
 
