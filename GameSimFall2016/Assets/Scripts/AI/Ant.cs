@@ -199,9 +199,7 @@ public class Ant : Enemy
       {
          this.myState = enState.ATTACK;
          this.targetDestination = startPos;
-         if (this.antAttack.isPlaying == false) {
-				this.antAttack.Play ();
-			}
+
       }
    }
 
@@ -223,11 +221,7 @@ public class Ant : Enemy
    {
       if (isDefeated())
       {
-		if (this.antSplat.isPlaying == false) {
-			this.antSplat.Play ();
-		}
-         this.myState = enState.DEAD;
-         this.antWalking.Stop ();	
+
 		}
    }
 
@@ -240,10 +234,7 @@ public class Ant : Enemy
                                         targetDestination.z));
 
 		//Plays ant walking sound if it is not player already.
-      if(this.antWalking.isPlaying == false)
-      {
-         this.antWalking.Play ();
-      }
+
 
       //this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
       //this.GetComponent<NavMeshAgent>().SetDestination(thePlayer.transform.position - this.transform.forward * 1.5f);
