@@ -46,11 +46,9 @@ public class Ant : Enemy
    private const float ANTROTATIONSPEEDDEFAULT = 1;
    private const float ATTACKINTERVAL = 1.0f;        // How often the Ant will attack
 
-	// Ant Sounds 
-	public AudioSource antWalking;
-	public AudioSource antSplat;
-	public AudioSource antAttack;
-
+   private Vector3 startPos;
+   private Vector3 targetDestination;
+   private bool targetIsPlayer;
 
    //-----------------------------------------------------------------------------
    // Private member variable data.
@@ -85,15 +83,19 @@ public class Ant : Enemy
 
    }
 
+   //=============================================================================
+   // Post Initialization things here
    void Start()
    {
       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
+      this.startPos = this.transform.position;
    }
 
    //=============================================================================
    // Update is called once per frames
    void Update()
    {
+      Debug.Log(this.myState);
       switch (this.myState)
       {
          //-----------------------------------------------------------------------------
@@ -102,7 +104,7 @@ public class Ant : Enemy
             break;
          //-----------------------------------------------------------------------------
          case enState.TRACK:
-            pursuePlayer();
+            pursueTarget();
             break;
          //-----------------------------------------------------------------------------
          case enState.ATTACK:
@@ -170,10 +172,9 @@ public class Ant : Enemy
             break;
          //-----------------------------------------------------------------------------
          case enState.MOVE:
-            //if the Ant will patrol, patrol the ant around.
             break;
          //-----------------------------------------------------------------------------
-		case enState.DEAD:
+         case enState.DEAD:
             //Ant is dead, object should be destroyed, if not already.
             killAnt();
             break;
@@ -187,7 +188,6 @@ public class Ant : Enemy
       if(other.tag.Equals("Projectile"))
       {
          damageAnt();
-
       }
    }
 
@@ -198,7 +198,8 @@ public class Ant : Enemy
       if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
       {
          this.myState = enState.ATTACK;
-			if (this.antAttack.isPlaying == false) {
+         this.targetDestination = startPos;
+         if (this.antAttack.isPlaying == false) {
 				this.antAttack.Play ();
 			}
       }
@@ -232,11 +233,11 @@ public class Ant : Enemy
 
    //=============================================================================
    // Follow the player around, until the player enters the hitbox for attacking.
-   void pursuePlayer()
+   void pursueTarget()
    {
-      this.transform.LookAt(new Vector3(thePlayer.transform.position.x,
+      this.transform.LookAt(new Vector3(targetDestination.x,
                                         this.transform.position.y,
-                                        thePlayer.transform.position.z));
+                                        targetDestination.z));
 
 		//Plays ant walking sound if it is not player already.
       if(this.antWalking.isPlaying == false)
@@ -244,11 +245,18 @@ public class Ant : Enemy
          this.antWalking.Play ();
       }
 
-      if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
+      //this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
+      //this.GetComponent<NavMeshAgent>().SetDestination(thePlayer.transform.position - this.transform.forward * 1.5f);
+      //if ( this.targetDestination != thePlayer.transform.position )
+      if ( this.targetIsPlayer == false )
       {
-         //this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
-         this.GetComponent<NavMeshAgent>().SetDestination(thePlayer.transform.position - this.transform.forward * 1.5f);
+         if ( Vector3.Distance(this.targetDestination, this.transform.position) <= 0.2f )
+         {
+            this.targetDestination = thePlayer.transform.position;
+         }
       }
+
+      this.GetComponent<NavMeshAgent>().SetDestination(targetDestination);
    }
 
    //=============================================================================
@@ -287,7 +295,6 @@ public class Ant : Enemy
          else
          {
             //do damage to player.
-            //thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
             StatusManager.getInstance().health -= 5;
             StatusManager.getInstance().fear += 5;
          }
