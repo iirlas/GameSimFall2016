@@ -131,11 +131,20 @@ abstract public class Player : MonoBehaviour
         if (myFollower != null && myFollower != PlayerManager.getInstance().currentPlayer && follower.agent.isOnNavMesh)
         {
             Vector3 target = rigidbody.position - (transform.forward * 2);
+            float distance = Vector3.Distance(transform.position, myFollower.transform.position);
             //target.y = myFollower.transform.position.y;
             //myFollower.rigidbody.MovePosition(Vector3.Lerp(myFollower.rigidbody.position, target, movementSpeed * Time.deltaTime));
-            if (Vector3.Distance(target, transform.position) > 2.0f)
+            if (distance > PlayerManager.getInstance().followDistance)
             {
                 myFollower.agent.destination = target;
+                if (distance > PlayerManager.getInstance().switchDistance)
+                {
+                    myFollower.transform.position = target;
+                }
+            }
+            else
+            {
+                myFollower.agent.destination = myFollower.transform.position;
             }
             //myFollower.smoothRotateTowards((rigidbody.position - myFollower.transform.position).normalized, rotationSmoothSpeed);
         }
