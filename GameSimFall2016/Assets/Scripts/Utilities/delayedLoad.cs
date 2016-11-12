@@ -10,7 +10,7 @@ public class delayedLoad : MonoBehaviour
    public string sceneToLoad = "err";
 
    private float dTime = 0.0f;
-   private bool start = false;
+   public bool start = false;
 
    //==========================================================================
    // Use this for initialization
