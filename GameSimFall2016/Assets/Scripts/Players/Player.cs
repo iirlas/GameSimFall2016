@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public delegate void StateRunner();
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Collider))]
 abstract public class Player : MonoBehaviour
 {
     public enum State
