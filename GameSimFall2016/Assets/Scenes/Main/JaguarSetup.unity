@@ -1224,7 +1224,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22421150, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1300,11 +1300,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11472788, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_Text
@@ -1312,7 +1312,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 143598, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_IsActive
@@ -2325,7 +2325,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 118688, guid: 9b6401f416b11b940818c1d998a01a75, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b6401f416b11b940818c1d998a01a75, type: 2}
@@ -2712,12 +2712,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &1802738956 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11498668, guid: 540dfe7b03666f84bb80292eca27c408,
-    type: 2}
-  m_PrefabInternal: {fileID: 2091511905}
-  m_Script: {fileID: 11500000, guid: 6dfc59789b7ae7145832069c1b42245a, type: 3}
 --- !u!1 &1822890554
 GameObject:
   m_ObjectHideFlags: 0
@@ -3133,11 +3127,21 @@ Prefab:
     - target: {fileID: 11453716, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
       propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1802738956}
+      objectReference: {fileID: 2129175591}
     - target: {fileID: 191098, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
       propertyPath: m_Name
       value: AllPurposeHallway (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 11453716, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
+      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEvent
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2129175591 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11447838, guid: 3787019fa295f6e48bf8ec41d05b2e68,
+    type: 2}
+  m_PrefabInternal: {fileID: 2129175590}
+  m_Script: {fileID: 11500000, guid: 6dfc59789b7ae7145832069c1b42245a, type: 3}
