@@ -76,20 +76,23 @@ public class DamageOnCollision : MonoBehaviour
    // Called when another collider stops colliding with this collider.
    void OnCollisionExit(Collision other)
    {
-      if (!this.isTrigger)
+      if (!this.isTrigger && other.collider.name.Equals("Kira"))
       {
-         takeDamage = false;
-      }
-      if (this.dealFireDamage)
-      {
-         this.fireDamage(false);
+         if (!this.isTrigger)
+         {
+            takeDamage = false;
+         }
+         if (this.dealFireDamage)
+         {
+            this.fireDamage(false);
+         }
       }
    }
 
    // Called when another collider enters this collision zone.
    void OnTriggerEnter(Collider other)
    {
-      if (this.isTrigger && other.name.Equals("Kira"))
+      if (this.isTrigger && other.transform.name.Equals("Kira"))
       {
          if ( this.dealFireDamage )
          {
@@ -109,14 +112,18 @@ public class DamageOnCollision : MonoBehaviour
    // Called when another collider exits this collision zone.
    void OnTriggerExit(Collider other)
    {
-      if (this.isTrigger)
+      if (this.isTrigger && other.transform.name.Equals("Kira"))
       {
-         takeDamage = false;
-      }
+         if (this.isTrigger)
+         {
+            takeDamage = false;
+         }
 
-      if (this.dealFireDamage)
-      {
-         this.fireDamage(false);
+         if (this.dealFireDamage)
+         {
+
+            this.fireDamage(false);
+         }
       }
    }
 
@@ -147,5 +154,6 @@ public class DamageOnCollision : MonoBehaviour
    {
       StatusManager.getInstance().onFire = state;
       StatusManager.getInstance().fear += fearDamageToTake;
+      print("Ping fire" + state);
    }
 }
