@@ -69,6 +69,10 @@ public class Scorpion : Enemy
    //-----------------------------------------------------------------------------
    // A reference to the player.
    protected Player thePlayer;
+   private bool targetIsPlayer;
+   private Vector3 startPos;
+   private Vector3 targetDestination;
+
 
    //=============================================================================
    // Initialize things here
@@ -85,7 +89,6 @@ public class Scorpion : Enemy
       {
          this.myHealth = SCORPIONHEALTHDEFAULT;
          this.myDamage = SCORPIONDAMAGEDEFAULT;
-         this.mySpeed = SCORPIONSPEEDDEFAULT;
          this.myRotationSpeed = SCORPIONROTATIONSPEEDDEFAULT;
 
          this.scorpionPoisonDamageCustom = SCORPIONPOISONDAMAGEDEFAULT;
@@ -93,12 +96,17 @@ public class Scorpion : Enemy
          this.scorpionPoisonIntervalCustom = SCORPIONPOISONINTERVALDEFAULT;
       }
 
+      this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
+
       this.myType = enType.SCORPION;
    }
 
+   //=============================================================================
+   // Post Initialization things here
    void Start()
    {
       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
+      this.startPos = this.transform.position;
    }
    //=============================================================================
    // Update is called once per frames
@@ -112,7 +120,7 @@ public class Scorpion : Enemy
             break;
          //-----------------------------------------------------------------------------
          case enState.TRACK:
-            pursuePlayer();
+            pursueTarget();
             break;
          //-----------------------------------------------------------------------------
          case enState.ATTACK:
@@ -136,6 +144,13 @@ public class Scorpion : Enemy
    }
 
    //=============================================================================
+   // Sets the detection radius of this ant to the passed value.
+   public void setDetectionRadius(float radius)
+   {
+      this.detectionRadius = radius;
+   }
+
+   //=============================================================================
    // Updates the state of this Scorpion, if needed.
    void stateUpdate()
    {
@@ -146,6 +161,8 @@ public class Scorpion : Enemy
             //check to see if the player has entered the aggression radius
             if (isPlayerNearby())
             {
+               this.targetIsPlayer = true;
+               this.targetDestination = thePlayer.transform.position;
                this.myState = enState.TRACK;
             }
             break;
@@ -199,6 +216,9 @@ public class Scorpion : Enemy
       if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
       {
          this.myState = enState.ATTACK;
+         this.targetIsPlayer = false;
+         this.targetDestination = startPos;
+
       }
    }
 
@@ -207,14 +227,15 @@ public class Scorpion : Enemy
    void OnTriggerExit(Collider other)
    {
       if (other.tag.Equals("Player"))
+
       {
          this.myState = enState.TRACK;
       }
    }
 
    //=============================================================================
-   // Check to see if the health of this Scorpion is 0, if so, change the state of this
-   // Scorpion to enState.DEAD
+   // Check to see if the health of this Ant is 0, if so, change the state of this
+   // Ant to enState.DEAD
    void checkScorpionHealth()
    {
       if (isDefeated())
@@ -225,16 +246,27 @@ public class Scorpion : Enemy
 
    //=============================================================================
    // Follow the player around, until the player enters the hitbox for attacking.
-   void pursuePlayer()
+   void pursueTarget()
    {
-      this.transform.LookAt(new Vector3(thePlayer.transform.position.x,
+      this.transform.LookAt(new Vector3(targetDestination.x,
                                         this.transform.position.y,
-                                        thePlayer.transform.position.z));
+                                        targetDestination.z));
 
-      if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
+      if (this.targetIsPlayer == false)
       {
-         this.transform.position += this.transform.forward * this.mySpeed * Time.deltaTime;
+         if (Vector3.Distance(this.targetDestination, this.transform.position) <= 0.2f)
+         {
+            Debug.Log("Targeting Player");
+            this.targetDestination = thePlayer.transform.position;
+            this.targetIsPlayer = true;
+         }
       }
+      else
+      {
+         this.targetDestination = thePlayer.transform.position;
+      }
+
+      this.GetComponent<NavMeshAgent>().SetDestination(targetDestination);
    }
 
    //=============================================================================
@@ -267,15 +299,15 @@ public class Scorpion : Enemy
    {
       if (timeSinceLastAttack == 0.0f)
       {
-         if (StatusManager.getInstance().health <= 0)
+         if (StatusManager.getInstance().health < 1)
          {
-            //do nothing
          }
          else
          {
             //do damage to player.
-            StatusManager.getInstance().health -= 5.0f;
-            StatusManager.getInstance().fear += 20.0f;
+            StatusManager.getInstance().health -= 8;
+            StatusManager.getInstance().fear += 7;
+            StatusManager.getInstance().poisonDamage = 5.0f;
             StatusManager.getInstance().isPoisoned = true;
          }
 
@@ -293,26 +325,28 @@ public class Scorpion : Enemy
    }
 
    //=============================================================================
-   // "Destroys" the Scorpion and all assosciated gameobjects.
+   // "Destroys" the ant and all assosciated gameobjects.
    // ALL enemies will be moved to a magic value, where they will be deactivated.
    void killScorpion()
    {
-      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Scorpion
-      // from clipping back onto the platform after being "killed".
-      this.transform.position = OUTOFBOUNDS;              // Move this Scorpion out of bounds to the predefined location.
-      this.gameObject.SetActive(false);                   // Disable this Scorpion, preventing interactability.
+
+      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
+                                                          // from clipping back onto the platform after being "killed".
+      this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
+      this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.
    }
 
    //=============================================================================
-   // Deal a single point of damage to the Scorpion.
+   // Deal a single point of damage to the ant.
    void damageScorpion()
    {
       this.myHealth -= 1;
+
    }
 
    //=============================================================================
-   // Deal a specific amount of damage to the Scorpion.  A negative number may be
-   // passed to heal the Scorpion by the passed amount.
+   // Deal a specific amount of damage to the ant.  A negative number may be
+   // passed to heal the ant by the passed amount.
    void damageScorpion(int damage)
    {
       this.myHealth -= damage;
