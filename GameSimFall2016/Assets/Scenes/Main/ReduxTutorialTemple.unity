@@ -191,8 +191,10 @@ Prefab:
     - target: {fileID: 11447838, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
       propertyPath: OpenStoneDoorSoundEffect
       value: 
-      objectReference: {fileID: 1058548708}
-    m_RemovedComponents: []
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8279786, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
+    - {fileID: 8230716, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &14342390
@@ -3674,8 +3676,10 @@ Prefab:
     - target: {fileID: 11447838, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
       propertyPath: OpenStoneDoorSoundEffect
       value: 
-      objectReference: {fileID: 587579710}
-    m_RemovedComponents: []
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8279786, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
+    - {fileID: 8230716, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &88934179
@@ -5670,7 +5674,12 @@ Prefab:
       propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11404596, guid: 05669a19d06e2384e9fe78695b5d337c, type: 2}
+      propertyPath: OpenStoneDoorSoundEffect
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8259716, guid: 05669a19d06e2384e9fe78695b5d337c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 05669a19d06e2384e9fe78695b5d337c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &183930633
@@ -7897,19 +7906,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
@@ -10401,6 +10410,10 @@ Prefab:
       propertyPath: camera
       value: 
       objectReference: {fileID: 967958063}
+    - target: {fileID: 11458398, guid: 68c0bebf66e47a547b0a83f615c826e7, type: 2}
+      propertyPath: audioClips.Array.data[42]
+      value: 
+      objectReference: {fileID: 8300000, guid: af5993b78a646b543be3f9a46d168ce5, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68c0bebf66e47a547b0a83f615c826e7, type: 2}
   m_IsPrefabParent: 0
@@ -10504,6 +10517,10 @@ Prefab:
     - target: {fileID: 10802636, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
       propertyPath: m_RenderMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452422, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: OpenStoneDoorSoundEffect
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
@@ -12571,84 +12588,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 583091124}
   m_Mesh: {fileID: 4300000, guid: 98f2efdabcd09cb46a9dc08e679bd6c9, type: 3}
---- !u!1 &587579704 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 139786, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
-  m_PrefabInternal: {fileID: 83605243}
---- !u!82 &587579710
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 587579704}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: af5993b78a646b543be3f9a46d168ce5, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &597295744
 GameObject:
   m_ObjectHideFlags: 0
@@ -13151,7 +13090,13 @@ Prefab:
       propertyPath: m_Name
       value: AllPurposeHallway (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11447838, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
+      propertyPath: OpenStoneDoorSoundEffect
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8279786, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
+    - {fileID: 8230716, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &761574892
@@ -14828,84 +14773,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1057851579}
   m_Mesh: {fileID: 4300004, guid: 55b1237231c0bd94490022efb44ab4a4, type: 3}
---- !u!1 &1058548706 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 139786, guid: 3787019fa295f6e48bf8ec41d05b2e68, type: 2}
-  m_PrefabInternal: {fileID: 10155125}
---- !u!82 &1058548708
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1058548706}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: af5993b78a646b543be3f9a46d168ce5, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0.98
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &1071214216
 GameObject:
   m_ObjectHideFlags: 0
@@ -16033,7 +15900,12 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 66a36cb7625f41542bc2fc6c96548241, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 11463540, guid: 39005622935746e48bb44ac730c229fc, type: 2}
+      propertyPath: OpenStoneDoorSoundEffect
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8253810, guid: 39005622935746e48bb44ac730c229fc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 39005622935746e48bb44ac730c229fc, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1281194120
@@ -16048,7 +15920,6 @@ GameObject:
   - 65: {fileID: 1281194124}
   - 23: {fileID: 1281194123}
   - 114: {fileID: 1281194121}
-  - 82: {fileID: 1281194122}
   m_Layer: 0
   m_Name: DoorExit
   m_TagString: Exit
@@ -16069,82 +15940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfPuzzles: 0
-  OpenStoneDoorSoundEffect: {fileID: 1281194122}
---- !u!82 &1281194122
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 8226438, guid: 540dfe7b03666f84bb80292eca27c408,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1281194120}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: af5993b78a646b543be3f9a46d168ce5, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
+  OpenStoneDoorSoundEffect: {fileID: 0}
 --- !u!23 &1281194123
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17694,7 +17490,9 @@ Prefab:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11440716, guid: 6b2e8d8b160d7ec4b866622ad758d5d2, type: 2}
+    - {fileID: 13585866, guid: 6b2e8d8b160d7ec4b866622ad758d5d2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6b2e8d8b160d7ec4b866622ad758d5d2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1616839228
@@ -21126,7 +20924,8 @@ Prefab:
       propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8250886, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2001714977
@@ -22212,6 +22011,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d55794ed60fb657458efbe809eb707c3, type: 2}
+    - target: {fileID: 11480528, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
+      propertyPath: OpenStoneDoorSoundEffect
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
   m_IsPrefabParent: 0
@@ -22378,6 +22181,11 @@ Prefab:
       propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11400382, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
+      propertyPath: OpenStoneDoorSoundEffect
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8215172, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 36158000d3d3bde44adcdfe8145d3c82, type: 2}
   m_IsPrefabParent: 0
