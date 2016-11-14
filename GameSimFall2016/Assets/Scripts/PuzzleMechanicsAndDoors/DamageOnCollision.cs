@@ -78,10 +78,8 @@ public class DamageOnCollision : MonoBehaviour
    {
       if (!this.isTrigger && other.collider.name.Equals("Kira"))
       {
-         if (!this.isTrigger)
-         {
-            takeDamage = false;
-         }
+         takeDamage = false;
+         
          if (this.dealFireDamage)
          {
             this.fireDamage(false);
@@ -114,10 +112,7 @@ public class DamageOnCollision : MonoBehaviour
    {
       if (this.isTrigger && other.transform.name.Equals("Kira"))
       {
-         if (this.isTrigger)
-         {
-            takeDamage = false;
-         }
+         takeDamage = false;
 
          if (this.dealFireDamage)
          {
