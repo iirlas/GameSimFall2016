@@ -4,10 +4,10 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-   public int mainMenuScene = 0;
-   public int infoScene = 1;
-   public int firstScene = 2;
-   public int creditScene = 8;
+   public string mainMenuScene = "TitleScreen";
+   public string infoScene = "ControlScene";
+   public string firstScene = "IntroSequence";
+   public string creditScene = "CreditsScene";
 
 	// Use this for initialization
 	void Start () {
