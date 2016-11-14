@@ -3,40 +3,34 @@
 // Version: 1.0
 // Date:    08/26/2016
 // Ownership belongs to all affiliates of Scott Free Games.
+// Ant.cs will represent one of the enemies in the game.
 //=============================================================================
 
 using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-//=============================================================================
-// Ant.cs
-// Ant will be one of the various enemies found within the game.
-// The Ant will:
-// - Deal five points of damage
-// - Be defeated in two hits
-// - Consistently follow player, stopping next to the player to attack.
 public class Ant : Enemy
 {
    //-----------------------------------------------------------------------------
    // Public Inspector-editable variables
    [Tooltip("Changing this value will change the detection radius of the Ant.")]
-   public float detectionRadius = 5; // How far out the Ant will search for the player.
+   public float detectionRadius = 5;
 
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
-   public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
-   //and rotationspeed with values provided in the inspector
-   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public int antHealthCustom;   // the new health value to replace the default.
+   public bool overrideValues;  
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public int antDamageCustom;   // the new damage value to replace the default.
+   public int antHealthCustom;   
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public float antSpeedCustom;  // the new speed value to replace the default.
+   public int antDamageCustom;   
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public float antRotationSpeedCustom;   // the new rotational speed value to replace the default.
+   public float antSpeedCustom;  
+
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
+   public float antRotationSpeedCustom;   
 
    //-----------------------------------------------------------------------------
    // Default values for an Ant, provided by juan.
@@ -44,7 +38,7 @@ public class Ant : Enemy
    private const int ANTDAMAGEDEFAULT = 5;
    private const float ANTSPEEDDEFAULT = 2;
    private const float ANTROTATIONSPEEDDEFAULT = 1;
-   private const float ATTACKINTERVAL = 1.0f;        // How often the Ant will attack
+   private const float ATTACKINTERVAL = 1.0f;        
 
    private Vector3 startPos;
    private Vector3 targetDestination;
@@ -74,7 +68,6 @@ public class Ant : Enemy
       {
          this.myHealth = ANTHEALTHDEFAULT;
          this.myDamage = ANTDAMAGEDEFAULT;
-         //this.mySpeed = ANTSPEEDDEFAULT;
          this.myRotationSpeed = ANTROTATIONSPEEDDEFAULT;
       }
 
@@ -97,28 +90,19 @@ public class Ant : Enemy
    {
       switch (this.myState)
       {
-         //-----------------------------------------------------------------------------
          case enState.IDLE:
-            //do nothing, just hang out m80
             break;
-         //-----------------------------------------------------------------------------
          case enState.TRACK:
             pursueTarget();
             break;
-         //-----------------------------------------------------------------------------
          case enState.ATTACK:
             attackPlayer();
             break;
-         //-----------------------------------------------------------------------------
          case enState.MOVE:
-            //do some patroling, maybe?
             break;
-         //-----------------------------------------------------------------------------
 		case enState.DEAD:
-
-			killAnt ();
+			   killAnt ();
             break;
-         //-----------------------------------------------------------------------------
          default:
             break;
       } 
