@@ -4,40 +4,35 @@
 // Version: 1.0
 // Date:    09/07/2016
 // Ownership belongs to all affiliates of Scott Free Games.
+//
+// Scorpion will be one of the various enemies found within the game.
 //=============================================================================
 
 using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-//=============================================================================
-// Scorpion.cs
-// Scorpion will be one of the various enemies found within the game.
-// The Scorpion will:
-// - Deal ten points of damage overall, five initial, five over time.
-// - Be defeated in four hits
-// - Consistently follow player, stopping next to the player to attack.
 public class Scorpion : Enemy
 {
    //-----------------------------------------------------------------------------
    // Public Inspector-editable variables
    [Tooltip("Changing this value will change the detection radius of the Scorpion.")]
-   public float detectionRadius; // How far out the Scorpion will search for the player.
+   public float detectionRadius;
 
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
-   public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
-   //and rotationspeed with values provided in the inspector
-   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public int scorpionHealthCustom;   // the new health value to replace the default.
+   public bool overrideValues;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public int scorpionDamageCustom;   // the new damage value to replace the default.
+   public int scorpionHealthCustom;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public float scorpionSpeedCustom;  // the new speed value to replace the default.
+   public int scorpionDamageCustom;  
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public float scorpionRotationSpeedCustom;   // the new rotational speed value to replace the default.
+   public float scorpionSpeedCustom; 
+
+   [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
+   public float scorpionRotationSpeedCustom;  
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public int scorpionPoisonDamageCustom;
@@ -59,7 +54,7 @@ public class Scorpion : Enemy
    private const int SCORPIONPOISONINSTANCESDEFAULT = 5;
    private const float SCORPIONPOISONINTERVALDEFAULT = 1.0f;
 
-   private const float ATTACKINTERVAL = 1.0f;        // How often the Scorpion will attack
+   private const float ATTACKINTERVAL = 1.0f;        
 
    //-----------------------------------------------------------------------------
    // Private member variable data.
@@ -114,27 +109,20 @@ public class Scorpion : Enemy
    {
       switch (this.myState)
       {
-         //-----------------------------------------------------------------------------
          case enState.IDLE:
-            //do nothing, just hang out m80
             break;
-         //-----------------------------------------------------------------------------
          case enState.TRACK:
             pursueTarget();
             break;
-         //-----------------------------------------------------------------------------
          case enState.ATTACK:
             attackPlayer();
             break;
-         //-----------------------------------------------------------------------------
          case enState.MOVE:
             //do some patroling, maybe?
             break;
-         //-----------------------------------------------------------------------------
          case enState.DEAD:
             killScorpion();
             break;
-         //-----------------------------------------------------------------------------
          default:
             break;
       }
