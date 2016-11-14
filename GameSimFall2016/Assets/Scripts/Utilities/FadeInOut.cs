@@ -2,11 +2,12 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class FadeInOut : MonoBehaviour {
+public class FadeInOut : MonoBehaviour
+{
 
-   public float fadeInTime = 1.0f;
-   public float fadeOutWaitTime = 1.0f;
-   public float fadeOutTime = 1.0f;
+   public float fadeInTime;
+   public float fadeOutWaitTime;
+   public float fadeOutTime;
 
    private float timer = 0.0f;
 
@@ -16,22 +17,26 @@ public class FadeInOut : MonoBehaviour {
 
    private Image myImage;
 
-	// Use this for initialization
-	void Start () {
+   // Use this for initialization
+   void Start()
+   {
       this.myImage = this.GetComponent<Image>();
       this.isFadingIn = true;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-      if ( this.isFadingIn )
+   }
+
+   // Update is called once per frame
+   void Update()
+   {
+      if (this.isFadingIn)
       {
-         timer += Time.deltaTime;
+         this.timer += Time.deltaTime;
+
+         float interpolator = this.timer / this.fadeInTime;
 
          Color temp = this.myImage.color;
-         temp.a = Mathf.Lerp(temp.a, 0, timer / fadeInTime);
+         temp.a = Mathf.Lerp(temp.a, 0, interpolator * Time.deltaTime);
          this.myImage.color = temp;
-         
+
          if (this.timer >= fadeInTime)
          {
             this.isFadingIn = false;
@@ -39,7 +44,7 @@ public class FadeInOut : MonoBehaviour {
             this.timer = 0.0f;
          }
       }
-      if ( this.isWaiting )
+      if (this.isWaiting)
       {
          this.timer += Time.deltaTime;
          if (this.timer >= this.fadeOutWaitTime)
@@ -49,12 +54,14 @@ public class FadeInOut : MonoBehaviour {
             this.timer = 0.0f;
          }
       }
-      if ( this.isFadingOut )
+      if (this.isFadingOut)
       {
          timer += Time.deltaTime;
 
+         float interpolator = this.timer / this.fadeInTime;
+
          Color temp = this.myImage.color;
-         temp.a = Mathf.Lerp(temp.a, 255, timer / fadeInTime);
+         temp.a = Mathf.Lerp(temp.a, 1, interpolator * Time.deltaTime);
          this.myImage.color = temp;
 
          if (this.timer >= fadeInTime)
@@ -64,5 +71,5 @@ public class FadeInOut : MonoBehaviour {
             this.timer = 0.0f;
          }
       }
-	}
+   }
 }
