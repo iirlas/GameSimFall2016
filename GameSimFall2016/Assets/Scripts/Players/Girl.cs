@@ -16,8 +16,7 @@ public class Girl : Player {
     public GameObject rockPrefab;
     public Transform rockSpawnNode;
     public float shootingForce = 30.0f;
-	public AudioSource slingShot;
-    
+       
     [HideInInspector]
     public Transform target
     {
@@ -79,8 +78,8 @@ public class Girl : Player {
             animator.SetInteger("state", 3);
             animator.SetInteger("substate", 2);
             playerState = State.ATTACK;
-            this.slingShot.volume = .05f;
-			   this.slingShot.Play ();
+            //this.slingShot.volume = .05f;
+			   //this.slingShot.Play ();
         }
         else if (Input.GetButtonDown("Center"))
         {

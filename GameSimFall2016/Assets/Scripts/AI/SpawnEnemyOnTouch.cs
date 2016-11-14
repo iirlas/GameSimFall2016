@@ -5,8 +5,8 @@ public class SpawnEnemyOnTouch : MonoBehaviour
 {
 
    public GameObject theEnemy;
-   public GameObject spawnPOS; 
-   public AudioSource wrongSound;
+   public GameObject spawnPOS;
+   //public AudioSource wrongSound;
 
    // Use this for initialization
    void Start()
@@ -22,10 +22,11 @@ public class SpawnEnemyOnTouch : MonoBehaviour
    {
       if (other.name.Equals("Kira"))
       {
-			if (this.wrongSound != null) {
-				Debug.Log ("Made it in the collider for the wrong blocks");
-				this.wrongSound.Play ();
-			}
+         //if (this.wrongSound != null)
+         //{
+         //   Debug.Log("Made it in the collider for the wrong blocks");
+         //   this.wrongSound.Play();
+         //}
          Instantiate(theEnemy, spawnPOS.transform.position, Quaternion.identity);
       }
    }

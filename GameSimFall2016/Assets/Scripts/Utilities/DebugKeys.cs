@@ -22,7 +22,7 @@ public class DebugKeys : MonoBehaviour
          Debug.Log("DebugKeys is in use, look for the DebugKeys script under the Director is you wish to disable these!");
       this.keys = new ArrayList();
    }
-
+   
 
    void Start()
    {
@@ -73,7 +73,7 @@ public class DebugKeys : MonoBehaviour
          {
             if (!(playerUnits[ix] is Girl))
             {
-               playerUnits[ix].transform.position = thePlayer.transform.position;
+               playerUnits[ix].transform.position = thePlayer.transform.position;               
             }
          }
       }
@@ -122,14 +122,18 @@ public class DebugKeys : MonoBehaviour
             this.keys.Add(KeyCode.Colon);
          }
       }
-      if (this.keys.Count > 5)
-      {
-         this.keys.RemoveAt(0);
-      }
+
       if (this.godMode)
       {
          StatusManager.getInstance().health = 100;
          StatusManager.getInstance().fear = 0;
+      }
+
+      //-----------------------------------------------------------------------
+      // removes the first element of the keys array
+      if (this.keys.Count > 5)
+      {
+         this.keys.RemoveAt(0);
       }
    }
 }

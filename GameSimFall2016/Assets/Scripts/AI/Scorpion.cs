@@ -197,7 +197,7 @@ public class Scorpion : Enemy
       }
    }
 
-   //=============================================================================
+   //=============================================================================  
    // If something enters the trigger box, do something based upon it's type.
    void OnTriggerStay(Collider other)
    {
