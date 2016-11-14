@@ -9,6 +9,8 @@ public class DebugKeys : MonoBehaviour {
    private Vector3 worldSpawn;
    private Player thePlayer;
 
+   private bool godMode = false;
+
    // Use this for initialization
    void Awake () {
       if ( debugKeysEnabled )
@@ -82,6 +84,18 @@ public class DebugKeys : MonoBehaviour {
       if ( Input.GetKeyDown(KeyCode.End) )
       {
          StatusManager.getInstance().health = 0;
+      }
+
+      //-----------------------------------------------------------------------
+      // IDDQD
+      if ( Input.GetKeyDown(KeyCode.Equals))
+      {
+         this.godMode = !this.godMode;
+      }
+      if ( this.godMode )
+      {
+         StatusManager.getInstance().health = 100;
+         StatusManager.getInstance().fear = 0;
       }
 	}
 }

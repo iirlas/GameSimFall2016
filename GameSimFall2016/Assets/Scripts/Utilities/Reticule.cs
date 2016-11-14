@@ -6,7 +6,6 @@ using System.Linq;
 public class Reticule : MonoBehaviour {
 
    private bool isTargeting;
-   private Camera cameraToLookAt;
    private Player thePlayer;
 
    public Image theReticule;
@@ -19,7 +18,6 @@ public class Reticule : MonoBehaviour {
 
    // Use this for initialization
    void Start() {
-      cameraToLookAt = Camera.main;
       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
    }
 
@@ -30,9 +28,7 @@ public class Reticule : MonoBehaviour {
 
       if (isTargeting)
       {
-         //this.transform.position = Camera.main.WorldToScreenPoint(this.thePlayer.gameObject.GetComponent<Girl>().target.position);
          theReticule.transform.position = Camera.main.WorldToScreenPoint(this.thePlayer.gameObject.GetComponent<Girl>().target.position);
-         lookAtPlayer();
       }
       else
       {
@@ -50,11 +46,5 @@ public class Reticule : MonoBehaviour {
       {
          isTargeting = false;
       }
-   }
-
-   void lookAtPlayer()
-   {
-      //transform.LookAt(transform.position + cameraToLookAt.transform.rotation * Vector3.forward,
-      //                 cameraToLookAt.transform.rotation * Vector3.up);
    }
 }

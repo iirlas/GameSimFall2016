@@ -189,6 +189,8 @@ public class StatusManager : Singleton<StatusManager>
    // Update is called once per frame
    void Update()
    {
+      print(this.myPlayerStatus);
+
       //fear accumulation
       fear += (hasStatus(Status.FEAR) ? fearDamage : -fearDamage) * Time.deltaTime;
 
