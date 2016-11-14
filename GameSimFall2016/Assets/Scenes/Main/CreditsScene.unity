@@ -606,48 +606,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1662b52a63e15db43bc392fc3a49d570, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1595712132
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 421614, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.84291047
-      objectReference: {fileID: 0}
-    - target: {fileID: 421614, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.0832992
-      objectReference: {fileID: 0}
-    - target: {fileID: 421614, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -33.595814
-      objectReference: {fileID: 0}
-    - target: {fileID: 421614, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421614, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421614, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421614, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 421614, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b4411940c2fa1274696dcfb60ae4cf8b, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1615276241
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,10 +712,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e557693b1b04ac4a81600dc9a39bc57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuScene: 0
-  infoScene: 0
-  firstScene: 0
-  creditScene: 0
+  mainMenuScene: TitleScreen
+  infoScene: ControlScene
+  firstScene: IntroSequence
+  creditScene: CreditsScene
 --- !u!1 &1710008939
 GameObject:
   m_ObjectHideFlags: 0
