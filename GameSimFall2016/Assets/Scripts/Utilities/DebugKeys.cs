@@ -34,7 +34,6 @@ public class DebugKeys : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-
       if (Input.anyKeyDown)
       {
          foreach(KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
@@ -50,18 +49,35 @@ public class DebugKeys : MonoBehaviour
       // Load next scene or previous scene
       if (Input.GetKeyDown(KeyCode.PageUp))
       {
-         if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings)
-         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-         }
+         loadNextScene();
       }
       else if (Input.GetKeyDown(KeyCode.PageDown))
       {
-         if (SceneManager.GetActiveScene().buildIndex > 0)
+         loadPrevScene();
+      }
+
+      if (this.keys.Count >= 5)
+      {
+         if (this.keys[0].Equals(KeyCode.G) &&
+             this.keys[1].Equals(KeyCode.N) &&
+             this.keys[2].Equals(KeyCode.E) &&
+             this.keys[3].Equals(KeyCode.X) &&
+             this.keys[4].Equals(KeyCode.T))
          {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            loadNextScene();
+            this.keys.Add(KeyCode.Colon);
+         }
+         else if (this.keys[0].Equals(KeyCode.G) &&
+                  this.keys[1].Equals(KeyCode.P) &&
+                  this.keys[2].Equals(KeyCode.R) &&
+                  this.keys[3].Equals(KeyCode.E) &&
+                  this.keys[4].Equals(KeyCode.V))
+         {
+            loadPrevScene();
+            this.keys.Add(KeyCode.Colon);
          }
       }
+
 
       //-----------------------------------------------------------------------
       // Bring animals back to kira
@@ -134,6 +150,22 @@ public class DebugKeys : MonoBehaviour
       if (this.keys.Count > 5)
       {
          this.keys.RemoveAt(0);
+      }
+   }
+
+   private void loadNextScene()
+   {
+      if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings)
+      {
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+      }
+   }
+
+   private void loadPrevScene()
+   {
+      if (SceneManager.GetActiveScene().buildIndex > 0)
+      {
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
       }
    }
 }
