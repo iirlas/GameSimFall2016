@@ -58,9 +58,7 @@ public class DamageOnCollision : MonoBehaviour
          {
             this.fireDamage(false);
          }
-         else {
-            this.fireDamage(true);
-         }
+
       }
 
       timer += Time.deltaTime;
@@ -162,7 +160,7 @@ public class DamageOnCollision : MonoBehaviour
    {
       StatusManager.getInstance().onFire = state;
       StatusManager.getInstance().fear += fearDamageToTake;
-      print("Ping fire" + state);
+
       this.takingFireDamage = state;
    }
 }
