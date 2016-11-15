@@ -24,11 +24,11 @@ public class StatusManager : Singleton<StatusManager>
          myFear = Mathf.Clamp(value, 0, 120.0f);
          if (myFear > 0)
          {
-            playerStatus |= Status.FEAR;
+            myPlayerStatus |= Status.FEAR;
          }
          else
          {
-            playerStatus &= ~Status.FEAR;
+            myPlayerStatus &= ~Status.FEAR;
          }
          updateEffects();
       }
@@ -41,11 +41,11 @@ public class StatusManager : Singleton<StatusManager>
       {
          if (value)
          {
-            playerStatus |= Status.POISON;
+            myPlayerStatus |= Status.POISON;
          }
          else
          {
-            playerStatus &= ~Status.POISON;
+            myPlayerStatus &= ~Status.POISON;
          }
          updateEffects();
       }
@@ -58,11 +58,11 @@ public class StatusManager : Singleton<StatusManager>
       {
          if (value)
          {
-            playerStatus |= Status.FIRE;
+            myPlayerStatus |= Status.FIRE;
          }
          else
          {
-            playerStatus &= ~Status.FIRE;
+            myPlayerStatus &= ~Status.FIRE;
          }
          updateEffects();
       }
@@ -75,11 +75,11 @@ public class StatusManager : Singleton<StatusManager>
       {
          if (value)
          {
-            playerStatus |= Status.SPOOK;
+            myPlayerStatus |= Status.SPOOK;
          }
          else
          {
-            playerStatus &= ~Status.SPOOK;
+            myPlayerStatus &= ~Status.SPOOK;
          }
          updateEffects();
       }
