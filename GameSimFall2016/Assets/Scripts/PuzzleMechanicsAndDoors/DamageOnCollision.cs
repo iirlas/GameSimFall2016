@@ -58,8 +58,8 @@ public class DamageOnCollision : MonoBehaviour
          {
             this.fireDamage(false);
          }
-         {
-            else this.fireDamage(true);
+         else {
+            this.fireDamage(true);
          }
       }
 
