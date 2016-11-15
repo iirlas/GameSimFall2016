@@ -18,19 +18,19 @@ public class Ant : Enemy
    public float detectionRadius = 5;
 
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
-   public bool overrideValues;  
+   public bool overrideValues;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public int antHealthCustom;   
+   public int antHealthCustom;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public int antDamageCustom;   
+   public int antDamageCustom;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public float antSpeedCustom;  
+   public float antSpeedCustom;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public float antRotationSpeedCustom;   
+   public float antRotationSpeedCustom;
 
    //-----------------------------------------------------------------------------
    // Default values for an Ant, provided by juan.
@@ -38,7 +38,7 @@ public class Ant : Enemy
    private const int ANTDAMAGEDEFAULT = 5;
    private const float ANTSPEEDDEFAULT = 2;
    private const float ANTROTATIONSPEEDDEFAULT = 1;
-   private const float ATTACKINTERVAL = 1.0f;        
+   private const float ATTACKINTERVAL = 1.0f;
 
    private Vector3 startPos;
    private Vector3 targetDestination;
@@ -47,7 +47,7 @@ public class Ant : Enemy
    //-----------------------------------------------------------------------------
    // Private member variable data.
    private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
-   private bool  isInAttackRadius = false;     // Is the player within this Ant's attack radius?
+   private bool isInAttackRadius = false;     // Is the player within this Ant's attack radius?
 
    //-----------------------------------------------------------------------------
    // A reference to the player.
@@ -100,12 +100,12 @@ public class Ant : Enemy
             break;
          case enState.MOVE:
             break;
-		case enState.DEAD:
-			   killAnt ();
+         case enState.DEAD:
+            killAnt();
             break;
          default:
             break;
-      } 
+      }
 
       checkAntHealth();
       stateUpdate();
@@ -170,9 +170,10 @@ public class Ant : Enemy
    // If something enters the trigger box, do something based upon it's type.
    void OnTriggerEnter(Collider other)
    {
-      if(other.tag.Equals("Projectile"))
+      if (other.tag.Equals("Projectile"))
       {
          damageAnt();
+         SoundManager.getInstance().playEffect("AntSplat");
       }
    }
 
@@ -194,7 +195,7 @@ public class Ant : Enemy
    void OnTriggerExit(Collider other)
    {
       if (other.tag.Equals("Player"))
-   
+
       {
          this.myState = enState.TRACK;
       }
@@ -208,7 +209,7 @@ public class Ant : Enemy
       if (isDefeated())
       {
          this.myState = enState.DEAD;
-		}
+      }
    }
 
    //=============================================================================
@@ -272,6 +273,7 @@ public class Ant : Enemy
          else
          {
             //do damage to player.
+            SoundManager.getInstance().playEffect("Ant_Attack_01");
             StatusManager.getInstance().health -= 5;
             StatusManager.getInstance().fear += 5;
          }
@@ -294,11 +296,11 @@ public class Ant : Enemy
    // ALL enemies will be moved to a magic value, where they will be deactivated.
    void killAnt()
    {
-		
-        this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
-                                                            // from clipping back onto the platform after being "killed".
-        this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
-        this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.
+
+      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
+                                                          // from clipping back onto the platform after being "killed".
+      this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
+      this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.
    }
 
    //=============================================================================
@@ -316,5 +318,5 @@ public class Ant : Enemy
    {
       this.myHealth -= damage;
    }
-		
+
 }
