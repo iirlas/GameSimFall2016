@@ -9,19 +9,21 @@ using System.Linq;
 // Damage continues until the collider is exited.
 //========================================================================================================
 
-
-
 public class DamageOnCollision : MonoBehaviour
 {
-   private bool takeDamage;
    public int damageToTake;
    public int fearDamageToTake;
-   public bool isTrigger = false;
+
+   private bool takingFireDamage;
+   private bool takeDamage;
+
    [Tooltip("Tick this box if you wish to deal fire damage instead of normal damage.")]
    public bool dealFireDamage;
-   
+   public bool isTrigger = false;
+
    [Tooltip("How often to deal damage, interval in seconds.  Does nothing is dealFireDamage is active.")]
    public float intervalTime = 0.0f;
+   public float fireTimer = 0.0f;
    private float timer = 0.0f;
 
    // Use this for initialization
@@ -47,6 +49,17 @@ public class DamageOnCollision : MonoBehaviour
          {
             dealDamage();
             timer = 0.0f;
+         }
+      }
+      if ( dealFireDamage )
+      {
+         this.fireTimer += Time.deltaTime;
+         if (fireTimer >= 1.0f)
+         {
+            this.fireDamage(false);
+         }
+         {
+            else this.fireDamage(true);
          }
       }
 
@@ -150,5 +163,6 @@ public class DamageOnCollision : MonoBehaviour
       StatusManager.getInstance().onFire = state;
       StatusManager.getInstance().fear += fearDamageToTake;
       print("Ping fire" + state);
+      this.takingFireDamage = state;
    }
 }
