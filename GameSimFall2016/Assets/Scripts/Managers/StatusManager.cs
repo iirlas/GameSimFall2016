@@ -189,7 +189,6 @@ public class StatusManager : Singleton<StatusManager>
    // Update is called once per frame
    void Update()
    {
-      print(this.myPlayerStatus);
 
       //fear accumulation
       fear += (hasStatus(Status.FEAR) ? fearDamage : -fearDamage) * Time.deltaTime;
@@ -211,8 +210,6 @@ public class StatusManager : Singleton<StatusManager>
 
       //spook damage
       health -= (isSpooked ? spookDamage : 0.0f) * Time.deltaTime;
-
-      print(this.onFire + " on fire StatusManager.cs");
 
       //respawn players when kira dies.
       if (health <= 0)

@@ -98,6 +98,11 @@ public class BunnyBoss : MonoBehaviour {
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, time);
         }
 
+        if (Input.GetKey(KeyCode.Delete))
+        {
+            health = 0;
+        }
+
         bunnys.RemoveAll(bunny => { 
             if ( !bunny.gameObject.activeSelf )
             {

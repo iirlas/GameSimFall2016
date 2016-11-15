@@ -3,60 +3,46 @@
 // Version: 1.0
 // Date:    08/26/2016
 // Ownership belongs to all affiliates of Scott Free Games.
+// Bunny.cs will represent one of the enemies in the game.
 //=============================================================================
 
 using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-//=============================================================================
-// Bunny.cs
-// Bunny will be one of the various enemies found within the game.
-// The Bunny will:
-// - Deal five points of damage
-// - Be defeated in two hits
-// - Consistently follow player, stopping next to the player to attack.
 public class Bunny : Enemy
 {
     //-----------------------------------------------------------------------------
     // Public Inspector-editable variables
     [Tooltip("Changing this value will change the detection radius of the Bunny.")]
-    private float detectionRadius; // How far out the Bunny will search for the player.
+    public float detectionRadius = 5;
 
     [Tooltip("Checkmark this box if you wish to provide custom values below.")]
-    public bool overrideValues;  //If true, overwrites the default values for health, damage, speed
-    //and rotationspeed with values provided in the inspector
-    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-    public int BUNNYHealthCustom;   // the new health value to replace the default.
+    public bool overrideValues;
 
     [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-    public int BUNNYDamageCustom;   // the new damage value to replace the default.
+    public int bunnyHealthCustom;
 
     [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-    public float BUNNYSpeedCustom;  // the new speed value to replace the default.
+    public int bunnyDamageCustom;
 
     [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-    public float BUNNYRotationSpeedCustom;   // the new rotational speed value to replace the default.
+    public float bunnySpeedCustom;
+
+    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
+    public float bunnyRotationSpeedCustom;
 
     //-----------------------------------------------------------------------------
     // Default values for an Bunny, provided by juan.
-    private const int BUNNYHEALTHDEFAULT = 2;
-    private const int BUNNYDAMAGEDEFAULT = 5;
-    private const float BUNNYSPEEDDEFAULT = 1;
-    private const float BUNNYROTATIONSPEEDDEFAULT = 1;
-    private const float ATTACKINTERVAL = 1.0f;        // How often the Bunny will attack
+    private const int ANTHEALTHDEFAULT = 2;
+    private const int ANTDAMAGEDEFAULT = 5;
+    private const float ANTSPEEDDEFAULT = 2;
+    private const float ANTROTATIONSPEEDDEFAULT = 1;
+    private const float ATTACKINTERVAL = 1.0f;
 
-    //[HideInInspector]
-    //public bool is;
-
-    [HideInInspector]
-    public NavMeshAgent agent;
-
-    // Bunny Sounds 
-    public AudioSource BUNNYWalking;
-    public AudioSource BUNNYSplat;
-    public AudioSource BUNNYAttack;
-
+    private Vector3 startPos;
+    private Vector3 targetDestination;
+    private bool targetIsPlayer;
 
     //-----------------------------------------------------------------------------
     // Private member variable data.
@@ -71,31 +57,31 @@ public class Bunny : Enemy
     // Initialize things here
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
         if (overrideValues)  // If custom values are provided, assign them to this Bunny.
         {
-            this.myHealth = BUNNYHealthCustom;
-            this.myDamage = BUNNYDamageCustom;
-            this.mySpeed = BUNNYSpeedCustom;
-            this.myRotationSpeed = BUNNYRotationSpeedCustom;
+            this.myHealth = bunnyHealthCustom;
+            this.myDamage = bunnyDamageCustom;
+            this.mySpeed = bunnySpeedCustom;
+            this.myRotationSpeed = bunnyRotationSpeedCustom;
         }
         else  // If custom values are not provided, utilize the default values for this Bunny.
         {
-            this.myHealth = BUNNYHEALTHDEFAULT;
-            this.myDamage = BUNNYDAMAGEDEFAULT;
-            this.mySpeed = BUNNYSPEEDDEFAULT;
-            this.myRotationSpeed = BUNNYROTATIONSPEEDDEFAULT;
+            this.myHealth = ANTHEALTHDEFAULT;
+            this.myDamage = ANTDAMAGEDEFAULT;
+            this.myRotationSpeed = ANTROTATIONSPEEDDEFAULT;
         }
 
-        this.detectionRadius = 40;
+        this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
         this.myType = enType.ANT;
 
     }
 
+    //=============================================================================
+    // Post Initialization things here
     void Start()
     {
         thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
-
+        this.startPos = this.transform.position;
     }
 
     //=============================================================================
@@ -104,28 +90,19 @@ public class Bunny : Enemy
     {
         switch (this.myState)
         {
-        //-----------------------------------------------------------------------------
         case enState.IDLE:
-            //do nothing, just hang out m80
             break;
-        //-----------------------------------------------------------------------------
         case enState.TRACK:
-            pursuePlayer();
+            pursueTarget();
             break;
-        //-----------------------------------------------------------------------------
         case enState.ATTACK:
             attackPlayer();
             break;
-        //-----------------------------------------------------------------------------
         case enState.MOVE:
-            //do some patroling, maybe?
             break;
-        //-----------------------------------------------------------------------------
         case enState.DEAD:
-
             killBunny();
             break;
-        //-----------------------------------------------------------------------------
         default:
             break;
         }
@@ -135,7 +112,14 @@ public class Bunny : Enemy
     }
 
     //=============================================================================
-    // Updates the state of this BUNNY, if needed.
+    // Sets the detection radius of this bunny to the passed value.
+    public void setDetectionRadius(float radius)
+    {
+        this.detectionRadius = radius;
+    }
+
+    //=============================================================================
+    // Updates the state of this bunny, if needed.
     void stateUpdate()
     {
         switch (this.myState)
@@ -145,6 +129,8 @@ public class Bunny : Enemy
             //check to see if the player has entered the aggression radius
             if (isPlayerNearby())
             {
+                this.targetIsPlayer = true;
+                this.targetDestination = thePlayer.transform.position;
                 this.myState = enState.TRACK;
             }
             break;
@@ -171,12 +157,10 @@ public class Bunny : Enemy
             break;
         //-----------------------------------------------------------------------------
         case enState.MOVE:
-            //if the Bunny will patrol, patrol the BUNNY around.
             break;
         //-----------------------------------------------------------------------------
         case enState.DEAD:
             //Bunny is dead, object should be destroyed, if not already.
-
             killBunny();
             break;
         }
@@ -189,7 +173,7 @@ public class Bunny : Enemy
         if (other.tag.Equals("Projectile"))
         {
             damageBunny();
-
+            SoundManager.getInstance().playEffect("AntSplat");
         }
     }
 
@@ -200,10 +184,9 @@ public class Bunny : Enemy
         if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
         {
             this.myState = enState.ATTACK;
-            if (this.BUNNYAttack.isPlaying == false)
-            {
-                this.BUNNYAttack.Play();
-            }
+            this.targetIsPlayer = false;
+            this.targetDestination = startPos;
+
         }
     }
 
@@ -224,37 +207,33 @@ public class Bunny : Enemy
     {
         if (isDefeated())
         {
-            if (this.BUNNYSplat.isPlaying == false)
-            {
-                this.BUNNYSplat.Play();
-            }
             this.myState = enState.DEAD;
-            this.BUNNYWalking.Stop();
-
         }
     }
 
     //=============================================================================
     // Follow the player around, until the player enters the hitbox for attacking.
-    void pursuePlayer()
+    void pursueTarget()
     {
-        if (!agent.isOnNavMesh)
-            return;
+        this.transform.LookAt(new Vector3(targetDestination.x,
+                                          this.transform.position.y,
+                                          targetDestination.z));
 
-        //Plays BUNNY walking sound if it is not player already.
-        if (this.BUNNYWalking.isPlaying == false)
+        if (this.targetIsPlayer == false)
         {
-            this.BUNNYWalking.Play();
-        }
-
-        if (Vector3.Distance(this.transform.position, thePlayer.transform.position) >= 0.1f)
-        {
-            agent.destination = thePlayer.transform.position;
+            if (Vector3.Distance(this.targetDestination, this.transform.position) <= 0.2f)
+            {
+                Debug.Log("Targeting Player");
+                this.targetDestination = thePlayer.transform.position;
+                this.targetIsPlayer = true;
+            }
         }
         else
         {
-            agent.destination = transform.position;
+            this.targetDestination = thePlayer.transform.position;
         }
+
+        this.GetComponent<NavMeshAgent>().SetDestination(targetDestination);
     }
 
     //=============================================================================
@@ -293,10 +272,9 @@ public class Bunny : Enemy
             else
             {
                 //do damage to player.
-                Debug.Log(this.name + " has damaged the player.");
-                //thePlayerHealth.GetComponent<HealthPlayer>().modifyHealth(-5);
+                SoundManager.getInstance().playEffect("Ant_Attack_01");
                 StatusManager.getInstance().health -= 5;
-                StatusManager.getInstance().fear += 10;
+                StatusManager.getInstance().fear += 5;
             }
 
             timeSinceLastAttack += Time.deltaTime;
@@ -313,7 +291,7 @@ public class Bunny : Enemy
     }
 
     //=============================================================================
-    // "Destroys" the BUNNY and all assosciated gameobjects.
+    // "Destroys" the bunny and all assosciated gameobjects.
     // ALL enemies will be moved to a magic value, where they will be deactivated.
     void killBunny()
     {
@@ -325,7 +303,7 @@ public class Bunny : Enemy
     }
 
     //=============================================================================
-    // Deal a single point of damage to the BUNNY.
+    // Deal a single point of damage to the bunny.
     void damageBunny()
     {
         this.myHealth -= 1;
@@ -333,8 +311,8 @@ public class Bunny : Enemy
     }
 
     //=============================================================================
-    // Deal a specific amount of damage to the BUNNY.  A negative number may be
-    // passed to heal the BUNNY by the passed amount.
+    // Deal a specific amount of damage to the bunny.  A negative number may be
+    // passed to heal the bunny by the passed amount.
     void damageBunny(int damage)
     {
         this.myHealth -= damage;
