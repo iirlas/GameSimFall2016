@@ -124,6 +124,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!1 &125762
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 466134}
+  - 33: {fileID: 3341304}
+  - 23: {fileID: 2370518}
+  - 65: {fileID: 6532332}
+  m_Layer: 0
+  m_Name: WallPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &132070
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +151,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 421588}
   - 65: {fileID: 6515520}
-  - 114: {fileID: 11406190}
+  - 114: {fileID: 11445708}
+  - 114: {fileID: 11422314}
   m_Layer: 0
   m_Name: BossTrigger
   m_TagString: Untagged
@@ -170,6 +189,36 @@ GameObject:
   m_Name: North-West
   m_TagString: Untagged
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &140452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 465292}
+  m_Layer: 0
+  m_Name: WallPanels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &144544
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 467542}
+  m_Layer: 0
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -428,6 +477,7 @@ Transform:
   - {fileID: 460040}
   - {fileID: 490588}
   - {fileID: 421588}
+  - {fileID: 465292}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &401130
@@ -650,6 +700,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 471754}
   m_RootOrder: 1
+--- !u!4 &465292
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 466134}
+  m_Father: {fileID: 400756}
+  m_RootOrder: 4
+--- !u!4 &466134
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125762}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: -12.700001, y: 0.10000038, z: -10}
+  m_LocalScale: {x: 1, y: 1.2568879, z: 2}
+  m_Children: []
+  m_Father: {fileID: 465292}
+  m_RootOrder: 0
+--- !u!4 &467542
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 490588}
+  m_RootOrder: 11
 --- !u!4 &471754
 Transform:
   m_ObjectHideFlags: 1
@@ -699,6 +786,7 @@ Transform:
   - {fileID: 457258}
   - {fileID: 419562}
   - {fileID: 414208}
+  - {fileID: 467542}
   m_Father: {fileID: 400756}
   m_RootOrder: 2
 --- !u!4 &495156
@@ -907,6 +995,32 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!23 &2370518
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125762}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: c829d128369efc845a179f9676918bff, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &2387248
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -968,6 +1082,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190550}
   m_Mesh: {fileID: 4300004, guid: f66461979c3d69244ba23b22dcf5b5f5, type: 3}
+--- !u!33 &3341304
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125762}
+  m_Mesh: {fileID: 4300000, guid: 61c99f3a06b678a4097fe8bc463e057c, type: 3}
 --- !u!33 &3364368
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1049,6 +1170,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 10, z: 4}
   m_Center: {x: 0, y: -4, z: 1.5}
+--- !u!65 &6532332
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 4.9999995, z: 0.1}
+  m_Center: {x: 0, y: 2.5000002, z: 0.049999807}
 --- !u!65 &6545910
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1126,7 +1259,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11406190
+--- !u!114 &11422314
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1134,9 +1267,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 132070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76cf9ad8882631b4fa9c6f8c3c43e938, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activatorTag:
+    value: Player
+  activator: {fileID: 0}
+  type: 0
+  canRepeat: 1
+  onEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: OnEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: activate
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11428668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1151,6 +1308,17 @@ MonoBehaviour:
   isJaguarInWaterfall: 0
   myWall: {fileID: 174556}
   bossJaguar: {fileID: 0}
+--- !u!114 &11445708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e0b87cbb77db046a5b63c302bff094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11452870
 MonoBehaviour:
   m_ObjectHideFlags: 1

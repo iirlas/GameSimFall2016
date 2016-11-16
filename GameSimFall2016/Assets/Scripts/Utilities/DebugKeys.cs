@@ -39,6 +39,8 @@ public class DebugKeys : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
+      updateStatus();
+
       if (Input.anyKeyDown)
       {
          foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
@@ -78,13 +80,14 @@ public class DebugKeys : MonoBehaviour
             if (getCode(KeyCode.S, KeyCode.O, KeyCode.U, KeyCode.L, KeyCode.S))
             {
                this.soulsMode = !this.soulsMode;
+               if (this.soulsMode) { StatusManager.getInstance().fear = 0.0f; }
                this.keys.Add(KeyCode.Colon);
                print("Souls mode enabled");
             }
 
             //-----------------------------------------------------------------------
             // removes the first element of the keys array
-            if (this.keys.Count > 5)
+            while (this.keys.Count > 5)
             {
                this.keys.RemoveAt(0);
             }
@@ -204,6 +207,7 @@ public class DebugKeys : MonoBehaviour
           this.keys[3].Equals(keyFour) &&
           this.keys[4].Equals(keyFive))
       {
+         SoundManager.getInstance().playEffect("Light1");
          return true;
       }
       else
