@@ -20,7 +20,7 @@ public class SwitchControl : MonoBehaviour {
       
       speed = 2f;
       destination = new Vector3(exitDoor.transform.position.x,
-                              (exitDoor.gameObject.GetComponent<Collider>().bounds.size.y + exitDoor.transform.position.y * 2), //wtf why did I have to times it by 2?
+                              (exitDoor.gameObject.GetComponent<Collider>().bounds.size.y + exitDoor.transform.position.y * 4), //wtf why did I have to times it by 2?
                                 exitDoor.transform.position.z);
       start = exitDoor.transform.position;
 

@@ -4,7 +4,7 @@ using System.Collections;
 public class RockScript : MonoBehaviour {
 
    // Hehehe
-	public AudioSource rockSlideSound;
+	//public AudioSource rockSlideSound;
 	public string animationName = "SpikeWall05";
 	Vector3 transformCheck;
 	Vector3 originalTransform;
@@ -23,14 +23,14 @@ public class RockScript : MonoBehaviour {
 
 		if (this.transform.position != this.transformCheck && this.isAnimationOn == false) {
 			if (this.anim.GetCurrentAnimatorStateInfo (0).IsName (this.animationName)) {
-				this.rockSlideSound.Play ();
-				Debug.Log ("Sound is on");
+				//this.rockSlideSound.Play ();
+				//Debug.Log ("Sound is on");
 				this.isAnimationOn = true;
 			}
 		} else if (this.transform.position == this.transformCheck && isAnimationOn == true) {
 			this.isAnimationOn = false;
-			this.rockSlideSound.Stop ();
-			Debug.Log ("Reset All values");
+			//this.rockSlideSound.Stop ();
+			//Debug.Log ("Reset All values");
 
 		}
 
