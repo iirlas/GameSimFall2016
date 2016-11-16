@@ -352,7 +352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &126300
 GameObject:
   m_ObjectHideFlags: 1
@@ -579,6 +579,7 @@ GameObject:
   - 65: {fileID: 6594076}
   - 23: {fileID: 2379898}
   - 114: {fileID: 11418086}
+  - 114: {fileID: 11497682}
   m_Layer: 0
   m_Name: text
   m_TagString: Untagged
@@ -742,26 +743,6 @@ GameObject:
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &153226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 461954}
-  - 33: {fileID: 3384888}
-  - 65: {fileID: 6543518}
-  - 23: {fileID: 2350238}
-  - 114: {fileID: 11439842}
-  - 114: {fileID: 11435450}
-  m_Layer: 0
-  m_Name: PlayerPressurePlate
-  m_TagString: PushIn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1354,7 +1335,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.7, y: 0.09, z: -20.78}
+  m_LocalPosition: {x: -0.09, y: -5.4, z: 85.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414216}
@@ -1362,7 +1343,6 @@ Transform:
   - {fileID: 437008}
   - {fileID: 426408}
   - {fileID: 428920}
-  - {fileID: 461954}
   - {fileID: 498502}
   - {fileID: 411526}
   - {fileID: 433888}
@@ -1468,7 +1448,7 @@ Transform:
   m_LocalScale: {x: 5.8000007, y: 5.8000007, z: 5.8}
   m_Children: []
   m_Father: {fileID: 400126}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!4 &414216
 Transform:
   m_ObjectHideFlags: 1
@@ -1621,7 +1601,7 @@ Transform:
   m_LocalScale: {x: 2, y: 3, z: 0.1}
   m_Children: []
   m_Father: {fileID: 400126}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!4 &433942
 Transform:
   m_ObjectHideFlags: 1
@@ -1909,18 +1889,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 437008}
   m_RootOrder: 24
---- !u!4 &461954
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153226}
-  m_LocalRotation: {x: 0, y: -0.70710665, z: 0, w: 0.70710695}
-  m_LocalPosition: {x: -0.18813276, y: 0.5875001, z: 10.992263}
-  m_LocalScale: {x: 2.5324717, y: 0.17500025, z: 3.1000001}
-  m_Children: []
-  m_Father: {fileID: 400126}
-  m_RootOrder: 5
 --- !u!4 &462774
 Transform:
   m_ObjectHideFlags: 1
@@ -2216,7 +2184,7 @@ Transform:
   m_Children:
   - {fileID: 443554}
   m_Father: {fileID: 400126}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!4 &487164
 Transform:
   m_ObjectHideFlags: 1
@@ -2339,7 +2307,7 @@ Transform:
   m_LocalScale: {x: 34.18158, y: 4.70551, z: 12.115192}
   m_Children: []
   m_Father: {fileID: 400126}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!23 &2306776
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -2982,32 +2950,6 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!23 &2350238
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153226}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: cc0fd9f7d4ee3e34a8d7d547280ce86d, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
@@ -4059,13 +4001,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137568}
   m_Mesh: {fileID: 4300000, guid: 61c99f3a06b678a4097fe8bc463e057c, type: 3}
---- !u!33 &3384888
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153226}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3385506
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -4536,18 +4471,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 4.9999995, z: 0.1}
   m_Center: {x: 0, y: 2.5000002, z: 0.049999807}
---- !u!65 &6543518
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153226}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6545902
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5032,14 +4955,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: OnEvent
+        m_MethodName: playEffect
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: catTalk
+          m_StringArgument: walkingTalkingBread
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -5059,17 +4982,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfPuzzles: 0
---- !u!114 &11435450
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33cf7053286c46148abf35bcffdd0500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5088,32 +5000,8 @@ MonoBehaviour:
   canRepeat: 0
   onEvent:
     m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  onEventEnd:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &11439842
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Player
-  activator: {fileID: 0}
-  type: 0
-  canRepeat: 1
-  onEvent:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11446082}
+      - m_Target: {fileID: 11402880}
         m_MethodName: OnEvent
         m_Mode: 0
         m_Arguments:
@@ -5127,18 +5015,7 @@ MonoBehaviour:
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onEventEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11435450}
-        m_MethodName: OnEventEnd
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11440734
 MonoBehaviour:
@@ -5212,6 +5089,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 0}
+--- !u!114 &11497682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66939cc46a849e4b97ae0edd8cfd59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 'Congratulations for completing the demo...
+
+    Unfortunately Kira''s parent''s are in another Castle!
+
+    I mean temple. Another temple.'
+  printLineOne: 
+  printLineTwo: 
+  printLineThree: 
+  textBack: {fileID: 0}
+  printHere: {fileID: 0}
+  printTextBack: 0
 --- !u!135 &13505992
 SphereCollider:
   m_ObjectHideFlags: 1
