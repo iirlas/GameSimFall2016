@@ -39,8 +39,6 @@ public class DebugKeys : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      updateStatus();
-
       if (Input.anyKeyDown)
       {
          foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
@@ -50,50 +48,52 @@ public class DebugKeys : MonoBehaviour
                this.keys.Add(key);
             }
          }
+      }
 
          //=======================================================================
          // If cheat codes are enabled, use these codes
-         if (this.keys.Count >= 5 && cheatCodesEnabled)
+      if (this.keys.Count >= 5 && cheatCodesEnabled)
+      {
+         // load next scene
+         if (getCode(KeyCode.G, KeyCode.N, KeyCode.E, KeyCode.X, KeyCode.T))
          {
-            // load next scene
-            if (getCode(KeyCode.G, KeyCode.N, KeyCode.E, KeyCode.X, KeyCode.T))
-            {
-               loadNextScene();
-               this.keys.Add(KeyCode.Colon);
-               print("Loading next scene");
-            }
-            // load previous scene
-            if (getCode(KeyCode.G, KeyCode.P, KeyCode.R, KeyCode.E, KeyCode.V))
-            {
-               loadPrevScene();
-               this.keys.Add(KeyCode.Colon);
-               print("Loading previous scene");
-            }
-            // god mode
-            if (getCode(KeyCode.I, KeyCode.D, KeyCode.D, KeyCode.Q, KeyCode.D))
-            {
-               this.godMode = !this.godMode;
-               this.keys.Add(KeyCode.Colon);
-               print("God Mode Enabled");
-            }
-            // souls mode
-            if (getCode(KeyCode.S, KeyCode.O, KeyCode.U, KeyCode.L, KeyCode.S))
-            {
-               this.soulsMode = !this.soulsMode;
-               if (this.soulsMode) { StatusManager.getInstance().fear = 0.0f; }
-               this.keys.Add(KeyCode.Colon);
-               print("Souls mode enabled");
-            }
+            loadNextScene();
+            this.keys.Add(KeyCode.Colon);
+            print("Loading next scene");
+         }
+         // load previous scene
+         if (getCode(KeyCode.G, KeyCode.P, KeyCode.R, KeyCode.E, KeyCode.V))
+         {
+            loadPrevScene();
+            this.keys.Add(KeyCode.Colon);
+            print("Loading previous scene");
+         }
+         // god mode
+         if (getCode(KeyCode.I, KeyCode.D, KeyCode.D, KeyCode.Q, KeyCode.D))
+         {
+            this.godMode = !this.godMode;
+            this.keys.Add(KeyCode.Colon);
+            print("God Mode Enabled");
+         }
+         // souls mode
+         if (getCode(KeyCode.S, KeyCode.O, KeyCode.U, KeyCode.L, KeyCode.S))
+         {
+            this.soulsMode = !this.soulsMode;
+            if (this.soulsMode) { StatusManager.getInstance().fear = 0.0f; }
+            this.keys.Add(KeyCode.Colon);
+            print("Souls mode enabled");
+         }
 
-            //-----------------------------------------------------------------------
-            // removes the first element of the keys array
-            while (this.keys.Count > 5)
-            {
-               this.keys.RemoveAt(0);
-            }
+         updateStatus();
+
+         //-----------------------------------------------------------------------
+         // removes the first element of the keys array
+         for (int ix = this.keys.Count; ix > 5; ix--)
+         {
+            this.keys.RemoveAt(0);
          }
       }
-
+   
       //=======================================================================
       // If debug/developer keys are enabled, do these debug keys.  These are
       // quick alternatives to cheat codes.
