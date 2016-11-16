@@ -68,6 +68,13 @@ public class DebugKeys : MonoBehaviour
             this.keys.Add(KeyCode.Colon);
             print("Loading previous scene");
          }
+         // reset the level
+         if (getCode(KeyCode.R, KeyCode.E, KeyCode.S, KeyCode.E, KeyCode.T))
+         {
+            this.keys.Add(KeyCode.Colon);
+            print("Loading previous scene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));                    
+         }
          // god mode
          if (getCode(KeyCode.I, KeyCode.D, KeyCode.D, KeyCode.Q, KeyCode.D))
          {
