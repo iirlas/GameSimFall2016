@@ -73,7 +73,7 @@ public class DebugKeys : MonoBehaviour
          {
             this.keys.Add(KeyCode.Colon);
             print("Loading previous scene");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));                    
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);                    
          }
          // god mode
          if (getCode(KeyCode.I, KeyCode.D, KeyCode.D, KeyCode.Q, KeyCode.D))
