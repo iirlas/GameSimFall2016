@@ -138,8 +138,11 @@ public class BunnyBoss : MonoBehaviour {
 
     void Summon ()
     {
-        GameObject bunnyObj = Instantiate(bunnyPrefab, bunnySpawner.position, Quaternion.identity) as GameObject;
-        bunnys.Add(bunnyObj.GetComponent<Bunny>());
+      if (bunnys.Sum( bunny => { return (bunny.gameObject.activeSelf) ? (1) : (0); } ) < 4)
+      {
+         GameObject bunnyObj = Instantiate(bunnyPrefab, bunnySpawner.position, Quaternion.identity) as GameObject;
+         bunnys.Add(bunnyObj.GetComponent<Bunny>());
+      }
     }
 
     void NewTarget ()
