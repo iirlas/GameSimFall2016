@@ -19,6 +19,9 @@ public class JaguarWaterfall : MonoBehaviour {
    private Vector3 myStartWallPos;
    private Vector3 myUpperWallPosMax;
 
+   float activatedInterpolator = 0.0f;
+   float deactivatedInterpolator = 0.0f;
+
    //==========================================================================
    // Use this for initialization
 	void Start () {
@@ -31,7 +34,7 @@ public class JaguarWaterfall : MonoBehaviour {
 
       if (this.myWall == null)
       {
-         Debug.Log("NRC:  A wall was not assigned to this waterfall, be sure to assign it one in the inspector.");
+         Debug.LogError("NRC:  A wall was not assigned to this waterfall, be sure to assign it one in the inspector.");
       }
       else
       {
@@ -39,11 +42,6 @@ public class JaguarWaterfall : MonoBehaviour {
          this.myUpperWallPosMax = new Vector3(this.myWall.transform.position.x,
                                               this.myWall.transform.position.y + 0.2f, 
                                               this.myWall.transform.position.z);
-      }
-
-      if (this.bossJaguar == null)
-      {
-         this.bossJaguar = GameObject.FindGameObjectWithTag("Boss");
       }
 	}
 	
@@ -63,20 +61,22 @@ public class JaguarWaterfall : MonoBehaviour {
 
       if (this.isWallActivated)
       {
-         this.isWaterFlowing = true;  
+         this.isWaterFlowing = true;
+         this.activatedInterpolator += Time.deltaTime;
       
          if (this.myWall.transform.position.y < this.myUpperWallPosMax.y)
          {
-            Vector3.Lerp(this.myWall.transform.position, this.myUpperWallPosMax, Time.deltaTime);
+            Vector3.Lerp(this.myWall.transform.position, this.myUpperWallPosMax, activatedInterpolator);
          }
       }
       else
       {
          this.isWaterFlowing = false;
+         this.deactivatedInterpolator += Time.deltaTime;
 
          if (this.myWall.transform.position.y > this.myStartWallPos.y)
          {
-            Vector3.Lerp(this.myWall.transform.position, this.myStartWallPos, Time.deltaTime);
+            Vector3.Lerp(this.myWall.transform.position, this.myStartWallPos, deactivatedInterpolator);
          }
       }
 
@@ -111,6 +111,7 @@ public class JaguarWaterfall : MonoBehaviour {
    {
       Debug.Log("Activating Water Flow");
       this.isWallActivated = true;
+      this.activatedInterpolator = 0.0f;
    }
 
    //==========================================================================
@@ -119,12 +120,13 @@ public class JaguarWaterfall : MonoBehaviour {
    {
       Debug.Log("Deactivating Water Flow");
       this.isWallActivated = false;
+      this.deactivatedInterpolator = 0.0f;
    }
 
    //==========================================================================
    void OnTriggerEnter(Collider other)
    {
-      if (other.name.Equals("JaguarBoss") || other.tag.Equals("Boss"))
+      if (other.tag.Equals("Boss"))
       {
          Debug.Log("Jaguar entered waterfall: " + this.gameObject.name);
          this.isJaguarInWaterfall = true;
@@ -134,7 +136,7 @@ public class JaguarWaterfall : MonoBehaviour {
    //==========================================================================
    void OnTriggerExit(Collider other)
    {
-      if (other.name.Equals("JaguarBoss") || other.tag.Equals("Boss"))
+      if (other.tag.Equals("Boss"))
       {
          Debug.Log("Jaguar left waterfall: " + this.gameObject.name);
          this.isJaguarInWaterfall = false;

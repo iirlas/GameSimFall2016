@@ -3,11 +3,13 @@ using System.Collections;
 
 public class JaguarBossLever : MonoBehaviour {
 
-   //private JaguarBoss jaguarBoss;
+   private GameObject jaguarBoss;
+
+   public GameObject[] waterfalls = new GameObject[4];
 
 	// Use this for initialization
 	void Start () {
-      //jaguarBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<JaguarBoss>();
+
 	}
 	
 	// Update is called once per frame
@@ -21,13 +23,13 @@ public class JaguarBossLever : MonoBehaviour {
    {
       if(other.name.Equals("Kira"))
       {
-         Debug.Log("doing the thing");
-         GameObject[] arr = GameObject.FindGameObjectsWithTag("Waterfall");
+         Debug.Log("Kira leaves the lever zone");
 
-         for (int ix = 0; ix < arr.Length; ix++)
+
+         for (int ix = 0; ix < waterfalls.Length; ix++)
          {
-            Debug.Log("Waterflow activated: " + arr[ix].gameObject.name);
-            arr[ix].GetComponent<JaguarWaterfall>().deactivateWaterFlow();
+            Debug.Log("Waterflow activated: " + waterfalls[ix].gameObject.name);
+            waterfalls[ix].GetComponent<JaguarWaterfall>().deactivateWaterFlow();
          }
       }
    }
@@ -36,15 +38,14 @@ public class JaguarBossLever : MonoBehaviour {
    {
       if (Input.GetButtonDown("Action") && other.name.Equals("Kira"))
       {
-         Debug.Log("doing the thing");
-         GameObject[] arr = GameObject.FindGameObjectsWithTag("Waterfall");
+         Debug.Log("Kira remains in the lever zone");
 
-         for (int ix = 0; ix < arr.Length; ix++)
+         for (int ix = 0; ix < waterfalls.Length; ix++)
          {
-            if (arr[ix].GetComponent<JaguarWaterfall>().isJaguarInWaterfall)
+            if (waterfalls[ix].GetComponent<JaguarWaterfall>().isJaguarInWaterfall)
             {
-               Debug.Log("Waterflow activated: " + arr[ix].gameObject.name);
-               arr[ix].GetComponent<JaguarWaterfall>().activateWaterFlow();
+               Debug.Log("Waterflow activated: " + waterfalls[ix].gameObject.name);
+               waterfalls[ix].GetComponent<JaguarWaterfall>().activateWaterFlow();
             }
          }
       }

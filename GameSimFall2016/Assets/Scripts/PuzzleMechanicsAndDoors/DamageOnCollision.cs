@@ -14,7 +14,7 @@ public class DamageOnCollision : MonoBehaviour
    public int damageToTake;
    public int fearDamageToTake;
 
-   private bool takingFireDamage;
+   //private bool takingFireDamage;
    private bool takeDamage;
 
    [Tooltip("Tick this box if you wish to deal fire damage instead of normal damage.")]
@@ -23,7 +23,7 @@ public class DamageOnCollision : MonoBehaviour
 
    [Tooltip("How often to deal damage, interval in seconds.  Does nothing is dealFireDamage is active.")]
    public float intervalTime = 0.0f;
-   public float fireTimer = 0.0f;
+   //public float fireTimer = 0.0f;
    private float timer = 0.0f;
 
    // Use this for initialization
@@ -51,15 +51,15 @@ public class DamageOnCollision : MonoBehaviour
             timer = 0.0f;
          }
       }
-      if ( dealFireDamage )
-      {
-         this.fireTimer += Time.deltaTime;
-         if (fireTimer >= 1.0f)
-         {
-            this.fireDamage(false);
-         }
+      //if ( dealFireDamage )
+      //{
+      //   this.fireTimer += Time.deltaTime;
+      //   if (fireTimer >= 1.0f)
+      //   {
+      //      this.fireDamage(false);
+      //   }
 
-      }
+      //}
 
       timer += Time.deltaTime;
    }
@@ -90,7 +90,7 @@ public class DamageOnCollision : MonoBehaviour
       if (!this.isTrigger && other.collider.name.Equals("Kira"))
       {
          takeDamage = false;
-         
+
          if (this.dealFireDamage)
          {
             this.fireDamage(false);
@@ -103,7 +103,7 @@ public class DamageOnCollision : MonoBehaviour
    {
       if (this.isTrigger && other.transform.name.Equals("Kira"))
       {
-         if ( this.dealFireDamage )
+         if (this.dealFireDamage)
          {
             this.fireDamage(true);
          }
@@ -161,6 +161,6 @@ public class DamageOnCollision : MonoBehaviour
       StatusManager.getInstance().onFire = state;
       StatusManager.getInstance().fear += fearDamageToTake;
 
-      this.takingFireDamage = state;
+      //this.takingFireDamage = state;
    }
 }

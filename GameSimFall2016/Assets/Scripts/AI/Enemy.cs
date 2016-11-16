@@ -57,6 +57,7 @@ public class Enemy : MonoBehaviour
    protected enState myState; // The current state of this enemy, as defined in enState.
    protected enType myType;   // The current type of this enemy, as defined in enType.
 
+   [Tooltip("Directly editing this value will have no effect, this is purely for debugging purposes")]
    public int myHealth;   // The health of this enemy.
    protected int myDamage;   // The damage this enemy does to other GameObjects.
 

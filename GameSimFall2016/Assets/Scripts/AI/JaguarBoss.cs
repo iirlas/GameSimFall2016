@@ -97,7 +97,7 @@ public class JaguarBoss : Enemy
       switch (this.currentAttack)
       {
          case jagAttack.FIRE:
-            this.attackLengthTimer = 10.0f;
+            this.attackLengthTimer = 5.0f;
             break;
          case jagAttack.POUNCE:
             this.attackLengthTimer = 2.0f;
