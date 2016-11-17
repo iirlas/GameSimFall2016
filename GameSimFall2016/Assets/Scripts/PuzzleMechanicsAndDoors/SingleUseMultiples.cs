@@ -20,12 +20,12 @@ public class SingleUseMultiples : MonoBehaviour {
    {
       if (other.name.Equals("Kira"))
       {
-         Debug.Log("Kira Hit It");
+         //Debug.Log("Kira Hit It");
          for (int i = 0; i < startPos.Length; i++)
          {
             if (startPos[i].transform.position != endPos[i].transform.position)
             {
-               Debug.Log("Change Position");
+               //Debug.Log("Change Position");
                startPos[i].transform.position = endPos[i].transform.position;
             }
          }

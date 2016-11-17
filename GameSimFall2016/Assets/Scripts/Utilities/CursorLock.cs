@@ -30,23 +30,8 @@ public class CursorLock : MonoBehaviour
 
         if (Input.GetKeyDown("escape"))
         {
-	    if (SceneManager.GetActiveScene().name.Equals("TitleScreen"))
-            {
-                Application.Quit();
-            }
-            else
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                SceneManager.LoadScene("TitleScreen");
-            }
-            //Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
-            //Application.Quit(); // Quits the game
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
-        
-
-
-        
     }
 }
