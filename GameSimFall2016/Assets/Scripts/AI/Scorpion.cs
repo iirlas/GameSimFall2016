@@ -50,7 +50,7 @@ public class Scorpion : Enemy
    private const float SCORPIONSPEEDDEFAULT = 1;
    private const float SCORPIONROTATIONSPEEDDEFAULT = 1.0f;
 
-   private const int SCORPIONPOISONDAMAGEDEFAULT = 1;
+   private const int SCORPIONPOISONDAMAGEDEFAULT = 3;
    private const int SCORPIONPOISONINSTANCESDEFAULT = 5;
    private const float SCORPIONPOISONINTERVALDEFAULT = 1.0f;
 
@@ -67,6 +67,10 @@ public class Scorpion : Enemy
    private bool targetIsPlayer;
    private Vector3 startPos;
    private Vector3 targetDestination;
+
+   private float poisonTimer = 0.0f;
+   private float poisonDuration = 5.0f;
+   private bool hasPoisonedPlayer = false;
 
 
    //=============================================================================
@@ -127,8 +131,25 @@ public class Scorpion : Enemy
             break;
       }
 
+      poisonUpdate();
       checkScorpionHealth();
       stateUpdate();
+   }
+
+   //=============================================================================
+   // Prevent the scorpion from stacking multiple instances of poison
+   public void poisonUpdate()
+   {
+      if (StatusManager.getInstance().isPoisoned && hasPoisonedPlayer)
+      {
+         this.poisonTimer += Time.deltaTime;
+         if (this.poisonTimer >= this.poisonDuration)
+         {
+            StatusManager.getInstance().isPoisoned = false;
+            this.poisonTimer = 0.0f;
+            this.hasPoisonedPlayer = false;
+         }
+      }
    }
 
    //=============================================================================
@@ -165,6 +186,10 @@ public class Scorpion : Enemy
          //-----------------------------------------------------------------------------
          case enState.ATTACK:
             //check to see if the player has left the attack radius
+            if (this.isInAttackRadius)
+            {
+               this.attackPlayer();
+            }
             if (isPlayerNearby() && !isInAttackRadius)
             {
                this.myState = enState.MOVE;
@@ -195,12 +220,6 @@ public class Scorpion : Enemy
       {
          damageScorpion();
       }
-   }
-
-   //=============================================================================  
-   // If something enters the trigger box, do something based upon it's type.
-   void OnTriggerStay(Collider other)
-   {
       if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
       {
          this.myState = enState.ATTACK;
@@ -295,8 +314,12 @@ public class Scorpion : Enemy
             //do damage to player.
             StatusManager.getInstance().health -= 8;
             StatusManager.getInstance().fear += 7;
-            StatusManager.getInstance().poisonDamage = 5.0f;
-            StatusManager.getInstance().isPoisoned = true;
+            if (StatusManager.getInstance().isPoisoned == false)
+            {
+               StatusManager.getInstance().poisonDamage = scorpionPoisonDamageCustom;
+               StatusManager.getInstance().isPoisoned = true;
+               this.hasPoisonedPlayer = true;
+            }
          }
 
          timeSinceLastAttack += Time.deltaTime;
