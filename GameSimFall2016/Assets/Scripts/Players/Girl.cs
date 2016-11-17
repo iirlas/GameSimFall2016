@@ -226,6 +226,7 @@ public class Girl : Player {
         if (PlayerManager.getInstance().currentPlayer != this)
         {
             animator.SetInteger("state", 0);
+            playerState = Player.State.DEFAULT;
         }
         animator.SetFloat("Fear", StatusManager.getInstance().fear);
         //posisonEffect.SetActive((status & Status.POISON) == Status.POISON);
