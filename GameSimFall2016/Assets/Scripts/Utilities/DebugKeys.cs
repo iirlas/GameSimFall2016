@@ -50,8 +50,8 @@ public class DebugKeys : MonoBehaviour
          }
       }
 
-         //=======================================================================
-         // If cheat codes are enabled, use these codes
+      //=======================================================================
+      // If cheat codes are enabled, use these codes
       if (this.keys.Count >= 5 && cheatCodesEnabled)
       {
          // load next scene
@@ -89,6 +89,14 @@ public class DebugKeys : MonoBehaviour
             if (this.soulsMode) { StatusManager.getInstance().fear = 0.0f; }
             this.keys.Add(KeyCode.Colon);
             print("Souls mode enabled");
+         }
+         if (getCode(KeyCode.L, KeyCode.O, KeyCode.W, KeyCode.H, KeyCode.P))
+         {
+            StatusManager.getInstance().health = 10;
+         }
+         if (getCode(KeyCode.M, KeyCode.A, KeyCode.X, KeyCode.H, KeyCode.P))
+         {
+            StatusManager.getInstance().health = 100;
          }
 
          updateStatus();

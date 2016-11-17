@@ -134,7 +134,7 @@ public class StatusManager : Singleton<StatusManager>
       playerStatus = Status.FEAR;
    }
 
-   void Start ()
+   void Start()
    {
       this.respawnPoint = PlayerManager.getInstance().currentPlayer.transform.position;
    }
@@ -211,6 +211,10 @@ public class StatusManager : Singleton<StatusManager>
       //spook damage
       health -= (isSpooked ? spookDamage : 0.0f) * Time.deltaTime;
 
+   }
+
+   void LateUpdate()
+   {
       //respawn players when kira dies.
       if (health <= 0)
       {

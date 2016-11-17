@@ -687,7 +687,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 472600}
-  - 82: {fileID: 8299536}
   - 114: {fileID: 11428446}
   - 65: {fileID: 6526580}
   m_Layer: 0
@@ -1545,8 +1544,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177446}
-  m_LocalRotation: {x: -0.5000001, y: -0.49999988, z: -0.5, w: 0.50000006}
-  m_LocalPosition: {x: 105.121, y: 1.874, z: 179.441}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 53.344, y: -2.807, z: -96.218}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 470160}
@@ -3172,7 +3171,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b196b5320920aa4408bccd97ccf0a0db, type: 2}
+  - {fileID: 2100000, guid: cc0fd9f7d4ee3e34a8d7d547280ce86d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -4510,115 +4509,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 4.9999995, z: 0.1}
   m_Center: {x: 0, y: 2.5000002, z: 0.049999807}
---- !u!82 &8299536
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158678}
-  m_Enabled: 0
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 92c935316d4a6a346b22b94d897e541b, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  Priority: 0
-  DopplerLevel: 1
-  MinDistance: 0
-  MaxDistance: 13.59
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0.0001
-      value: 1
-      inSlope: -10003.999
-      outSlope: -10003.999
-      tangentMode: 0
-    - time: 0.0002
-      value: 0.5
-      inSlope: -2500.9998
-      outSlope: -2500.9998
-      tangentMode: 0
-    - time: 0.0004
-      value: 0.25
-      inSlope: -625.24994
-      outSlope: -625.24994
-      tangentMode: 0
-    - time: 0.0008
-      value: 0.125
-      inSlope: -156.31248
-      outSlope: -156.31248
-      tangentMode: 0
-    - time: 0.0128
-      value: 0.0078125
-      inSlope: -0.61059564
-      outSlope: -0.61059564
-      tangentMode: 0
-    - time: 0.0256
-      value: 0.00390625
-      inSlope: -0.15264891
-      outSlope: -0.15264891
-      tangentMode: 0
-    - time: 0.4096
-      value: 0.00024414062
-      inSlope: -0.0005962848
-      outSlope: -0.0005962848
-      tangentMode: 0
-    - time: 0.8192
-      value: 0.00012207031
-      inSlope: -0.0001490712
-      outSlope: -0.0001490712
-      tangentMode: 0
-    - time: 1
-      value: 0.0001
-      inSlope: -0.00010003987
-      outSlope: -0.00010003987
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0.8833333
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1.1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!95 &9530614
 Animator:
   serializedVersion: 3
@@ -4711,11 +4601,11 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4748,7 +4638,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4764,7 +4654,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.5753043, b: 0.08088237, a: 1}
   m_Intensity: 4
-  m_Range: 5
+  m_Range: 8.361225
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4781,7 +4671,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4810,7 +4700,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -4830,7 +4720,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.5753043, b: 0.08088237, a: 1}
   m_Intensity: 4
-  m_Range: 5
+  m_Range: 10.490643
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4847,7 +4737,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4880,7 +4770,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4896,7 +4786,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.5753043, b: 0.08088237, a: 1}
   m_Intensity: 4
-  m_Range: 5
+  m_Range: 11.4300995
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4913,7 +4803,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4929,7 +4819,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0.5753043, b: 0.08088237, a: 1}
   m_Intensity: 4
-  m_Range: 5
+  m_Range: 5.362583
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4946,7 +4836,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
