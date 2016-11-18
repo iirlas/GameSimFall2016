@@ -15,10 +15,15 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	}
+      if (SoundManager.getInstance().gameObject.GetComponent<AudioSource>().isPlaying == false)
+      {
+         SoundManager.getInstance().playMusic("GameTheme(Temp Placement)");
+      }
+   }
 
    public void pressPlay()
    {
+      Destroy(SoundManager.getInstance().gameObject);
       SceneManager.LoadScene(firstScene);
    }
 
@@ -29,11 +34,18 @@ public class MainMenu : MonoBehaviour {
 
    public void pressCredits()
    {
+      SoundManager.getInstance().stopAll();
+      SoundManager.getInstance().playMusic("Memories_Bensound");
       SceneManager.LoadScene(creditScene);
    }
 
    public void pressTitle()
    {
+      if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CreditsScene"))
+      {
+         SoundManager.getInstance().stopAll();
+         SoundManager.getInstance().playMusic("GameTheme(Temp Placement)");
+      }
       SceneManager.LoadScene(mainMenuScene);
    }
 
