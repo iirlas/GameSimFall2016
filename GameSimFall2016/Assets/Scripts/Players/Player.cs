@@ -139,6 +139,7 @@ abstract public class Player : MonoBehaviour
                 myFollower.agent.destination = target;
                 if (distance > PlayerManager.getInstance().switchDistance)
                 {
+                    myFollower.agent.enabled = false;
                     myFollower.transform.position = target;
                 }
             }
