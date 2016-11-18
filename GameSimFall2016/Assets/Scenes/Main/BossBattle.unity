@@ -21,7 +21,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.66176474, g: 0.5444458, b: 0.29195502, a: 1}
-  m_AmbientEquatorColor: {r: 0.2352941, g: 0.23231117, b: 0.19204152, a: 1}
+  m_AmbientEquatorColor: {r: 0.2352941, g: 0.17231834, b: 0.07785467, a: 1}
   m_AmbientGroundColor: {r: 0.20275772, g: 0.14327422, b: 0.3897059, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000008, guid: c609f829ff7b622458704c5b564c9501,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -15110,6 +15111,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 10808694, guid: fc15cf1c9dea2914388b220ce7b328a8, type: 2}
+      propertyPath: m_Color.r
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 10808694, guid: fc15cf1c9dea2914388b220ce7b328a8, type: 2}
+      propertyPath: m_Color.g
+      value: 0.8235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 10808694, guid: fc15cf1c9dea2914388b220ce7b328a8, type: 2}
+      propertyPath: m_Color.b
+      value: 0.6392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 10808694, guid: fc15cf1c9dea2914388b220ce7b328a8, type: 2}
+      propertyPath: m_SpotAngle
+      value: 79
+      objectReference: {fileID: 0}
+    - target: {fileID: 10808694, guid: fc15cf1c9dea2914388b220ce7b328a8, type: 2}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 402088, guid: fc15cf1c9dea2914388b220ce7b328a8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 29.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc15cf1c9dea2914388b220ce7b328a8, type: 2}
   m_IsPrefabParent: 0
@@ -15568,6 +15593,18 @@ Prefab:
     - target: {fileID: 11464926, guid: 341e75f61eeaf5d4891eb7270df71d77, type: 2}
       propertyPath: speed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011318, guid: 341e75f61eeaf5d4891eb7270df71d77, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0.351968
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011318, guid: 341e75f61eeaf5d4891eb7270df71d77, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0.48102292
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011318, guid: 341e75f61eeaf5d4891eb7270df71d77, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0.6838235
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 341e75f61eeaf5d4891eb7270df71d77, type: 2}
