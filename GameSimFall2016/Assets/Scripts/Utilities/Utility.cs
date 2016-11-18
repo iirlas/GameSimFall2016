@@ -5,15 +5,19 @@ using System.Collections;
 public class Utility  {
 
     public static bool isFading { private set; get; }
-
+   //Nathan was not here
     public static IEnumerator fadeScreen (Color start, Color end, float speed, float delay)
     {
         if ( isFading )
         {
             yield return null;
         }
-        Canvas canvas = GameObject.FindObjectOfType<Canvas>();
-        Image fadeImage = canvas.gameObject.AddComponent<Image>();
+        GameObject gameObject = new GameObject("FadeObject");
+        Canvas canvas = gameObject.AddComponent<Canvas>();
+        Image fadeImage = gameObject.AddComponent<Image>();
+
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
 
         isFading = true;
 
