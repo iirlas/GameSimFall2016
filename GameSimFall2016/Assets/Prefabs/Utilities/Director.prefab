@@ -72,6 +72,7 @@ GameObject:
   - 114: {fileID: 11494408}
   - 223: {fileID: 22339920}
   - 114: {fileID: 11453590}
+  - 82: {fileID: 8268314}
   m_Layer: 0
   m_Name: Director
   m_TagString: HealthManager
@@ -145,6 +146,80 @@ Transform:
   m_Father: {fileID: 22427316}
   m_RootOrder: 1
 --- !u!82 &8263716
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116796}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &8268314
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -454,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a56fa29d4f58c4199577e83b70f9d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 8263716}
+  audioSource: {fileID: 8268314}
   audioClips:
   - {fileID: 8300000, guid: 51b8693f630b04745a8dc1968a25db7b, type: 3}
   - {fileID: 8300000, guid: 9cd36d963fa164f47a2cdc6aed0a885a, type: 3}
@@ -498,7 +573,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 95a38fec32c151540906afed7db76700, type: 3}
   - {fileID: 8300000, guid: 83e98432cf3518145b8d832493893a7a, type: 3}
   - {fileID: 8300000, guid: f3e95096856f8f2468590bce5e17da08, type: 3}
-  - {fileID: 8300000, guid: 654321178a523994c93ded6014c668ac, type: 3}
+  - {fileID: 8300000, guid: af5993b78a646b543be3f9a46d168ce5, type: 3}
+  - {fileID: 8300000, guid: ece973c59d077fe4fbc5c4509cd5e6c1, type: 3}
+  - {fileID: 8300000, guid: 4f2d3ff04e008044da693a616706fa84, type: 3}
+  - {fileID: 8300000, guid: 9de198920a1385e46afa4ceac4db37c8, type: 3}
+  - {fileID: 8300000, guid: 2804b7a1434b75a48a3b770f976acc7c, type: 3}
+  - {fileID: 8300000, guid: 88308f530cd1969438d71030e9fbbb0c, type: 3}
+  - {fileID: 8300000, guid: f1db37015f48ee045923642ceee9c5ec, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
