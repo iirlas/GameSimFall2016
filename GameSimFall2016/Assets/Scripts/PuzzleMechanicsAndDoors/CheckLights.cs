@@ -59,9 +59,9 @@ public class CheckLights : MonoBehaviour {
             }
         }
 
-        if (exitDoor.transform.position.y >= destination.y)
-        {
-            Destroy(exitDoor);
-        }	
+        //if (exitDoor.transform.position.y >= destination.y)
+        //{
+        //    Destroy(exitDoor);
+        //}	
 	}
 }
