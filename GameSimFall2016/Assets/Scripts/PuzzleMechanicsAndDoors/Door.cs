@@ -4,7 +4,7 @@ using System.Collections;
 //========================================================================================================
 //                                              Door
 // Opens the door when BASIC TRIGGER is setup with message "doorOpen"
-//========================================================================================================
+//========================================================================================================0
 
 public class Door : MonoBehaviour
 {
@@ -17,9 +17,9 @@ public class Door : MonoBehaviour
    private Vector3 start;
    private Vector3 destination;
 
-   //public AudioSource OpenStoneDoorSoundEffect;
-   //bool playDoorOpenSoundOnce = false;
+   bool onlyOnce = true;
 
+   //=============================================================================
    // Use this for initialization
    void Awake()
    {
@@ -27,11 +27,13 @@ public class Door : MonoBehaviour
       openDoor = false;
       speed = 2f;
       destination = new Vector3(this.transform.position.x,
-                              (this.gameObject.GetComponent<Collider>().bounds.size.y + this.transform.position.y),
+                               (this.gameObject.GetComponent<Collider>().bounds.size.y + this.transform.position.y),
                                 this.transform.position.z);
       start = transform.position;
    }
 
+   //=============================================================================
+   // Update is called once per frame
    void Update()
    {
       if (openDoor)
@@ -41,11 +43,11 @@ public class Door : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position,
                                       destination,
                                       speed * 3.0f * Time.deltaTime);
-            //if (this.playDoorOpenSoundOnce == false && this.OpenStoneDoorSoundEffect != null)
-            //{
-            //   this.OpenStoneDoorSoundEffect.Play();
-            //   this.playDoorOpenSoundOnce = true;
-            //}
+            if (onlyOnce)
+            {
+               SoundManager.getInstance().playEffect("DoorStoneOpen");
+               this.onlyOnce = false;
+            }
 
          }
       }
@@ -57,26 +59,17 @@ public class Door : MonoBehaviour
       }
    }
 
-   // Update is called once per frame
+   //=============================================================================
+   // 
    public void OnEvent(BasicTrigger trigger)
    {
-      //if (trigger.message == "doorOpen")
-      {
-         openDoor = true;
-
-      }
-
+      openDoor = true;
    }
 
+   //=============================================================================
+   // 
    public void OnEventEnd(BasicTrigger trigger)
    {
-      //if (trigger.message == "doorOpen")
-      {
-         openDoor = false;
-
-      }
-
+      openDoor = false;
    }
-
-
 }

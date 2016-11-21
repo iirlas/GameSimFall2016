@@ -34,7 +34,7 @@ public class FadeInOut : MonoBehaviour
          float interpolator = this.timer / this.fadeInTime;
 
          Color temp = this.myImage.color;
-         temp.a = Mathf.Lerp(temp.a, 0, interpolator * Time.deltaTime);
+         temp.a = Mathf.Lerp(temp.a, 0, interpolator * Time.deltaTime * 2);
          this.myImage.color = temp;
 
          if (this.timer >= fadeInTime)
@@ -61,7 +61,7 @@ public class FadeInOut : MonoBehaviour
          float interpolator = this.timer / this.fadeInTime;
 
          Color temp = this.myImage.color;
-         temp.a = Mathf.Lerp(temp.a, 1, interpolator * Time.deltaTime);
+         temp.a = Mathf.Lerp(temp.a, 1, interpolator * Time.deltaTime * 2);
          this.myImage.color = temp;
 
          if (this.timer >= fadeInTime)
