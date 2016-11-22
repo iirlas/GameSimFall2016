@@ -98,6 +98,10 @@ public class DebugKeys : MonoBehaviour
          {
             StatusManager.getInstance().health = 100;
          }
+         if (getCode(KeyCode.T, KeyCode.O, KeyCode.K, KeyCode.E, KeyCode.N))
+         {
+            moveTokens();
+         }
 
          updateStatus();
 
@@ -207,6 +211,24 @@ public class DebugKeys : MonoBehaviour
       if (SceneManager.GetActiveScene().buildIndex > 0)
       {
          SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+      }
+   }
+
+   //==========================================================================
+   // Move the tokens in the level in front of the player
+   private void moveTokens()
+   {
+      GameObject[] tokens = GameObject.FindGameObjectsWithTag("BunnyToken");
+      if (tokens.Count<GameObject>() > 0)
+      {
+         float pos = 1.0f;
+         foreach(GameObject token in tokens)
+         {
+            pos += 1.0f;
+            token.transform.position = new Vector3(thePlayer.transform.position.x,
+                                                   thePlayer.transform.position.y,
+                                                   thePlayer.transform.position.z + pos);
+         }
       }
    }
 
