@@ -45,19 +45,14 @@ public class CheckCombination : MonoBehaviour {
             {
                 exitDoor.SetActive(false);
 
-               //if (this.playOnlyOnce == false && this.stoneDoorOpenSoundEffect != null){
 
-               //   this.stoneDoorOpenSoundEffect.Play ();
-               //   Debug.Log ("Door Opens");
-               //   this.playOnlyOnce = true;
-               //}
             }
             else
             {
                 foreach (GameObject indLight in allLights)
                 {
                     indLight.GetComponent<Light>().intensity = 0;
-					     //indLight.GetComponent<AudioSource> ().Stop ();
+
                 }
             }
         }
