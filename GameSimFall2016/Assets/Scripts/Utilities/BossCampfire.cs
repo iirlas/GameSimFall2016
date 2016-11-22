@@ -31,6 +31,7 @@ public class BossCampfire : MonoBehaviour
       if ( this.revivesLeft == 0 )
       {
          this.respawnPoint.position = this.noLivesRespawn.position;
+         this.fire.Stop();
       }
 
       if ( !this.lifeTimerActive && StatusManager.getInstance().health < 1 )
