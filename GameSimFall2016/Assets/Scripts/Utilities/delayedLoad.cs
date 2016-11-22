@@ -11,6 +11,7 @@ public class delayedLoad : MonoBehaviour
 
    private float dTime = 0.0f;
    public bool start = false;
+   public bool pressToSkip = true;
 
    //==========================================================================
    // Use this for initialization
@@ -22,7 +23,7 @@ public class delayedLoad : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      if (Input.anyKeyDown)
+      if (Input.anyKeyDown && this.pressToSkip)
       {
          loadScene();
       }
