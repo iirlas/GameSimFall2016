@@ -160,10 +160,13 @@ public class Spline : MonoBehaviour {
             Gizmos.DrawWireSphere(knots[index].position, 0.1f);
         }
 
+        Vector3 lastEval = (knots.Count != 0) ? knots[0].position : Vector3.zero;
         Gizmos.color = Color.blue;
         for (float step = 0; step < knots.Count; step += drawLength)
         {
-            Gizmos.DrawLine(Evaluate(step), Evaluate(step + drawLength));
+            Vector3 nextEval = Evaluate(step);
+            Gizmos.DrawLine(lastEval, nextEval);
+            lastEval = nextEval;
         }
     }
 }
