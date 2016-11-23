@@ -42,6 +42,8 @@ public class Spline : MonoBehaviour {
     public bool closed;
     [Tooltip("The Drawing length of each step going from 0 to knots.length")]
     public float drawLength = 0.1f;
+    [Tooltip("Draws the position of each knot in this object hierarchy")]
+    public bool drawKnots = true;
 
     [HideInInspector]
     public Transform this[int index]
@@ -140,26 +142,36 @@ public class Spline : MonoBehaviour {
     }
 
 
-
     public Quaternion LookAt ( Vector3 position, float time )
+    {
+        return LookAt(position, time, Vector3.up);
+    }
+
+    public Quaternion LookAt ( Vector3 position, float time, Vector3 upwards )
     {
         Vector3 result = Evaluate(time + Time.deltaTime);
         if ( result != position )
         {
-            Quaternion rotation = Quaternion.LookRotation(result - position);
+            Quaternion rotation = Quaternion.LookRotation(result - position, upwards);
             return rotation;
         }
         return Quaternion.identity;
     }
 
+    public void OnDrawGizmos ()
+    {
+        if (!drawKnots)
+            return;
+
+        Gizmos.color = Color.red;
+        for (int index = 0; index < transform.childCount; index++)
+        {
+            Gizmos.DrawWireSphere(transform.GetChild(index).position, 0.1f);
+        }
+    }
+
     public void OnDrawGizmosSelected ()
     {
-        Gizmos.color = Color.red;
-        for (int index = 0; index < knots.Count; index++)
-        {
-            Gizmos.DrawWireSphere(knots[index].position, 0.1f);
-        }
-
         Vector3 lastEval = (knots.Count != 0) ? knots[0].position : Vector3.zero;
         Gizmos.color = Color.blue;
         for (float step = 0; step < knots.Count; step += drawLength)
