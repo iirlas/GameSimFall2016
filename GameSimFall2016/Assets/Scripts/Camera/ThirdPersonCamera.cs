@@ -5,6 +5,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     public float speed = 10f;
 
+    public Vector3 pivotPoint = new Vector3(0, 0, 0);
+
     public Vector3 offset = new Vector3( 0, 1, -5 );
 
     public LayerMask layerMask = 0x1; //default layer
@@ -15,7 +17,6 @@ public class ThirdPersonCamera : MonoBehaviour {
     [HideInInspector]
     public new Camera camera;
 
-    private Vector3 pivotPoint;
     private Player myPlayer;
     private Vector3 myAngle = Vector3.zero;
 
@@ -87,9 +88,6 @@ public class ThirdPersonCamera : MonoBehaviour {
         //lock camera angles
         myAngle.x = Mathf.Clamp(myAngle.x, -15, 45);
 
-        pivotPoint = myPlayer.collider.bounds.center;
-        pivotPoint.y = myPlayer.collider.bounds.min.y + 0.1f;
-
         rotation = Quaternion.Euler(myAngle);
         view = pivotPoint + rotation * offset;
 
@@ -99,8 +97,8 @@ public class ThirdPersonCamera : MonoBehaviour {
          view = hit.point + (pivotPoint - hit.point).normalized * 0.1f;
         }
 
-        target = pivotPoint;
-        Debug.DrawLine(view, target);
+        target = pivotPoint + myPlayer.collider.bounds.center;
+        //Debug.DrawLine(view, target);
 
     }
 
