@@ -50,10 +50,10 @@ public class NumberSolution : MonoBehaviour
 
          if (winner == 4)
          {
-            foreach (GameObject allPills in allPillars)
+            for (int i = 0; i< allPillars.Length; i++)
             {
-               if (allPills.GetComponent<Animator>().GetBool("MoveDown") != true)
-                  allPills.GetComponent<Animator>().SetBool("MoveDown", true);
+               if (allPillars[i].GetComponent<Animator>().GetBool("MoveDown") != true)
+                  allPillars[i].GetComponent<Animator>().SetBool("MoveDown", true);
             }
             return true;
          }
