@@ -76,7 +76,7 @@ public class ThirdPersonCamera : MonoBehaviour {
         float horizontal = Input.GetAxis("Alt_Horizontal");
         float vertical = Input.GetAxis("Alt_Vertical");
         Quaternion rotation = Quaternion.identity;
-        Vector3 playerCenter = myPlayer.collider.bounds.center; 
+        Vector3 targetView = myPlayer.collider.bounds.center + pivotPoint; 
 
         if (Input.GetButtonDown("Center"))
         {
@@ -90,13 +90,13 @@ public class ThirdPersonCamera : MonoBehaviour {
         myAngle.x = Mathf.Clamp(myAngle.x, -15, 45);
 
         rotation = Quaternion.Euler(myAngle);
-        view = playerCenter + pivotPoint + rotation * offset;
-        target = pivotPoint + playerCenter;
+        view = targetView + rotation * offset;
+        target = targetView;
 
         RaycastHit hit;
-        if (Physics.Linecast(pivotPoint, view, out hit, layerMask))
+        if (Physics.Linecast(targetView, view, out hit, layerMask))
         {
-         view = hit.point + (pivotPoint - hit.point).normalized * 0.1f;
+         view = hit.point + (targetView - hit.point).normalized * 0.1f;
         }
 
         //Debug.DrawLine(view, target);
