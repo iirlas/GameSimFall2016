@@ -40,7 +40,12 @@ public static class Extension
     {
         return new Vector3( 1.0f / vector.x, 1.0f / vector.y, 1.0f / vector.z );
     }
-   
+
+    public static Vector3 Pow(this Vector3 vector, int exponent)
+    {
+        return new Vector3(Mathf.Pow(vector.x, exponent), Mathf.Pow(vector.y, exponent), Mathf.Pow(vector.z, exponent));
+    }
+
     public static float angle ( float y, float x )
     {
         float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;

@@ -5,7 +5,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     public float speed = 10f;
 
-    public Vector3 pivotPoint = new Vector3( 0, 0, 0 );
     public Vector3 offset = new Vector3( 0, 1, -5 );
 
     public LayerMask layerMask = 0x1; //default layer
@@ -13,12 +12,17 @@ public class ThirdPersonCamera : MonoBehaviour {
     [HideInInspector]
     public new Transform transform;
 
+    [HideInInspector]
+    public new Camera camera;
+
+    private Vector3 pivotPoint;
     private Player myPlayer;
     private Vector3 myAngle = Vector3.zero;
 
 	// Use this for initialization
 	void Awake () {
         transform = GetComponent<Transform>();
+        camera = GetComponent<Camera>();
 	}
 
     void Start()
@@ -39,70 +43,73 @@ public class ThirdPersonCamera : MonoBehaviour {
         if (myPlayer == null)
             return;
 
-        float horizontal = Input.GetAxis("Alt_Horizontal");
-        float vertical = Input.GetAxis("Alt_Vertical");
-        
-        //calculate pivot point
-        //based on edge of the player's collider.
+        Vector3 target = Vector3.zero;
+        Vector3 view = Vector3.zero;
 
         Girl kira = (myPlayer as Girl);
         if (kira != null && kira.target != null)
         {
-            Quaternion rotation = myPlayer.transform.rotation;
-            transform.position = kira.transform.position + rotation * (pivotPoint) - 
-                                 (transform.forward * 2);
-
-            transform.LookAt(kira.target.position, Vector3.up);
-            //myAngle.y = Mathf.LerpAngle(transform.eulerAngles.y, myPlayer.transform.eulerAngles.y,speed * Time.deltaTime );
-            //myAngle = Vector3.Lerp(transform.eulerAngles, myPlayer.transform.eulerAngles, );
-            //myAngle.x = 0;
-            //myAngle.z = 0;
+            targeting(out view, out target);
         }
         else
         {
-            if (Input.GetButtonDown("Center"))
-            {
-                myAngle = new Vector3(0, myPlayer.transform.eulerAngles.y, 0);
-            }
-            else if (horizontal != 0 || vertical != 0)
-            {
-                myAngle += new Vector3(-vertical, horizontal, 0) * (speed * Time.deltaTime);
-            }
-            //limit pitch rotation
-            myAngle.x = Mathf.Clamp(myAngle.x, -45, 45);
-
-            //rotation around the player
-            Quaternion rotation = Quaternion.Euler(myAngle);
-
-            //player position + pivotPoint
-            Vector3 targetPosition = myPlayer.transform.position + pivotPoint;
-            Vector3 viewPosition = targetPosition + rotation * (offset);
-            Vector3 lineCastStartPosition = Quaternion.LookRotation( myPlayer.collider.bounds.max ) * Vector3.up;
-
-            RaycastHit hit;
-            if (Physics.Linecast(targetPosition, viewPosition, out hit, layerMask))
-            {
-                viewPosition = targetPosition + rotation * (offset.normalized * (hit.distance - 0.1f));
-            }
-
-
-            //smooth erratic camera movement
-            Vector3 velocity = Vector3.zero;
-            transform.position = Vector3.SmoothDamp(transform.position, viewPosition, ref velocity, Time.deltaTime / speed);
-
-            //if (Vector3.Distance(transform.position, viewPosition) > 0.5f)
-            //{
-            //   time += Time.fixedDeltaTime;
-            //   transform.position = Vector3.Lerp(transform.position, viewPosition, speed * time);
-            //}
-            //else
-            //{
-            //   time = 0;
-            //   transform.position = viewPosition;
-            //}
-
-
-            transform.LookAt(targetPosition, Vector3.up);
+            thirdPerson(out view, out target);
         }
+        //smooth erratic camera movement
+        Vector3 velocity = Vector3.zero;
+
+        if (Vector3.Distance(transform.position, myPlayer.transform.position) > 10.0f)
+        {
+           transform.position = Vector3.SmoothDamp(transform.position, view, ref velocity, 0.15f);
+        }
+        else
+        {
+           transform.position = Vector3.SmoothDamp(transform.position, view, ref velocity, 0.015f);
+        }
+               
+      transform.LookAt(target, Vector3.up);
     }
+
+    void thirdPerson ( out Vector3 view, out Vector3 target )
+    {
+        float horizontal = Input.GetAxis("Alt_Horizontal");
+        float vertical = Input.GetAxis("Alt_Vertical");
+        Quaternion rotation = Quaternion.identity;
+
+        if (Input.GetButtonDown("Center"))
+        {
+            myAngle = new Vector3(0, myPlayer.transform.eulerAngles.y, 0);
+        }
+        else if (horizontal != 0 || vertical != 0)
+        {
+            myAngle += new Vector3(-vertical, horizontal, 0) * (speed * Time.deltaTime);
+        }
+        //lock camera angles
+        myAngle.x = Mathf.Clamp(myAngle.x, -15, 45);
+
+        pivotPoint = myPlayer.collider.bounds.center;
+        pivotPoint.y = myPlayer.collider.bounds.min.y + 0.1f;
+
+        rotation = Quaternion.Euler(myAngle);
+        view = pivotPoint + rotation * offset;
+
+        RaycastHit hit;
+        if (Physics.Linecast(pivotPoint, view, out hit, layerMask))
+        {
+         view = hit.point + (pivotPoint - hit.point).normalized * 0.1f;
+        }
+
+        target = pivotPoint;
+        Debug.DrawLine(view, target);
+
+    }
+
+    void targeting (out Vector3 view, out Vector3 target)
+    {
+        Girl kira = (myPlayer as Girl);
+        target = kira.target.position;
+
+        Quaternion rotation = Quaternion.LookRotation(kira.transform.position - target);
+        view = kira.transform.position + rotation * (Vector3.forward - Vector3.right * 0.4f) + Vector3.up;
+   }
 }

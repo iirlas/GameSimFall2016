@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System;
 
 public class Girl : Player {
@@ -27,6 +28,7 @@ public class Girl : Player {
     private bool isTargeting = false;
     private Collider[] myTargets;
     private Transform myTarget;
+    private int myTargetIndex;
 
 
 
@@ -81,21 +83,7 @@ public class Girl : Player {
             //this.slingShot.volume = .05f;
 			   //this.slingShot.Play ();
         }
-        else if (Input.GetButtonDown("Center"))
-        {
-            isTargeting = !isTargeting;
-        }
-        if (isTargeting)
-        {
-            if (!findTargets())
-            {
-                isTargeting = false;
-            }
-        }
-        else
-        {
-            myTarget = null;
-        }
+        targetSetup();
     }
 
     protected void runFallingState()
@@ -142,22 +130,7 @@ public class Girl : Player {
             //animator.SetInteger("substate", 0);
             //playerState = Player.State.DEFAULT;
         }
-        else if (Input.GetButtonDown("Center"))
-        {
-            isTargeting = !isTargeting;
-        }
-
-        if (isTargeting)
-        {
-            if (!findTargets())
-            {
-                isTargeting = false;
-            }
-        }
-        else
-        {
-            myTarget = null;
-        }
+        targetSetup();
 
         ////toggle our shooting target
         //if (Input.GetButtonDown("Action") && myTargets.Length != 0)
@@ -215,10 +188,38 @@ public class Girl : Player {
                 if (angle < currentAngle)
                 {
                     myTarget = myTargets[index].transform;
+                    myTargetIndex = index;
                 }
             }
         }
         return (myTarget != null);
+    }
+
+    void targetSetup ()
+    {
+       if (Input.GetButtonDown("Center"))
+       {
+          isTargeting = !isTargeting;
+       }
+       if (isTargeting)
+       {
+          if (!findTargets())
+          {
+             isTargeting = false;
+          }
+          else
+          {
+             if (Input.GetButtonDown("Action"))
+             {
+                 myTargetIndex = ++myTargetIndex % myTargets.Length;
+                 myTarget = myTargets[myTargetIndex].transform;
+             }
+          }
+       }
+       else
+       {
+          myTarget = null;
+       }
     }
 
     void LateUpdate()

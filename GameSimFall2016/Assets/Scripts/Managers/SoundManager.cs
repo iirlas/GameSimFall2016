@@ -6,12 +6,16 @@ public class SoundManager : Singleton<SoundManager>
 {
    public AudioSource audioSource;
    public List<AudioClip> audioClips;
-
+   
    private AudioClip getAudioClip(string name)
    {
        return audioClips.Find(audioClip => { return (audioClip.name.Equals(name)); });
    }
-   
+
+   void Update()
+   {
+   }
+
    // Use this for initialization
    override protected void Init()
    {

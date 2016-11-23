@@ -9,7 +9,12 @@ public class BunnyBoss : MonoBehaviour {
     public  float health = 100.0f;
     private float time = 0;
 
-    private Transform target;
+    private Transform target
+    {
+        get { return spline[2]; }
+    }
+
+    private bool actionFlag = true;
 
     private Transform orbSpawner;
     private Transform bunnySpawner;
@@ -29,14 +34,10 @@ public class BunnyBoss : MonoBehaviour {
 
     public Transform[] nodes;
 
+    public Spline spline;
 
     public GameObject darkOrbPrefab;
     public GameObject bunnyPrefab;
-
-    public AnimationCurve xCurve;
-    public AnimationCurve yCurve;
-    public AnimationCurve zCurve;
-
 
 	// Use this for initialization
 	void Awake () 
@@ -46,57 +47,59 @@ public class BunnyBoss : MonoBehaviour {
         collider = GetComponent<Collider>();
         orbSpawner = transform.FindChild("OrbSpawner");
         bunnySpawner = GameObject.Find("BunnySpawner").transform;
+        spline[0].position = transform.position;
         NewTarget();
+        spline.Build();
     }
 		
 	// Update is called once per frame
 	void Update () 
     {
-        Vector3 direction = Vector3.zero;
         Quaternion rotation = Quaternion.identity;
-        Ray ray = new Ray(transform.position, Vector3.down);
-        if (Physics.Raycast(ray, collider.bounds.size.y))
+
+        if (actionFlag)
         {
-            time += Time.deltaTime;//
-
-            if (time > 1.0f)
+            if (time < spline.Length)
             {
-                NewTarget();
-                time = 0.0f;
-                switch ((int)(Random.value * 2))
-                {
-                case 0:
-                    Shoot(2.0f);
-                    break;
-
-                case 1:
-                    Summon();
-                    break;
-
-                }
-                Jump(15.0f);
-            }
-            direction = (PlayerManager.getInstance().currentPlayer.transform.position - transform.position);
-            direction.y = 0;
-        }
-        else
-        {
-            direction = (target.position - transform.position);
-            direction.y = 0;
-            if ( direction.magnitude > 1.0f )
-            {
-                rigidbody.velocity += direction.normalized;
+                time += Time.deltaTime;//
+                transform.position = spline.Evaluate(time);
+                rotation = spline.LookAt(transform.position, time);
             }
             else
             {
-                rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, Vector3.up * rigidbody.velocity.y, time);
+                transform.position = spline[2].position;
+                time = 0;
+                spline[0].position = transform.position;
+                NewTarget();
+                spline.Build();
+                actionFlag = false;
             }
         }
-        if ( direction != Vector3.zero )
+        else if ( time > 2.0f )
         {
-            rotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, time);
+            switch ((int)(Random.value * 2))
+            {
+            case 0:
+                Shoot(2.0f);
+                break;
+
+            case 1:
+                Summon();
+                break;
+
+            }
+            time = 0;
+            actionFlag = !actionFlag;
         }
+        else
+        {
+            Vector3 direction = PlayerManager.getInstance().currentPlayer.transform.position - transform.position;
+            direction.y = 0;
+            rotation = Quaternion.LookRotation(direction);
+            time += Time.deltaTime;
+        }
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 5);
 
         if (Input.GetKey(KeyCode.Delete))
         {
@@ -120,15 +123,13 @@ public class BunnyBoss : MonoBehaviour {
         if ( health <= 0 )
         {
             trigger.OnAction();
+            foreach ( Bunny bunny in bunnys )
+            {
+                Destroy(bunny.gameObject);
+            }
             Destroy(gameObject);
         }
 	}
-
-    void Jump (float forceFactor)
-    {
-        rigidbody.AddForce(Vector3.up * forceFactor, ForceMode.Impulse);
-
-    }
 
     void Shoot (float forceFactor)
     {
@@ -148,10 +149,12 @@ public class BunnyBoss : MonoBehaviour {
     void NewTarget ()
     {
         int seed = Random.Range(0, nodes.Length - 1);
-        while (target != null && nodes[seed] == target)
+        Vector3 offset = new Vector3(0, nodes[seed].GetComponent<Collider>().bounds.size.y + 2.5f, 0);
+        while ((nodes[seed].position + offset) == spline[0].position)
         {
             seed = Random.Range(0, nodes.Length - 1);
+            offset = new Vector3(0, nodes[seed].GetComponent<Collider>().bounds.size.y + 2.5f, 0);
         }
-        target = nodes[seed];
+        target.position = nodes[seed].position + offset;
     }
 }
