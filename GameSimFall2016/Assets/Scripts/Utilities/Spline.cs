@@ -154,10 +154,16 @@ public class Spline : MonoBehaviour {
 
     public void OnDrawGizmosSelected ()
     {
-        Gizmos.color = Color.blue;
-        for (float index = 0; index < knots.Count; index += drawLength)
+        Gizmos.color = Color.red;
+        for (int index = 0; index < knots.Count; index++)
         {
-            Gizmos.DrawLine(Evaluate(index), Evaluate(index + drawLength));
+            Gizmos.DrawWireSphere(knots[index].position, 0.1f);
+        }
+
+        Gizmos.color = Color.blue;
+        for (float step = 0; step < knots.Count; step += drawLength)
+        {
+            Gizmos.DrawLine(Evaluate(step), Evaluate(step + drawLength));
         }
     }
 }
