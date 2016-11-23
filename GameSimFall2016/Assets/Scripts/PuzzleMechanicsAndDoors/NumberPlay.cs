@@ -19,11 +19,9 @@ public class NumberPlay : MonoBehaviour
     {
         if (other.name.Equals("Kira"))
         {
-            Debug.Log("Hit");
-            Debug.Log(GetComponent<Animator>().GetBool("MoveDown"));
+
             if (GetComponent<Animator>().GetBool("MoveDown") != true)
             {
-                Debug.Log("NotDown");
                 this.GetComponent<Animator>().SetBool("MoveDown", true);
             }
         }

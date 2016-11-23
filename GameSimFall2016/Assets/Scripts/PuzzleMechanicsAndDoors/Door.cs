@@ -72,4 +72,19 @@ public class Door : MonoBehaviour
    {
       openDoor = false;
    }
+
+
+   //=============================================================================
+   // 
+   public void open()
+   {
+      openDoor = true;
+   }
+
+   //=============================================================================
+   // 
+   public void close()
+   {
+      openDoor = false;
+   }
 }
