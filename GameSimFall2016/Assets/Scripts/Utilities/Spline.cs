@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [System.Serializable]
 public class Spline : MonoBehaviour {
@@ -12,6 +14,7 @@ public class Spline : MonoBehaviour {
         CUBIC = 4
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(Spline))]
     public class SplineEditor : Editor
     {
@@ -35,7 +38,7 @@ public class Spline : MonoBehaviour {
             }
         }
     }
-
+#endif
     [Tooltip("Dictates the type of spline is created.")]
     public Type type = Type.CUBIC;
     [Tooltip("Dictates whether the spline is closed!")]

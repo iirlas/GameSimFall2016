@@ -14,7 +14,6 @@ public class DebugKeys : MonoBehaviour
 
    private bool godMode = false;
    private bool soulsMode = false;
-   private bool speedMode = false;
 
    private ArrayList keys;
 
@@ -102,6 +101,12 @@ public class DebugKeys : MonoBehaviour
          {
             moveTokens();
          }
+		 if (getCode(KeyCode.S, KeyCode.P, KeyCode.E, KeyCode.E, KeyCode.D))
+		 {
+				thePlayer.movementSpeed *= 2;
+				(thePlayer as Girl).animator.speed *= 2;
+				this.keys.Clear();
+		 }
 
          updateStatus();
 
