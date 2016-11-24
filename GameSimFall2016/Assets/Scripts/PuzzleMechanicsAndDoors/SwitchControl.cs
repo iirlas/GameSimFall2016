@@ -3,8 +3,8 @@ using System.Collections;
 
 public class SwitchControl : MonoBehaviour {
 
-    public int solvedNum = 0;
-    public static int counter = 0;
+    public int solvedNum;
+    public static int counter;
     public GameObject exitDoor;
 
    
@@ -17,7 +17,7 @@ public class SwitchControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-      
+      counter = 0;
       speed = 2f;
       destination = new Vector3(exitDoor.transform.position.x,
                               (exitDoor.gameObject.GetComponent<Collider>().bounds.size.y + exitDoor.transform.position.y * 4), //wtf why did I have to times it by 2?
@@ -30,7 +30,7 @@ public class SwitchControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (counter > 0 && counter == solvedNum)
+        if (counter > 0 && counter >= solvedNum)
         {
             Debug.Log("Open the door");
             if (exitDoor.transform.position.y < destination.y)
