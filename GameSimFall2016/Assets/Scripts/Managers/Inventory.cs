@@ -2,8 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Inventory : Singleton<Inventory>
+public class Inventory : FreeSingleton<Inventory>
 {
+    new static protected bool isCreatedWhenMissing
+    {
+        get { return false; }
+    }
+
     private Dictionary<Tag, int> myItems;
 
     public int this[Tag tag]

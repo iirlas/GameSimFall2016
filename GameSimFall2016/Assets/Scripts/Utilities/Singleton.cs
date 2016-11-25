@@ -6,6 +6,13 @@ abstract public class Singleton <Type> : MonoBehaviour
 {
     static private Type ourInstance;
 
+    //hide the property using new keyword to 
+    //create the singleton when one is not avaliable
+    static protected bool isCreatedWhenMissing
+    {
+        get { return false; }
+    }
+
     static public Type getInstance()
     {
         if ( ourInstance == null )
@@ -21,13 +28,13 @@ abstract public class Singleton <Type> : MonoBehaviour
 
     void Awake ()
     {
-        if ( ourInstance != null )
+        ourInstance = getInstance();
+        if ( ourInstance != this )
         {
-            throw new System.Exception("Singleton [" + this.name + "] conflicts with [" + ourInstance.name + "] !");
+            throw new System.Exception("Singleton [" + this.gameObject.name + "] conflicts with [" + ourInstance.gameObject.name + "] !");
         }
         else
         {
-            ourInstance = this as Type;
             Init();
         }
     }
