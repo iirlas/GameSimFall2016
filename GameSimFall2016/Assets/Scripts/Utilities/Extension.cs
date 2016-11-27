@@ -52,4 +52,20 @@ public static class Extension
         return (angle < 0 ? angle + 360 : angle);
     }
 
+    public static float mod(float a, float b)
+    {
+        return ((a % b) + b) % b;
+    }
+
+    public static int mod(int a, int b)
+    {
+        return ((a % b) + b) % b;
+
+    }
+
+    public static double mod(double a, double b)
+    {
+        return ((a % b) + b) % b;
+    }
+
 }

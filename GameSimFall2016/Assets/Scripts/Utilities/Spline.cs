@@ -10,7 +10,7 @@ public class Spline : MonoBehaviour {
     public enum Type
     {
         LINEAR = 2,
-        QUADRATIC = 3,
+        //QUADRATIC = 3,
         CUBIC = 4
     }
 
@@ -74,6 +74,57 @@ public class Spline : MonoBehaviour {
     {
     }
 
+    private Vector3[] buildLinearSet ( int index )
+    {
+        int count = knots.Count;
+        int indexNeg1 = Extension.mod(index - 1, count);
+        int index1 = Extension.mod(index + 1, count);
+        Vector3 derivative = (knots[index1].localPosition - knots[index].localPosition);
+
+        return new Vector3[]
+        {
+            knots[index].position,
+            derivative
+        };
+    }
+
+    private Vector3[] buildQuadraticSet (int index)
+    {
+        return null;
+    }
+
+    private Vector3[] buildCubicSet (int index)
+    {
+        int count = knots.Count;
+        int indexNeg1 = Extension.mod(index - 1, count);
+        int index1 = Extension.mod(index + 1, count);
+        int index2 = Extension.mod(index + 2, count);
+        Vector3 derivative = (knots[index1].localPosition - knots[indexNeg1].localPosition);
+        Vector3 derivative1 = (knots[index2].localPosition - knots[index].localPosition);
+
+        return new Vector3[]
+        {
+            knots[index].position,
+            derivative,
+            3 * (knots[index1].localPosition - knots[index].localPosition) - 2 * derivative - derivative1,
+            2 * (knots[index].localPosition - knots[index1].localPosition) + derivative + derivative1
+        };
+    }
+
+    private Vector3[] buildSet ( int index )
+    {
+        switch (type)
+        {
+        case Type.LINEAR:
+            return buildLinearSet(index);
+        //case Type.QUADRATIC:
+        //    return buildQuadraticSet(index);
+        case Type.CUBIC:
+            return buildCubicSet(index);
+        }
+        return null;
+    }
+
     public void Build()
     {
         knots.Clear();
@@ -84,43 +135,9 @@ public class Spline : MonoBehaviour {
 
         coefficients.Clear();
 
-        Vector3[] localCoefficients = { Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero };
         for (int index = 0, count = knots.Count; index < count; index++)
         {
-            // connect the end to the beginning.
-            int index1 = (index + 1) % count;
-            int index2 = (index + 2) % count;
-
-            Vector3 derivative = (knots[index1].position - knots[index].position);
-            Vector3 derivative1 = (knots[index2].position - knots[index1].position);
-
-            //a
-            localCoefficients[0] = knots[index].position;
-
-            //b
-            localCoefficients[1] = derivative;
-
-            if ( type == Type.QUADRATIC )
-            {
-                //c
-                localCoefficients[2] = 2 * (knots[index].position - knots[index1].position) +
-                                       derivative + derivative1;
-            }
-
-            if ( type == Type.CUBIC )
-            {
-                //c
-                localCoefficients[2] = 3 * (knots[index1].position - knots[index].position) - 
-                                       2 * derivative - derivative1;
-                //d
-                localCoefficients[3] = 2 * (knots[index].position - knots[index1].position) +
-                                       derivative + derivative1;
-            }
-
-            for ( int j = 0; j < localCoefficients.Length; j++ )
-            {
-                coefficients.Add(localCoefficients[j]);
-            }
+            coefficients.AddRange(buildSet(index));
         }
     }
     
@@ -131,17 +148,19 @@ public class Spline : MonoBehaviour {
 
         if (!closed && lowIndex >= knots.Count - 1)
         {
-            return knots[knots.Count - 1].position;
+            evaluation = knots[knots.Count - 1].localPosition;
         }
-
-        // f(x) += ax^n   or   f(x) = a + bx + cx^2 + dx^3
-        for (int count = 0; count < (int)Type.CUBIC; count++ )
+        else if ( coefficients.Count / knots.Count == (int)type )
         {
-            int index = lowIndex % knots.Count * (int)Type.CUBIC + count;
-            evaluation += coefficients[index] * Mathf.Pow(time - lowIndex, count);
+            // f(x) += ax^n   or   f(x) = a + bx + cx^2 + dx^3
+            for (int count = 0; count < (int)type; count++)
+            {
+                int index = lowIndex % knots.Count * (int)type + count;
+                evaluation += coefficients[index] * Mathf.Pow(time - lowIndex, count);
+            }
         }
 
-        return evaluation;
+        return transform.rotation * (Vector3.Scale(evaluation, transform.localScale)) + transform.position;
     }
 
 
@@ -175,6 +194,9 @@ public class Spline : MonoBehaviour {
 
     public void OnDrawGizmosSelected ()
     {
+        if (coefficients.Count / knots.Count != (int)type)
+            return;
+
         Vector3 lastEval = (knots.Count != 0) ? knots[0].position : Vector3.zero;
         Gizmos.color = Color.blue;
         for (float step = 0; step < knots.Count; step += drawLength)
