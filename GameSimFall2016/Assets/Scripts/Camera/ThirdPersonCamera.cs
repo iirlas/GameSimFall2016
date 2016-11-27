@@ -19,6 +19,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     private Player myPlayer;
     private Vector3 myAngle = Vector3.zero;
+    private float time = 0.0f;
 
 	// Use this for initialization
 	void Awake () {
@@ -56,19 +57,21 @@ public class ThirdPersonCamera : MonoBehaviour {
         {
             thirdPerson(out view, out target);
         }
-        //smooth erratic camera movement
         Vector3 velocity = Vector3.zero;
 
-        if (Vector3.Distance(transform.position, myPlayer.transform.position) > 10.0f)
+        //smooth erratic camera movement
+        float distance = Vector3.Distance(transform.position, view);
+        if (distance > offset.magnitude)
         {
-           transform.position = Vector3.SmoothDamp(transform.position, view, ref velocity, 0.15f);
+            transform.position = Vector3.SmoothDamp(transform.position, view, ref velocity, 2 / speed);
         }
         else
         {
-           transform.position = Vector3.SmoothDamp(transform.position, view, ref velocity, 0.015f);
+            transform.position = Vector3.Lerp( transform.position, view, time);
+            time += Time.deltaTime * speed;
         }
-               
-      transform.LookAt(target, Vector3.up);
+
+        transform.LookAt(target, Vector3.up);
     }
 
     void thirdPerson ( out Vector3 view, out Vector3 target )
@@ -81,13 +84,14 @@ public class ThirdPersonCamera : MonoBehaviour {
         if (Input.GetButtonDown("Center"))
         {
             myAngle = new Vector3(0, myPlayer.transform.eulerAngles.y, 0);
+            time = 0;
         }
         else if (horizontal != 0 || vertical != 0)
         {
             myAngle += new Vector3(-vertical, horizontal, 0) * (speed * Time.deltaTime);
         }
         //lock camera angles
-        myAngle.x = Mathf.Clamp(myAngle.x, -15, 45);
+        myAngle.x = Mathf.Clamp(myAngle.x, -30, 45);
 
         rotation = Quaternion.Euler(myAngle);
         view = targetView + rotation * offset;
