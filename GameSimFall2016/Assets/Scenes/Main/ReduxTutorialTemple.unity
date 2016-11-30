@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -55,15 +55,15 @@ LightmapSettings:
   m_LightmapEditorSettings:
     serializedVersion: 3
     m_Resolution: 2
-    m_BakeResolution: 40
-    m_TextureWidth: 1024
+    m_BakeResolution: 8
+    m_TextureWidth: 512
     m_TextureHeight: 1024
     m_AOMaxDistance: 1
     m_Padding: 2
-    m_CompAOExponent: 0.5
+    m_CompAOExponent: 2
     m_LightmapParameters: {fileID: 0}
     m_TextureCompression: 1
-    m_FinalGather: 0
+    m_FinalGather: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
   m_LightingDataAsset: {fileID: 0}
@@ -1141,7 +1141,7 @@ Prefab:
     - target: {fileID: 11470138, guid: 9b6401f416b11b940818c1d998a01a75, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: fb6400aa3c04c27498c1a5a5d0463224,
+      objectReference: {fileID: 21300000, guid: 8596b8f54d6cbc345b0e1b1b86ff3b43,
         type: 3}
     - target: {fileID: 11458194, guid: 9b6401f416b11b940818c1d998a01a75, type: 2}
       propertyPath: deltaZ
@@ -1712,6 +1712,26 @@ Prefab:
       propertyPath: OpenStoneDoorSoundEffect
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 10851870, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10871050, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10830330, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10802110, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10870658, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f618744ee9010d47b59ea95cb4d8bbf, type: 2}
   m_IsPrefabParent: 0
@@ -2027,6 +2047,14 @@ Prefab:
     - target: {fileID: 436388, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.6627274
+      objectReference: {fileID: 0}
+    - target: {fileID: 10804282, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10824164, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70cd0ce28f39cd64c9a4a6d32eb8af3e, type: 2}
@@ -3479,6 +3507,10 @@ Prefab:
       propertyPath: printHere
       value: 
       objectReference: {fileID: 274038878}
+    - target: {fileID: 10827940, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 540dfe7b03666f84bb80292eca27c408, type: 2}
   m_IsPrefabParent: 0
@@ -4151,6 +4183,34 @@ Prefab:
     - target: {fileID: 11413570, guid: 8bc1485857511b04894a2bf526515998, type: 2}
       propertyPath: text
       value: What is this bright light, should I go towards this?
+      objectReference: {fileID: 0}
+    - target: {fileID: 10803450, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10866328, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10855944, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800466, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10851666, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10898196, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10871620, guid: 8bc1485857511b04894a2bf526515998, type: 2}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8bc1485857511b04894a2bf526515998, type: 2}

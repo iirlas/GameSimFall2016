@@ -34,9 +34,11 @@ public class MainMenu : MonoBehaviour {
 
    public void pressCredits()
    {
+      Debug.Log("pressed");
       SoundManager.getInstance().stopAll();
       SoundManager.getInstance().playMusic("Memories_Bensound");
       SceneManager.LoadScene(creditScene);
+      
    }
 
    public void pressTitle()

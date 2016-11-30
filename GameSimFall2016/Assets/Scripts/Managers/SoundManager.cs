@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SoundManager : Singleton<SoundManager>
+public class SoundManager : ExplosiveSingleton<SoundManager>
 {
    public AudioSource audioSource;
    public List<AudioClip> audioClips;
