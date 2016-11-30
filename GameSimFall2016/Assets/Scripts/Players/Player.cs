@@ -116,7 +116,9 @@ abstract public class Player : MonoBehaviour
 
     public void Update()
     {
-        agent.enabled = PlayerManager.getInstance().currentPlayer != this;
+        bool isPlayer = PlayerManager.getInstance().currentPlayer != this;
+        agent.enabled = isPlayer;
+        GetComponent<NavMeshObstacle>().enabled = !isPlayer;
         if (PlayerManager.getInstance().currentPlayer == this)
         {
             if ( !myStates.ContainsKey(playerState) )
@@ -134,21 +136,15 @@ abstract public class Player : MonoBehaviour
             float distance = Vector3.Distance(transform.position, myFollower.transform.position);
             //target.y = myFollower.transform.position.y;
             //myFollower.rigidbody.MovePosition(Vector3.Lerp(myFollower.rigidbody.position, target, movementSpeed * Time.deltaTime));
-            if (distance > PlayerManager.getInstance().followDistance)
+            //if (distance > PlayerManager.getInstance().followDistance)
+            myFollower.agent.destination = target;
+            if (distance > PlayerManager.getInstance().switchDistance)
             {
-                myFollower.agent.destination = target;
-                if (distance > PlayerManager.getInstance().switchDistance)
-                {
-                    myFollower.agent.enabled = false;
-                    myFollower.transform.position = target;
-                }
+               myFollower.agent.enabled = false;
+               myFollower.transform.position = target;
             }
-            else
-            {
-                myFollower.agent.destination = myFollower.transform.position;
-            }
-            //myFollower.smoothRotateTowards((rigidbody.position - myFollower.transform.position).normalized, rotationSmoothSpeed);
-        }
+         //myFollower.smoothRotateTowards((rigidbody.position - myFollower.transform.position).normalized, rotationSmoothSpeed);
+      }
     }
 
     public void FixedUpdate ()

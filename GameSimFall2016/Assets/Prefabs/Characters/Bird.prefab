@@ -103,6 +103,7 @@ GameObject:
   - 54: {fileID: 5443816}
   - 195: {fileID: 19536164}
   - 95: {fileID: 9542124}
+  - 208: {fileID: 20882294}
   m_Layer: 10
   m_Name: Bird
   m_TagString: Player
@@ -2122,6 +2123,21 @@ NavMeshAgent:
   m_BaseOffset: 1.19
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!208 &20882294
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116206}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.51, y: 0.875, z: 0.51}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!222 &22283208
 CanvasRenderer:
   m_ObjectHideFlags: 1
