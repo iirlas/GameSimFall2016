@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
    public int myHealth;   // The health of this enemy.
    protected int myDamage;   // The damage this enemy does to other GameObjects.
 
-   protected float mySpeed;          // The base speed at which this enemy moves.
+   //protected float mySpeed;          // The base speed at which this enemy moves.
    protected float myRotationSpeed;  // The base speed at which this enemy will "turn".
 
    //=============================================================================
@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
 
       this.myHealth = 1;
       this.myDamage = -1;
-      this.mySpeed = 1;
+      //this.mySpeed = 1;
       this.myRotationSpeed = 1;
    }
 

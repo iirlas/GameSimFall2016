@@ -50,7 +50,7 @@ public class JaguarBoss : Enemy
         this.myType = enType.JAGUAR;
         this.myState = enState.IDLE;
 
-        this.mySpeed = 10.0f;
+        //this.mySpeed = 10.0f;
         this.myRotationSpeed = 2.0f;
         thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
     }
@@ -214,7 +214,7 @@ public class JaguarBoss : Enemy
         this.myType = enType.JAGUAR;
         this.myState = enState.IDLE;
 
-        this.mySpeed = 10.0f;
+        //this.mySpeed = 10.0f;
         this.myRotationSpeed = 2.0f;
     }
 }

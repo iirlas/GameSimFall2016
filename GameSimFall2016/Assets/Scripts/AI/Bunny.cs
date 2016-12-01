@@ -61,7 +61,7 @@ public class Bunny : Enemy
         {
             this.myHealth = bunnyHealthCustom;
             this.myDamage = bunnyDamageCustom;
-            this.mySpeed = bunnySpeedCustom;
+            //this.mySpeed = bunnySpeedCustom;
             this.myRotationSpeed = bunnyRotationSpeedCustom;
         }
         else  // If custom values are not provided, utilize the default values for this Bunny.
@@ -71,7 +71,7 @@ public class Bunny : Enemy
             this.myRotationSpeed = ANTROTATIONSPEEDDEFAULT;
         }
 
-        this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
+        //this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
         this.myType = enType.ANT;
 
     }

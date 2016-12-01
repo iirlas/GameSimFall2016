@@ -81,7 +81,7 @@ public class Scorpion : Enemy
       {
          this.myHealth = scorpionHealthCustom;
          this.myDamage = scorpionDamageCustom;
-         this.mySpeed = scorpionSpeedCustom;
+         //this.mySpeed = scorpionSpeedCustom;
          this.myRotationSpeed = scorpionRotationSpeedCustom;
       }
       else  // If custom values are not provided, utilize the default values for this Scorpion.
@@ -95,7 +95,7 @@ public class Scorpion : Enemy
          this.scorpionPoisonIntervalCustom = SCORPIONPOISONINTERVALDEFAULT;
       }
 
-      this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
+      //this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
 
       this.myType = enType.SCORPION;
    }
