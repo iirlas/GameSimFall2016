@@ -1,53 +1,47 @@
-﻿//=============================================================================
-// Author:  Nathan C.
-// Version: 1.0
-// Date:    08/26/2016
-// Ownership belongs to all affiliates of Scott Free Games.
-// Ant.cs will represent one of the enemies in the game.
-//=============================================================================
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-public class Ant : Enemy
+public class Jaguar : Enemy
 {
    //-----------------------------------------------------------------------------
    // Public Inspector-editable variables
-   [Tooltip("Changing this value will change the detection radius of the Ant.")]
+   [Tooltip("Changing this value will change the detection radius of the jaguar.")]
    public float detectionRadius = 5;
 
    [Tooltip("Checkmark this box if you wish to provide custom values below.")]
    public bool overrideValues;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public int antHealthCustom;
+   public int jaguarHealthCustom;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public int antDamageCustom;
+   public int jaguarDamageCustom;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public float antSpeedCustom;
+   public float jaguarSpeedCustom;
 
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
-   public float antRotationSpeedCustom;
+   public float jaguarRotationSpeedCustom;
+
+   private NavMeshAgent myAgent;
 
    //-----------------------------------------------------------------------------
-   // Default values for an Ant, provided by juan.
-   private const int ANTHEALTHDEFAULT = 2;
-   private const int ANTDAMAGEDEFAULT = 5;
-   private const float ANTSPEEDDEFAULT = 2;
-   private const float ANTROTATIONSPEEDDEFAULT = 1;
-   private const float ATTACKINTERVAL = 1.0f;
+   // Default values for an jaguar, provided by juan.
+   private const int jaguarHEALTHDEFAULT = 5;
+   private const int jaguarDAMAGEDEFAULT = 10;
+   private const float jaguarSPEEDDEFAULT = 1000;
+   private const float jaguarROTATIONSPEEDDEFAULT = 2;
+   private const float ATTACKINTERVAL = 0.5f;
 
-   private Vector3 startPos;
+   //private Vector3 startPos;
    private Vector3 targetDestination;
    private bool targetIsPlayer;
 
    //-----------------------------------------------------------------------------
    // Private member variable data.
-   private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
-   private bool isInAttackRadius = false;     // Is the player within this Ant's attack radius?
+   private float timeSinceLastAttack = 0.0f;   // The time elapsed since this jaguar has last attacked.
+   private bool isInAttackRadius = false;     // Is the player within this jaguar's attack radius?
 
    //-----------------------------------------------------------------------------
    // A reference to the player.
@@ -57,22 +51,22 @@ public class Ant : Enemy
    // Initialize things here
    void Awake()
    {
-      if (overrideValues)  // If custom values are provided, assign them to this Ant.
+      if (overrideValues)  // If custom values are provided, assign them to this jaguar.
       {
-         this.myHealth = antHealthCustom;
-         this.myDamage = antDamageCustom;
-         //this.mySpeed = antSpeedCustom;
-         this.myRotationSpeed = antRotationSpeedCustom;
+         this.myHealth = jaguarHealthCustom;
+         this.myDamage = jaguarDamageCustom;
+         //this.mySpeed = jaguarSpeedCustom;
+         this.myRotationSpeed = jaguarRotationSpeedCustom;
       }
-      else  // If custom values are not provided, utilize the default values for this Ant.
+      else  // If custom values are not provided, utilize the default values for this jaguar.
       {
-         this.myHealth = ANTHEALTHDEFAULT;
-         this.myDamage = ANTDAMAGEDEFAULT;
-         this.myRotationSpeed = ANTROTATIONSPEEDDEFAULT;
+         this.myHealth = jaguarHEALTHDEFAULT;
+         this.myDamage = jaguarDAMAGEDEFAULT;
+         this.myRotationSpeed = jaguarROTATIONSPEEDDEFAULT;
       }
 
       //this.GetComponent<NavMeshAgent>().speed = this.mySpeed;
-      this.myType = enType.ANT;
+      this.myType = enType.JAGUAR;
 
    }
 
@@ -81,7 +75,10 @@ public class Ant : Enemy
    void Start()
    {
       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
-      this.startPos = this.transform.position;
+      //this.startPos = this.transform.position;
+      this.myAgent = this.GetComponent<NavMeshAgent>();
+
+      //this.myAgent.speed = this.mySpeed;
    }
 
    //=============================================================================
@@ -101,25 +98,25 @@ public class Ant : Enemy
          case enState.MOVE:
             break;
          case enState.DEAD:
-            killAnt();
+            killjaguar();
             break;
          default:
             break;
       }
 
-      checkAntHealth();
+      checkjaguarHealth();
       stateUpdate();
    }
 
    //=============================================================================
-   // Sets the detection radius of this ant to the passed value.
+   // Sets the detection radius of this jaguar to the passed value.
    public void setDetectionRadius(float radius)
    {
       this.detectionRadius = radius;
    }
 
    //=============================================================================
-   // Updates the state of this ant, if needed.
+   // Updates the state of this jaguar, if needed.
    void stateUpdate()
    {
       switch (this.myState)
@@ -160,8 +157,8 @@ public class Ant : Enemy
             break;
          //-----------------------------------------------------------------------------
          case enState.DEAD:
-            //Ant is dead, object should be destroyed, if not already.
-            killAnt();
+            //jaguar is dead, object should be destroyed, if not already.
+            killjaguar();
             break;
       }
    }
@@ -172,8 +169,8 @@ public class Ant : Enemy
    {
       if (other.tag.Equals("Projectile"))
       {
-         damageAnt();
-         SoundManager.getInstance().playEffect("AntSplat");
+         damagejaguar();
+         SoundManager.getInstance().playEffect("jaguarSplat");
       }
    }
 
@@ -184,8 +181,8 @@ public class Ant : Enemy
       if (other.transform.name.Equals("Kira") && this.myState != enState.ATTACK)
       {
          this.myState = enState.ATTACK;
-         this.targetIsPlayer = false;
-         this.targetDestination = startPos;
+         //this.targetIsPlayer = false;
+         //this.targetDestination = startPos;
 
       }
    }
@@ -202,9 +199,9 @@ public class Ant : Enemy
    }
 
    //=============================================================================
-   // Check to see if the health of this Ant is 0, if so, change the state of this
-   // Ant to enState.DEAD
-   void checkAntHealth()
+   // Check to see if the health of this jaguar is 0, if so, change the state of this
+   // jaguar to enState.DEAD
+   void checkjaguarHealth()
    {
       if (isDefeated())
       {
@@ -222,19 +219,19 @@ public class Ant : Enemy
 
       if (this.targetIsPlayer == false)
       {
-         if (Vector3.Distance(this.targetDestination, this.transform.position) <= 0.2f)
-         {
-            Debug.Log("Targeting Player");
-            this.targetDestination = thePlayer.transform.position;
-            this.targetIsPlayer = true;
-         }
+         //if (Vector3.Distance(this.targetDestination, this.transform.position) <= 0.2f)
+         //{
+         //   Debug.Log("Targeting Player");
+         //   this.targetDestination = thePlayer.transform.position;
+         //   this.targetIsPlayer = true;
+         //}
       }
       else
       {
          this.targetDestination = thePlayer.transform.position;
       }
 
-      this.GetComponent<NavMeshAgent>().SetDestination(targetDestination);
+      this.myAgent.SetDestination(targetDestination);
    }
 
    //=============================================================================
@@ -274,7 +271,7 @@ public class Ant : Enemy
          {
             //do damage to player.
             SoundManager.getInstance().playEffect("Ant_Attack_01");
-            StatusManager.getInstance().health -= 5;
+            StatusManager.getInstance().health -= this.myDamage;
             StatusManager.getInstance().fear += 5;
          }
 
@@ -292,29 +289,29 @@ public class Ant : Enemy
    }
 
    //=============================================================================
-   // "Destroys" the ant and all assosciated gameobjects.
+   // "Destroys" the jaguar and all assosciated gameobjects.
    // ALL enemies will be moved to a magic value, where they will be deactivated.
-   void killAnt()
+   void killjaguar()
    {
 
-      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
+      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the jaguar
                                                           // from clipping back onto the platform after being "killed".
-      this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
-      this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.
+      this.transform.position = OUTOFBOUNDS;              // Move this jaguar out of bounds to the predefined location.
+      this.gameObject.SetActive(false);                   // Disable this jaguar, preventing interactability.
    }
 
    //=============================================================================
-   // Deal a single point of damage to the ant.
-   void damageAnt()
+   // Deal a single point of damage to the jaguar.
+   void damagejaguar()
    {
       this.myHealth -= 1;
 
    }
 
    //=============================================================================
-   // Deal a specific amount of damage to the ant.  A negative number may be
-   // passed to heal the ant by the passed amount.
-   void damageAnt(int damage)
+   // Deal a specific amount of damage to the jaguar.  A negative number may be
+   // passed to heal the jaguar by the passed amount.
+   void damagejaguar(int damage)
    {
       this.myHealth -= damage;
    }
