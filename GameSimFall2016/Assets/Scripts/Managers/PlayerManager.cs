@@ -89,7 +89,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     public void findPlayers()
     {
         players = GameObject.FindObjectsOfType<Player>();
-        if (players.Length > 0)
+        if (players.Length > 0 && currentPlayer == null)
         {
             if (players.Length > 1)
             {
