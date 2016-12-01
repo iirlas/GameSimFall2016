@@ -5,6 +5,7 @@ public class CreditsMusicTrigger : MonoBehaviour
 {
 
    public GameObject musicObject;
+   public string songToPlay;
 
    // Use this for initialization
    void Start()
@@ -23,7 +24,7 @@ public class CreditsMusicTrigger : MonoBehaviour
       catch (System.Exception e)
       {
          musicObject.SetActive(true);
-         SoundManager.getInstance().playMusic("Memories_Bensound");
+         SoundManager.getInstance().playMusic(this.songToPlay);
       }
    }
 }
