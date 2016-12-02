@@ -175,6 +175,7 @@ GameObject:
   - 223: {fileID: 22326786}
   - 114: {fileID: 11459580}
   - 114: {fileID: 11438824}
+  - 114: {fileID: 11465198}
   m_Layer: 5
   m_Name: BunnyBossFightUI
   m_TagString: Untagged
@@ -201,7 +202,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 717aaf1c306a9364cbd41b6a6e5e2955, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45a89cbffb7a60e4ba6aa3ba0e55a7c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -228,7 +229,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6b473cba947c7e141a05a5733ab3f8c2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aeecf33d54c1df843b1aafd5259481d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -321,6 +322,20 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &11465198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2964858f7e973b341a6b979eee060e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kiraHealth: {fileID: 11443700}
+  bunnyBoss: {fileID: 0}
+  bossHealth: {fileID: 11470784}
 --- !u!114 &11470784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -388,7 +403,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fef36a016cbee434887544928bd6b4af, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2cdf6562a170b24c9bae1b124fa9cb7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -469,7 +484,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 717aaf1c306a9364cbd41b6a6e5e2955, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45a89cbffb7a60e4ba6aa3ba0e55a7c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -548,7 +563,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.558, y: 0.9161952}
   m_AnchorMax: {x: 0.98100007, y: 1}
-  m_AnchoredPosition: {x: -1.1000061, y: -2}
+  m_AnchoredPosition: {x: -1.1000061, y: -0.4}
   m_SizeDelta: {x: 0.5, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22412100
@@ -622,7 +637,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.9749999, y: 0}
+  m_AnchoredPosition: {x: 1.6, y: 0}
   m_SizeDelta: {x: 7.95, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22441592
@@ -692,7 +707,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.021000002, y: 0.9161952}
   m_AnchorMax: {x: 0.44200003, y: 1}
-  m_AnchoredPosition: {x: -0.3999939, y: -2}
+  m_AnchoredPosition: {x: -0.3999939, y: -0.4}
   m_SizeDelta: {x: 1.5, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22493392
@@ -707,11 +722,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22429310}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0.388, y: 0.7511952}
-  m_AnchorMax: {x: 0.6144315, y: 1}
-  m_AnchoredPosition: {x: -1.0000153, y: 3.300003}
-  m_SizeDelta: {x: 0.3999939, y: 6.699997}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_SizeDelta: {x: 175, y: 125}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &22499640
 RectTransform:
   m_ObjectHideFlags: 1
