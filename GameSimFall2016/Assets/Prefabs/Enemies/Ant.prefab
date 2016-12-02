@@ -272,15 +272,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99488662b401399499fb962fc9d3ddac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myHealth: 1
   detectionRadius: 5
   overrideValues: 0
   antHealthCustom: 0
   antDamageCustom: 0
   antSpeedCustom: 0
   antRotationSpeedCustom: 0
-  antWalking: {fileID: 0}
-  antSplat: {fileID: 0}
-  antAttack: {fileID: 0}
 --- !u!114 &11441308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -369,7 +367,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 111636}
   m_Enabled: 1
   m_Radius: 0.16
-  m_Speed: 0.05
+  m_Speed: 1
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 0.1
