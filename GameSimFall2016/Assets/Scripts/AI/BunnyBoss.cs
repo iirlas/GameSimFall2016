@@ -39,6 +39,21 @@ public class BunnyBoss : MonoBehaviour {
     public GameObject darkOrbPrefab;
     public GameObject bunnyPrefab;
 
+    public Timer timer = new Timer();
+
+    private Animator myAnimator;
+    public Animator animator
+   {
+      get
+      {
+         if ( myAnimator == null )
+         {
+            myAnimator = GetComponent<Animator>();
+         }
+         return myAnimator;
+      }
+   }
+
 	// Use this for initialization
 	void Awake () 
     {
@@ -73,33 +88,41 @@ public class BunnyBoss : MonoBehaviour {
                 NewTarget();
                 spline.Build();
                 actionFlag = false;
+                timer.start();
+                //animator.speed = 1;
             }
-        }
-        else if ( time > 2.0f )
-        {
-            switch ((int)(Random.value * 2))
-            {
-            case 0:
-                Shoot(2.0f);
-                break;
-
-            case 1:
-                Summon();
-                break;
-
-            }
-            time = 0;
-            actionFlag = !actionFlag;
         }
         else
         {
+           if (time > 5.0f)
+           {
+              time = 0;
+              actionFlag = !actionFlag;
+              animator.SetTrigger("jump");
+              //animator.speed = spline.Length * Time.deltaTime;
+            }
+            else if (timer.elapsedTime() > 1.0f)
+            {
+               switch ((int)(Random.value * 2))
+               {
+                  case 0:
+                     Shoot(2.0f);
+                     break;
+
+                  case 1:
+                     Summon();
+                     break;
+
+               }
+               timer.reset();
+            }
             Vector3 direction = PlayerManager.getInstance().currentPlayer.transform.position - transform.position;
-            direction.y = 0;
             rotation = Quaternion.LookRotation(direction);
+            direction.y = 0;
             time += Time.deltaTime;
         }
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 5);
+      transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 5);
 
         if (Input.GetKey(KeyCode.Delete))
         {
