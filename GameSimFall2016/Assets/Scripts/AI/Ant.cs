@@ -49,6 +49,32 @@ public class Ant : Enemy
    private float timeSinceLastAttack = 0.0f;   // The time elapsed since this Ant has last attacked.
    private bool isInAttackRadius = false;     // Is the player within this Ant's attack radius?
 
+   private Animator myAnimator;
+   public Animator animator
+   {
+      get
+      {
+         if (myAgent == null)
+         {
+            myAnimator = GetComponent<Animator>();
+         }
+         return myAnimator;
+      }
+   }
+
+   private NavMeshAgent myAgent;
+   public NavMeshAgent agent
+   {
+      get
+      {
+         if (myAgent == null)
+         {
+            myAgent = GetComponent<NavMeshAgent>();
+         }
+         return myAgent;
+      }
+   }
+
    //-----------------------------------------------------------------------------
    // A reference to the player.
    protected Player thePlayer;
@@ -317,6 +343,14 @@ public class Ant : Enemy
    void damageAnt(int damage)
    {
       this.myHealth -= damage;
+   }
+
+   void OnAnimatorMove()
+   {
+      // Update position based on animation movement using navigation surface height
+      Vector3 position = animator.rootPosition;
+      position.y = agent.nextPosition.y;
+      transform.position = position;
    }
 
 }
