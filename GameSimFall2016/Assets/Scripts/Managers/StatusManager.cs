@@ -132,6 +132,7 @@ public class StatusManager : Singleton<StatusManager>
    override protected void Init()
    {
       playerStatus = Status.FEAR;
+      health = 100;
    }
 
    void Start()
@@ -223,7 +224,7 @@ public class StatusManager : Singleton<StatusManager>
          {
             players[i].transform.position = respawnPoint;
          }
-         health = 100.0f;
+         //health = 100.0f;
          fear = 0.0f;
       }
    }
