@@ -20,7 +20,7 @@ public class ThirdPersonCamera : MonoBehaviour {
     private Player myPlayer;
     private Vector3 myAngle = Vector3.zero;
     private float time = 0.0f;
-
+    private bool isTracking = true;
 	// Use this for initialization
 	void Awake () {
         transform = GetComponent<Transform>();
@@ -61,15 +61,16 @@ public class ThirdPersonCamera : MonoBehaviour {
 
         //smooth erratic camera movement
         float distance = Vector3.Distance(transform.position, view);
-        if (distance > offset.magnitude)
+        if (distance > offset.magnitude && isTracking)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, view, ref velocity, 2 / speed);
+            transform.position = Vector3.SmoothDamp(transform.position, view, ref velocity, 2 / time);
         }
         else
         {
             transform.position = Vector3.Lerp( transform.position, view, time);
-            time += Time.deltaTime * speed;
+            isTracking = false;
         }
+        time += Time.deltaTime * speed;
 
         transform.LookAt(target, Vector3.up);
     }

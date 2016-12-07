@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 [System.Serializable]
-public class Spline : MonoBehaviour {
+public class Spline : MonoBehaviour, IEnumerable<Transform> {
     public enum Type
     {
         LINEAR = 2,
@@ -18,19 +19,70 @@ public class Spline : MonoBehaviour {
     [CustomEditor(typeof(Spline))]
     public class SplineEditor : Editor
     {
+
+        Transform changingKnot = null;
+        public void OnSceneGUI()
+        {
+            Spline spline = target as Spline;
+
+            if ( spline.transform.hasChanged )
+            {
+                spline.Build();
+            }
+
+            if ( spline.knots.Count > 0 )
+            {
+                Handles.Label(spline.knots[0].position + Vector3.up, "Start");
+                Handles.Label(spline.knots[spline.knots.Count - 1].position + Vector3.up, "End");
+            }
+
+            for (int index = 0; index < spline.knots.Count; index++)
+            {
+                EditorGUI.BeginChangeCheck();
+                Vector3 newPosition = Vector3.zero;
+                Quaternion newRotation = Quaternion.identity;
+
+                if ( Tools.current == Tool.Move )
+                {
+                    newPosition = Handles.PositionHandle(spline.knots[index].position, spline.knots[index].rotation);
+                }
+                if ( Tools.current == Tool.Rotate )
+                {
+                    newRotation = Handles.RotationHandle(spline.knots[index].rotation, spline.knots[index].position);
+                }
+
+                if ( EditorGUI.EndChangeCheck() )
+                {
+                    changingKnot = spline.knots[index];
+                    Undo.RecordObject(spline.knots[index], spline.knots[index].name + " Changed");
+                    if (Tools.current == Tool.Move)
+                    {
+                        spline.knots[index].position = newPosition;
+                    }
+                    if (Tools.current == Tool.Rotate)
+                    {
+                        spline.knots[index].rotation = newRotation;
+                    }
+                    spline.Build();
+                }
+                else
+                {
+                    changingKnot = null;
+                    Repaint();
+                }
+            }
+        }
+
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
             Spline myScript = (Spline)target;
-            for (int index = 0; index < myScript.knots.Count; index++)
-            {
-                if (myScript.knots[index] != null)
-                {
-                    myScript.knots[index].localPosition = EditorGUILayout.Vector3Field("Node:" + index, myScript.knots[index].localPosition);
-                }
-            }
 
+            if ( changingKnot != null )
+            {
+                GUILayout.Label("Changing " + changingKnot.name);
+            }
             if (GUILayout.Button("Build"))
             {
                 myScript.Build();
@@ -61,6 +113,18 @@ public class Spline : MonoBehaviour {
     }
 
     [HideInInspector]
+    public Transform Start
+    {
+        get { return knots.First(); }
+    }
+
+    [HideInInspector]
+    public Transform End
+    {
+        get { return knots.Last(); }
+    }
+
+    [HideInInspector]
     [SerializeField]
     private List<Transform> knots = new List<Transform>();
 
@@ -72,6 +136,7 @@ public class Spline : MonoBehaviour {
 
     void Awake ()
     {
+        //Undo.undoRedoPerformed += Build;
     }
 
     private Vector3[] buildLinearSet ( int index )
@@ -79,7 +144,7 @@ public class Spline : MonoBehaviour {
         int count = knots.Count;
         int indexNeg1 = Extension.mod(index - 1, count);
         int index1 = Extension.mod(index + 1, count);
-        Vector3 derivative = (knots[index1].localPosition - knots[index].localPosition);
+        Vector3 derivative = (knots[index1].position - knots[index].position);
 
         return new Vector3[]
         {
@@ -99,15 +164,16 @@ public class Spline : MonoBehaviour {
         int indexNeg1 = Extension.mod(index - 1, count);
         int index1 = Extension.mod(index + 1, count);
         int index2 = Extension.mod(index + 2, count);
-        Vector3 derivative = (knots[index1].localPosition - knots[indexNeg1].localPosition);
-        Vector3 derivative1 = (knots[index2].localPosition - knots[index].localPosition);
+        Quaternion rotation = Quaternion.Inverse(knots[index].rotation) * knots[index1].rotation;
+        Vector3 derivative = (knots[index1].position - knots[indexNeg1].position);
+        Vector3 derivative1 =(knots[index2].position - knots[index].position);
 
         return new Vector3[]
         {
             knots[index].position,
             derivative,
-            3 * (knots[index1].localPosition - knots[index].localPosition) - 2 * derivative - derivative1,
-            2 * (knots[index].localPosition - knots[index1].localPosition) + derivative + derivative1
+            3 * (knots[index1].position - knots[index].position) - 2 * derivative - derivative1,
+            2 * (knots[index].position - knots[index1].position) + derivative + derivative1
         };
     }
 
@@ -140,7 +206,7 @@ public class Spline : MonoBehaviour {
             coefficients.AddRange(buildSet(index));
         }
     }
-    
+
     public Vector3 Evaluate (float time)
     {
         int lowIndex = (int)time;
@@ -148,25 +214,41 @@ public class Spline : MonoBehaviour {
 
         if (!closed && lowIndex >= knots.Count - 1)
         {
-            evaluation = knots[knots.Count - 1].localPosition;
+            evaluation = knots[knots.Count - 1].position;
         }
-        else if ( coefficients.Count / knots.Count == (int)type )
+        else if ( knots.Count >= 2 && coefficients.Count / knots.Count == (int)type )
         {
-            // f(x) += ax^n   or   f(x) = a + bx + cx^2 + dx^3
-            for (int count = 0; count < (int)type; count++)
+            // f(x) = ax^0 + ax^n...
+            if ( !closed && ( lowIndex == 0 || lowIndex == knots.Count - 2))
             {
-                int index = lowIndex % knots.Count * (int)type + count;
-                evaluation += coefficients[index] * Mathf.Pow(time - lowIndex, count);
+                int index = (lowIndex % knots.Count) + 1;
+                evaluation = Vector3.Lerp(knots[lowIndex].position, knots[index].position, time - lowIndex);
+            }
+            else
+            {
+                for (int count = 0; count < (int)type; count++)
+                {
+                    int index = lowIndex % knots.Count * (int)type + count;
+                    evaluation += coefficients[index] * Mathf.Pow(time - lowIndex, count);
+                }
             }
         }
-
-        return transform.rotation * (Vector3.Scale(evaluation, transform.localScale)) + transform.position;
+        return evaluation;
     }
 
 
     public Quaternion LookAt ( Vector3 position, float time )
     {
-        return LookAt(position, time, Vector3.up);
+        Vector3 result = Evaluate(time + Time.deltaTime);
+        if (result != position)
+        {
+            int lowIndex = (int)time;
+            int index = (int)Mathf.Clamp(time + 1, 0, knots.Count - 1);
+            Vector3 upwards = Vector3.Lerp(knots[lowIndex].up, knots[index].up, time - lowIndex);
+            Quaternion rotation = Quaternion.LookRotation(result - position, upwards);
+            return rotation;
+        }
+        return Quaternion.identity;
     }
 
     public Quaternion LookAt ( Vector3 position, float time, Vector3 upwards )
@@ -180,7 +262,17 @@ public class Spline : MonoBehaviour {
         return Quaternion.identity;
     }
 
-    public void OnDrawGizmos ()
+    public IEnumerator<Transform> GetEnumerator()
+    {
+        return ((IEnumerable<Transform>)knots).GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return ((IEnumerable<Transform>)knots).GetEnumerator();
+    }
+
+    void OnDrawGizmos ()
     {
         if (!drawKnots)
             return;
@@ -192,9 +284,9 @@ public class Spline : MonoBehaviour {
         }
     }
 
-    public void OnDrawGizmosSelected ()
+    void OnDrawGizmosSelected ()
     {
-        if (coefficients.Count / knots.Count != (int)type)
+        if (knots.Count < 2 || coefficients.Count / knots.Count != (int)type)
             return;
 
         Vector3 lastEval = (knots.Count != 0) ? knots[0].position : Vector3.zero;
