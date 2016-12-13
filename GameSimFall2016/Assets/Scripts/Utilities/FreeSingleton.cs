@@ -6,6 +6,7 @@ abstract public class FreeSingleton<Type> : MonoBehaviour
 {
     static private Type ourInstance;
 
+    //------------------------------------------------------------------------------------------------
     static public Type getInstance()
     {
         if (ourInstance == null)
@@ -20,6 +21,7 @@ abstract public class FreeSingleton<Type> : MonoBehaviour
         return ourInstance;
     }
 
+    //------------------------------------------------------------------------------------------------
     void Awake()
     {
         ourInstance = getInstance();

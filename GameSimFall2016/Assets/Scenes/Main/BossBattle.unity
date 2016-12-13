@@ -943,19 +943,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22406256, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22445284, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 157302, guid: 5d9d2323de4f093408f70cc3ab0677b0, type: 2}
       propertyPath: m_IsActive
@@ -1596,6 +1596,12 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 190582, guid: 7cc9ffb6a281ee1489a111121e9868ac, type: 2}
   m_PrefabInternal: {fileID: 992124253}
+--- !u!114 &714037841 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11444784, guid: 68c0bebf66e47a547b0a83f615c826e7,
+    type: 2}
+  m_PrefabInternal: {fileID: 846887655}
+  m_Script: {fileID: 11500000, guid: d0f8765e3e0cba848a09dee61af60054, type: 3}
 --- !u!1001 &742535045
 Prefab:
   m_ObjectHideFlags: 0
@@ -2909,10 +2915,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 120466, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
   m_PrefabInternal: {fileID: 1137916724}
---- !u!1 &1273854274 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 137500, guid: 2bea0fc7cbfc3a945b3ed0326e01c6c9, type: 2}
-  m_PrefabInternal: {fileID: 2093910029}
 --- !u!114 &1283212314 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11499680, guid: fc15cf1c9dea2914388b220ce7b328a8,
@@ -4907,6 +4909,18 @@ Prefab:
       propertyPath: m_ShadowRadius
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11477762, guid: 2bea0fc7cbfc3a945b3ed0326e01c6c9, type: 2}
+      propertyPath: canRepeat
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 115864, guid: 2bea0fc7cbfc3a945b3ed0326e01c6c9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135740, guid: 2bea0fc7cbfc3a945b3ed0326e01c6c9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bea0fc7cbfc3a945b3ed0326e01c6c9, type: 2}
   m_IsPrefabParent: 0
@@ -5039,7 +5053,7 @@ Prefab:
     - target: {fileID: 11458466, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
       propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1273854274}
+      objectReference: {fileID: 1229776621}
     - target: {fileID: 11458466, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
       propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -5054,7 +5068,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 5774d3ed6a525ec41816c47a94794a22, type: 2}
     - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
       propertyPath: onPlayerFinalDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
       propertyPath: onPlayerFinalDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -5070,7 +5084,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
       propertyPath: onPlayerFinalDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: BasicTrigger, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
       propertyPath: onPlayerDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -5095,7 +5109,55 @@ Prefab:
     - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
       propertyPath: onPlayerFinalDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 2129466936}
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458466, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458466, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458466, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 714037841}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_health
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerFinalDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerFinalDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
+      propertyPath: onPlayerFinalDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2129466933}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 968d99ebeea85b142a7247fdf21d0f77, type: 2}
   m_IsPrefabParent: 0
@@ -5115,30 +5177,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameOfNext: EndingB
---- !u!114 &2129466936
+--- !u!114 &2129466933 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2129466930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b28600791ac51c4ea20a8acf945e31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activatorTag:
-    value: Untagged
-  activator: {fileID: 0}
-  type: 0
-  canRepeat: 0
-  onEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  onEventEnd:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: TriggerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_PrefabParentObject: {fileID: 11448754, guid: 968d99ebeea85b142a7247fdf21d0f77,
+    type: 2}
+  m_PrefabInternal: {fileID: 2129466929}
+  m_Script: {fileID: 11500000, guid: b5f8cd578e0a2924590ab974ca8a6b20, type: 3}
 --- !u!1001 &2144791492
 Prefab:
   m_ObjectHideFlags: 0

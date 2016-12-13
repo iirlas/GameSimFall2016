@@ -5,7 +5,8 @@ using System.Collections;
 public class Utility  {
 
     public static bool isFading { private set; get; }
-   //Nathan was not here
+    //------------------------------------------------------------------------------------------------
+    //Nathan was not here
     public static IEnumerator fadeScreen (Color start, Color end, float speed, float delay)
     {
         if ( isFading )

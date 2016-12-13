@@ -35,6 +35,7 @@ abstract public class Player : MonoBehaviour
 
     new public Camera camera { get { return PlayerManager.getInstance().camera; } }
 
+    //------------------------------------------------------------------------------------------------
     private Transform myTransform;
     public new Transform transform
     {
@@ -48,6 +49,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     private Rigidbody myRigidbody;
     public new Rigidbody rigidbody
     {
@@ -61,6 +63,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     private Collider myCollider;
     public new Collider collider
     {
@@ -74,6 +77,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     [HideInInspector]
     private NavMeshAgent myAgent;
     public NavMeshAgent agent
@@ -88,6 +92,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     //constructor
     public Player()
     {
@@ -95,7 +100,8 @@ abstract public class Player : MonoBehaviour
         playerState = State.DEFAULT;
     }
 
-    void Awake ()
+    //------------------------------------------------------------------------------------------------
+    void Awake()
     {
        myPhysicMaterials = new PhysicMaterial[2];
        
@@ -108,12 +114,14 @@ abstract public class Player : MonoBehaviour
        myPhysicMaterials[1].staticFriction = 0.2f;
     }
 
+    //------------------------------------------------------------------------------------------------
     [HideInInspector]
     public void AssignFollower( Player follower = null )
     {
         myFollower = follower;
     }
 
+    //------------------------------------------------------------------------------------------------
     public void Update()
     {
         bool isPlayer = PlayerManager.getInstance().currentPlayer != this;
@@ -147,7 +155,8 @@ abstract public class Player : MonoBehaviour
       }
     }
 
-    public void FixedUpdate ()
+    //------------------------------------------------------------------------------------------------
+    public void FixedUpdate()
     {
         if (transform.parent != null && myPlatform != null)
         {
@@ -155,6 +164,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     public void addForeignRunnable( StateRunner stateRunner )
     {
         if (myStates.ContainsKey(State.FOREIGN))
@@ -164,7 +174,8 @@ abstract public class Player : MonoBehaviour
         myStates.Add(State.FOREIGN, stateRunner);
     }
 
-    public void clearForeignRunnable ()
+    //------------------------------------------------------------------------------------------------
+    public void clearForeignRunnable()
     {
         if (myStates.ContainsKey(State.FOREIGN))
         {
@@ -172,6 +183,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     protected void addRunnable(Enum state, StateRunner stateRunner)
     {
         if (myStates.ContainsKey(state))
@@ -182,6 +194,7 @@ abstract public class Player : MonoBehaviour
         myStates.Add(state, stateRunner);
     }
 
+    //------------------------------------------------------------------------------------------------
     protected void setParent ( RaycastHit hit )
     {
         Transform parent = transform.parent;
@@ -215,7 +228,8 @@ abstract public class Player : MonoBehaviour
         transform.parent = parent;
     }
 
-    protected void clearParent ()
+    //------------------------------------------------------------------------------------------------
+    protected void clearParent()
     {
         if ( transform.parent != null )
         {
@@ -223,6 +237,7 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     protected void movePlayer()
     {
         Vector3 cameraFoward = camera.transform.forward;
@@ -254,11 +269,13 @@ abstract public class Player : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     public void smoothRotateTowards(float x, float y, float z, float speed)
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(x, y, z), speed);
     }
 
+    //------------------------------------------------------------------------------------------------
     public void smoothRotateTowards(Vector3 forward, float speed)
     {
         //;
@@ -269,13 +286,15 @@ abstract public class Player : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(forward);
     }
 
-    protected bool isGrounded (int steps = 10)
+    //------------------------------------------------------------------------------------------------
+    protected bool isGrounded(int steps = 10)
     {
         RaycastHit hit;
         return isGrounded(out hit, steps);
     }
 
-    protected bool isGrounded (out RaycastHit hit, int steps = 10)
+    //------------------------------------------------------------------------------------------------
+    protected bool isGrounded(out RaycastHit hit, int steps = 10)
     {
         hit = new RaycastHit();
         float distance = collider.bounds.extents.y + 0.1f;

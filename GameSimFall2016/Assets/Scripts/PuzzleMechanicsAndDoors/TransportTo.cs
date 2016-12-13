@@ -39,6 +39,15 @@ public class TransportTo : MonoBehaviour {
         }
     }
 
+    public void OnEvent()
+    {
+        if (!isRunning)
+        {
+            StartCoroutine(Utility.fadeScreen(Color.clear, Color.black, 0.1f, 0.0f));
+            StartCoroutine(loadAsync());
+        }
+    }
+
     IEnumerator loadAsync ()
     {
         isRunning = true;

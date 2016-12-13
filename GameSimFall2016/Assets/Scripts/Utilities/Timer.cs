@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class Timer
@@ -6,21 +7,25 @@ public class Timer
 
     float myStartTime = -1;
 
+    //------------------------------------------------------------------------------------------------
     public static bool operator true ( Timer timer )
     {
         return (timer.isRunning());
     }
 
+    //------------------------------------------------------------------------------------------------
     public static bool operator false ( Timer timer )
     {
         return !(timer.isRunning());
     }
 
+    //------------------------------------------------------------------------------------------------
     public static bool operator! ( Timer timer )
     {
         return !(timer.isRunning());
     }
 
+    //------------------------------------------------------------------------------------------------
     public bool start ()
     {
         if ( myStartTime == -1 )
@@ -31,6 +36,7 @@ public class Timer
         return false;
     }
 
+    //------------------------------------------------------------------------------------------------
     public float stop ()
     {
         if ( myStartTime != -1 )
@@ -42,6 +48,7 @@ public class Timer
         return -1;
     }
 
+    //------------------------------------------------------------------------------------------------
     public float reset ()
     {
         float elapsedTime = stop();
@@ -49,6 +56,7 @@ public class Timer
         return elapsedTime;
     }
 
+    //------------------------------------------------------------------------------------------------
     public float elapsedTime ()
     {
         if (myStartTime != -1)
@@ -58,6 +66,7 @@ public class Timer
         return -1;
     }
 
+    //------------------------------------------------------------------------------------------------
     public bool isRunning ()
     {
         return myStartTime != -1;

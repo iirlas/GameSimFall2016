@@ -14,7 +14,8 @@ public class Rabbit : Player {
     public Animator animator;
     public float jumpDistance = 5.0f;
 
-	// Use this for initialization
+    //------------------------------------------------------------------------------------------------
+    // Use this for initialization
     protected void Start()
     {
         animator = GetComponent<Animator>();
@@ -23,6 +24,7 @@ public class Rabbit : Player {
         addRunnable(State.FALL, runFallingState);
 	}
 
+    //------------------------------------------------------------------------------------------------
     protected void runMoveState ()
     {
         RaycastHit hit;
@@ -55,12 +57,14 @@ public class Rabbit : Player {
         }
     }
 
-    void runActionState ()
+    //------------------------------------------------------------------------------------------------
+    void runActionState()
     {
 
         playerState = Player.State.DEFAULT;
     }
 
+    //------------------------------------------------------------------------------------------------
     protected void runFallingState()
     {
         if (isGrounded())
@@ -74,6 +78,7 @@ public class Rabbit : Player {
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     void LateUpdate()
     {
        if (PlayerManager.getInstance().currentPlayer != this)

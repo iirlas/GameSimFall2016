@@ -21,6 +21,7 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
     {
 
         Transform changingKnot = null;
+        //------------------------------------------------------------------------------------------------
         public void OnSceneGUI()
         {
             Spline spline = target as Spline;
@@ -73,6 +74,7 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
             }
         }
 
+        //------------------------------------------------------------------------------------------------
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
@@ -100,24 +102,28 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
     [Tooltip("Draws the position of each knot in this object hierarchy")]
     public bool drawKnots = true;
 
+    //------------------------------------------------------------------------------------------------
     [HideInInspector]
     public Transform this[int index]
     {
         get { return knots[index]; }
     }
 
+    //------------------------------------------------------------------------------------------------
     [HideInInspector]
     public int Length
     {
         get { return knots.Count; }
     }
 
+    //------------------------------------------------------------------------------------------------
     [HideInInspector]
     public Transform Start
     {
         get { return knots.First(); }
     }
 
+    //------------------------------------------------------------------------------------------------
     [HideInInspector]
     public Transform End
     {
@@ -134,11 +140,13 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
     [SerializeField]
     private List<Vector3> coefficients = new List<Vector3>();
 
+    //------------------------------------------------------------------------------------------------
     void Awake ()
     {
         //Undo.undoRedoPerformed += Build;
     }
 
+    //------------------------------------------------------------------------------------------------
     private Vector3[] buildLinearSet ( int index )
     {
         int count = knots.Count;
@@ -153,11 +161,13 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
         };
     }
 
+    //------------------------------------------------------------------------------------------------
     private Vector3[] buildQuadraticSet (int index)
     {
         return null;
     }
 
+    //------------------------------------------------------------------------------------------------
     private Vector3[] buildCubicSet (int index)
     {
         int count = knots.Count;
@@ -177,6 +187,7 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
         };
     }
 
+    //------------------------------------------------------------------------------------------------
     private Vector3[] buildSet ( int index )
     {
         switch (type)
@@ -191,6 +202,7 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
         return null;
     }
 
+    //------------------------------------------------------------------------------------------------
     public void Build()
     {
         knots.Clear();
@@ -207,6 +219,7 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     public Vector3 Evaluate (float time)
     {
         int lowIndex = (int)time;
@@ -237,6 +250,7 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
     }
 
 
+    //------------------------------------------------------------------------------------------------
     public Quaternion LookAt ( Vector3 position, float time )
     {
         Vector3 result = Evaluate(time + Time.deltaTime);
@@ -251,6 +265,7 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
         return Quaternion.identity;
     }
 
+    //------------------------------------------------------------------------------------------------
     public Quaternion LookAt ( Vector3 position, float time, Vector3 upwards )
     {
         Vector3 result = Evaluate(time + Time.deltaTime);
@@ -262,17 +277,20 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
         return Quaternion.identity;
     }
 
+    //------------------------------------------------------------------------------------------------
     public IEnumerator<Transform> GetEnumerator()
     {
         return ((IEnumerable<Transform>)knots).GetEnumerator();
     }
 
+    //------------------------------------------------------------------------------------------------
     IEnumerator IEnumerable.GetEnumerator()
     {
         return ((IEnumerable<Transform>)knots).GetEnumerator();
     }
 
-    void OnDrawGizmos ()
+    //------------------------------------------------------------------------------------------------
+    void OnDrawGizmos()
     {
         if (!drawKnots)
             return;
@@ -284,7 +302,8 @@ public class Spline : MonoBehaviour, IEnumerable<Transform> {
         }
     }
 
-    void OnDrawGizmosSelected ()
+    //------------------------------------------------------------------------------------------------
+    void OnDrawGizmosSelected()
     {
         if (knots.Count < 2 || coefficients.Count / knots.Count != (int)type)
             return;

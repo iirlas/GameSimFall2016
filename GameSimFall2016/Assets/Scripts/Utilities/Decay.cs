@@ -7,13 +7,15 @@ public class Decay : MonoBehaviour {
     public float decaySpeed = 1.0f;
     public bool destroyOnCollision = true;
 
-	// Use this for initialization
-	void Start () {
+    //------------------------------------------------------------------------------------------------
+    // Use this for initialization
+    void Start () {
 	
 	}
-	
-	// Update is called once per frame
-	void LateUpdate () {
+
+    //------------------------------------------------------------------------------------------------
+    // Update is called once per frame
+    void LateUpdate () {
         life -= decaySpeed * Time.deltaTime;
         if ( life < 0 )
         {
@@ -21,6 +23,7 @@ public class Decay : MonoBehaviour {
         }
 	}
 
+    //------------------------------------------------------------------------------------------------
     public void OnCollisionEnter(Collision collision)
     {
         if (destroyOnCollision)
@@ -30,6 +33,7 @@ public class Decay : MonoBehaviour {
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     public void OnTriggerEnter(Collider other)
     {
         if (destroyOnCollision)

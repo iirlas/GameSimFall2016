@@ -30,24 +30,25 @@ public class BossCampfire : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-//		if (this.revivesLeft == 0) {
-//			this.respawnPoint.position = this.noLivesRespawn.position;
-//			this.fire.Stop ();
-//		}
+        if (this.revivesLeft == 0)
+        {
+            this.respawnPoint.position = this.noLivesRespawn.position;
+            this.fire.Stop();
+        }
 
-		//if ( !this.lifeTimerActive && StatusManager.getInstance().health < 1 )
-		//{
-		//   decreaseRevives();
-		//}
-		//else if (this.lifeTimerActive)
-		//{
-		//   this.timer += Time.deltaTime;
-		//   if (this.timer >= 2.5f)
-		//   {
-		//      this.lifeTimerActive = false;
-		//   }
-		//}
-	}
+        //if ( !this.lifeTimerActive && StatusManager.getInstance().health < 1 )
+        //{
+        //   decreaseRevives();
+        //}
+        //else if (this.lifeTimerActive)
+        //{
+        //   this.timer += Time.deltaTime;
+        //   if (this.timer >= 2.5f)
+        //   {
+        //      this.lifeTimerActive = false;
+        //   }
+        //}
+    }
 
 	//==========================================================================
 	// When the player enters the trigger zone, set to current spawn point
@@ -59,27 +60,28 @@ public class BossCampfire : MonoBehaviour
 				this.respawnPoint.position.y + 2,
 				this.respawnPoint.position.z);
 			//GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().campfireRespawn = this.respawnPoint;
-			if (StatusManager.getInstance ().hasStatus (StatusManager.Status.FEAR)) {
+			if (StatusManager.getInstance ().hasStatus (StatusManager.Status.FEAR) && revivesLeft > 0) {
 				Debug.Log ("ping");
 				StatusManager.getInstance ().ToggleStatus (StatusManager.Status.FEAR);
 			}
 			//GameObject.FindGameObjectWithTag("FearManager").GetComponent<StatusManager>().ToggleStatus();
 
-
-		}
-		if (StatusManager.getInstance ().health < 1) 
-		{
-			if (revivesLeft < 0) 
-			{
-				StatusManager.getInstance().health = 100;
-				onPlayerFinalDeath.Invoke ();
-			} else 
-			{
-				print (revivesLeft);
-				revivesLeft--;
-				onPlayerDeath.Invoke ();
-			}
-			//StatusManager.getInstance().health = 100;
+		    if (StatusManager.getInstance ().health == 0) 
+		    {
+			    if (revivesLeft < 0) 
+			    {
+				    StatusManager.getInstance().health = 100;
+				    onPlayerFinalDeath.Invoke ();
+			    }
+                else 
+			    {
+                    //decreaseRevives();
+				    revivesLeft--;
+				    onPlayerDeath.Invoke ();
+                    StatusManager.getInstance().health = 1.0f;
+			    }
+			    //StatusManager.getInstance().health = 100;
+		    }
 		}
 	}
 
@@ -87,7 +89,7 @@ public class BossCampfire : MonoBehaviour
 	// While the player stays in the trigger zone, heal the player.
 	void OnTriggerStay (Collider other)
 	{
-		if (other.gameObject.name.Equals ("Kira")) {
+		if (other.gameObject.name.Equals ("Kira") && revivesLeft > 0) {
 			healPlayer ();
 		}
 	}

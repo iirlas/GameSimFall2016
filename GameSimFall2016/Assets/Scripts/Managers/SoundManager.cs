@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SoundManager : ExplosiveSingleton<SoundManager>
+public class SoundManager : Singleton<SoundManager>
 {
     class AudioClipInfo
     {
@@ -17,11 +17,13 @@ public class SoundManager : ExplosiveSingleton<SoundManager>
    
    private Dictionary<string, AudioClipInfo> loopingClips = new Dictionary<string, AudioClipInfo>();
 
+    //------------------------------------------------------------------------------------------------
    private AudioClip getAudioClip(string name)
    {
        return audioClips.Find(audioClip => { return (audioClip.name.Equals(name)); });
    }
 
+    //------------------------------------------------------------------------------------------------
    void Update()
    {
         foreach ( var clipKeyPair in loopingClips )
@@ -39,27 +41,31 @@ public class SoundManager : ExplosiveSingleton<SoundManager>
         }
     }
 
-   // Use this for initialization
-   override protected void Init()
+    //------------------------------------------------------------------------------------------------
+    // Use this for initialization
+    override protected void Init()
    {
         
    }
 
     // 
- 
-   public void playEffect(string name)
+
+    //------------------------------------------------------------------------------------------------
+    public void playEffect(string name)
    {
 
        AudioClip audioClip = getAudioClip(name);
        audioSource.PlayOneShot(audioClip);
    }
 
+    //------------------------------------------------------------------------------------------------
    public void playAtPosition(string name, Vector3 position)
    {
        AudioClip audioClip = getAudioClip(name);
        AudioSource.PlayClipAtPoint(audioClip, position);
    }
 
+    //------------------------------------------------------------------------------------------------
     public void loopAtPosition(string name, Transform transform)
     {
         AudioClipInfo clipInfo = new AudioClipInfo();
@@ -70,23 +76,27 @@ public class SoundManager : ExplosiveSingleton<SoundManager>
         loopingClips.Add(name, clipInfo);
     }
 
+    //------------------------------------------------------------------------------------------------
     public void stopLooping (string name)
     {
         loopingClips.Remove(name);
     }
-        
+
+    //------------------------------------------------------------------------------------------------
     public void playMusic(string name)
    {
        audioSource.clip = getAudioClip(name);
        audioSource.Play();
    }
 
-   public void stop(string name)
+    //------------------------------------------------------------------------------------------------
+    public void stop(string name)
    {
        audioSource.Stop();
    }
 
-   public void stopAll()
+    //------------------------------------------------------------------------------------------------
+    public void stopAll()
    {
        audioSource.Stop();
    }

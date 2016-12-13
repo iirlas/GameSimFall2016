@@ -15,6 +15,7 @@ public class StatusManager : Singleton<StatusManager>
    [HideInInspector]
    public Vector3 respawnPoint;
 
+    //------------------------------------------------------------------------------------------------
    private float myFear = 0.0f;
    public float fear
    {
@@ -34,8 +35,9 @@ public class StatusManager : Singleton<StatusManager>
       }
    }
 
+    //------------------------------------------------------------------------------------------------
    public bool isPoisoned
-   {
+    {
       get { return hasStatus(Status.POISON); }
       set
       {
@@ -51,6 +53,7 @@ public class StatusManager : Singleton<StatusManager>
       }
    }
 
+    //------------------------------------------------------------------------------------------------
    public bool onFire
    {
       get { return hasStatus(Status.FIRE); }
@@ -68,6 +71,7 @@ public class StatusManager : Singleton<StatusManager>
       }
    }
 
+    //------------------------------------------------------------------------------------------------
    public bool isSpooked
    {
       get { return hasStatus(Status.SPOOK); }
@@ -85,13 +89,15 @@ public class StatusManager : Singleton<StatusManager>
       }
    }
 
+    //------------------------------------------------------------------------------------------------
    private float myHealth = 100.0f;
    public float health
    {
       get { return myHealth; }
-      set { myHealth = Mathf.Clamp(value, 0, 100.0f); }
+      set { myHealth = Mathf.Clamp(value, -1, 100.0f); }
    }
 
+    //------------------------------------------------------------------------------------------------
    private float myStamina = 100.0f;
    public float stamina
    {
@@ -99,6 +105,7 @@ public class StatusManager : Singleton<StatusManager>
       set { myStamina = Mathf.Clamp(value, 0, 100.0f); }
    }
 
+    //------------------------------------------------------------------------------------------------
    private Status myPlayerStatus = Status.NONE;
    public Status playerStatus
    {
@@ -126,24 +133,27 @@ public class StatusManager : Singleton<StatusManager>
    public UnityStandardAssets.ImageEffects.Fisheye fisheye;
    public UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration vignette;
 
-   //public GameObject 
+    //public GameObject 
 
-   // Use this for initialization
-   override protected void Init()
+    //------------------------------------------------------------------------------------------------
+    // Use this for initialization
+    override protected void Init()
    {
       playerStatus = Status.FEAR;
       health = 100;
    }
 
+    //------------------------------------------------------------------------------------------------
    void Start()
    {
       this.respawnPoint = PlayerManager.getInstance().currentPlayer.transform.position;
    }
-   /// <summary>
-   /// this is a function to switch state., Use this to toggle player's particle effects
-   /// </summary>
-   /// <param name="s"></param>
-   public void ToggleStatus(Status status)
+    //------------------------------------------------------------------------------------------------
+    /// <summary>
+    /// this is a function to switch state., Use this to toggle player's particle effects
+    /// </summary>
+    /// <param name="s"></param>
+    public void ToggleStatus(Status status)
    {
       if (status == Status.NONE)
       {
@@ -156,11 +166,12 @@ public class StatusManager : Singleton<StatusManager>
       updateEffects();
    }
 
-   /// <summary>
-   /// this is a function to set state., Use this to sets the player's particle effects
-   /// </summary>
-   /// <param name="s"></param>
-   public void SetStatus(Status status)
+    //------------------------------------------------------------------------------------------------
+    /// <summary>
+    /// this is a function to set state., Use this to sets the player's particle effects
+    /// </summary>
+    /// <param name="s"></param>
+    public void SetStatus(Status status)
    {
       if (status == Status.NONE)
       {
@@ -173,8 +184,9 @@ public class StatusManager : Singleton<StatusManager>
       updateEffects();
    }
 
-   //updates effect based on playerStatus.
-   public void updateEffects()
+    //------------------------------------------------------------------------------------------------
+    //updates effect based on playerStatus.
+    public void updateEffects()
    {
       fearEffect.SetActive(hasStatus(Status.FEAR));
       poisonEffect.SetActive(hasStatus(Status.POISON));
@@ -182,13 +194,15 @@ public class StatusManager : Singleton<StatusManager>
       highFearEffect.SetActive(fear >= 100 && !highFearEffect.activeSelf);
    }
 
-   public bool hasStatus(Status status)
+    //------------------------------------------------------------------------------------------------
+    public bool hasStatus(Status status)
    {
       return (myPlayerStatus & status) == status;
    }
 
-   // Update is called once per frame
-   void Update()
+    //------------------------------------------------------------------------------------------------
+    // Update is called once per frame
+    void Update()
    {
 
       //fear accumulation
@@ -214,17 +228,18 @@ public class StatusManager : Singleton<StatusManager>
 
    }
 
+    //------------------------------------------------------------------------------------------------
    void LateUpdate()
    {
       //respawn players when kira dies.
-      if (health <= 0)
+      if (health < 0)
       {
          Player[] players = PlayerManager.getInstance().players;
          for (int i = 0; i < players.Length; i++)
          {
             players[i].transform.position = respawnPoint;
          }
-         //health = 100.0f;
+         health = 0.0f;
          fear = 0.0f;
       }
    }

@@ -11,12 +11,14 @@ public class Bird : Player {
 
     private bool canFly = false;
 
+    //------------------------------------------------------------------------------------------------
     // Use this for initialization
     void Start()
     {
         addRunnable(Player.State.DEFAULT, runFallingState);
     }
 
+    //------------------------------------------------------------------------------------------------
     protected void runFallingState()
     {
         movePlayer();
@@ -49,6 +51,7 @@ public class Bird : Player {
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     void LateUpdate()
     {
         bool isPlayer = (PlayerManager.getInstance().currentPlayer == this);

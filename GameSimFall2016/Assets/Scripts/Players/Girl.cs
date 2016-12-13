@@ -18,6 +18,7 @@ public class Girl : Player {
     public Transform rockSpawnNode;
     public float shootingForce = 30.0f;
        
+    //------------------------------------------------------------------------------------------------
     [HideInInspector]
     public Transform target
     {
@@ -32,6 +33,7 @@ public class Girl : Player {
 
 
 
+    //------------------------------------------------------------------------------------------------
     // Use this for initialization
     void Start()
     {
@@ -42,6 +44,7 @@ public class Girl : Player {
         //myTargetableLayerMask = 1 << LayerMask.NameToLayer("Targetable"); 
     }
 
+    //------------------------------------------------------------------------------------------------
     virtual protected void runMoveState()
     {
         RaycastHit hit;
@@ -86,6 +89,7 @@ public class Girl : Player {
         targetSetup();
     }
 
+    //------------------------------------------------------------------------------------------------
     protected void runFallingState()
     {
         if (isGrounded())
@@ -98,6 +102,7 @@ public class Girl : Player {
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     void runAttackState()
     {
 
@@ -140,7 +145,8 @@ public class Girl : Player {
         //}
     }
 
-    void fire ()
+    //------------------------------------------------------------------------------------------------
+    void fire()
     {
         GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
         Rigidbody rockBody = rock.GetComponent<Rigidbody>();
@@ -149,7 +155,8 @@ public class Girl : Player {
         rockBody.AddForce(force, ForceMode.Impulse);  // should use velocity
     }
 
-    void strafe ()
+    //------------------------------------------------------------------------------------------------
+    void strafe()
     {
         Vector3 cameraFoward = camera.transform.forward;
 
@@ -173,6 +180,7 @@ public class Girl : Player {
         //}
     }
 
+    //------------------------------------------------------------------------------------------------
     bool findTargets()
     {
         myTargets = Physics.OverlapSphere(rigidbody.position, targetRange, myTargetableLayerMask);
@@ -195,7 +203,8 @@ public class Girl : Player {
         return (myTarget != null);
     }
 
-    void targetSetup ()
+    //------------------------------------------------------------------------------------------------
+    void targetSetup()
     {
        if (Input.GetButtonDown("Center"))
        {
@@ -222,6 +231,7 @@ public class Girl : Player {
        }
     }
 
+    //------------------------------------------------------------------------------------------------
     void LateUpdate()
     {
         if (PlayerManager.getInstance().currentPlayer != this)

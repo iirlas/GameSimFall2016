@@ -48,12 +48,14 @@ public class BasicTrigger : MonoBehaviour
 
     private State myNextState;
 
+    //------------------------------------------------------------------------------------------------
     public BasicTrigger()
     {
        myNextState = State.ENTER;
     }
 
-    public void OnAction ()
+    //------------------------------------------------------------------------------------------------
+    public void OnAction()
     {
        if (myNextState == State.ENTER && type == Type.ACTION)
        {
@@ -62,7 +64,8 @@ public class BasicTrigger : MonoBehaviour
        }
     }
 
-    public void OnActionEnd ()
+    //------------------------------------------------------------------------------------------------
+    public void OnActionEnd()
     {
        if (myNextState == State.EXIT && type == Type.ACTION)
        {
@@ -71,6 +74,7 @@ public class BasicTrigger : MonoBehaviour
        }
     }
 
+    //------------------------------------------------------------------------------------------------
     public void OnCollisionEnter(Collision collision)
     {
         if (myNextState == State.ENTER && type == Type.COLLISION && collision.transform.tag == activatorTag)
@@ -81,6 +85,7 @@ public class BasicTrigger : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     public void OnCollisionExit(Collision collision)
     {
         if (myNextState == State.EXIT && type == Type.COLLISION && 
@@ -91,6 +96,7 @@ public class BasicTrigger : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
 	public void OnTriggerEnter(Collider other)
 	{
         if (myNextState == State.ENTER && type == Type.TRIGGER && other.transform.tag == activatorTag)
@@ -101,6 +107,7 @@ public class BasicTrigger : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     public void OnTriggerExit(Collider other)
     {
         if (myNextState == State.EXIT && type == Type.TRIGGER && 

@@ -5,14 +5,16 @@ abstract public class ExplosiveSingleton<Type> : MonoBehaviour
 {
    static private Type ourInstance;
 
-   //hide the property using new keyword to 
-   //create the singleton when one is not avaliable
-   static protected bool isCreatedWhenMissing
+    //------------------------------------------------------------------------------------------------
+    //hide the property using new keyword to 
+    //create the singleton when one is not avaliable
+    static protected bool isCreatedWhenMissing
    {
       get { return false; }
    }
 
-   static public Type getInstance()
+    //------------------------------------------------------------------------------------------------
+    static public Type getInstance()
    {
       if (ourInstance == null)
       {
@@ -25,13 +27,14 @@ abstract public class ExplosiveSingleton<Type> : MonoBehaviour
       return ourInstance;
    }
 
+   //------------------------------------------------------------------------------------------------
    void Awake()
    {
       ourInstance = getInstance();
-      if (ourInstance != this)
+      if (ourInstance != this)//if not us
       {
-         Destroy(ourInstance.gameObject);
-         ourInstance = getInstance();
+         //destroy us
+         Destroy(gameObject);
       }
       else
       {

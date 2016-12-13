@@ -2,15 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Inventory : FreeSingleton<Inventory>
+public class Inventory : ExplosiveSingleton<Inventory>
 {
-    new static protected bool isCreatedWhenMissing
-    {
-        get { return false; }
-    }
-
     private Dictionary<Tag, int> myItems;
 
+    //------------------------------------------------------------------------------------------------
+    //Retrieves the item count given the item name
     public int this[Tag tag]
     {
         get 
@@ -26,11 +23,14 @@ public class Inventory : FreeSingleton<Inventory>
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     override protected void Init()
     {
         myItems = new Dictionary<Tag, int>();
     }
 
+    //------------------------------------------------------------------------------------------------
+    //Adds an item
     public void Add(Tag tag)
     {
         if (myItems.ContainsKey(tag))
@@ -43,6 +43,8 @@ public class Inventory : FreeSingleton<Inventory>
         }
     }
 
+    //------------------------------------------------------------------------------------------------
+    //Removes an item
     public void Remove(Tag tag)
     {
         if (myItems.ContainsKey(tag))
@@ -58,6 +60,8 @@ public class Inventory : FreeSingleton<Inventory>
         }
     }
 
+    //------------------------------------------------------------------------------------------------
+    //Retrieves if an item exists.
     public bool Has(Tag tag)
     {
         return myItems.ContainsKey(tag);
