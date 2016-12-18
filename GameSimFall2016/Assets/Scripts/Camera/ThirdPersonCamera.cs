@@ -88,7 +88,7 @@ public class ThirdPersonCamera : MonoBehaviour {
     }
 
     //------------------------------------------------------------------------------------------------
-    //Aligns the camera to the mouse's movement 
+    //Aligns the camera to the mouse's movement.
     void thirdPerson ( out Vector3 view, out Vector3 target )
     {
         float horizontal = Input.GetAxis("Alt_Horizontal");

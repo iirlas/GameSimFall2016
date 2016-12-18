@@ -2,11 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 
+// Contains various general purpose functions.
 public class Utility  {
-
+    // determines whether the Fade is taking place.
     public static bool isFading { private set; get; }
+
     //------------------------------------------------------------------------------------------------
-    //Nathan was not here
+    // Fades the Screen over a set amount of time.
+    // Used with StartCoroutine() for threaded used.
     public static IEnumerator fadeScreen (Color start, Color end, float speed, float delay)
     {
         if ( isFading )

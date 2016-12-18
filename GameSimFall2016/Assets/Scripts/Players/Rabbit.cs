@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// The controllable rabbit's functionality
 public class Rabbit : Player {
 
     
@@ -25,6 +26,7 @@ public class Rabbit : Player {
 	}
 
     //------------------------------------------------------------------------------------------------
+    // The moving state functionality for the rabbit
     protected void runMoveState ()
     {
         RaycastHit hit;
@@ -58,6 +60,7 @@ public class Rabbit : Player {
     }
 
     //------------------------------------------------------------------------------------------------
+    // The action state functionality for the rabbit
     void runActionState()
     {
 
@@ -65,6 +68,7 @@ public class Rabbit : Player {
     }
 
     //------------------------------------------------------------------------------------------------
+    // The falling state functionality for the rabbit
     protected void runFallingState()
     {
         if (isGrounded())

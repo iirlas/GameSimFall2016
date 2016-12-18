@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// Shoot darts when triggered by the player
 public class PoisonDartSpawner : MonoBehaviour {
 
     private List<Transform> spawners = new List<Transform>();

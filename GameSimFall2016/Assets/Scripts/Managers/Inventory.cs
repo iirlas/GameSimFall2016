@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// Stores Item via Tags and the amount.
 public class Inventory : ExplosiveSingleton<Inventory>
 {
     private Dictionary<Tag, int> myItems;

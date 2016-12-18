@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// The controllable Bird's functionality
 public class Bird : Player {
 
     new public enum State
@@ -19,6 +20,7 @@ public class Bird : Player {
     }
 
     //------------------------------------------------------------------------------------------------
+    // The falling state functionality for the bird
     protected void runFallingState()
     {
         movePlayer();

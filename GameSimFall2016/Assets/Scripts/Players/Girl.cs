@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System;
 
+// The controllable girl's functionality
 public class Girl : Player {
 
     new public enum State
@@ -19,6 +20,7 @@ public class Girl : Player {
     public float shootingForce = 30.0f;
        
     //------------------------------------------------------------------------------------------------
+    // The current target associated with this Player
     [HideInInspector]
     public Transform target
     {
@@ -41,10 +43,10 @@ public class Girl : Player {
         addRunnable(Player.State.DEFAULT, runMoveState);
         addRunnable(State.FALL, runFallingState);
         addRunnable(State.ATTACK, runAttackState);
-        //myTargetableLayerMask = 1 << LayerMask.NameToLayer("Targetable"); 
     }
 
     //------------------------------------------------------------------------------------------------
+    // The moving state functionality for the girl
     virtual protected void runMoveState()
     {
         RaycastHit hit;
@@ -83,13 +85,12 @@ public class Girl : Player {
             animator.SetInteger("state", 3);
             animator.SetInteger("substate", 2);
             playerState = State.ATTACK;
-            //this.slingShot.volume = .05f;
-			   //this.slingShot.Play ();
         }
         targetSetup();
     }
 
     //------------------------------------------------------------------------------------------------
+    // The falling state functionality for the girl
     protected void runFallingState()
     {
         if (isGrounded())
@@ -103,6 +104,7 @@ public class Girl : Player {
     }
 
     //------------------------------------------------------------------------------------------------
+    // The attacking state functionality for the girl
     void runAttackState()
     {
 
@@ -131,21 +133,12 @@ public class Girl : Player {
         else if (Input.GetButtonDown("Attack") && animator.GetCurrentAnimatorStateInfo(0).IsName("Posing"))//
         {
             animator.SetInteger("substate", 1);
-            //animator.SetInteger("state", 1);
-            //animator.SetInteger("substate", 0);
-            //playerState = Player.State.DEFAULT;
         }
         targetSetup();
-
-        ////toggle our shooting target
-        //if (Input.GetButtonDown("Action") && myTargets.Length != 0)
-        //{
-        //    int index = (Array.IndexOf(myTargets, myTarget.GetComponent<Collider>()) + 1) % myTargets.Length;
-        //    myTarget = myTargets[index].transform;
-        //}
     }
 
     //------------------------------------------------------------------------------------------------
+    // Will propel a rock in the facing direction of the girl
     void fire()
     {
         GameObject rock = Instantiate(rockPrefab, rockSpawnNode.position, transform.rotation) as GameObject;
@@ -156,6 +149,7 @@ public class Girl : Player {
     }
 
     //------------------------------------------------------------------------------------------------
+    // Strafes this player in relation to the camera from User Inputs.
     void strafe()
     {
         Vector3 cameraFoward = camera.transform.forward;
@@ -170,17 +164,11 @@ public class Girl : Player {
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothSpeed * Time.deltaTime);
 
         animator.SetFloat("Horizontal", h);
-
-        //if (myTarget != null)
-        //{
-        //    //rotate towards the shooting target
-        //    rigidbody.position += ((camera.transform.forward * v) +
-        //                           (camera.transform.right * h)) *
-        //                            movementSpeed * Time.deltaTime;
-        //}
     }
 
     //------------------------------------------------------------------------------------------------
+    // Finds the closest targets to this player and store the result in myTargets
+    // returns whether a target was found
     bool findTargets()
     {
         myTargets = Physics.OverlapSphere(rigidbody.position, targetRange, myTargetableLayerMask);
@@ -204,6 +192,7 @@ public class Girl : Player {
     }
 
     //------------------------------------------------------------------------------------------------
+    // Setup the player for attacking the current target.
     void targetSetup()
     {
        if (Input.GetButtonDown("Center"))
@@ -240,16 +229,5 @@ public class Girl : Player {
             playerState = Player.State.DEFAULT;
         }
         animator.SetFloat("Fear", StatusManager.getInstance().fear);
-        //posisonEffect.SetActive((status & Status.POISON) == Status.POISON);
-        //fireEffect.SetActive((status & Status.FIRE) == Status.FIRE);
-        //darkEffect.SetActive((status & Status.DARK) == Status.DARK);
-        //if (darkEffect.activeSelf && GameObject.FindObjectOfType<FearManager>().fearCurrent >= 100 )
-        //{
-        //    fearEffect.SetActive(true);
-        //}
-        //else
-        //{
-        //    fearEffect.SetActive(false);
-        //}
     }
 }

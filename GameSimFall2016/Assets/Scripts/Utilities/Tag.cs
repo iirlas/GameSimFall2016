@@ -6,6 +6,8 @@ using UnityEditor;
 
 using System.Collections;
 
+//------------------------------------------------------------------------------------------------
+// Tag is used to provide a interface for using Unity's tagging system.
 [System.Serializable]
 public struct Tag
 {
@@ -28,6 +30,8 @@ public struct Tag
 }
 
 #if UNITY_EDITOR
+//------------------------------------------------------------------------------------------------
+// A Custom Drawer for displaying a Tag in the Inspector similar to the LayerMask's drop down menu.
 [CustomPropertyDrawer(typeof(Tag))]
 public class TagDrawer : PropertyDrawer
 {

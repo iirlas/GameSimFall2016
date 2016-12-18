@@ -3,8 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+// The Player state definition.
 public delegate void StateRunner();
 
+// The basic functionality for all derived playable characters.
 [RequireComponent(typeof(Collider))]
 abstract public class Player : MonoBehaviour
 {
@@ -115,6 +117,8 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Sets another player to be this Player's follower
+    // follower - the player to follow this player
     [HideInInspector]
     public void AssignFollower( Player follower = null )
     {
@@ -122,6 +126,7 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Update is called once per frame
     public void Update()
     {
         bool isPlayer = PlayerManager.getInstance().currentPlayer != this;
@@ -165,6 +170,7 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Used to Set the current Foreign runnable for external state management
     public void addForeignRunnable( StateRunner stateRunner )
     {
         if (myStates.ContainsKey(State.FOREIGN))
@@ -175,6 +181,7 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Removes the current foreign runnable
     public void clearForeignRunnable()
     {
         if (myStates.ContainsKey(State.FOREIGN))
@@ -184,6 +191,7 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Adds a runnable state assigned to a specific runnable function.
     protected void addRunnable(Enum state, StateRunner stateRunner)
     {
         if (myStates.ContainsKey(state))
@@ -195,6 +203,8 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Sets the logic parent of this player.
+    // hit - the result from a raycast to determine the parent.
     protected void setParent ( RaycastHit hit )
     {
         Transform parent = transform.parent;
@@ -229,6 +239,7 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Clears the logic parent for this player.
     protected void clearParent()
     {
         if ( transform.parent != null )
@@ -238,6 +249,7 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Moves this player in relation to the camera from User Inputs.
     protected void movePlayer()
     {
         Vector3 cameraFoward = camera.transform.forward;
@@ -270,12 +282,14 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Smoothly rotates this Player towards a given position.
     public void smoothRotateTowards(float x, float y, float z, float speed)
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(x, y, z), speed);
     }
 
     //------------------------------------------------------------------------------------------------
+    // Smoothly rotates this Player towards a given position.
     public void smoothRotateTowards(Vector3 forward, float speed)
     {
         //;
@@ -287,6 +301,9 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Conditions the players current grounded status.
+    // steps - the size of the radius to check around this player.
+    // Returns whether the player is currently grounded.
     protected bool isGrounded(int steps = 10)
     {
         RaycastHit hit;
@@ -294,6 +311,10 @@ abstract public class Player : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
+    // Conditions the players current grounded status.
+    // hit - the result of the raycast around this player
+    // steps - the size of the radius to check around this player.
+    // Returns whether the player is currently grounded.
     protected bool isGrounded(out RaycastHit hit, int steps = 10)
     {
         hit = new RaycastHit();

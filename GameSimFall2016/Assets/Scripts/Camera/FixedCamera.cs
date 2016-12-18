@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Fixates the camera to a given position
 public class FixedCamera : MonoBehaviour {
 
     public Transform viewPoint;

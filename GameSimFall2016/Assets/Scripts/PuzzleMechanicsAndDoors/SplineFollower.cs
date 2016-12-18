@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Sets the GameObject to Follows a given spline at a given speed.
+// Also sets Follow pattern when on the spline. 
 public class SplineFollower : MonoBehaviour {
 
     public enum PathType

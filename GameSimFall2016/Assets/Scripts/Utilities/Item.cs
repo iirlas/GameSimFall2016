@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Linq;
 
+// Represent a collectible that can interact with the Player.
+// The tag of this GameObject will be stored within the Inventory singleton.
 public class Item : MonoBehaviour {
 
     private Collider myCollider;
 
+    //------------------------------------------------------------------------------------------------
     [HideInInspector]
     new public Collider collider
     {
@@ -19,6 +22,7 @@ public class Item : MonoBehaviour {
         }
     }
 
+    //------------------------------------------------------------------------------------------------
     public void OnCollisionEnter (Collision collision)
     {
         if (collision.transform.tag == "Player")
@@ -28,7 +32,8 @@ public class Item : MonoBehaviour {
         }
     }
 
-    public void OnTriggerEnter (Collider other)
+    //------------------------------------------------------------------------------------------------
+    public void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {

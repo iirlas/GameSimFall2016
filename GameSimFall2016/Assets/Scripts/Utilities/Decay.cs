@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Destroys a GameObject after a set amount of time or when
+// the GameObject collides with another.
 public class Decay : MonoBehaviour {
 
     public float life = 100.0f;

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Contains the Player Status effects that and Controls the how these effect the Player
 public class StatusManager : Singleton<StatusManager>
 {
+   // The Stackable Status that can be applied to the Player.
    public enum Status
    {
       NONE = 0x00,    //0000
@@ -16,6 +18,9 @@ public class StatusManager : Singleton<StatusManager>
    public Vector3 respawnPoint;
 
     //------------------------------------------------------------------------------------------------
+    // The fear status effect, determines if the player is within the light.
+    // When the player is not within the Light fear amount increases on Update().
+    // when AmountFear greater then or equal to 100.0f of fear the player will be damaged on Update().
    private float myFear = 0.0f;
    public float fear
    {
@@ -36,7 +41,9 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
-   public bool isPoisoned
+    // The poison status effect, determines if the player has been poisoned.
+    // When in effect, the player will be damaged on Update().
+    public bool isPoisoned
     {
       get { return hasStatus(Status.POISON); }
       set
@@ -54,7 +61,9 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
-   public bool onFire
+    // The fire status effect, determines if the player is on fire.
+    // When in effect, the player will be damaged on Update().
+    public bool onFire
    {
       get { return hasStatus(Status.FIRE); }
       set
@@ -72,6 +81,7 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
+    // Unused 
    public bool isSpooked
    {
       get { return hasStatus(Status.SPOOK); }
@@ -90,6 +100,7 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
+    // The Player's current health clamped between -1.0f and 100.0f
    private float myHealth = 100.0f;
    public float health
    {
@@ -98,7 +109,8 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
-   private float myStamina = 100.0f;
+    // The Bird's current stamina clamped between 0.0f and 100.0f
+    private float myStamina = 100.0f;
    public float stamina
    {
       get { return myStamina; }
@@ -106,6 +118,7 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
+    // The Status mask for the Player.
    private Status myPlayerStatus = Status.NONE;
    public Status playerStatus
    {
@@ -149,10 +162,8 @@ public class StatusManager : Singleton<StatusManager>
       this.respawnPoint = PlayerManager.getInstance().currentPlayer.transform.position;
    }
     //------------------------------------------------------------------------------------------------
-    /// <summary>
-    /// this is a function to switch state., Use this to toggle player's particle effects
-    /// </summary>
-    /// <param name="s"></param>
+    // This is a function to switch state., Use this to toggle player's particle effects
+    // status - the status or statuses on the Player to toggle.
     public void ToggleStatus(Status status)
    {
       if (status == Status.NONE)
@@ -167,10 +178,8 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
-    /// <summary>
-    /// this is a function to set state., Use this to sets the player's particle effects
-    /// </summary>
-    /// <param name="s"></param>
+    // This is a function to set state., Use this to sets the player's particle effects
+    // status - the status or statuses to apply to the Player.
     public void SetStatus(Status status)
    {
       if (status == Status.NONE)
@@ -185,7 +194,7 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
-    //updates effect based on playerStatus.
+    // Updates effect based on playerStatus.
     public void updateEffects()
    {
       fearEffect.SetActive(hasStatus(Status.FEAR));
@@ -195,6 +204,8 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
+    // Retrieves if the Player currently has a specific Status effect.
+    // Returns True if Player has this status effect.
     public bool hasStatus(Status status)
    {
       return (myPlayerStatus & status) == status;
@@ -229,6 +240,7 @@ public class StatusManager : Singleton<StatusManager>
    }
 
     //------------------------------------------------------------------------------------------------
+    // LateUpdate is called once per frame after Update
    void LateUpdate()
    {
       //respawn players when kira dies.
