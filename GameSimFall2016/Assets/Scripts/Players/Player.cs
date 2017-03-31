@@ -81,14 +81,14 @@ abstract public class Player : MonoBehaviour
 
     //------------------------------------------------------------------------------------------------
     [HideInInspector]
-    private NavMeshAgent myAgent;
-    public NavMeshAgent agent
+    private UnityEngine.AI.NavMeshAgent myAgent;
+    public UnityEngine.AI.NavMeshAgent agent
     {
         get
         {
             if (myAgent == null)
             {
-                myAgent = GetComponent<NavMeshAgent>();
+                myAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
             }
             return myAgent;
         }
@@ -131,7 +131,7 @@ abstract public class Player : MonoBehaviour
     {
         bool isPlayer = PlayerManager.getInstance().currentPlayer != this;
         agent.enabled = isPlayer;
-        GetComponent<NavMeshObstacle>().enabled = !isPlayer;
+        GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = !isPlayer;
         if (PlayerManager.getInstance().currentPlayer == this)
         {
             if ( !myStates.ContainsKey(playerState) )

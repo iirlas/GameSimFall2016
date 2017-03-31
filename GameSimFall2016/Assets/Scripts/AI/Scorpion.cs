@@ -273,7 +273,7 @@ public class Scorpion : Enemy
          this.targetDestination = thePlayer.transform.position;
       }
 
-      this.GetComponent<NavMeshAgent>().SetDestination(targetDestination);
+      this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(targetDestination);
    }
 
    //=============================================================================
@@ -341,7 +341,7 @@ public class Scorpion : Enemy
    void killScorpion()
    {
 
-      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
+      this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
                                                           // from clipping back onto the platform after being "killed".
       this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
       this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.

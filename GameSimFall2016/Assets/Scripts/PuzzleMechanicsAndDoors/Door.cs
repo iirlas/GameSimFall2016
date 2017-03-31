@@ -40,15 +40,14 @@ public class Door : MonoBehaviour
       {
          if (transform.position.y < destination.y)
          {
-            transform.position = Vector3.Lerp(transform.position,
-                                      destination,
-                                      speed * 3.0f * Time.deltaTime);
             if (onlyOnce)
             {
                SoundManager.getInstance().playEffect("DoorStoneOpen");
                this.onlyOnce = false;
             }
-
+            transform.position = Vector3.Lerp(transform.position,
+                                      destination,
+                                      speed * 3.0f * Time.deltaTime);
          }
       }
       else if (transform.position.y > start.y)

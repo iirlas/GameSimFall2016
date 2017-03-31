@@ -24,7 +24,7 @@ public class Jaguar : Enemy
    [Tooltip("If you wish to override this value, checkmark \"Override Values\"")]
    public float jaguarRotationSpeedCustom;
 
-   private NavMeshAgent myAgent;
+   private UnityEngine.AI.NavMeshAgent myAgent;
 
    //-----------------------------------------------------------------------------
    // Default values for an jaguar, provided by juan.
@@ -76,7 +76,7 @@ public class Jaguar : Enemy
    {
       thePlayer = PlayerManager.getInstance().players.First(player => { return player != null && player is Girl; });
       //this.startPos = this.transform.position;
-      this.myAgent = this.GetComponent<NavMeshAgent>();
+      this.myAgent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
       //this.myAgent.speed = this.mySpeed;
    }
@@ -294,7 +294,7 @@ public class Jaguar : Enemy
    void killjaguar()
    {
 
-      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the jaguar
+      this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the jaguar
                                                           // from clipping back onto the platform after being "killed".
       this.transform.position = OUTOFBOUNDS;              // Move this jaguar out of bounds to the predefined location.
       this.gameObject.SetActive(false);                   // Disable this jaguar, preventing interactability.

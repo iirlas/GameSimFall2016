@@ -62,14 +62,14 @@ public class Ant : Enemy
       }
    }
 
-   private NavMeshAgent myAgent;
-   public NavMeshAgent agent
+   private UnityEngine.AI.NavMeshAgent myAgent;
+   public UnityEngine.AI.NavMeshAgent agent
    {
       get
       {
          if (myAgent == null)
          {
-            myAgent = GetComponent<NavMeshAgent>();
+            myAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
          }
          return myAgent;
       }
@@ -260,7 +260,7 @@ public class Ant : Enemy
          this.targetDestination = thePlayer.transform.position;
       }
 
-      this.GetComponent<NavMeshAgent>().SetDestination(targetDestination);
+      this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(targetDestination);
    }
 
    //=============================================================================
@@ -323,7 +323,7 @@ public class Ant : Enemy
    void killAnt()
    {
 
-      this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
+      this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Ant
                                                           // from clipping back onto the platform after being "killed".
       this.transform.position = OUTOFBOUNDS;              // Move this Ant out of bounds to the predefined location.
       this.gameObject.SetActive(false);                   // Disable this Ant, preventing interactability.

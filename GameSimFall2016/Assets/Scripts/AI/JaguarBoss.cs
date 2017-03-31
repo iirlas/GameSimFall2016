@@ -84,7 +84,7 @@ public class JaguarBoss : Enemy
 
         if (this.currentAttack == jagAttack.RETURN)
         {
-            this.GetComponent<NavMeshAgent>().SetDestination(this.center.transform.position);
+            this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(this.center.transform.position);
             if (Vector3.Distance(this.transform.position, this.center.transform.position) < 0.2f)
             {
                 this.isInCenterOfRoom = true;

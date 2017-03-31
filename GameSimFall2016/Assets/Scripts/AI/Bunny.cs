@@ -233,7 +233,7 @@ public class Bunny : Enemy
             this.targetDestination = thePlayer.transform.position;
         }
 
-        this.GetComponent<NavMeshAgent>().SetDestination(targetDestination);
+        this.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(targetDestination);
     }
 
     //=============================================================================
@@ -296,7 +296,7 @@ public class Bunny : Enemy
     void killBunny()
     {
 
-        this.GetComponent<NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Bunny
+        this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;  // Disable the NavmeshAgent in order to prevent the Bunny
         // from clipping back onto the platform after being "killed".
         this.transform.position = OUTOFBOUNDS;              // Move this Bunny out of bounds to the predefined location.
         this.gameObject.SetActive(false);                   // Disable this Bunny, preventing interactability.
