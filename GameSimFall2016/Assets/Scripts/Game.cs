@@ -40,8 +40,7 @@ public class Game : Singleton<Game>
         // Pressing the F10 key will toggle the Mouse's Locked mode and visibility.
         if (Input.GetKeyDown(KeyCode.F10))
         {
-            Cursor.lockState = (Cursor.lockState == CursorLockMode.None ? CursorLockMode.Locked : CursorLockMode.None);
-            Cursor.visible = !Cursor.visible;
+			PauseUI.getInstance ().cursorToggle ();
         }
 
         // Pressing the Escape key will toggle the pause menu.

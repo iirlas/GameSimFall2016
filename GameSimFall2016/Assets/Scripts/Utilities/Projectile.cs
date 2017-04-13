@@ -3,10 +3,19 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
+	public float speed = 2.0f;
     public float damage = 1.0f;
+	public Transform target;
+
+
+	//------------------------------------------------------------------------------------------------
+	void FixedUpdate ()
+	{
+		GetComponent<Rigidbody> ().velocity = (target.position - transform.position) * speed;
+	}
 
     //------------------------------------------------------------------------------------------------
-    public void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {

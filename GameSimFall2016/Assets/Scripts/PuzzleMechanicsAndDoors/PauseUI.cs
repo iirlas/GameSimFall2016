@@ -21,10 +21,17 @@ public class PauseUI : Singleton<PauseUI>
     void Update()
     {
     }
+
     public void pauseToggle()
     {
         pauseSet(!pauseCanvas.enabled);
     }
+
+	public void cursorToggle ()
+	{
+		Cursor.lockState = (Cursor.lockState == CursorLockMode.None ? CursorLockMode.Locked : CursorLockMode.None);
+		Cursor.visible = (Cursor.lockState == CursorLockMode.None);
+	}
 
     public void pauseSet(bool status)
     {
