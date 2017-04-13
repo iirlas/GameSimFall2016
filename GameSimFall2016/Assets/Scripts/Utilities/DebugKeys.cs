@@ -104,7 +104,7 @@ public class DebugKeys : MonoBehaviour
 		 if (getCode(KeyCode.S, KeyCode.P, KeyCode.E, KeyCode.E, KeyCode.D))
 		 {
 				thePlayer.movementSpeed *= 2;
-            SoundManager.getInstance().playEffect("notSonicTheHedgehog");
+            //SoundManager.getInstance().playEffect("notSonicTheHedgehog");
 				(thePlayer as Girl).animator.speed *= 2;
 				this.keys.Clear();
 		 }
