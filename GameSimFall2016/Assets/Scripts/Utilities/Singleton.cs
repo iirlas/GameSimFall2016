@@ -6,13 +6,10 @@ abstract public class Singleton <Type> : MonoBehaviour
 {
     static private Type ourInstance;
 
-    //------------------------------------------------------------------------------------------------
-    //hide the property using new keyword to 
-    //create the singleton when one is not avaliable
-    static protected bool isCreatedWhenMissing
-    {
-        get { return false; }
-    }
+	public static bool isValid
+	{
+		get { return ourInstance != null; }
+	}
 
     //------------------------------------------------------------------------------------------------
     static public Type getInstance()
@@ -29,7 +26,7 @@ abstract public class Singleton <Type> : MonoBehaviour
     }
 
     //------------------------------------------------------------------------------------------------
-    void Awake()
+    void Awake() 
     {
         ourInstance = getInstance();
         if ( ourInstance != this )

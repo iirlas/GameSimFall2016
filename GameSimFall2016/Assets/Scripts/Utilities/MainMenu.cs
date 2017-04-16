@@ -15,7 +15,8 @@ public class MainMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-      if (SoundManager.getInstance().gameObject.GetComponent<AudioSource>().isPlaying == false)
+		if (SoundManager.isValid &&
+			SoundManager.getInstance().gameObject.GetComponent<AudioSource>().isPlaying == false)
       {
          SoundManager.getInstance().playMusic("GameTheme(Temp Placement)");
       }
