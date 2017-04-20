@@ -32,7 +32,7 @@ public class BossCampfire : MonoBehaviour
 	{
         if (this.revivesLeft == 0)
         {
-            this.respawnPoint.position = this.noLivesRespawn.position;
+            //this.respawnPoint.position = this.noLivesRespawn.position;
             this.fire.Stop();
         }
 
@@ -61,7 +61,7 @@ public class BossCampfire : MonoBehaviour
 				this.respawnPoint.position.z);
 			//GameObject.FindGameObjectWithTag("HealthManager").GetComponent<HealthPlayer>().campfireRespawn = this.respawnPoint;
 			if (StatusManager.getInstance ().hasStatus (StatusManager.Status.FEAR) && revivesLeft > 0) {
-				Debug.Log ("ping");
+				//Debug.Log ("ping");
 				StatusManager.getInstance ().ToggleStatus (StatusManager.Status.FEAR);
 			}
 			//GameObject.FindGameObjectWithTag("FearManager").GetComponent<StatusManager>().ToggleStatus();
@@ -78,7 +78,7 @@ public class BossCampfire : MonoBehaviour
                     //decreaseRevives();
 				    revivesLeft--;
 				    onPlayerDeath.Invoke ();
-                    StatusManager.getInstance().health = 1.0f;
+                    StatusManager.getInstance().health = 20.0f;
 			    }
 			    //StatusManager.getInstance().health = 100;
 		    }

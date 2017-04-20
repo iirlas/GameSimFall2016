@@ -33,6 +33,12 @@ public class PauseUI : Singleton<PauseUI>
 		Cursor.visible = (Cursor.lockState == CursorLockMode.None);
 	}
 
+	public void cursorSet (bool show)
+	{
+		Cursor.lockState = (!show ? CursorLockMode.Locked : CursorLockMode.None);
+		Cursor.visible = (show);
+	}
+
     public void pauseSet(bool status)
     {
         pauseCanvas.enabled = status;

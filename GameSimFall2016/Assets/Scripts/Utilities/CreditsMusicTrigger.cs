@@ -17,14 +17,14 @@ public class CreditsMusicTrigger : MonoBehaviour
    {
       try
       {
-         if (SoundManager.getInstance() == null)
+		if (SoundManager.isValid)
          {
+			musicObject.SetActive(true);
+			SoundManager.getInstance().playMusic(this.songToPlay);
          }
       }
       catch (System.Exception e)
       {
-         musicObject.SetActive(true);
-         SoundManager.getInstance().playMusic(this.songToPlay);
       }
    }
 }

@@ -24,8 +24,10 @@ public class MainMenu : MonoBehaviour {
 
    public void pressPlay()
    {
-      Destroy(SoundManager.getInstance().gameObject);
-      SceneManager.LoadScene(firstScene);
+		if (SoundManager.isValid) {
+			Destroy (SoundManager.getInstance ().gameObject);
+		}
+		SceneManager.LoadScene (firstScene);
    }
 
    public void pressInstructions()
