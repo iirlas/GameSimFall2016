@@ -39,7 +39,7 @@ public class NumberSolution : MonoBehaviour
    bool checkWin(int colNums)
    {
       int winner = 0;
-      if (colNums == 4)
+      if (colNums >= 4)
       {
          foreach (GameObject pillar in solutionPillars)
          {
@@ -49,7 +49,7 @@ public class NumberSolution : MonoBehaviour
             }
          }
 
-         if (winner == 4)
+         if (winner >= 4)
          {
             for (int i = 0; i < allPillars.Length; i++)
             {
