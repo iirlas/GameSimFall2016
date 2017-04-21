@@ -38,15 +38,17 @@ public class MainMenu : MonoBehaviour {
    public void pressCredits()
    {
       Debug.Log("pressed");
-      SoundManager.getInstance().stopAll();
-      SoundManager.getInstance().playMusic("Memories_Bensound");
+		if (SoundManager.isValid) {
+			SoundManager.getInstance ().stopAll ();
+			SoundManager.getInstance ().playMusic ("Memories_Bensound");
+		}
       SceneManager.LoadScene(creditScene);
       
    }
 
    public void pressTitle()
    {
-      if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CreditsScene"))
+		if (SoundManager.isValid && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CreditsScene"))
       {
          SoundManager.getInstance().stopAll();
          SoundManager.getInstance().playMusic("GameTheme(Temp Placement)");
