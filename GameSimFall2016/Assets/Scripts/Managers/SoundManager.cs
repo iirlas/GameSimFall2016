@@ -20,7 +20,7 @@ public class SoundManager : Singleton<SoundManager>
     //------------------------------------------------------------------------------------------------
    private AudioClip getAudioClip(string name)
    {
-       return audioClips.Find(audioClip => { return (audioClip.name.Equals(name)); });
+		return audioClips.Find(audioClip => { return (audioClip != null && audioClip.name.Equals(name)); });
    }
 
     //------------------------------------------------------------------------------------------------
