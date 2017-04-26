@@ -10,6 +10,7 @@ public class LightCollider : MonoBehaviour {
     public SphereCollider sphereCollider;
     private Collider[] myHits;
     private Girl kira;
+	public float amount = 1.0f;
 
 	// Use this for initialization
 	void Awake () {
@@ -30,6 +31,7 @@ public class LightCollider : MonoBehaviour {
         {
             StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
         }
+		StatusManager.getInstance ().fear -= amount;
     }
 
     void OnTriggerExit (Collider other)
