@@ -25,9 +25,9 @@ public class Item : MonoBehaviour {
     //------------------------------------------------------------------------------------------------
     public void OnCollisionEnter (Collision collision)
     {
-        if (collision.transform.tag == "Player")
+		if (collision.transform.tag == "Player" && Inventory.isValid)
         {
-            Inventory.getInstance().Add(tag);
+			Inventory.getInstance ().Add (tag);
             Destroy(gameObject);
         }
     }
@@ -35,9 +35,9 @@ public class Item : MonoBehaviour {
     //------------------------------------------------------------------------------------------------
     public void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player")
+		if (other.transform.tag == "Player" && Inventory.isValid)
         {
-            Inventory.getInstance().Remove(tag);
+			Inventory.getInstance ().Remove (tag);
             Destroy(gameObject);
         }
     }
