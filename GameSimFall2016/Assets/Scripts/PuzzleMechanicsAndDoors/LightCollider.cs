@@ -27,11 +27,13 @@ public class LightCollider : MonoBehaviour {
 
     void OnTriggerStay (Collider other)
     {
-        if (kira != null &&  kira.transform == other.transform && StatusManager.getInstance().hasStatus(StatusManager.Status.FEAR))
+        if (kira != null &&  kira.transform == other.transform)
         {
-            StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
+			if (StatusManager.getInstance ().hasStatus (StatusManager.Status.FEAR)) {
+				StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
+			}
+			StatusManager.getInstance ().fear -= amount;
         }
-		StatusManager.getInstance ().fear -= amount;
     }
 
     void OnTriggerExit (Collider other)
