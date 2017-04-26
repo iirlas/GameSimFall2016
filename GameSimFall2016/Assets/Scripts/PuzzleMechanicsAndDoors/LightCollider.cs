@@ -32,7 +32,7 @@ public class LightCollider : MonoBehaviour {
 			if (StatusManager.getInstance ().hasStatus (StatusManager.Status.FEAR)) {
 				StatusManager.getInstance().ToggleStatus(StatusManager.Status.FEAR);
 			}
-			StatusManager.getInstance ().fear -= amount;
+			StatusManager.getInstance ().fear -= amount * Time.deltaTime;
         }
     }
 
