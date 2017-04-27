@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -314,10 +314,6 @@ Camera:
   m_PrefabParentObject: {fileID: 2011318, guid: 341e75f61eeaf5d4891eb7270df71d77,
     type: 2}
   m_PrefabInternal: {fileID: 2091145639}
---- !u!1 &642834867 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 120466, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
-  m_PrefabInternal: {fileID: 2053701276}
 --- !u!1001 &747026961
 Prefab:
   m_ObjectHideFlags: 0
@@ -794,7 +790,7 @@ Prefab:
     - target: {fileID: 11444784, guid: 68c0bebf66e47a547b0a83f615c826e7, type: 2}
       propertyPath: fearEffect
       value: 
-      objectReference: {fileID: 642834867}
+      objectReference: {fileID: 1868103014}
     - target: {fileID: 11444784, guid: 68c0bebf66e47a547b0a83f615c826e7, type: 2}
       propertyPath: highFearEffect
       value: 
@@ -1024,6 +1020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereCollider: {fileID: 0}
+  amount: 1
 --- !u!1 &1854362198 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 142360, guid: 9e40a5902173c0243aab322aa282fa5e, type: 2}
