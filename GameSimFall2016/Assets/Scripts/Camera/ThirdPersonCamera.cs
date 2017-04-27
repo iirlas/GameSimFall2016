@@ -63,11 +63,11 @@ public class ThirdPersonCamera : MonoBehaviour {
         Girl kira = (myPlayer as Girl);
         if (kira != null && kira.target != null)
         {
-            targeting(out view, out target);
+            targeting(ref view, ref target);
         }
         else
         {
-            thirdPerson(out view, out target);
+            thirdPerson(ref view, ref target);
         }
         Vector3 velocity = Vector3.zero;
 
@@ -79,23 +79,36 @@ public class ThirdPersonCamera : MonoBehaviour {
         }
         else
         {
-            transform.position = Vector3.Lerp( transform.position, view, time);
+			transform.position = Vector3.Lerp(transform.position, view, Time.deltaTime * speed);
             isTracking = false;
         }
-        time += Time.deltaTime * speed;
 
-        transform.LookAt(target, Vector3.up);
+		//Quaternion toRotation = Quaternion.FromToRotation (transform.forward, target - transform.position);
+
+		//transform.rotation = Quaternion.Lerp (transform.rotation, toRotation, Time.deltaTime * speed);
+
+		transform.LookAt (target, Vector3.up);
+
+		time += Time.deltaTime * speed;
     }
 
     //------------------------------------------------------------------------------------------------
     //Aligns the camera to the mouse's movement.
-    void thirdPerson ( out Vector3 view, out Vector3 target )
+    void thirdPerson (ref Vector3 view, ref Vector3 target )
     {
         float horizontal = Input.GetAxis("Alt_Horizontal");
         float vertical = Input.GetAxis("Alt_Vertical");
         Quaternion rotation = Quaternion.identity;
-        Vector3 targetView = myPlayer.collider.bounds.center + pivotPoint; 
 
+		Vector3 targetView;
+		if (Physics.Raycast (myPlayer.collider.bounds.center, pivotPoint, pivotPoint.magnitude)) 
+		{
+			targetView = myPlayer.collider.bounds.center;
+		}
+		else
+		{
+			targetView = myPlayer.collider.bounds.center + pivotPoint; 
+		}
         if (Input.GetButtonDown("Center"))
         {
             myAngle = new Vector3(0, myPlayer.transform.eulerAngles.y, 0);
@@ -110,7 +123,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 
         rotation = Quaternion.Euler(myAngle);
         view = targetView + rotation * offset;
-        target = targetView;
+		target = targetView;
 
         RaycastHit hit;
         if (Physics.Linecast(targetView, view, out hit, layerMask))
@@ -124,7 +137,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     //------------------------------------------------------------------------------------------------
     //Aligns the camera to the player's current target
-    void targeting (out Vector3 view, out Vector3 target)
+    void targeting (ref Vector3 view, ref Vector3 target)
     {
         Girl kira = (myPlayer as Girl);
         target = kira.target.position;
