@@ -149,7 +149,7 @@ public class TutorialPopups : MonoBehaviour {
         }
         else if (message == "BossHeard")
         {
-           tutText.text = "Bunny? \nQuetzal? \nWhere are you...and what's that noise?";
+           tutText.text = "Bunny? \nQuetzal? \nWhere are you?";
            textBack.enabled = true;
         }
         else if (message == "BunnyAttack")
