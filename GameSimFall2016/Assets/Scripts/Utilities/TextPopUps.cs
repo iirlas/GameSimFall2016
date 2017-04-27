@@ -33,4 +33,12 @@ public class TextPopUps : MonoBehaviour {
            textBack.enabled = printTextBack;
         }
     }
+
+	void OnTriggerExit(Collider other)
+	{
+		if (other.name.Equals ("Kira"))
+		{
+			gameObject.SetActive (false);
+		}
+	}
 }
