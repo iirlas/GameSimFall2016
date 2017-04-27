@@ -140,7 +140,6 @@ public class StatusManager : Singleton<StatusManager>
 
 
    public GameObject fearEffect;
-   public GameObject highFearEffect;
    public GameObject poisonEffect;
    public GameObject fireEffect;
    public UnityStandardAssets.ImageEffects.Fisheye fisheye;
@@ -200,7 +199,6 @@ public class StatusManager : Singleton<StatusManager>
       fearEffect.SetActive(hasStatus(Status.FEAR));
       poisonEffect.SetActive(hasStatus(Status.POISON));
       fireEffect.SetActive(hasStatus(Status.FIRE));
-      highFearEffect.SetActive(fear >= 100 && !highFearEffect.activeSelf);
    }
 
     //------------------------------------------------------------------------------------------------
