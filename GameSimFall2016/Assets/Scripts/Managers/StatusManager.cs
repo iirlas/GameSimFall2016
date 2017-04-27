@@ -244,6 +244,8 @@ public class StatusManager : Singleton<StatusManager>
       //respawn players when kira dies.
       if (health < 0)
       {
+			//StartCoroutine (Utility.fadeScreen (Color.clear, Color.black, 0.2f, 0.0f));
+		 StartCoroutine (FadeOnDeath ());
          Player[] players = PlayerManager.getInstance().players;
          for (int i = 0; i < players.Length; i++)
          {
@@ -253,4 +255,12 @@ public class StatusManager : Singleton<StatusManager>
          fear = 0.0f;
       }
    }
+
+
+	IEnumerator FadeOnDeath ()
+	{
+		yield return Utility.fadeScreen (Color.clear, Color.black, 1.0f, 0.0f);
+		yield return Utility.fadeScreen (Color.black, Color.clear, 0.01f, 0.0f);
+		yield return null;
+	}
 }

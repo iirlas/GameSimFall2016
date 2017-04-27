@@ -6,7 +6,7 @@ using System.Collections;
 public class Utility  {
     // determines whether the Fade is taking place.
     public static bool isFading { private set; get; }
-
+	public static GameObject fadeObject;
     //------------------------------------------------------------------------------------------------
     // Fades the Screen over a set amount of time.
     // Used with StartCoroutine() for threaded used.
@@ -16,12 +16,20 @@ public class Utility  {
         {
             yield return null;
         }
-        GameObject gameObject = new GameObject("FadeObject");
-        Canvas canvas = gameObject.AddComponent<Canvas>();
-        Image fadeImage = gameObject.AddComponent<Image>();
-
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
+		Canvas canvas;
+		Image fadeImage;
+		if (fadeObject == null)
+		{
+			fadeObject = new GameObject ("FadeObject");
+			canvas = fadeObject.AddComponent<Canvas> ();
+			fadeImage = fadeObject.AddComponent<Image> ();
+		}
+		else
+		{
+			canvas = fadeObject.GetComponent<Canvas> ();
+			fadeImage = fadeObject.GetComponent<Image> ();	
+		}
+		canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
         isFading = true;
 
