@@ -23,10 +23,10 @@ public class BunnyBoss : MonoBehaviour
 	private List<Bunny> bunnys = new List<Bunny> ();
 
 	[HideInInspector]
-	public Rigidbody rigidbody;
+	public new Rigidbody rigidbody;
 
 	[HideInInspector]
-	public Collider collider;
+	public new Collider collider;
 
 	[HideInInspector]
 	public ParticleSystem[] bloodEffects;
@@ -90,17 +90,17 @@ public class BunnyBoss : MonoBehaviour
 				//animator.speed = 1;
 			}
 		} else {
-			if (time > 5.0f) {
+			if (time > 4.0f) {
 				time = 0;
 				actionFlag = !actionFlag;
-				animator.SetTrigger ("jump");
+				animator.SetTrigger ("Jump");
 				//animator.speed = spline.Length * Time.deltaTime;
 			} else if (timer.elapsedTime () > 1.0f) { // The actionable phases for the boss.
 				switch ((int)(Random.value * 2)) {
 				case 0:
 					Spawn ();
 					break;
-
+						
 				case 1:
 					Summon ();
 					break;

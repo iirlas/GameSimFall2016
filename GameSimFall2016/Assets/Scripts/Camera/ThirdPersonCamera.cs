@@ -79,7 +79,7 @@ public class ThirdPersonCamera : MonoBehaviour {
         }
         else
         {
-			transform.position = Vector3.Lerp(transform.position, view, Time.deltaTime * speed);
+			transform.position = view;
             isTracking = false;
         }
 
