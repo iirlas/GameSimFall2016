@@ -23,6 +23,7 @@ public class PressurePlate : MonoBehaviour
    public void OnEvent(BasicTrigger trigger)
    {
       transform.Translate(0, -.1f, 0);
+	  GetComponent<BoxCollider> ().center += new Vector3 (0, .1f, 0);
       Debug.Log("CLicked In Pressure Plate");
       if (this.playOnceOnEvent)
       {
@@ -34,6 +35,7 @@ public class PressurePlate : MonoBehaviour
    public void OnEventEnd(BasicTrigger trigger)
    {
       transform.Translate(0, .1f, 0);
+	  GetComponent<BoxCollider> ().center -= new Vector3 (0, .1f, 0);
       if (this.playOnceOnEnd)
       {
          SoundManager.getInstance().playEffect("Slingshot_Pull_02");
