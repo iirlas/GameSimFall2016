@@ -94,6 +94,7 @@ public class BunnyBoss : MonoBehaviour
 				time = 0;
 				actionFlag = !actionFlag;
 				animator.SetTrigger ("Jump");
+				SoundManager.getInstance ().playEffect ("GroanJuan");
 				//animator.speed = spline.Length * Time.deltaTime;
 			} else if (timer.elapsedTime () > 1.0f) { // The actionable phases for the boss.
 				switch ((int)(Random.value * 2)) {
