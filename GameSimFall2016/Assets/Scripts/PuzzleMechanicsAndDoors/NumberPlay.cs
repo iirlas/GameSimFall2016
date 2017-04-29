@@ -3,11 +3,15 @@ using System.Collections;
 
 public class NumberPlay : MonoBehaviour
 {
+	[HideInInspector]
+	public Animator animator;
+
+	public UnityEngine.Events.UnityEvent OnDown;
 
     // Use this for initialization
     void Start()
     {
-
+		animator = GetComponent<Animator> ();
     }
 
     // Update is called once per frame
@@ -20,9 +24,10 @@ public class NumberPlay : MonoBehaviour
         if (other.name.Equals("Kira"))
         {
 
-            if (GetComponent<Animator>().GetBool("MoveDown") != true)
+			if (animator.GetBool("MoveDown") != true)
             {
-                this.GetComponent<Animator>().SetBool("MoveDown", true);
+				this.animator.SetBool("MoveDown", true);
+				OnDown.Invoke ();
             }
         }
     }
