@@ -8,7 +8,7 @@ public class PlayerManager : Singleton<PlayerManager> {
     new public Camera camera;
     public float followDistance = 1.0f;
     public float switchDistance = 20.0f;
-    public Player currentPlayer { get; private set; }
+    public Player currentPlayer { get; set; }
     public Player[] players { get; private set; }
     //public SelectedPLayer sel = SelectedPLayer.Girl;
 

@@ -249,6 +249,10 @@ public class StatusManager : Singleton<StatusManager>
          Player[] players = PlayerManager.getInstance().players;
          for (int i = 0; i < players.Length; i++)
          {
+			if (players [i] is Girl)
+			{
+					PlayerManager.getInstance ().currentPlayer = players [i];
+			}
             players[i].transform.position = respawnPoint;
          }
          health = 0.0f;
