@@ -162,5 +162,10 @@ public class TutorialPopups : MonoBehaviour {
            tutText.text = "I...made it, but where is this? \n Mommy? Daddy? \n ...Did you make it this far or am I alone?";
            textBack.enabled = true;
         }
+        else if (message == "LoafCat")
+        {
+            tutText.text = "Congratulations for completing the demo...\nUnfortunately Kira's parent's are in another Castle!\n  I mean, temple!  Another temple.";
+            textBack.enabled = true;
+        }
     }
 }
