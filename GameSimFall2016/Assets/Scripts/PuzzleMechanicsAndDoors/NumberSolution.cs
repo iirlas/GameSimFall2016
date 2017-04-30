@@ -30,17 +30,18 @@ public class NumberSolution : MonoBehaviour
 		if (success)
 		{
 			pillars.Add (pillar);
-			foreach (Transform item in pillars)
-			{
-				if (item.GetComponent<Animator> ().GetBool ("MoveDown"))
-				{
-					success &= solutionPillars.Contains (pillar);
-				}
-			}
 		}
 
 		if (pillars.Count == 4)
 		{
+			foreach (Transform item in pillars)
+			{
+				if (item.GetComponent<Animator> ().GetBool ("MoveDown"))
+				{
+					success = (success && solutionPillars.Contains (item));
+				}
+			}
+
 			foreach (Transform item in allPillars)
 			{
 				item.GetComponent<Animator> ().SetBool ("MoveDown", success);
